@@ -56,13 +56,13 @@ if __name__ == "__main__":
         version=VERSION,
         zip_safe=False,  # create 'zip'-file if True. Don't do it!
         classifiers=[
-            'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
         ],
         packages=[
             'sections',
-            'sections.cli',
+            'sections.feature',
+            'sections.utils',
         ],
         entry_points={
             'console_scripts': ['sections = sections.cli:main'],
