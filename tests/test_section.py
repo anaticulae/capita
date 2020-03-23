@@ -106,8 +106,8 @@ def test_section_extract_sections_simple():
         assert current == wanted, f'{current} != {wanted}'
 
     # Title and Table of MultipleSection
-    assert len(result[0].content) == 2
-
+    chapter = tests.resources.HOWTO_PYPORTING_CHAPTER_PAGE_COUNT
+    assert len(result[0].content) == chapter
     # TODO: Test order of multiple items
 
 
