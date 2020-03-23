@@ -11,9 +11,9 @@ import operator
 # TODO: MOVE TO TEXMEX
 import re
 
+import german
 import texmex
 import utila
-import words.text.word
 
 import sections.utils.spa
 
@@ -63,7 +63,7 @@ def special_chars(raw: str) -> list:
     # TODO: A LOT OF MISMATCHES AS A RESULT OF PROGRAM CODE IN DOCUMENT
     result = []
     for line in raw.splitlines():
-        parsed = words.text.word.split_words(line, validate_sentences=False)
+        parsed = german.split_words(line, validate_sentences=False)
         result.extend(parsed)
     counted = raw.count(';') + raw.count(',') + raw.count('/') + raw.count(':')
     counted += raw.count('[') + raw.count(']') + raw.count(')') + raw.count('(')
