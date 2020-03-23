@@ -10,4 +10,4 @@
 utila==1.15.3
 configo==0.5.7
 iamraw==1.18.2
-hey==1.19.1
+hey==2.0.0
