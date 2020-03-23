@@ -13,9 +13,9 @@ import re
 
 import texmex
 import utila
+import words.text.word
 
 import sections.utils.spa
-import words.text.word
 
 MIN_LIKELIHOOD = 0.3  # TODO: HOLY VALUE
 

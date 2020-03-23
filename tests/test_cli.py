@@ -10,13 +10,13 @@
 import pytest
 import utila
 
+from tests import run_sections
+from tests import run_sections_failure
 from tests.resources import HOWTO_PYPORTING
 from tests.resources import MASTER72
 from tests.resources import PYPORTING
 from tests.resources import RESTRUCT
 from tests.resources import RESTRUCT_PDF
-from tests import run_sections
-from tests import run_sections_failure
 
 
 @pytest.mark.parametrize('command', [

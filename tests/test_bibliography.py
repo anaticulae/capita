@@ -15,7 +15,7 @@ import sections.feature.abbreviation
 import tests.resources
 
 
-def test_section_bibliography_work():
+def test_bibliography_work():
     source = tests.resources.MASTER72
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)

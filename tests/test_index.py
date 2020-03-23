@@ -35,7 +35,7 @@ def test_index_work():
     assert len(dumped) > 100
 
 
-def test_hey_sections_feature_index_extract_index_likelihood():
+def test_feature_index_extract_index_likelihood():
     """Reduce false detection of index-pages"""
     path = iamraw.path.text(tests.resources.HOWTO_ARGPARSE)
     document = serializeraw.load_document(path)

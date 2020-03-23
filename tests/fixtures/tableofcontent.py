@@ -7,9 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import groupme.toc.strategy
 import serializeraw
 
-import groupme.toc.strategy
 import tests.resources
 
 

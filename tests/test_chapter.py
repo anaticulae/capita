@@ -36,7 +36,7 @@ RESTRUCT_TOC = iamraw.path.toc(tests.resources.RESTRUCT)
         id='master72pages',
     ),
 ])
-def test_sections_chapter_extract(document, position, toc, expected):
+def test_chapter_extract(document, position, toc, expected):
     result = extract_chapter(document, position, toc)
 
     pages = [item.page for item in result]
@@ -52,7 +52,7 @@ def test_sections_chapter_extract(document, position, toc, expected):
         id='restruct',
     ),
 ])
-def test_sections_chapter_dump_and_load_detection(document, position, toc):
+def test_chapter_dump_and_load_detection(document, position, toc):
     result = extract_chapter(document, position, toc)
 
     dumped = serializeraw.dump_likelihood(result)

@@ -13,7 +13,6 @@ import serializeraw
 import sections.creator
 import sections.feature.section
 import tests
-import tests
 # pylint:disable=W0611
 from tests.fixtures.restruct import restructured_chapter
 from tests.fixtures.restruct import restructured_index
@@ -29,7 +28,7 @@ from tests.fixtures.simple import simple_toc
 from tests.fixtures.simple import simple_whitepage
 
 
-def test_section_iterable():
+def test_iterable():
     """Create empty `Sections` and iterate over `Sections` and `AreaItem`s"""
     document = iamraw.Sections()
     for section in document:
@@ -38,7 +37,7 @@ def test_section_iterable():
             pass
 
 
-def test_section_dump_and_load_sections(restructured_sections_manual):  #pylint:disable=W0621
+def test_dump_and_load_sections(restructured_sections_manual):  #pylint:disable=W0621
     data = restructured_sections_manual
 
     dumped = serializeraw.dump_sections(data)
@@ -50,13 +49,13 @@ def test_section_dump_and_load_sections(restructured_sections_manual):  #pylint:
     assert loaded == data
 
 
-def test_section_validate_restructured(restructured_sections_manual):  #pylint:disable=W0621
+def test_validate_restructured(restructured_sections_manual):  #pylint:disable=W0621
     validated = sections.creator.validate(restructured_sections_manual)
     assert validated
 
 
 #pylint:disable=W0621
-def test_section_extract_sections_restructured(
+def test_extract_sections_restructured(
         testdir,
         monkeypatch,
         restructured_sections_manual,
@@ -77,7 +76,7 @@ def test_section_extract_sections_restructured(
     # assert result == restructured_sections
 
 
-def test_section_chapters(restructured_sections_manual):
+def test_chapters(restructured_sections_manual):
     result = sections.feature.section.chapters(restructured_sections_manual)
 
     # start is lower or equal than end page size
@@ -89,8 +88,7 @@ def test_section_chapters(restructured_sections_manual):
     assert len(result) == 8, str(result)
 
 
-#pylint:disable=W0621
-def test_section_extract_sections_simple():
+def test_extract_sections_simple():
     result = sections.feature.section.extract_sections_frompath(
         tests.resources.HOWTO_PYPORTING)
 
@@ -111,7 +109,7 @@ def test_section_extract_sections_simple():
     # TODO: Test order of multiple items
 
 
-def test_section_sections_simple(simple_sections):
+def test_sections_simple(simple_sections):
     """Check dumped result of section work method"""
     assert len(simple_sections) == 2, len(simple_sections)
     dumped = serializeraw.dump_sections(simple_sections)

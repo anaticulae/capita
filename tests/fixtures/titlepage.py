@@ -8,7 +8,6 @@
 # =============================================================================
 
 import iamraw
-
 from detector.parser.thesis import TitleThesisType
 
 FIRST = """

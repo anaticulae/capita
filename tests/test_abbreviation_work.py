@@ -15,7 +15,7 @@ import sections.feature.abbreviation
 import tests.resources
 
 
-def test_sections_abbreviations_work():
+def test_abbreviations_work():
     source = tests.resources.BACHELOR37
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)

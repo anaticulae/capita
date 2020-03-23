@@ -14,7 +14,6 @@ import typing
 
 import texmex
 import utila
-
 import words.text.parser
 import words.text.sentence
 import words.text.word

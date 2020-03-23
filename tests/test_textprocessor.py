@@ -35,7 +35,7 @@ def pyporting_pages(pagenumber):  #pagenumber: int):
     return pageiter, positions
 
 
-# def test_sections_textprocessor_small_snippet_page2():
+# def test_textprocessor_small_snippet_page2():
 #     pageiter, _ = pyporting_pages(2)
 #     first = pageiter.next(1, 0, 0)
 #     second = pageiter.next(1, 0, 7)
@@ -53,7 +53,7 @@ def pyporting_pages(pagenumber):  #pagenumber: int):
 
 #     assert fifth == (' result;\n' '}\n')
 
-# def test_sections_textprocessor_small_snippet_page7():
+# def test_textprocessor_small_snippet_page7():
 #     pageiter, _ = pyporting_pages(6)
 
 #     selections = [
@@ -72,7 +72,7 @@ def pyporting_pages(pagenumber):  #pagenumber: int):
 #         assert collected == text, collected
 
 
-def test_sections_textprocessor_example_pyporting_page_2():
+def test_textprocessor_example_pyporting_page_2():
     pageiter, positions = pyporting_pages(2)
 
     result = []
