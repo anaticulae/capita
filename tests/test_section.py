@@ -14,18 +14,8 @@ import sections.creator
 import sections.feature.section
 import tests
 # pylint:disable=W0611
-from tests.fixtures.restruct import restructured_chapter
-from tests.fixtures.restruct import restructured_index
 from tests.fixtures.restruct import restructured_sections_manual
-from tests.fixtures.restruct import restructured_title
-from tests.fixtures.restruct import restructured_toc
-from tests.fixtures.restruct import restructured_whitepage
-from tests.fixtures.simple import simple_chapter
-from tests.fixtures.simple import simple_index
 from tests.fixtures.simple import simple_sections
-from tests.fixtures.simple import simple_title
-from tests.fixtures.simple import simple_toc
-from tests.fixtures.simple import simple_whitepage
 
 
 def test_iterable():

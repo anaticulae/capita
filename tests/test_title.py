@@ -18,7 +18,6 @@ import tests.resources
 from tests.fixtures.restruct import restructured_fontstore
 from tests.fixtures.restruct import restructured_fontstore_fixture
 from tests.fixtures.restruct import restructured_text
-from tests.fixtures.restruct import restructured_text_fixture
 
 
 def test_load_font_lookup(restructured_fontstore):  #pylint:disable=W0621
