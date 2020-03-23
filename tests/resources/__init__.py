@@ -56,80 +56,33 @@ BACHELOR63_PDF = os.path.join(BACHELOR, 'page_63_images_toc.pdf')
 MASTER72 = os.path.join(GENERATED, 'page_72_noimages_toc')
 MASTER72_PDF = os.path.join(MASTER, 'page_72_noimages_toc.pdf')
 
-MASTER89 = os.path.join(GENERATED, 'page_89_noimages_toc')
-MASTER89_PDF = os.path.join(MASTER, 'page_89_noimages_toc.pdf')
-
 MASTER116 = os.path.join(GENERATED, 'page_116_images_toc_formular')
 MASTER116_PDF = os.path.join(MASTER, 'page_116_images_toc_formular.pdf')
-
-BACHELOR111 = os.path.join(GENERATED, 'page_111_images_toc')
-BACHELOR111_PDF = os.path.join(BACHELOR, 'page_111_images_toc.pdf')
-BACHELOR111_PAGE_COUNT = 111
-
-TECHNICAL24 = os.path.join(GENERATED, 'technical_24pages')
-TECHNICAL24_PDF = os.path.join(TECHNICAL, 'page_24_color_figures_images.pdf')
-TECHNICAL24_PAGE_COUNT = 24
-
-TWINE = os.path.join(GENERATED, 'twine')
-TWINE_PDF = os.path.join(DOCU, 'twine.pdf')
-
-# TWINE_NO_TILE = os.path.join(NO_TITLE, 'docu_twine')
 
 HOWTO_ARGPARSE = os.path.join(GENERATED, 'howto_argparse')
 HOWTO_ARGPARSE_PDF = os.path.join(DOCU, 'howto_argparse.pdf')
 HOWTO_ARGPARSE_PAGE_COUNT = 14
 
-HOWTOWRITE9 = os.path.join(GENERATED, 'howtowrite_pages9')
-HOWTOWRITE9_PDF = os.path.join(ORDER, 'howtowrite_pages9.pdf')
-
-MASTER78_PDF = os.path.join(MASTER, 'page_78_images_toc.pdf')
-
-HOMEWORK50 = os.path.join(GENERATED, 'homework_page_50_math')
-HOMEWORK50_PDF = os.path.join(HOMEWORK, 'page_50_math.pdf')
-
-LEFTRIGHT_PDF = os.path.join(BOOK, 'leftright.pdf')
-LEFTRIGHT = os.path.join(
-    GENERATED,
-    'book_leftright',
-)
-
 REQURIED_RESOURCES = [
     BACHELOR63,
     BACHELOR63_PDF,
-    BACHELOR111,
-    BACHELOR111_PDF,
     BACHELOR37,
     BACHELOR37_PDF,
     BACHELOR56,
     BACHELOR56_PDF,
-    BACHELOR63_PDF,
-    HOMEWORK50,
-    HOMEWORK50_PDF,
-    HOWTOWRITE9,
-    HOWTOWRITE9_PDF,
     HOWTO_ARGPARSE,
     HOWTO_ARGPARSE_PDF,
     HOWTO_PYPORTING,
     HOWTO_PYPORTING_PDF,
-    LEFTRIGHT,
-    LEFTRIGHT_PDF,
     MASTER116,
     MASTER116_PDF,
     MASTER72,
     MASTER72_PDF,
-    MASTER78_PDF,
-    MASTER89,
-    MASTER89_PDF,
     PYPORTING,
     PYPORTING_PDF,
     RESOURCES,
     RESTRUCT,
     RESTRUCT_PDF,
-    TECHNICAL24,
-    TECHNICAL24_PDF,
-    TWINE,
-    # TWINE_NO_TILE,
-    TWINE_PDF,
 ]
 
 REQURIED_RESOURCES = [
