@@ -60,11 +60,7 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
     A high title_indicator provides a high likelihood of beeing a title
     page. Aditionally the max_font_length is provided.
 
-    Args:
-        page(Page):
-        fontstore(FontStore):
-    Returns:
-        (max_font_length, title_indicator):
+    Returns: (max_font_length, title_indicator):
     """
     pagenumber = page.page
     positions = font_positions_from_page(fontstore, pagenumber)

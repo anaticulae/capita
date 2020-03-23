@@ -44,7 +44,7 @@ def analyse_page(navigator: texmex.PageTextNavigator
                 ) -> sections.feature.StatisticalResultItem:
     raw = ' '.join([line.text for line in navigator])
     collected = []
-    for method in [years, dates, pages]:
+    for method in [years, dates, pagenumbers]:
         collected.extend(method(raw))
 
     marker = len(collected)
@@ -114,10 +114,10 @@ def dates(raw: str, min_year=1950, max_year=2020):
     return result
 
 
-def pages(raw: str):
+def pagenumbers(raw: str):
     """Extract single pages and page ranges out of `raw` text.
 
-    >>> pages('S. 13-50 S.30 S. 1-5 S.319-350, Seite 20-30., page 500 p.4')
+    >>> pagenumbers('S. 13-50 S.30 S. 1-5 S.319-350, Seite 20-30., page 500 p.4')
     [(1, 5), (4, 4), (13, 50), (20, 30), (30, 30), (319, 350), (500, 500)]
     """
     result = []

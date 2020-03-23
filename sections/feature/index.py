@@ -19,11 +19,12 @@ import sections
 import sections.feature
 
 
-def work(text_linewise: str, pages=None) -> str:
+def work(text_linewise: str, pages: tuple = None) -> str:
     """Load document and extract likelihood of beening an index page
 
     Args:
         text_linewise(str): path to document with high `char_margin`
+        pages(tuple): tuple of pages to work on
     Returns:
         yaml content with dumped result for every single page
     """

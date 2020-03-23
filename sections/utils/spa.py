@@ -18,7 +18,6 @@ import dataclasses
 import iamraw
 import serializeraw
 import texmex
-import utila
 
 import sections.feature
 

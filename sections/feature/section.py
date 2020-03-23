@@ -17,6 +17,14 @@ import iamraw.sections
 import serializeraw
 import utila
 
+import sections.feature.abbreviation
+import sections.feature.bibliography
+import sections.feature.chapter
+import sections.feature.index
+import sections.feature.legal
+import sections.feature.title
+import sections.feature.toc
+import sections.feature.whitepage
 import sections.path
 
 # features with lower trust are not expected as detected feature
@@ -361,14 +369,6 @@ def extract_sections_frompath(  # pylint:disable=R0914
         prefix: str = '',
         pages: tuple = None,
 ) -> iamraw.Sections:
-    import sections.feature.chapter
-    import sections.feature.abbreviation
-    import sections.feature.bibliography
-    import sections.feature.legal
-    import sections.feature.title
-    import sections.feature.index
-    import sections.feature.toc
-    import sections.feature.whitepage
     text = iamraw.path.text(path, prefix=prefix)
     textposition = iamraw.path.textposition(path, prefix=prefix)
     toc = iamraw.path.toc(path, prefix=prefix)
