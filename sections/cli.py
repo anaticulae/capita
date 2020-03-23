@@ -19,7 +19,7 @@ from sections import __version__
 DESCRIPTION = ('The sections tool analyses every single page of an pdf file '
                'and determines the likelihood to be an feature')
 
-ResultFile = lambda producer, name: RF(producer=producer, name=name)
+ResultFile = lambda producer, name: RF(producer=producer, name=name)  # pylint:disable=C0103
 
 WORKPLAN = [
     step(

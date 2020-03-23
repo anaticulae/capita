@@ -39,18 +39,7 @@ def work(
         pages: list = None,
 ) -> str:
     """Combine different featuretypes to determine the page type with more
-    confidence.
-
-    Args:
-        chapter(str): path to chapter extraction
-        index(str): path to index extraction
-        title(str): path to title extraction
-        toc(str): path to toc extraction
-        whitepage(str): path to whitepage extraction
-        pages: select pages for processing
-    Returns:
-        dumped `Section`
-    """
+    confidence. Returns dumped `Section`."""
     # TODO: Add @checkfile decorator to utila, to ensure that files exists
     # TODO: Investigate add check if raw content or file path is used
     loaded = load_features(
@@ -367,7 +356,7 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
     return result
 
 
-def extract_sections_frompath(
+def extract_sections_frompath(  # pylint:disable=R0914
         path: str,
         prefix: str = '',
         pages: tuple = None,

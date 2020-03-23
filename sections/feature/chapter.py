@@ -6,7 +6,9 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""
+"""Chapter Start Determination
+===========================
+
 Find the starts of a chapter.
 
 What is typical for a start of chapter?
@@ -32,16 +34,7 @@ import yaml
 
 
 def work(document: str, position: str, tocpath: str, pages=None) -> str:
-    """Determine likelihood of beeing a chapter startpage
-
-    Args:
-        document(str):
-        position(str):
-        tocpath(str):
-        pages(list): list with page number to work on
-    Returns:
-        dumped list with ChapterLikelihood
-    """
+    """Determine likelihood of beeing a chapter startpage."""
     # load and setup
     pages = tuple(pages) if pages else None
     document = serializeraw.load_document(document, pages=pages)
@@ -172,6 +165,8 @@ def chaptervalue_to_percent(chaptervalue: float, hastoc: bool) -> float:
         chaptervalue(float): value of detected features
         hastoc(bool): if no toc is provided, some features can not be
                        processed.
+    Returns:
+        Likelihood of beeing a chapter start.?
     """
     # TODO: HOLY VALUES
     # TODO: IMPROVE THIS CONCEPT
