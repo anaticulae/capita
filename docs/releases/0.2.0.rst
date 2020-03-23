@@ -1,0 +1,21 @@
+.. _0_2_0:
+
+RP 0.2.0
+=========
+
+sections
+--------
+
+* [ ] convert sections likelihood to extraction/work-plan
+
+* [ ] verify with 3 examples
+
+
+code quality
+------------
+
+before
+~~~~~
+
+* Total coverage: 95.50%
+* Your code has been rated at 10.00/10
