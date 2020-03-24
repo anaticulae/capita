@@ -107,3 +107,20 @@ def determine_hugest_font(fonts, positions, page: iamraw.Page):
     text_length = [len(item) for item in texmex.split_page(page, positions)]
     max_font_length = text_length[max_font_index]
     return max_font, max_font_length
+
+
+def extract_titlelikelihood_frompath(
+        path: str,
+        pages: tuple = None,
+) -> typing.List[float]:
+    document = serializeraw.load_document(iamraw.path.text(path), pages=pages)
+    fontstore = serializeraw.create_fontstore(
+        iamraw.path.fontheader(path),
+        iamraw.path.fontcontent(path),
+        pages=pages,
+    )
+    result = sections.feature.title.extract_title_likelihood(
+        document,
+        fontstore,
+    )
+    return result

@@ -7,3 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 """Add experimental code here."""
+
+import iamraw
+
+
+def simple_content(items: iamraw.PageContentLikelihoods):
+    assert isinstance(items, list), type(items)
+    result = [item.content.value for item in items]
+    return result

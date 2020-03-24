@@ -13,6 +13,7 @@ import pytest
 import serializeraw
 
 import sections.feature.title
+import sections.utils
 import tests.resources
 # pylint:disable=W0611
 from tests.fixtures.restruct import restructured_fontstore
@@ -71,3 +72,10 @@ def test_dump_and_load_likelhood(
     loaded = serializeraw.load_likelihood(dumped)
 
     assert loaded == result
+
+
+def test_extract_title_likelihood_master72():
+    title = sections.feature.title.extract_titlelikelihood_frompath(
+        tests.resources.MASTER72, pages=tuple(range(10)))
+    extracted = sections.utils.simple_content(title)
+    assert extracted[0] >= 0.95
