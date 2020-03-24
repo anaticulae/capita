@@ -232,29 +232,14 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
     return result
 
 
-@dataclasses.dataclass
-class Abbreviation(iamraw.sections.AreaItem):
-    pass
-
-
-@dataclasses.dataclass
-class Bibliography(iamraw.sections.AreaItem):
-    pass
-
-
-@dataclasses.dataclass
-class Legal(iamraw.sections.AreaItem):
-    pass
-
-
 BUILDER = [
-    Abbreviation,
-    Bibliography,
+    iamraw.sections.AbbreviationTable,
+    iamraw.sections.Bibliography,
     iamraw.sections.Chapter,
     iamraw.sections.Index,
-    Legal,
-    iamraw.sections.TitlePage,
+    iamraw.sections.LegalInformation,
     iamraw.sections.TableOfContent,
+    iamraw.sections.TitlePage,
     iamraw.sections.WhitePage,
 ]
 
@@ -263,12 +248,12 @@ BUILDER = [
 #       iamraw.sections.Text
 #       iamraw.sections.WhitePage:
 MATCHING = {
-    Abbreviation: iamraw.sections.Appendix,
-    Bibliography: iamraw.sections.Appendix,
-    Legal: iamraw.sections.Appendix,
     iamraw.MultipleSection: iamraw.MultipleSection,
+    iamraw.sections.AbbreviationTable: iamraw.sections.Appendix,
+    iamraw.sections.Bibliography: iamraw.sections.Appendix,
     iamraw.sections.Chapter: iamraw.MainPart,
     iamraw.sections.Index: iamraw.sections.Table,
+    iamraw.sections.LegalInformation: iamraw.sections.Appendix,
     iamraw.sections.TableOfContent: iamraw.sections.Table,
     iamraw.sections.Text: iamraw.sections.DocumentSection,
     iamraw.sections.TitlePage: iamraw.sections.Introduction,
