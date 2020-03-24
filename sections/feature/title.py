@@ -34,7 +34,7 @@ def work(
 def extract_title_likelihood(
         document: iamraw.Document,
         fontstore: iamraw.FontStore,
-) -> typing.List[float]:
+) -> iamraw.PageContentLikelihood:
     result = {page.page: analyse_page(page, fontstore) for page in document}
 
     uniformed = sections.feature.uniform_result(result)

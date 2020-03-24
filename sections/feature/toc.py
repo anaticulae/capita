@@ -30,13 +30,10 @@ def work(text_linewise: str, pages=None) -> str:
     return dumped
 
 
-def extract_toc_likelihood(document: iamraw.Document) -> typing.List[float]:
-    """Iterate throw the document and determine the uniformed likelihood of
-    beeing a table page
-
-    Returns:
-        uniformed likelihood list with probabilty of beeing a table page
-    """
+def extract_toc_likelihood(document: iamraw.Document,
+                          ) -> iamraw.PageContentLikelihood:
+    """Iterate throw the document and determine the uni- or multiformed
+    likelihood of beeing a table page."""
 
     result = {page.page: analyse_page(page) for page in document}
 
