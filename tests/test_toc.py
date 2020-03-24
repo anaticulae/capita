@@ -34,3 +34,19 @@ def test_extract_toc_likelihood_bachelor63():
     # table of content is spreaded over two pages. Therefore the
     # likelihood must be higher than 1.0
     assert likelihood > 1.5, str(likelihood)  # holy value
+
+
+def test_extract_toc_likelihood_master72():
+    """Check that only second and third page are detected as table of content."""
+    text = iamraw.path.text(tests.resources.MASTER72, prefix='oneline')
+    text = serializeraw.load_document(text, pages=(0, 1, 2, 3, 4, 5, 6, 7))
+
+    extracted = sections.feature.toc.extract_toc_likelihood(text)
+    extracted = [item.content.value for item in extracted]
+
+    expected_result = [False, True, True, False, False, False, False, False]
+    for page, (current, expected) in enumerate(zip(extracted, expected_result)):
+        if expected:
+            assert current > 0.75, f'page {page} value: {current}'
+        else:
+            assert current < 0.05, f'page: {page} value: {current}'
