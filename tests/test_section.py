@@ -106,3 +106,17 @@ def test_sections_simple(simple_sections):
     assert len(dumped) > 100, dumped
     loaded = serializeraw.load_sections(dumped)
     assert loaded == simple_sections, loaded
+
+
+def test_sections_master72():
+    """Ensure that BUILDER in section is sorted correctly. There is a
+    problem if we sort TOC and Title alphabetically. To avoid this
+    problem this test ensure that sorting due the developer is done
+    correctly."""
+    result = sections.feature.section.extract_sections_frompath(
+        tests.resources.MASTER72)
+    # page 0 is title page
+    assert isinstance(result[0], iamraw.sections.Introduction), type(result[0])
+    # page 1 and 2 is introduction
+    assert isinstance(result[1], iamraw.sections.Table), type(result[1])
+    assert len(result[1]) == 2

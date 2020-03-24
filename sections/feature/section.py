@@ -238,8 +238,8 @@ BUILDER = [
     iamraw.sections.Chapter,
     iamraw.sections.Index,
     iamraw.sections.LegalInformation,
-    iamraw.sections.TableOfContent,
     iamraw.sections.TitlePage,
+    iamraw.sections.TableOfContent,
     iamraw.sections.WhitePage,
 ]
 
