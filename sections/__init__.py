@@ -11,31 +11,59 @@
 
 The `sections` tool is a very lightwight tool to determine the
 likelihood of a feature on a page very quickly. Sections is runned to
-determine which feature extraction is runned on which pages.
+determine which feature extraction should runned on which pages.
+
+Plan
+----
+
+The result of the section tool is a plan for the feature extractor.
+Further plans for judgements and informations for the user are not
+provided by sections tool. The section tool extracts only features but
+do not judges the result.
+
+Sources
+-------
+
+Data Provider:
+
+* Rawmaker
+* Linero
+* Imagero (planned)
+* Figero (planned)
+* Tabelero (planned)
+
+
+Feature Provider:
+
+* Groupme
+* Detector
+
+Planned Features
+----------------
 
 The following sections are planned to be supported:
 
 .. code-block:: none
 
-    * Introduction
-        * Titlepage
-        * Thank you
-        * Copyright etc.
-        * Erklaerung
-    * Table-Area
-        * Table of content
-        * Short cuts
-        * Figure table
-    * Content
-        * Chapter
-            * Figure
-            * Text
-            * Headlines
-    * Table-Area-B
-    * Appendix
-        * Resources
-        * Link
-        * Bibliography
+  * Introduction
+      * Titlepage
+      * Thank you
+      * Copyright etc.
+      * Erklaerung
+  * Table-Area
+      * Table of content
+      * Short cuts
+      * Figure table
+  * Content
+      * Chapter
+          * Figure
+          * Text
+          * Headlines
+  * Table-Area-B
+  * Appendix
+      * Resources
+      * Link
+      * Bibliography
 """
 
 import os
