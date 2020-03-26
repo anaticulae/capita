@@ -7,6 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
+import copy
+
 import iamraw
 import utila
 
@@ -14,31 +17,48 @@ import utila
 def create(sections: iamraw.Sections):
     result = []
     for group in sections:
-        result.append(create_group(group))
-    return result
-
-
-def simplify_group(group):
-    result = [group.content[0]]
-    for item in group.content[1:]:
-        if not isinstance(item, result[-1].__class__):
-            result.append(item)
-        else:
-            result[-1].end = item.end
+        result.extend(create_group(group))
     return result
 
 
 def create_group(group):
     result = []
-    merged = simplify_group(group)
+    merged = simplify(group)
     for item in merged:
         try:
             mapper = MAPPING[item.__class__]
         except KeyError:
-            utila.error(f'could not group {item.__class__}')
+            utila.error(f'could not group: {item.__class__}')
             continue
-        result.append(mapper(item))
+        groupname = mapper.__name__.split('_', maxsplit=1)[1]
+        result.append(groupname)
+        mapped = mapper(item)
+        result.append(mapped)
     return result
+
+
+def simplify(group):
+    result = [copy.deepcopy(group.content[0])]
+    for item in group.content[1:]:
+        merge = should_merge(result[-1], item)
+        if merge:
+            result[-1].end = item.end
+        elif not isinstance(item, result[-1].__class__):
+            result.append(copy.deepcopy(item))
+        else:
+            result[-1].end = item.end
+    return result
+
+
+def should_merge(parent, current):
+    merger = {
+        iamraw.sections.Text: (iamraw.sections.Chapter,),
+        iamraw.sections.Chapter: (iamraw.sections.Text,),
+    }
+    with contextlib.suppress(KeyError):
+        if current.__class__ in merger[parent.__class__]:
+            return True
+    return False
 
 
 def create_toc(item):
@@ -65,6 +85,16 @@ def create_bibliography(bibliography):
     return result
 
 
+def create_text(text):
+    """Chapter and Text."""
+    result = []
+    page = pages(text.start, text.end)
+    result.append(rawmaker('words', page))
+    inout = '-i {RAWMAKER_WORDS} -o {WORDS_RESULT}'
+    result.append(f'words {page} {inout}')
+    return result
+
+
 def pages(start: int, end: int):
     assert 0 <= start <= end, f'{start} <= {end}'
     if start == end:
@@ -76,4 +106,6 @@ MAPPING = {
     iamraw.sections.TitlePage: create_titlepage,
     iamraw.sections.Bibliography: create_bibliography,
     iamraw.sections.TableOfContent: create_toc,
+    iamraw.sections.Text: create_text,
+    iamraw.sections.Chapter: create_text,
 }
