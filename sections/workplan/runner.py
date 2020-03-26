@@ -69,3 +69,18 @@ def group_plan(plan: list, level=-1) -> str:
         return level + '>' + plan
     joined = utila.NEWLINE.join(result)
     return joined + utila.NEWLINE
+
+
+def split(raw: str) -> list:
+    raw = raw.strip()
+    splitted = raw.splitlines()
+    group = []
+    for line in splitted:
+        if not line.strip():
+            continue
+        if line[0] == '>':
+            group.append((line[1:], []))
+            continue
+        line = line.strip()[1:]
+        group[-1][1].append(line)
+    return group

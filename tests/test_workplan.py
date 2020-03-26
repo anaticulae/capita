@@ -70,3 +70,8 @@ def test_workplan_simple_group_plan():
     plan = sections.workplan.creator.create(example)
     result = sections.workplan.runner.group_plan(plan)
     assert result == EXPECTED
+
+
+def test_workplan_runner_split():
+    result = sections.workplan.runner.split(EXPECTED)
+    assert len(result) == 4, result
