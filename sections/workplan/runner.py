@@ -57,3 +57,15 @@ def setup_plan(plan, config: dict) -> str:
     if '{' in result or '}' in result:
         raise ValueError(f'template is not fully replaced:\n{result}')
     return result
+
+
+def group_plan(plan: list, level=-1) -> str:
+    result = []
+    if isinstance(plan, list):
+        for item in plan:
+            result.append(group_plan(item, level + 1))
+    else:
+        level = '    ' * level
+        return level + '>' + plan
+    joined = utila.NEWLINE.join(result)
+    return joined + utila.NEWLINE

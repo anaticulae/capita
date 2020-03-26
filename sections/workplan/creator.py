@@ -61,9 +61,16 @@ def should_merge(parent, current):
     return False
 
 
+def rawmaker(name, page):
+    cmd = 'rawmaker -i {SOURCE} -o {RAWMAKER_%s} -c {RAWMAKER_CFG_%s} %s'
+    cmd = cmd % (name.upper(), name.upper(), page)
+    return cmd
+
+
 def create_toc(item):
     result = []
     page = pages(item.start, item.end)
+    result.append(rawmaker('toc', page))
     inout = '-i {RAWMAKER_TOC} -o {GROUPME_RESULT}'
     result.append(f'groupme --toc {page} {inout}')
     return result
@@ -72,6 +79,7 @@ def create_toc(item):
 def create_titlepage(item):
     result = []
     page = pages(item.start, item.end)
+    result.append(rawmaker('title', page))
     inout = '-i {RAWMAKER_TITLE} -o {DETECTOR_RESULT}'
     result.append(f'detector --titlepage {page} {inout}')
     return result
@@ -80,6 +88,7 @@ def create_titlepage(item):
 def create_bibliography(bibliography):
     result = []
     page = pages(bibliography.start, bibliography.end)
+    result.append(rawmaker('bibliography', page))
     inout = '-i {RAWMAKER_BIBLIOGRAPHY} -o {DETECTOR_RESULT}'
     result.append(f'detector --bibliography {page} {inout}')
     return result
