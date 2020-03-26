@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import utila
+
 import sections.feature.section
 import sections.feature.workplan
 import sections.workplan.creator
@@ -75,3 +77,33 @@ def test_workplan_simple_group_plan():
 def test_workplan_runner_split():
     result = sections.workplan.runner.split(EXPECTED)
     assert len(result) == 4, result
+
+
+PLAN = """\
+>first
+    >ls -a
+
+>third
+    >echo hi
+    >echo hi
+    >echo hi
+"""
+
+
+def test_workplan_runner_runtime(testdir, capsys):
+    root = testdir.tmpdir
+    returncode = sections.workplan.runner.runtime(PLAN, cwd=root)
+    stdout = capsys.readouterr().out
+    assert 'hi' in stdout, str(stdout)
+    assert returncode == utila.SUCCESS
+
+
+ERROR = """\
+>first
+    >this is just an error
+"""
+
+
+def test_workplan_runner_runtime_error():
+    returncode = sections.workplan.runner.runtime(ERROR)
+    assert returncode >= utila.FAILURE

@@ -6,7 +6,7 @@ RP 0.2.0
 sections
 --------
 
-* [ ] convert sections likelihood to extraction/work-plan
+* [x] convert sections likelihood to extraction/work-plan
 
 * [ ] verify with 3 examples
 
