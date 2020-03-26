@@ -48,7 +48,7 @@ def extract_title_likelihood(
     return result
 
 
-MINIMAL_TITLE_LENGTH = 10
+MINIMAL_TITLE_LENGTH = 10  # TODO: CONVERT TO HOLY VALUE
 MAXIMAL_TITLE_LENGTH = 200
 
 EMPTY_RESULT = (0, 0.0)

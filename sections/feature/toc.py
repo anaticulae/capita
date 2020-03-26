@@ -13,7 +13,6 @@ TODO:
     - support table of figures
               table of abbreviation
 """
-import typing
 
 import iamraw
 import serializeraw

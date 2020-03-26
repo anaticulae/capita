@@ -101,6 +101,13 @@ WORKPLAN = [
         ],
         output=('result',),
     ),
+    step(
+        'workplan',
+        inputs=[
+            ResultFile('sections', 'section_result'),
+        ],
+        output=('info',),
+    ),
 ]
 
 
