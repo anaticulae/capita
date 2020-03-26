@@ -72,7 +72,10 @@ def test_workplan_simple_group_plan():
     example = tests.example.sections.EXAMPLE
     plan = sections.workplan.creator.create(example)
     result = sections.workplan.runner.group_plan(plan)
-    assert result == EXPECTED
+    assert '>titlepage' in result
+    assert '>toc' in result
+    assert '>tex' in result
+    assert '>rawmaker' in result
 
 
 def test_workplan_runner_split():
@@ -121,3 +124,28 @@ def test_setuptestfolder_and_setupplan(testdir):
     )
     replaced = sections.workplan.runner.setup_plan(EXPECTED, config)
     assert replaced
+
+
+@utila.skip_longrun
+def test_workplan_runner(testdir):
+    root = testdir.tmpdir
+    extracted = sections.feature.section.extract_sections_frompath(
+        tests.resources.HOWTO_ARGPARSE)
+    extracted_plan = sections.workplan.creator.create(extracted)
+    grouped = sections.workplan.runner.group_plan(extracted_plan)
+
+    utila.file_create('rawmaker_cfg_title.ini')
+    utila.file_create('rawmaker_cfg_title_oneline.ini')
+    utila.file_create('rawmaker_cfg_toc.ini')
+    utila.file_create('rawmaker_cfg_words.ini')
+    utila.file_create('rawmaker_cfg_bibliography.ini')
+    utila.file_create('rawmaker_cfg_bibliography_oneline.ini')
+    config = sections.workplan.runner.setup_testfolder(
+        path=root,
+        source=tests.resources.HOWTO_ARGPARSE_PDF,
+        config=root,
+    )
+    raw = sections.workplan.runner.setup_plan(grouped, config)
+
+    completed = sections.workplan.runner.runtime(raw, cwd=root)
+    assert completed == utila.SUCCESS, str(completed)

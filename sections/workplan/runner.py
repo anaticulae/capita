@@ -80,9 +80,11 @@ def setup_testfolder(
     # configuration
     configuration = [
         'rawmaker_cfg_title',
+        'rawmaker_cfg_title_oneline',
         'rawmaker_cfg_toc',
         'rawmaker_cfg_words',
         'rawmaker_cfg_bibliography',
+        'rawmaker_cfg_bibliography_oneline',
     ]
     for item in configuration:
         cfg = os.path.join(config, f'{item}.ini')

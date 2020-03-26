@@ -9,6 +9,7 @@
 
 import contextlib
 import copy
+import math
 
 import iamraw
 import utila
@@ -61,9 +62,16 @@ def should_merge(parent, current):
     return False
 
 
-def rawmaker(name, page):
-    cmd = 'rawmaker -i {SOURCE} -o {RAWMAKER_%s} -c {RAWMAKER_CFG_%s} %s'
-    cmd = cmd % (name.upper(), name.upper(), page)
+def rawmaker(name, page, prefix=''):
+    name = name.upper()
+    prefix = prefix.upper()
+    rawprefix = f'--prefix={prefix}' if prefix else ''
+    if prefix:
+        config = '{RAWMAKER_CFG_%s_%s}' % (name, prefix)
+    else:
+        config = '{RAWMAKER_CFG_%s}' % name
+    cmd = 'rawmaker -i {SOURCE} -o {RAWMAKER_%s} -c %s %s %s'
+    cmd = cmd % (name, config, rawprefix, page)
     return cmd
 
 
@@ -72,7 +80,7 @@ def create_toc(item):
     page = pages(item.start, item.end)
     result.append(rawmaker('toc', page))
     inout = '-i {RAWMAKER_TOC} -o {GROUPME_RESULT}'
-    result.append(f'groupme --toc {page} {inout}')
+    result.append(f'groupme --toc --footer --pagenumbers {page} {inout}')
     return result
 
 
@@ -80,6 +88,7 @@ def create_titlepage(item):
     result = []
     page = pages(item.start, item.end)
     result.append(rawmaker('title', page))
+    result.append(rawmaker('title', page, prefix='oneline'))
     inout = '-i {RAWMAKER_TITLE} -o {DETECTOR_RESULT}'
     result.append(f'detector --titlepage {page} {inout}')
     return result
@@ -89,6 +98,7 @@ def create_bibliography(bibliography):
     result = []
     page = pages(bibliography.start, bibliography.end)
     result.append(rawmaker('bibliography', page))
+    result.append(rawmaker('bibliography', page, prefix='oneline'))
     inout = '-i {RAWMAKER_BIBLIOGRAPHY} -o {DETECTOR_RESULT}'
     result.append(f'detector --bibliography {page} {inout}')
     return result
@@ -99,12 +109,16 @@ def create_text(text):
     result = []
     page = pages(text.start, text.end)
     result.append(rawmaker('words', page))
-    inout = '-i {RAWMAKER_WORDS} -o {WORDS_RESULT}'
-    result.append(f'words {page} {inout}')
+    result.append('linero -i {RAWMAKER_WORDS} -o {RAWMAKER_WORDS} %s' % page)
+    # result.append(('groupme -i {RAWMAKER_WORDS} -o {RAWMAKER_WORDS} '
+    #                '--footer --pagenumbers %s' % page))
+    # inout = '-i {RAWMAKER_WORDS} -o {WORDS_RESULT}'
+    # result.append(f'words {page} --text {inout}')
     return result
 
 
 def pages(start: int, end: int):
+    start, end = math.floor(start), math.ceil(end)
     assert 0 <= start <= end, f'{start} <= {end}'
     if start == end:
         return f'--pages={start}'
