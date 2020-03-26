@@ -12,6 +12,7 @@ import utila
 import sections.feature.section
 import sections.feature.workplan
 import sections.workplan.creator
+import sections.workplan.runner
 import tests.example.sections
 import tests.resources
 
@@ -107,3 +108,16 @@ ERROR = """\
 def test_workplan_runner_runtime_error():
     returncode = sections.workplan.runner.runtime(ERROR)
     assert returncode >= utila.FAILURE
+
+
+def test_setuptestfolder_and_setupplan(testdir):
+    root = testdir.tmpdir
+    source = tests.resources.MASTER72_PDF
+    config = sections.workplan.runner.setup_testfolder(
+        root,
+        source,
+        config=root,
+        dry=True,
+    )
+    replaced = sections.workplan.runner.setup_plan(EXPECTED, config)
+    assert replaced

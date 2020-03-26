@@ -35,6 +35,7 @@ Workplan
 """
 
 import concurrent.futures
+import os
 
 import utila
 
@@ -51,13 +52,67 @@ def setup_plan(plan, config: dict) -> str:
     Raises:
         ValueError: if not every template string is replaced
     """
-    result = utila.NEWLINE.join(plan)
+    result = plan if isinstance(plan, str) else utila.NEWLINE.join(plan)
     # replace templates
     for key, value in config.items():
         key = '{%s}' % key.upper()
         result = result.replace(key, value)
     if '{' in result or '}' in result:
         raise ValueError(f'template is not fully replaced:\n{result}')
+    return result
+
+
+def setup_testfolder(
+        path: str,
+        source: str,
+        config: str,
+        dry: bool = True,
+        verbose: bool = False,
+) -> dict:
+    if not dry:
+        assert os.path.exists(source), str(source)
+        assert os.path.exists(config), str(config)
+        os.makedirs(path, exist_ok=True)
+
+    result = {
+        'source': source,
+    }
+    # configuration
+    configuration = [
+        'rawmaker_cfg_title',
+        'rawmaker_cfg_toc',
+        'rawmaker_cfg_words',
+        'rawmaker_cfg_bibliography',
+    ]
+    for item in configuration:
+        cfg = os.path.join(config, f'{item}.ini')
+        if not dry:
+            assert os.path.exists(cfg), str(cfg)
+        result[item] = cfg
+
+    # folder
+    items = [
+        'rawmaker_title',
+        'rawmaker_toc',
+        'rawmaker_words',
+        'rawmaker_bibliography',
+        'detector_result',
+        'groupme_result',
+        'words_result',
+    ]
+    for item in items:
+        current = os.path.join(path, item)
+        if verbose:
+            utila.log(f'create: {current}')
+        if not dry:
+            os.makedirs(current, exist_ok=True)
+        result[item] = current
+
+    # forward slash
+    result = {
+        key: utila.forward_slash(item, save_newline=False)
+        for key, item in result.items()
+    }
     return result
 
 
