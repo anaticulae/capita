@@ -40,6 +40,36 @@ import os
 import utila
 
 
+def runtime(rawplan: str, cwd: str = None, worker: int = 12) -> int:
+    splitted = split(rawplan)
+    failure = 0
+    with concurrent.futures.ThreadPoolExecutor(max_workers=worker) as executor:
+        futures = {
+            executor.submit(runlevel, name, cmd, cwd): name
+            for name, cmd in splitted
+        }
+        for future in concurrent.futures.as_completed(futures):
+            failure += future.result()
+    return failure
+
+
+def runlevel(name: str, cmd: str, cwd: str = None):
+    utila.log(f'run: {name}')
+    cmd = ' && '.join(cmd)
+    utila.log(cmd)
+
+    completed = utila.run(cmd, cwd)
+
+    msg = f'\n...........{name}...........\n'.center(60)
+    msg += completed.stdout
+    if completed.returncode:
+        msg += '[ERROR]\n'
+        msg += completed.stderr
+    msg += f'\n-----------{name}-----------\n'.center(60)
+    utila.log(msg)
+    return completed.returncode
+
+
 def setup_plan(plan, config: dict) -> str:
     """Fill template strings with absolute paths and configuration.
 
@@ -128,36 +158,6 @@ def group_plan(plan: list, level=-1) -> str:
         return level + '>' + plan
     joined = utila.NEWLINE.join(result)
     return joined + utila.NEWLINE
-
-
-def runtime(rawplan: str, cwd: str = None, worker: int = 12) -> int:
-    splitted = split(rawplan)
-    failure = 0
-    with concurrent.futures.ThreadPoolExecutor(max_workers=worker) as executor:
-        futures = {
-            executor.submit(runlevel, name, cmd, cwd): name
-            for name, cmd in splitted
-        }
-        for future in concurrent.futures.as_completed(futures):
-            failure += future.result()
-    return failure
-
-
-def runlevel(name, cmd, cwd=None):
-    utila.log(f'run: {name}')
-    cmd = ' && '.join(cmd)
-    utila.log(cmd)
-
-    completed = utila.run(cmd, cwd)
-
-    msg = f'\n...........{name}...........\n'.center(60)
-    msg += completed.stdout
-    if completed.returncode:
-        msg += '[ERROR]\n'
-        msg += completed.stderr
-    msg += f'\n-----------{name}-----------\n'.center(60)
-    utila.log(msg)
-    return completed.returncode
 
 
 def split(raw: str) -> list:
