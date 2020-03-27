@@ -35,3 +35,32 @@ def load_plan(raw: str) -> list:
         line = line.strip()[1:]
         group[-1][1].append(line)
     return group
+
+
+def load_config(raw: str, flat: bool = False) -> dict:
+    r"""Load configuration from string.
+
+    >>> load_config('[rawmaker]\nchar_margin = 10\nline_margin = 10.0')
+    {'rawmaker': {'char_margin': '10', 'line_margin': '10.0'}}
+    >>> load_config('first = 1\nsecond=2', flat=True)
+    {'first': '1', 'second': '2'}
+    """
+    config = configparser.ConfigParser(allow_no_value=True)
+    try:
+        config.read_string(raw)
+    except configparser.MissingSectionHeaderError:
+        # support formats without any section
+        raw = f'[DEFAULT]\n{raw}'
+        config.read_string(raw)
+
+    result = {}
+    for section, keys in config.items():
+        level = {}
+        for key in keys:
+            level[key] = config[section][key]
+        result[section] = level
+
+    if flat:
+        return result['DEFAULT']
+    del result['DEFAULT']
+    return result
