@@ -19,12 +19,12 @@ Todo:
 import serializeraw
 
 import sections.workplan.creator
+import sections.workplan.serialize
 
 
 def work(section_result: str, pages: tuple = None) -> str:
     loaded = serializeraw.load_sections(section_result, pages=pages)
 
     plan = sections.workplan.creator.create(loaded)
-    grouped = sections.workplan.runner.group_plan(plan)
-
+    grouped = sections.workplan.serialize.dump_plan(plan)
     return grouped

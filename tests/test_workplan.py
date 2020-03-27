@@ -11,8 +11,7 @@ import utila
 
 import sections.feature.section
 import sections.feature.workplan
-import sections.workplan.creator
-import sections.workplan.runner
+import sections.workplan.serialize
 import tests.example.sections
 import tests.resources
 
@@ -68,10 +67,10 @@ EXPECTED = """\
 """
 
 
-def test_workplan_simple_group_plan():
+def test_workplan_simple_dump_plan():
     example = tests.example.sections.EXAMPLE
     plan = sections.workplan.creator.create(example)
-    result = sections.workplan.runner.group_plan(plan)
+    result = sections.workplan.serialize.dump_plan(plan)
     assert '>titlepage' in result
     assert '>toc' in result
     assert '>tex' in result
@@ -79,8 +78,8 @@ def test_workplan_simple_group_plan():
 
 
 def test_workplan_runner_split():
-    result = sections.workplan.runner.split(EXPECTED)
-    assert len(result) == 4, result
+    loaded = sections.workplan.serialize.load_plan(EXPECTED)
+    assert len(loaded) == 4, loaded
 
 
 PLAN = """\
@@ -132,7 +131,7 @@ def test_workplan_runner(testdir):
     extracted = sections.feature.section.extract_sections_frompath(
         tests.resources.HOWTO_ARGPARSE)
     extracted_plan = sections.workplan.creator.create(extracted)
-    grouped = sections.workplan.runner.group_plan(extracted_plan)
+    grouped = sections.workplan.serialize.dump_plan(extracted_plan)
 
     utila.file_create('rawmaker_cfg_title.ini')
     utila.file_create('rawmaker_cfg_title_oneline.ini')
