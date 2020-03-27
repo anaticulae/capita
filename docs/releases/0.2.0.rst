@@ -15,7 +15,13 @@ code quality
 ------------
 
 before
-~~~~~
+~~~~~~
 
 * Total coverage: 95.50%
+* Your code has been rated at 10.00/10
+
+after
+~~~~~
+
+* Total coverage: 95.01%
 * Your code has been rated at 10.00/10
