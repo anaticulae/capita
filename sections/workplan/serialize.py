@@ -7,7 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configparser
+import dataclasses
+
 import utila
+
+
+@dataclasses.dataclass
+class ExecutionPlan:
+    config: dict = dataclasses.field(default_factory=dict)
+    cmds: list = dataclasses.field(default_factory=list)
 
 
 def dump_plan(plan: list, level=-1) -> str:
@@ -22,11 +31,29 @@ def dump_plan(plan: list, level=-1) -> str:
     return joined + utila.NEWLINE
 
 
-def load_plan(raw: str) -> list:
-    raw = raw.strip()
+def load_plan(raw: str) -> ExecutionPlan:
+    config, cmds = divide_plan(raw)
+    config = load_config(config)
+    cmds = load_cmds(cmds)
+    return ExecutionPlan(config=config, cmds=cmds)
+
+
+def divide_plan(raw):
     splitted = raw.splitlines()
-    group = []
+    config, operation = [], []
     for line in splitted:
+        if not line.strip():
+            continue
+        if line.strip()[0] == '>':
+            operation.append(line)
+        else:
+            config.append(line)
+    return utila.NEWLINE.join(config), utila.NEWLINE.join(operation)
+
+
+def load_cmds(raw):
+    group = []
+    for line in raw.splitlines():
         if not line.strip():
             continue
         if line[0] == '>':
@@ -45,6 +72,7 @@ def load_config(raw: str, flat: bool = False) -> dict:
     >>> load_config('first = 1\nsecond=2', flat=True)
     {'first': '1', 'second': '2'}
     """
+    # TODO: MOVE TO UTILA
     config = configparser.ConfigParser(allow_no_value=True)
     try:
         config.read_string(raw)

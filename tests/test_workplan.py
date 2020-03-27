@@ -79,7 +79,7 @@ def test_workplan_simple_dump_plan():
 
 def test_workplan_runner_split():
     loaded = sections.workplan.serialize.load_plan(EXPECTED)
-    assert len(loaded) == 4, loaded
+    assert len(loaded.cmds) == 4, loaded
 
 
 PLAN = """\

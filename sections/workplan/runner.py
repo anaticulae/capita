@@ -48,7 +48,7 @@ def runtime(rawplan: str, cwd: str = None, worker: int = 12) -> int:
     with concurrent.futures.ThreadPoolExecutor(max_workers=worker) as executor:
         futures = {
             executor.submit(runlevel, name, cmd, cwd): name
-            for name, cmd in splitted
+            for name, cmd in splitted.cmds
         }
         for future in concurrent.futures.as_completed(futures):
             failure += future.result()
