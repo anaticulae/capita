@@ -21,10 +21,12 @@ import serializeraw
 import sections.workplan.creator
 import sections.workplan.serialize
 
+# TODO: ADD MULTIPLE STEPS TO DIVIDE BETWEEN PLAN AND CONFIG?
+
 
 def work(section_result: str, pages: tuple = None) -> str:
     loaded = serializeraw.load_sections(section_result, pages=pages)
 
     plan = sections.workplan.creator.create(loaded)
-    grouped = sections.workplan.serialize.dump_plan(plan)
+    grouped = sections.workplan.serialize.dump_cmds(plan)
     return grouped

@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import textwrap
+
 import utila
 
 import sections.feature.section
@@ -70,7 +72,7 @@ EXPECTED = """\
 def test_workplan_simple_dump_plan():
     example = tests.example.sections.EXAMPLE
     plan = sections.workplan.creator.create(example)
-    result = sections.workplan.serialize.dump_plan(plan)
+    result = sections.workplan.serialize.dump_cmds(plan)
     assert '>titlepage' in result
     assert '>toc' in result
     assert '>tex' in result
@@ -82,33 +84,28 @@ def test_workplan_runner_split():
     assert len(loaded.cmds) == 4, loaded
 
 
-PLAN = """\
->first
-    >ls -a
-
->third
-    >echo hi
-    >echo hi
-    >echo hi
-"""
-
-
 def test_workplan_runner_runtime(testdir, capsys):
+    plan = textwrap.dedent("""\
+    >first
+        >ls -a
+    >third
+        >echo hi
+        >echo hi
+        >echo hi
+    """)
     root = testdir.tmpdir
-    returncode = sections.workplan.runner.runtime(PLAN, cwd=root)
+    returncode = sections.workplan.runner.runtime(plan, cwd=root)
     stdout = capsys.readouterr().out
     assert 'hi' in stdout, str(stdout)
     assert returncode == utila.SUCCESS
 
 
-ERROR = """\
->first
-    >this is just an error
-"""
-
-
 def test_workplan_runner_runtime_error():
-    returncode = sections.workplan.runner.runtime(ERROR)
+    error = textwrap.dedent("""
+    >first
+        >this is just an error
+    """)
+    returncode = sections.workplan.runner.runtime(error)
     assert returncode >= utila.FAILURE
 
 
@@ -131,7 +128,7 @@ def test_workplan_runner(testdir):
     extracted = sections.feature.section.extract_sections_frompath(
         tests.resources.HOWTO_ARGPARSE)
     extracted_plan = sections.workplan.creator.create(extracted)
-    grouped = sections.workplan.serialize.dump_plan(extracted_plan)
+    grouped = sections.workplan.serialize.dump_cmds(extracted_plan)
 
     utila.file_create('rawmaker_cfg_title.ini')
     utila.file_create('rawmaker_cfg_title_oneline.ini')
@@ -148,3 +145,43 @@ def test_workplan_runner(testdir):
 
     completed = sections.workplan.runner.runtime(raw, cwd=root)
     assert completed == utila.SUCCESS, str(completed)
+
+
+def example_raw_plan() -> str:
+    example = tests.example.sections.EXAMPLE
+    plan = sections.workplan.creator.create(example)
+    executionplan = sections.workplan.serialize.ExecutionPlan(cmds=plan)
+    assert len(executionplan.cmds) == 8, str(executionplan)
+    tailer = sections.workplan.serialize.dump_plan(executionplan)
+
+    config = {
+        'rawmaker_cfg_title': {
+            'char_margin': 10
+        },
+        'rawmaker_cfg_title_oneline': {},
+        'rawmaker_cfg_toc': {
+            'raw': 10.5
+        },
+    }
+    header = sections.workplan.serialize.dump_config(config)
+    result = f'{header}\n{tailer}'
+    assert 'char_margin = 10' in result, result
+    assert 'raw = 10.5' in result, result
+    return result
+
+
+def test_workplan_create_plan_with_config():
+    example = example_raw_plan()
+    assert '{RAWMAKER_CFG_BIBLIOGRAPHY}' in example, example
+    config = {
+        'rawmaker_cfg_bibliography': '/c/config.ini',
+    }
+    plan = sections.workplan.runner.setup_plan(
+        example,
+        config=config,
+        validate=False,
+    )
+    # check that template ...
+    assert '{RAWMAKER_CFG_BIBLIOGRAPHY}' not in plan, plan
+    # ... was replaced
+    assert '/c/config.ini' in plan, plan

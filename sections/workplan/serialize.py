@@ -19,16 +19,11 @@ class ExecutionPlan:
     cmds: list = dataclasses.field(default_factory=list)
 
 
-def dump_plan(plan: list, level=-1) -> str:
-    result = []
-    if isinstance(plan, list):
-        for item in plan:
-            result.append(dump_plan(item, level + 1))
-    else:
-        level = '    ' * level
-        return level + '>' + plan
-    joined = utila.NEWLINE.join(result)
-    return joined + utila.NEWLINE
+def dump_plan(plan: ExecutionPlan) -> str:
+    assert isinstance(plan, ExecutionPlan), type(plan)
+    header = dump_config(plan.config)
+    tailer = dump_cmds(plan.cmds)
+    return f'{header}\n{tailer}'
 
 
 def load_plan(raw: str) -> ExecutionPlan:
@@ -38,7 +33,7 @@ def load_plan(raw: str) -> ExecutionPlan:
     return ExecutionPlan(config=config, cmds=cmds)
 
 
-def divide_plan(raw):
+def divide_plan(raw: str):
     splitted = raw.splitlines()
     config, operation = [], []
     for line in splitted:
@@ -51,7 +46,19 @@ def divide_plan(raw):
     return utila.NEWLINE.join(config), utila.NEWLINE.join(operation)
 
 
-def load_cmds(raw):
+def dump_cmds(plan: list, level: int = -1) -> str:
+    result = []
+    if isinstance(plan, list):
+        for item in plan:
+            result.append(dump_cmds(item, level + 1))
+    else:
+        level = '    ' * level
+        return level + '>' + plan
+    joined = utila.NEWLINE.join(result)
+    return joined + utila.NEWLINE
+
+
+def load_cmds(raw: str) -> list:
     group = []
     for line in raw.splitlines():
         if not line.strip():
@@ -62,36 +69,6 @@ def load_cmds(raw):
         line = line.strip()[1:]
         group[-1][1].append(line)
     return group
-
-
-def load_config(raw: str, flat: bool = False) -> dict:
-    r"""Load configuration from string.
-
-    >>> load_config('[rawmaker]\nchar_margin = 10\nline_margin = 10.0')
-    {'rawmaker': {'char_margin': '10', 'line_margin': '10.0'}}
-    >>> load_config('first = 1\nsecond=2', flat=True)
-    {'first': '1', 'second': '2'}
-    """
-    # TODO: MOVE TO UTILA
-    config = configparser.ConfigParser(allow_no_value=True)
-    try:
-        config.read_string(raw)
-    except configparser.MissingSectionHeaderError:
-        # support formats without any section
-        raw = f'[DEFAULT]\n{raw}'
-        config.read_string(raw)
-
-    result = {}
-    for section, keys in config.items():
-        level = {}
-        for key in keys:
-            level[key] = config[section][key]
-        result[section] = level
-
-    if flat:
-        return result['DEFAULT']
-    del result['DEFAULT']
-    return result
 
 
 def dump_config(config: dict) -> str:
@@ -116,3 +93,32 @@ def dump_config(config: dict) -> str:
     # add final newline
     result.append('')
     return utila.NEWLINE.join(result)
+
+
+def load_config(raw: str, flat: bool = False) -> dict:
+    r"""Load configuration from string.
+
+    >>> load_config('[rawmaker]\nchar_margin = 10\nline_margin = 10.0')
+    {'rawmaker': {'char_margin': '10', 'line_margin': '10.0'}}
+    >>> load_config('first = 1\nsecond=2', flat=True)
+    {'first': '1', 'second': '2'}
+    """
+    # TODO: MOVE TO UTILA
+    config = configparser.ConfigParser(allow_no_value=True)
+    try:
+        config.read_string(raw)
+    except configparser.MissingSectionHeaderError:
+        # support formats without any section
+        raw = f'[DEFAULT]\n{raw}'
+        config.read_string(raw)
+    result = {}
+    for section, keys in config.items():
+        level = {}
+        for key in keys:
+            level[key] = config[section][key]
+        result[section] = level
+
+    if flat:
+        return result['DEFAULT']
+    del result['DEFAULT']
+    return result

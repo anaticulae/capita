@@ -28,7 +28,7 @@ Workplan
 
     > bibliography
 
-        > rawmaker -i abc.pdf -o extracted/bibliography --config bibliography.cfg
+        > rawmaker -i abc.pdf -o extracted/bibliography -c {bibliography}
         > detector -i expected/titlepage -o detector_result --bibliography --page=14:15
 
     > text ...
@@ -48,7 +48,7 @@ def runtime(rawplan: str, cwd: str = None, worker: int = 12) -> int:
     with concurrent.futures.ThreadPoolExecutor(max_workers=worker) as executor:
         futures = {
             executor.submit(runlevel, name, cmd, cwd): name
-            for name, cmd in splitted.cmds
+            for name, cmd in splitted.cmds  # pylint:disable=E1133
         }
         for future in concurrent.futures.as_completed(futures):
             failure += future.result()
@@ -72,26 +72,47 @@ def runlevel(name: str, cmd: str, cwd: str = None):
     return completed.returncode
 
 
-def setup_plan(plan, config: dict) -> str:
+def setup_plan(plan: str, config: dict, validate: bool = True) -> str:
     """Fill template strings with absolute paths and configuration.
 
-    >>> setup_plan(['decider -i {RAWMAKER_INPUT} -o {OUTPUT}'],
+    >>> setup_plan(['>decider -i {RAWMAKER_INPUT} -o {OUTPUT}'],
     ... {'rawmaker_input' : 'source.txt', 'output' : 'output.txt'})
-    'decider -i source.txt -o output.txt'
+    '>decider -i source.txt -o output.txt'
+
+    Hint: `>` is required to split config items from cmd items
 
     Returns:
-        fully replaced workplan template
+        Fully replaced workplan template.
     Raises:
         ValueError: if not every template string is replaced
     """
     result = plan if isinstance(plan, str) else utila.NEWLINE.join(plan)
+    result = replace_config_ini(result)
+
     # replace templates
     for key, value in config.items():
+        if isinstance(value, dict):
+            continue
         key = '{%s}' % key.upper()
         result = result.replace(key, value)
-    if '{' in result or '}' in result:
-        raise ValueError(f'template is not fully replaced:\n{result}')
+
+    if validate:
+        if '{' in result or '}' in result:
+            raise ValueError(f'template is not fully replaced:\n{result}')
     return result
+
+
+def replace_config_ini(result):
+    header, tailer = sections.workplan.serialize.divide_plan(result)
+    variables = sections.workplan.serialize.load_config(header)
+    if not variables:
+        return tailer
+    # replace configuration
+    for header, sec in variables.items():
+        pattern = '-c {%s}' % header.upper()
+        param = ' '.join(['--%s=%s' % (key, val) for key, val in sec.items()])
+        tailer = tailer.replace(pattern, param)
+    return tailer
 
 
 def setup_testfolder(

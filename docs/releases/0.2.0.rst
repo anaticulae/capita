@@ -8,7 +8,7 @@ sections
 
 * [x] convert sections likelihood to extraction/work-plan
 
-* [ ] verify with 3 examples
+* [x] verify with 3 examples
 
 
 code quality
