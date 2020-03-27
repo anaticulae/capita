@@ -92,3 +92,27 @@ def load_config(raw: str, flat: bool = False) -> dict:
         return result['DEFAULT']
     del result['DEFAULT']
     return result
+
+
+def dump_config(config: dict) -> str:
+    r"""Dump config to `ini` format.
+    >>> dump_config({'header' : {'first': 10, 'second' : 20}})
+    '[HEADER]\nfirst = 10\nsecond = 20\n'
+    """
+    if not config:
+        return ''
+    isflat = isinstance(list(config.values())[0], dict) is False
+
+    result = []
+    if isflat:
+        for key, value in config.items():
+            result.append(f'{key} = {value}'.strip())
+    else:
+        for header, values in config.items():
+            header = header.upper()
+            result.append(f'[{header}]')
+            for key, value in values.items():
+                result.append(f'{key} = {value}'.strip())
+    # add final newline
+    result.append('')
+    return utila.NEWLINE.join(result)
