@@ -106,7 +106,8 @@ WORKPLAN = [
         inputs=[
             ResultFile('sections', 'section_result'),
         ],
-        output=('info',),
+        # working plan (.pl)
+        output=(('todo', 'pl'),),
     ),
 ]
 
