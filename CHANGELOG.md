@@ -2,6 +2,32 @@
 
 Every noteable change is logged here.
 
+## v0.2.0
+
+### Feature
+
+* introduce header to define variable replacements (8d6621eb9fe3)
+* add method to dump config to string (5320ea50d4f0)
+* introduce execution plan link config and cmds (cd69982e533f)
+* add method to load configuration files (024dceb76573)
+* change format to .pl of generated working plan (2fc6504c7427)
+* add workplan step to extract planned extraction (445cdc59a195)
+* add method to setup folder structure (b97f3819fb28)
+* add runtime parallelize (d69397d643b6)
+* add method to split raw execution plan (692cfd153859)
+* add method to convert plan to raw plan (d71ba638f392)
+* merge section `Chapter` and `Text` (80fda1f5ec4d)
+* add workplan runner (9bdd2fe82ccc)
+* add workplan creator (e591c1195d48)
+
+### Fix
+
+* fix expected return type (0838d1342881)
+
+### Documentation
+
+* add purpose of sections tool (f0db3ae13dbe)
+
 ## v0.1.1
 
 ### Fix
