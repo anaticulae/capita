@@ -94,7 +94,6 @@ def extract():
         for future in concurrent.futures.as_completed(futures):
             try:
                 comment = future.result()
-                utila.log(comment)
             except Exception:
                 utila.error(f'{future} failed.')
                 raise
