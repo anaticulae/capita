@@ -24,8 +24,7 @@ def install_requirements():
 
 
 def sync_resources():
-    completed = utila.run('power --all', tests.resources.RESOURCES)  # pylint:disable=C0103
-    assert completed.returncode == utila.SUCCESS, str(completed)
+    utila.run('power --all', tests.resources.RESOURCES)
 
 
 def extract_examples():
@@ -51,8 +50,15 @@ SINGLE = [
 # yapf:enable
 
 
-def run_package(pdf, outpath, pages=None, rungroupme: bool = True):
-    utila.log(f'run: {pdf}')
+def run_package(
+        pdf,
+        outpath,
+        pages=None,
+        rungroupme: bool = True,
+):
+    source = utila.make_relative(pdf, tests.resources.RESOURCES)
+    utila.log(f'run: {source}')
+    pages = f' --pages {pages} ' if pages else ' '
     todo = [
         rawmaker(pdf, outpath, pages),
         oneline(pdf, outpath, pages),
@@ -60,8 +66,7 @@ def run_package(pdf, outpath, pages=None, rungroupme: bool = True):
     utila.run_parallel(todo)
     if rungroupme:
         utila.run(groupme(outpath, pages=pages))
-    utila.log(f'completed: {pdf}')
-    return pdf
+    utila.log(f'completed: {source}')
 
 
 def extract():
@@ -93,28 +98,25 @@ def extract():
         futures.update(futures_singles)
         for future in concurrent.futures.as_completed(futures):
             try:
-                comment = future.result()
+                future.result()
             except Exception:
                 utila.error(f'{future} failed.')
                 raise
 
 
-def rawmaker(inpath: str, outpath: str, pages: tuple = None) -> str:
-    pages = f' --pages {pages} ' if pages is not None else ' '
+def rawmaker(inpath: str, outpath: str, pages: str = '') -> str:
     config = '--char_margin=3.1 --boxes_flow=1.0 --line_margin=0.25 '
     cmd = f'rawmaker -i {inpath} -o {outpath} {pages} {config} -j8'
     cmd += f' && linero -i {outpath} -o {outpath}'
     return cmd
 
 
-def oneline(inpath: str, outpath: str, pages: tuple = None) -> str:
-    pages = f' --pages {pages} ' if pages is not None else ' '
+def oneline(inpath: str, outpath: str, pages: str = '') -> str:
     config = detector.feature.titlepage.RAWMAKER_CONFIGURATION
     cmd = f'rawmaker -i {inpath} -o {outpath} {pages} {config} -j8'
     return cmd
 
 
-def groupme(inpath: str, pages: tuple = None) -> str:
-    pages = f' --pages {pages} ' if pages is not None else ' '
+def groupme(inpath: str, pages: tuple = '') -> str:
     cmd = f'groupme -i {inpath} -o {inpath} {pages} -j8'
     return cmd
