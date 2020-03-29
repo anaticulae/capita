@@ -57,10 +57,9 @@ def run_package(pdf, outpath, pages=None, rungroupme: bool = True):
         rawmaker(pdf, outpath, pages),
         oneline(pdf, outpath, pages),
     ]
-    assert utila.run_parallel(todo) == utila.SUCCESS
+    utila.run_parallel(todo)
     if rungroupme:
-        completed = utila.run(groupme(outpath, pages=pages))
-        utila.assert_success(completed)
+        utila.run(groupme(outpath, pages=pages))
     utila.log(f'completed: {pdf}')
     return pdf
 

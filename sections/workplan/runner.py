@@ -60,7 +60,7 @@ def runlevel(name: str, cmd: str, cwd: str = None):
     cmd = ' && '.join(cmd)
     utila.log(cmd)
 
-    completed = utila.run(cmd, cwd)
+    completed = utila.run(cmd, cwd, expect=None)
 
     msg = f'\n...........{name}...........\n'.center(60)
     msg += completed.stdout
