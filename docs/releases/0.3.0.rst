@@ -1,0 +1,22 @@
+.. _0_3_0:
+
+RP 0.3.0
+=========
+
+validation
+----------
+
+* [ ] add section data for 20 documents
+
+* [ ] run validation on 20 documents
+
+* [ ] derivate validation strategy for other applications
+
+code quality
+------------
+
+before
+~~~~~~
+
+* Total coverage: 95.01%
+* Your code has been rated at 10.00/10
