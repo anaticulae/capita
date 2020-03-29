@@ -48,36 +48,21 @@ SINGLE = [
     (tests.resources.BACHELOR56_PDF, tests.resources.BACHELOR56, '0:55'),
     (tests.resources.MASTER116_PDF, tests.resources.MASTER116, '0,1,2,3,4,96,97,98,99,100'),
 ]
+# yapf:enable
 
 
-def run_package(pdf, outpath, pages=None):
-    utila.log(f'run {pdf}')
-    todo = []
-    todo.extend(create_todo_rawmaker(pdf, outpath, pages=pages))
-    todo.append(('groupme', outpath, outpath, '-j8'))
-    # todo.append(('sections', outpath, outpath, '--all'))
-
+def run_package(pdf, outpath, pages=None, rungroupme: bool = True):
+    utila.log(f'run: {pdf}')
     todo = [
-        f'{executable} -i {inpath} -o {outpath} {configuration}'
-        for (executable, inpath, outpath, configuration) in todo
+        rawmaker(pdf, outpath, pages),
+        oneline(pdf, outpath, pages),
     ]
-    todo = ' && '.join(todo)  # pylint:disable=R0204
-    completed = utila.run(todo)
-    utila.assert_success(completed)
-    return todo
-
-
-def run_single(pdf, dest, pages=None):
-    """Extract only rawmaker and linero and nothing more."""
-    todo = create_todo_rawmaker(pdf, dest, pages=pages)
-    todo = [
-        f'{executable} -i {inpath} -o {outpath} {configuration}'
-        for (executable, inpath, outpath, configuration) in todo
-    ]
-    todo = ' && '.join(todo)  # pylint:disable=R0204
-    completed = utila.run(todo)
-    utila.assert_success(completed)
-    return todo
+    assert utila.run_parallel(todo) == utila.SUCCESS
+    if rungroupme:
+        completed = utila.run(groupme(outpath, pages=pages))
+        utila.assert_success(completed)
+    utila.log(f'completed: {pdf}')
+    return pdf
 
 
 def extract():
@@ -88,12 +73,21 @@ def extract():
     os.makedirs(tests.resources.GENERATED)
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKER) as executor:
         futures_standard = {
-            executor.submit(run_package, pdf, out, pages=pages): pdf
-            for pdf, out, pages in PACKAGE
+            executor.submit(
+                run_package,
+                pdf,
+                out,
+                pages=pages,
+            ): pdf for pdf, out, pages in PACKAGE
         }
         futures_singles = {
-            executor.submit(run_single, pdf, out, pages=pages): pdf
-            for pdf, out, pages in SINGLE
+            executor.submit(
+                run_package,
+                pdf,
+                out,
+                pages=pages,
+                rungroupme=False,
+            ): pdf for pdf, out, pages in SINGLE
         }
         futures = {}
         futures.update(futures_standard)
@@ -107,30 +101,22 @@ def extract():
                 raise
 
 
-def create_todo_rawmaker(inpath, outpath, pages=None):
-    # default config
-    # TODO: move configuration to global var
-    config = '--all --char_margin=3.1 --boxes_flow=1.0 --line_margin=0.25 '
+def rawmaker(inpath: str, outpath: str, pages: tuple = None) -> str:
     pages = f' --pages {pages} ' if pages is not None else ' '
-    result = [
-        (
-            'rawmaker -j8',
-            inpath,
-            outpath,
-            # oneline configuration
-            detector.feature.titlepage.RAWMAKER_CONFIGURATION + pages,
-        ),
-        (
-            'rawmaker -j8',
-            inpath,
-            outpath,
-            config + pages,
-        ),
-        (
-            'linero',
-            outpath,
-            outpath,
-            '',
-        ),
-    ]
-    return result
+    config = '--char_margin=3.1 --boxes_flow=1.0 --line_margin=0.25 '
+    cmd = f'rawmaker -i {inpath} -o {outpath} {pages} {config} -j8'
+    cmd += f' && linero -i {outpath} -o {outpath}'
+    return cmd
+
+
+def oneline(inpath: str, outpath: str, pages: tuple = None) -> str:
+    pages = f' --pages {pages} ' if pages is not None else ' '
+    config = detector.feature.titlepage.RAWMAKER_CONFIGURATION
+    cmd = f'rawmaker -i {inpath} -o {outpath} {pages} {config} -j8'
+    return cmd
+
+
+def groupme(inpath: str, pages: tuple = None) -> str:
+    pages = f' --pages {pages} ' if pages is not None else ' '
+    cmd = f'groupme -i {inpath} -o {inpath} {pages} -j8'
+    return cmd
