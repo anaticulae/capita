@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.1
+
+### Feature
+
+* add first draft of validating 5 examples (f94b1e1692c5)
+
 ## v0.2.0
 
 ### Feature
