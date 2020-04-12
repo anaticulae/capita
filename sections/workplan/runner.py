@@ -104,7 +104,7 @@ def setup_plan(plan: str, config: dict, validate: bool = True) -> str:
 
 def replace_config_ini(result):
     header, tailer = sections.workplan.serialize.divide_plan(result)
-    variables = sections.workplan.serialize.load_config(header)
+    variables = utila.load_config(header)
     if not variables:
         return tailer
     # replace configuration

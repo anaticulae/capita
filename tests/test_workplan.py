@@ -163,7 +163,7 @@ def example_raw_plan() -> str:
             'raw': 10.5
         },
     }
-    header = sections.workplan.serialize.dump_config(config)
+    header = utila.dump_config(config)
     result = f'{header}\n{tailer}'
     assert 'char_margin = 10' in result, result
     assert 'raw = 10.5' in result, result
