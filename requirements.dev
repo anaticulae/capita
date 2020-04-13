@@ -11,4 +11,4 @@
 power==0.7.2
 
 # ensure that test data is generated with the right version of rawmaker
-rawmaker==1.17.10
+rawmaker==1.17.11
