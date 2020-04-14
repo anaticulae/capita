@@ -164,8 +164,5 @@ def setup_testfolder(
         result[item] = current
 
     # forward slash
-    result = {
-        key: utila.forward_slash(item, save_newline=False)
-        for key, item in result.items()
-    }
+    result = {key: utila.forward_slash(item) for key, item in result.items()}
     return result
