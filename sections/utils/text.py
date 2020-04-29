@@ -9,10 +9,12 @@
 
 import contextlib
 import dataclasses
+import functools
 import statistics
 import typing
 
 import german
+import konrad
 import texmex
 import utila
 
@@ -24,9 +26,9 @@ class TextOnPage:
     paragraphs_: int = None
     headlines_: int = None
     # signs included in sentences
-    signs_: german.Marks = dataclasses.field(default_factory=list)
+    signs_: konrad.Marks = dataclasses.field(default_factory=list)
     # ordinary dots ... which are used in table of content etc.
-    dots_: german.Marks = dataclasses.field(default_factory=list)
+    dots_: konrad.Marks = dataclasses.field(default_factory=list)
 
     def append_sentence(self, item: str):
         self.sentences_.append(item)  # pylint:disable=E1101
@@ -71,7 +73,7 @@ class TextOnPage:
             'min': min,
             'mean': statistics.mean,
             'median': statistics.median,
-            'mode': utila.modes,
+            'mode': functools.partial(utila.mode, maximize=True),
             'stdev': statistics.stdev,
             'variance': statistics.variance,
         }
@@ -87,7 +89,7 @@ def textonpage(page: texmex.PageTextNavigator) -> TextOnPage:
         text = chunk.text.strip()
         sentences = german.split_sentences(text)
         for item in sentences:
-            if not german.is_sentence(item):
+            if not german.is_sentence(item, min_length=20):  # TODO: HOLY VALUE
                 continue
             result.append_sentence(item)
 
@@ -99,9 +101,9 @@ def textonpage(page: texmex.PageTextNavigator) -> TextOnPage:
                     continue
                 result.append_word(item)
                 continue
-            if item == german.Mark.FULLSTOP:
+            if item == konrad.Mark.FULLSTOP:
                 result.append_dot(item)
-            if isinstance(item, german.Mark):
+            if isinstance(item, konrad.Mark):
                 result.append_sign(item)
                 continue
             assert f'supported item {item}'
