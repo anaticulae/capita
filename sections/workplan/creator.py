@@ -64,10 +64,10 @@ def should_merge(parent, current):
 
 def rawmaker(name, page, prefix=''):
     name = name.upper()
-    prefix = prefix.upper()
+    prefix = prefix.lower()
     rawprefix = f'--prefix={prefix}' if prefix else ''
     if prefix:
-        config = '{RAWMAKER_CFG_%s_%s}' % (name, prefix)
+        config = '{RAWMAKER_CFG_%s_%s}' % (name, prefix.upper())
     else:
         config = '{RAWMAKER_CFG_%s}' % name
     cmd = 'rawmaker -i {SOURCE} -o {RAWMAKER_%s} -c %s %s %s'
@@ -79,6 +79,7 @@ def create_toc(item):
     result = []
     page = pages(item.start, item.end)
     result.append(rawmaker('toc', page))
+    result.append(rawmaker('toc', page, prefix='oneline'))
     inout = '-i {RAWMAKER_TOC} -o {GROUPME_RESULT}'
     result.append(f'groupme --toc --footer --pagenumbers {page} {inout}')
     return result

@@ -135,6 +135,7 @@ def setup_testfolder(
         'rawmaker_cfg_title',
         'rawmaker_cfg_title_oneline',
         'rawmaker_cfg_toc',
+        'rawmaker_cfg_toc_oneline',
         'rawmaker_cfg_words',
         'rawmaker_cfg_bibliography',
         'rawmaker_cfg_bibliography_oneline',

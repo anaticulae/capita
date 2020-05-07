@@ -133,6 +133,7 @@ def test_workplan_runner(testdir):
     utila.file_create('rawmaker_cfg_title.ini')
     utila.file_create('rawmaker_cfg_title_oneline.ini')
     utila.file_create('rawmaker_cfg_toc.ini')
+    utila.file_create('rawmaker_cfg_toc_oneline.ini')
     utila.file_create('rawmaker_cfg_words.ini')
     utila.file_create('rawmaker_cfg_bibliography.ini')
     utila.file_create('rawmaker_cfg_bibliography_oneline.ini')
