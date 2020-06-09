@@ -19,6 +19,8 @@ import tests.resources
     pytest.param(f'-i {tests.resources.RESTRUCT}', id='restruct'),
     pytest.param(f'-i {tests.resources.HOWTO_PYPORTING}', id='howto'),
     pytest.param(f'-i {tests.resources.PYPORTING}', id='pyporting'),
+    pytest.param(f'-i {tests.resources.BACHELOR63}', id='bachelor63'),
+    pytest.param(f'-i {tests.resources.BACHELOR111}', id='bachelor111'),
 ])
 def test_run_sections(command, testdir, monkeypatch):  #pylint: disable=W0613
     """Run help and version and format command to reach basic test coverage"""
