@@ -12,6 +12,7 @@ import typing
 import iamraw
 import serializeraw
 import texmex
+import utila
 
 import sections.feature
 
@@ -84,9 +85,12 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
 
 
 def font_sizes_from_page(store: iamraw.FontStore, pagenumber: int):
-    fonts = [
-        store[font].scale for _, __, ___, font in store.page_iter(pagenumber)
-    ]
+    fonts = []
+    for _, __, ___, font in store.page_iter(pagenumber):
+        try:
+            fonts.append(store[font].scale)
+        except KeyError:
+            utila.error(f'missing font key: {font}')
     return fonts
 
 
