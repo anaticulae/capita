@@ -10,32 +10,27 @@
 import pytest
 import utila
 
-from tests import run_sections
-from tests import run_sections_failure
-from tests.resources import HOWTO_PYPORTING
-from tests.resources import MASTER72
-from tests.resources import PYPORTING
-from tests.resources import RESTRUCT
-from tests.resources import RESTRUCT_PDF
+import tests
+import tests.resources
 
 
 @pytest.mark.parametrize('command', [
-    ['--help'],
-    ['-i', RESTRUCT, '-o', '.', '--all'],
-    ['-i', HOWTO_PYPORTING, '-o', '.', '--all'],
-    ['-i', PYPORTING, '-o', '.', '--all'],
+    '--help',
+    pytest.param(f'-i {tests.resources.RESTRUCT}', id='restruct'),
+    pytest.param(f'-i {tests.resources.HOWTO_PYPORTING}', id='howto'),
+    pytest.param(f'-i {tests.resources.PYPORTING}', id='pyporting'),
 ])
 def test_run_sections(command, testdir, monkeypatch):  #pylint: disable=W0613
     """Run help and version and format command to reach basic test coverage"""
-    run_sections(command, monkeypatch=monkeypatch)
+    tests.run_sections(command, monkeypatch=monkeypatch)
 
 
 @pytest.mark.parametrize('command', [
-    ['-i', RESTRUCT_PDF, '-o', '.', '--all'],
+    ['-i', tests.resources.RESTRUCT_PDF, '-o', '.', '--all'],
 ])
 def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W0613
     """Run `sections` with bad input"""
-    run_sections_failure(command, monkeypatch=monkeypatch)
+    tests.run_sections_failure(command, monkeypatch=monkeypatch)
 
 
 @utila.skip_longrun
@@ -53,8 +48,8 @@ def test_run_sections_multicore(testdir, monkeypatch):
     # this required items.
     # Copy yaml files which starts with rawmaker or groupme.
     pattern = '[rawmaker|groupme]*.yaml'
-    utila.copy_content(MASTER72, root, pattern=pattern)
+    utila.copy_content(tests.resources.MASTER72, root, pattern=pattern)
 
     jobs = 5
     cmd = f'-j{jobs} -i {root} -o {root} --pages=0:5 --all'
-    run_sections(cmd, monkeypatch=monkeypatch)
+    tests.run_sections(cmd, monkeypatch=monkeypatch)
