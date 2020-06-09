@@ -27,21 +27,16 @@ GENERATED = os.path.join(RESOURCES, 'generated')
 
 RESTRUCT = os.path.join(GENERATED, 'restruct')
 RESTRUCT_PDF = os.path.join(DOCU, 'restructuredtext.pdf')
-RESTRUCT_CHAPTER_COUNT = 8
-RESTRUCT_TOC_LINES = 13
 
 HOWTO_PYPORTING = os.path.join(GENERATED, 'howto_pyporting')
 HOWTO_PYPORTING_PDF = os.path.join(DOCU, 'howto_pyporting.pdf')
 # the simple example has two 2 chapters, but there are on the same page,
 # therfore 1 page_count.
 HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
-HOWTO_PYPORTING_HEADLINES_PAGE_3 = 4
-HOWTO_PYPORTING_TOC_LINES = 12
 
 # porting module
 PYPORTING = os.path.join(GENERATED, 'porting_module')
 PYPORTING_PDF = os.path.join(DOCU, 'porting_extension_modules.pdf')
-PYPORTING_CHAPTER_COUNT = 6
 
 BACHELOR37 = os.path.join(GENERATED, 'page_37_tables')
 BACHELOR37_PDF = os.path.join(BACHELOR, 'page_37_tables.pdf')
@@ -63,7 +58,6 @@ MASTER116_PDF = os.path.join(MASTER, 'page_116_images_toc_formular.pdf')
 
 HOWTO_ARGPARSE = os.path.join(GENERATED, 'howto_argparse')
 HOWTO_ARGPARSE_PDF = os.path.join(DOCU, 'howto_argparse.pdf')
-HOWTO_ARGPARSE_PAGE_COUNT = 14
 
 REQURIED_RESOURCES = [
     BACHELOR63,
