@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import iamraw
 import iamraw.path
 import serializeraw
 import utila
@@ -15,16 +16,22 @@ import sections.feature.legal
 import tests.resources
 
 
-def test_legal_work_master116():
-    source = tests.resources.MASTER116
-
+def legal(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
-    pages = (0, 1, 2, 3, 4, 5, 96)
 
     dumped = sections.feature.legal.work(text, textposition, pages=pages)
     assert dumped, dumped
 
     loaded = serializeraw.load_likelihood(dumped)
-    legal_page = utila.select_page(loaded, page=1)
-    assert legal_page.content.value == 1.0, str(dumped)
+    return loaded
+
+
+def test_legal_work_master116():
+    source = tests.resources.MASTER116
+    pages = (0, 1, 2, 3, 4, 5, 96)
+
+    extracted = legal(source, pages)
+
+    legal_page = utila.select_page(extracted, page=1)
+    assert legal_page.content.value == 1.0, str(extracted)
