@@ -7,10 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import groupme.path
 import iamraw.path
 import pytest
 import serializeraw
 import texmex
+import utila
 
 import sections.feature.chapter
 import tests.resources
@@ -77,3 +79,35 @@ def extract_chapter(document, position, toc):
         tocs,
     )
     return result
+
+
+def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
+    text = iamraw.path.text(source)
+    textposition = iamraw.path.textposition(source)
+    tocs = groupme.path.toc(source)
+
+    dumped = sections.feature.chapter.work(
+        text,
+        textposition,
+        tocpath=tocs,
+        pages=pages,
+    )
+    assert dumped, dumped
+
+    loaded = serializeraw.load_likelihood(dumped)
+    return loaded
+
+
+def test_chapter_work_bachelor63():
+    source = tests.resources.BACHELOR63
+    extracted = chapter(source)
+    # Einleitung
+    first_chapter = utila.select_page(extracted, page=8)
+    assert first_chapter.content.value >= 0.5, str(extracted)
+
+    # Grundlagen
+    second_chapter = utila.select_page(extracted, page=9)
+    assert second_chapter.content.value >= 0.5, str(extracted)
+
+    assert utila.select_page(extracted, page=10).content.value == 0.5
+    assert utila.select_page(extracted, page=13).content.value == 0.5
