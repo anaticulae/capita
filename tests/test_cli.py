@@ -15,7 +15,6 @@ import tests.resources
 
 
 @pytest.mark.parametrize('command', [
-    '--help',
     pytest.param(f'-i {tests.resources.RESTRUCT}', id='restruct'),
     pytest.param(f'-i {tests.resources.HOWTO_PYPORTING}', id='howto'),
     pytest.param(f'-i {tests.resources.PYPORTING}', id='pyporting'),
