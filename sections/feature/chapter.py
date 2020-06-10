@@ -57,7 +57,7 @@ def work(document: str, position: str, tocpath: str, pages=None) -> str:
     return dumped
 
 
-FIRST_QUARTER = 0.35
+FIRST_QUARTER = 0.35  # TODO: HOLY VALUE
 
 
 def space_between_header_and_first_line(
