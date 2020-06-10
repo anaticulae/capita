@@ -107,7 +107,7 @@ def contain_chapter(content):
     A big hint is that the word `Kapitel` occurs on the start of the
     text. We have to keep in mind, that the sentence: 'Wie in Kapitel ..
     beschrieben' can occurs everywhere, therefore only searching the
-    word is not a good approach. Only some works use this pattern.
+    word is not a good approach. Only some documents use this pattern.
 
     A second option is to look for the headline-pattern: '1. Einleitung'.
     """
