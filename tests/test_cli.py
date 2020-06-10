@@ -49,7 +49,7 @@ def test_run_sections_multicore(testdir, monkeypatch):
     # this step is required, cause the test generator already generates
     # this required items.
     # Copy yaml files which starts with rawmaker or groupme.
-    pattern = '[rawmaker|groupme]*.yaml'
+    pattern = '(rawmaker|groupme)__*.yaml'
     utila.copy_content(tests.resources.MASTER72, root, pattern=pattern)
 
     jobs = 5
