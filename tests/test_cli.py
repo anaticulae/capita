@@ -8,23 +8,29 @@
 # =============================================================================
 
 import pytest
+import serializeraw
 import utila
 
+import sections.path
 import tests
 import tests.resources
 
 
-@pytest.mark.parametrize('command', [
-    pytest.param(f'-i {tests.resources.RESTRUCT}', id='restruct'),
-    pytest.param(f'-i {tests.resources.HOWTO_PYPORTING}', id='howto'),
-    pytest.param(f'-i {tests.resources.PYPORTING}', id='pyporting'),
-    pytest.param(f'-i {tests.resources.BACHELOR63}', id='bachelor63'),
-    pytest.param(f'-i {tests.resources.BACHELOR111}', id='bachelor111'),
+@pytest.mark.parametrize('command, validate', [
+    pytest.param(f'-i {tests.resources.RESTRUCT}', None, id='restruct'),
+    pytest.param(f'-i {tests.resources.HOWTO_PYPORTING}', None, id='howto'),
+    pytest.param(f'-i {tests.resources.PYPORTING}', None, id='pyporting'),
+    pytest.param(f'-i {tests.resources.BACHELOR63}', None, id='bachelor63'),
+    pytest.param(f'-i {tests.resources.BACHELOR111}', None, id='bachelor111'),
 ])
-@pytest.mark.usefixtures('testdir')
-def test_run_sections(command, testdir, monkeypatch):
+def test_run_sections(command, validate, testdir, monkeypatch):
     """Run help and version and format command to reach basic test coverage"""
     tests.run_sections(command, monkeypatch=monkeypatch)
+
+    loaded = serializeraw.load_sections(sections.path.sections_(testdir.tmpdir))
+
+    if validate:
+        validate(loaded)
 
 
 @pytest.mark.parametrize('command', [
