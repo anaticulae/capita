@@ -85,25 +85,33 @@ def work(document: str, position: str, pages=None) -> str:
 
 
 FEATURE_POINTS = [
+    'Arbeit',
     'Datum',
     'Eidesstattliche Erklärung',
+    'Hilfsmittel',
     'Ort',
+    'Prüfungsleistung',
+    'Quellen',
     'Selbstständigkeitserklärung',
+    'Studienleistung',
     'Unterschrift',
     'angefertigt',
     'aufgeführten Quellen und Hilfsmittel',
     'ausschließlich',
     'diese Arbeit',
     'eigenhändig',
+    'entnommen',
     'erkläre ich',
     'fremden Quellen wörtlich',
     'gleicher oder ähnlicher Form',
     'hiermit erkläre ich',
     'selbstständig',
     'sinngemäß entnommen',
+    'sinngemäß',
     'versichere ich',
     'vorliegende Arbeit',
-    'Arbeit',
+    'wörtlich',
+    'ähnlicher Form',
 ]
 
 MIN_FEATURE_POINT_COUNT = 5  # TODO: HOLY VALUE
@@ -112,9 +120,10 @@ MIN_FEATURE_POINT_COUNT = 5  # TODO: HOLY VALUE
 def analyse_page(navigator: texmex.PageTextNavigator
                 ) -> sections.feature.StatisticalResultItem:
     # TODO: REPLACE AFTER UPGRADING TEXMEX
-    raw = utila.NEWLINE.join([item.text for item in navigator])
+    raw = utila.NEWLINE.join([item.text.strip() for item in navigator])
 
-    located = [item for item in FEATURE_POINTS if item.lower() in raw.lower()]
+    lower = raw.lower()
+    located = [item for item in FEATURE_POINTS if item.lower() in lower]
 
     trust = 0.0
     if 'Eidesstattliche Erklärung' in raw:

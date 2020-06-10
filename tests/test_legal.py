@@ -35,3 +35,10 @@ def test_legal_work_master116():
 
     legal_page = utila.select_page(extracted, page=1)
     assert legal_page.content.value == 1.0, str(extracted)
+
+
+def test_legal_work_bachelor63():
+    source = tests.resources.BACHELOR63
+    extracted = legal(source)
+    legal_page = utila.select_page(extracted, page=2)
+    assert legal_page.content.value == 1.0, str(extracted)
