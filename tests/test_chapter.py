@@ -16,7 +16,7 @@ import sections.feature.chapter
 import tests.resources
 
 RESTRUCT_TEXT = iamraw.path.text(tests.resources.RESTRUCT)
-RESTRUCT_TEXT_POSITION = iamraw.path.textposition(tests.resources.RESTRUCT) # yapf:disable
+RESTRUCT_TEXT_POSITION = iamraw.path.textposition(tests.resources.RESTRUCT)
 RESTRUCT_TOC = iamraw.path.toc(tests.resources.RESTRUCT)
 
 
