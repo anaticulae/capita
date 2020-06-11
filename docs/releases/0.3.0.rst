@@ -3,14 +3,7 @@
 RP 0.3.0
 =========
 
-validation
-----------
-
-* [ ] add section data for 20 documents
-
-* [ ] run validation on 20 documents
-
-* [ ] derivate validation strategy for other applications
+* [x] validate bachelor63 example
 
 code quality
 ------------
