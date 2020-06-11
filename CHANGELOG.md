@@ -2,6 +2,24 @@
 
 Every noteable change is logged here.
 
+## v0.3.0
+
+### Feature
+
+* create huger sections to avoid splitting document area (7c0b5966fe29)
+* use python style range pattern (538c6a95e5eb)
+* improve chapter detector (2e3c7d860d5f)
+* extend legal detection (a07938c2ccbb)
+
+### Fix
+
+* replace with correct copy pattern (b745ca333ab6)
+* log missing font access (a398ad474a11)
+
+### Documentation
+
+* fix description (cfb41ae8494f)
+
 ## v0.2.34
 
 ## v0.2.33

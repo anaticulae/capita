@@ -68,7 +68,7 @@ The following sections are planned to be supported:
 
 import os
 
-__version__ = '0.2.34'
+__version__ = '0.3.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
