@@ -20,12 +20,12 @@ MASTER = {
         ),
         (
             iamraw.sections.MainPart,
-            (3, 66),
+            (3, 65),
             [],
         ),
         (
             iamraw.sections.Appendix,
-            (66, 72),
+            (65, 72),
             [],
         ),
     ],
