@@ -218,12 +218,13 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
             result.content.append(item)  # pylint:disable=E1101
             continue
         if is_new_area(current, next_):
-            current = next_(start=page, end=page, trust=1.0)
+            # `page + 1` cause of python style index pattern
+            current = next_(start=page, end=page + 1, trust=1.0)
             result.content.append(current)  # pylint:disable=E1101
         else:
             # increase section end
-            current.end = page
-
+            # `page + 1` cause of python style index pattern
+            current.end = page + 1
         if isinstance(item, iamraw.sections.Chapter):
             # set chapter level
             item.number = chapter

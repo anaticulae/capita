@@ -79,7 +79,7 @@ def validate(document: Sections) -> bool:
         True if all page orders are correct, else False
     """
     # test of ascending page order
-    start, end = -1, -1
+    start, end = 0, 0
     for section in document:
         if section.end < section.start:
             return False
@@ -87,7 +87,7 @@ def validate(document: Sections) -> bool:
             return False
         if section.end < end:
             return False
-        if not section.start == end + 1:
+        if section.start != end:
             return False
 
         start = section.start

@@ -64,19 +64,19 @@ def restructured_sections_manual() -> iamraw.sections.Sections:
 
     # Page, Start
     # Intro
-    intro = analyse(sections.creator.add_introduction, 0, 1)
+    intro = analyse(sections.creator.add_introduction, 0, 2)
     add_children(intro, sections.creator.add_title, 0, 0)
     add_children(intro, sections.creator.add_whitepage, 1, 1)
 
     # First pages with tables
-    table_first = analyse(sections.creator.add_table, 2, 5)
+    table_first = analyse(sections.creator.add_table, 2, 6)
     add_children(table_first, sections.creator.add_toc, 2, 2)
     add_children(table_first, sections.creator.add_whitepage, 3, 3)
     add_children(table_first, sections.creator.add_text, 4, 4)
     add_children(table_first, sections.creator.add_whitepage, 5, 5)
 
     # Content starts here
-    content = analyse(sections.creator.add_content, 6, 25)
+    content = analyse(sections.creator.add_content, 6, 26)
     sections.creator.add_chapter(content, 6, 7, number=1)
     sections.creator.add_chapter(content, 8, 9, number=2)
     sections.creator.add_chapter(content, 10, 11, number=3)
@@ -87,7 +87,7 @@ def restructured_sections_manual() -> iamraw.sections.Sections:
     sections.creator.add_chapter(content, 24, 25, number=8)
 
     # Second pages with table
-    table_second = analyse(sections.creator.add_table, 26, 26)
+    table_second = analyse(sections.creator.add_table, 26, 27)
     add_children(table_second, sections.creator.add_index, 26, 26)
 
     return result
