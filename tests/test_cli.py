@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import iamraw.sections
 import pytest
 import serializeraw
 import utila
@@ -16,13 +17,39 @@ import tests
 import tests.resources
 
 
+def bachelor63(items):
+    assert len(items) == 5
+
+    introduction = items[0]
+    assert isinstance(introduction, iamraw.sections.Introduction)
+    assert (introduction.start, introduction.end) == (0, 2)
+
+    appendix_legal = items[1]
+    assert isinstance(appendix_legal, iamraw.sections.Appendix)
+    assert (appendix_legal.start, appendix_legal.end) == (2, 6)
+
+    table = items[2]
+    assert isinstance(table, iamraw.sections.Table)
+    assert (table.start, table.end) == (6, 8)
+
+    mainpart = items[3]
+    assert isinstance(mainpart, iamraw.sections.MainPart)
+    assert (mainpart.start, mainpart.end) == (8, 59)
+
+    appendix = items[4]
+    assert isinstance(appendix, iamraw.sections.Appendix)
+    assert (appendix.start, appendix.end) == (59, 62)
+
+
+# yapf:disable
 @pytest.mark.parametrize('command, validate', [
     pytest.param(f'-i {tests.resources.RESTRUCT}', None, id='restruct'),
     pytest.param(f'-i {tests.resources.HOWTO_PYPORTING}', None, id='howto'),
     pytest.param(f'-i {tests.resources.PYPORTING}', None, id='pyporting'),
-    pytest.param(f'-i {tests.resources.BACHELOR63}', None, id='bachelor63'),
+    pytest.param(f'-i {tests.resources.BACHELOR63}', bachelor63, id='bachelor63'),
     pytest.param(f'-i {tests.resources.BACHELOR111}', None, id='bachelor111'),
 ])
+# yapf:enable
 def test_run_sections(command, validate, testdir, monkeypatch):
     """Run help and version and format command to reach basic test coverage"""
     tests.run_sections(command, monkeypatch=monkeypatch)
