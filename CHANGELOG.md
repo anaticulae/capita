@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.3.1
+
+### Fix
+
+* fix unit test (72bfe86493f4)
+
 ## v0.3.0
 
 ### Feature
