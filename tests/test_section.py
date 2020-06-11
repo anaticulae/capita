@@ -15,7 +15,6 @@ import sections.feature.section
 import tests
 # pylint:disable=W0611
 from tests.fixtures.restruct import restructured_sections_manual
-from tests.fixtures.simple import simple_sections
 
 
 def test_iterable():
@@ -99,8 +98,10 @@ def test_extract_sections_simple():
     # TODO: Test order of multiple items
 
 
-def test_sections_simple(simple_sections):
+def test_sections_simple():
     """Check dumped result of section work method"""
+    simple_sections = sections.feature.section.extract_sections_frompath(
+        tests.resources.HOWTO_PYPORTING)
     assert len(simple_sections) == 2, len(simple_sections)
     dumped = serializeraw.dump_sections(simple_sections)
     assert len(dumped) > 100, dumped
