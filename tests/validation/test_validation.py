@@ -18,9 +18,7 @@ import tests.validation.master
 EXPECTED_FAILURE = {
     tests.resources.BACHELOR37_PDF,
     tests.resources.BACHELOR56_PDF,
-    tests.resources.BACHELOR63_PDF,
     tests.resources.BACHELOR111_PDF,
-    tests.resources.MASTER72_PDF,
 }
 
 
@@ -53,7 +51,11 @@ def test_run_validation(source, expected, testdir):
     extracted = sections.feature.section.extract_sections_frompath(root)
 
     content = [item.__class__ for item in extracted]
-    expected = [item[0] for item in expected]
-    utila.log('expected:' + str(expected))
-    utila.log('current:' + str(content))
-    assert content == expected, str(content)
+    sectiontype = [item[0] for item in expected]
+    utila.log(f'expected: {sectiontype}')
+    utila.log(f'current: {content}')
+    assert content == sectiontype, str(content)
+
+    pagestartend = [item[1] for item in expected]
+    current = [(item.start, item.end) for item in extracted]
+    assert current == pagestartend

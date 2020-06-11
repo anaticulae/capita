@@ -71,12 +71,12 @@ BACHELOR = {
         ),
         (
             iamraw.sections.MainPart,
-            (8, 44),
+            (8, 59),
             [],
         ),
         (
             iamraw.sections.Appendix,
-            (44, 63),
+            (59, 63),
             [],
         ),
     ],
