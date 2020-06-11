@@ -116,8 +116,9 @@ def test_sections_master72():
     correctly."""
     result = sections.feature.section.extract_sections_frompath(
         tests.resources.MASTER72)
+    print(result)
     # page 0 is title page
     assert isinstance(result[0], iamraw.sections.Introduction), type(result[0])
     # page 1 and 2 is introduction
-    assert isinstance(result[1], iamraw.sections.Table), type(result[1])
-    assert len(result[1]) == 2
+    assert isinstance(result[1], iamraw.sections.MainPart), type(result[1])
+    assert len(result[1]) == 62  # content pages

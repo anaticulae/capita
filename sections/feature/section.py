@@ -248,26 +248,40 @@ BUILDER = [
 # iamraw.sections.DocumentSection
 #       iamraw.sections.Text
 #       iamraw.sections.WhitePage:
+# yapf:disable
 MATCHING = {
     iamraw.MultipleSection: iamraw.MultipleSection,
     iamraw.sections.AbbreviationTable: iamraw.sections.Appendix,
     iamraw.sections.Bibliography: iamraw.sections.Appendix,
     iamraw.sections.Chapter: iamraw.MainPart,
     iamraw.sections.Index: iamraw.sections.Table,
-    iamraw.sections.LegalInformation: iamraw.sections.Appendix,
-    iamraw.sections.TableOfContent: iamraw.sections.Table,
+    iamraw.sections.LegalInformation: [
+        iamraw.sections.Appendix,
+        iamraw.sections.Introduction,
+    ],
+    iamraw.sections.TableOfContent: [
+        iamraw.sections.Introduction,
+        iamraw.sections.Table,
+    ],
     iamraw.sections.Text: iamraw.sections.DocumentSection,
     iamraw.sections.TitlePage: iamraw.sections.Introduction,
     iamraw.sections.WhitePage: iamraw.sections.DocumentSection,
 }
+# yapf:enable
 
 
 def determine_document_section(
         current: iamraw.sections.DocumentSection,
         actual: iamraw.sections.AreaItem,
 ):
+    """It is not always required to change the `current`
+    DocumentSection. We require only few DocumentSection, therefore in
+    some cases more than one possible parent is defined."""
     next_ = MATCHING[type(actual)]
-    if next_ == iamraw.sections.DocumentSection:
+    new_section = next_ == iamraw.sections.DocumentSection
+    use_current = isinstance(next_, list) and\
+                                      not any(item == current for item in next_)
+    if new_section or use_current:
         if not current:
             return iamraw.sections.Unknown
         return current

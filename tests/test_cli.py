@@ -18,25 +18,17 @@ import tests.resources
 
 
 def bachelor63(items):
-    assert len(items) == 5
+    assert len(items) == 3
 
     introduction = items[0]
     assert isinstance(introduction, iamraw.sections.Introduction)
-    assert (introduction.start, introduction.end) == (0, 2)
+    assert (introduction.start, introduction.end) == (0, 8)
 
-    appendix_legal = items[1]
-    assert isinstance(appendix_legal, iamraw.sections.Appendix)
-    assert (appendix_legal.start, appendix_legal.end) == (2, 6)
-
-    table = items[2]
-    assert isinstance(table, iamraw.sections.Table)
-    assert (table.start, table.end) == (6, 8)
-
-    mainpart = items[3]
+    mainpart = items[1]
     assert isinstance(mainpart, iamraw.sections.MainPart)
     assert (mainpart.start, mainpart.end) == (8, 59)
 
-    appendix = items[4]
+    appendix = items[2]
     assert isinstance(appendix, iamraw.sections.Appendix)
     assert (appendix.start, appendix.end) == (59, 62)
 

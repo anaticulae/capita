@@ -64,16 +64,13 @@ def restructured_sections_manual() -> iamraw.sections.Sections:
 
     # Page, Start
     # Intro
-    intro = analyse(sections.creator.add_introduction, 0, 2)
+    intro = analyse(sections.creator.add_introduction, 0, 6)
     add_children(intro, sections.creator.add_title, 0, 0)
     add_children(intro, sections.creator.add_whitepage, 1, 1)
-
-    # First pages with tables
-    table_first = analyse(sections.creator.add_table, 2, 6)
-    add_children(table_first, sections.creator.add_toc, 2, 2)
-    add_children(table_first, sections.creator.add_whitepage, 3, 3)
-    add_children(table_first, sections.creator.add_text, 4, 4)
-    add_children(table_first, sections.creator.add_whitepage, 5, 5)
+    add_children(intro, sections.creator.add_toc, 2, 2)
+    add_children(intro, sections.creator.add_whitepage, 3, 3)
+    add_children(intro, sections.creator.add_text, 4, 4)
+    add_children(intro, sections.creator.add_whitepage, 5, 5)
 
     # Content starts here
     content = analyse(sections.creator.add_content, 6, 26)
