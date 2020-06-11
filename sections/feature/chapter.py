@@ -57,6 +57,7 @@ def work(document: str, position: str, tocpath: str, pages=None) -> str:
     return dumped
 
 
+AFTER_HEADER = 0.05  # TODO: HOLY VALUE
 FIRST_QUARTER = 0.35  # TODO: HOLY VALUE
 
 
@@ -66,7 +67,7 @@ def space_between_header_and_first_line(
 ) -> iamraw.PageContentLikelihoods:
     result = []
     for page in navigators:
-        first_content = page.before(FIRST_QUARTER)
+        first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
         chapter_rate = contain_chapter(first_content)
         chapter_rate += contain_toc(first_content, tocs)
 
@@ -93,9 +94,9 @@ def space_between_header_and_first_line(
 # sections etc.
 NUMBER_PATTERN = re.compile(
     r'^'  # page start
-    r'[0-9]{1,2}\.'  # chapter number with dot
+    r'[0-9]{1,2}[\.]{0,1}'  # chapter number with dot
     r'[ ]{1,4}'
-    r'\D',  # non numeric element
+    r'\D{5,}',  # non numeric element
     re.VERBOSE,
 )
 
@@ -119,7 +120,9 @@ def contain_chapter(content):
         return result
 
     def startwith_firstlevelheadline(raw):
-        # Search a number with possible dot
+        """This pattern does not work on documents with header part,
+        because first line could never be a headline. A potential header
+        is excluded via ``AFTER_HEADER``."""
         matched = re.match(NUMBER_PATTERN, raw)
         return matched is not None
 
