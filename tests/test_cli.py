@@ -43,11 +43,11 @@ def bachelor63(items):
 
 # yapf:disable
 @pytest.mark.parametrize('command, validate', [
-    pytest.param(f'-i {tests.resources.RESTRUCT}', None, id='restruct'),
+    pytest.param(f'-i {tests.resources.BACHELOR111}', None, id='bachelor111'),
+    pytest.param(f'-i {tests.resources.BACHELOR63}', bachelor63, id='bachelor63'),
     pytest.param(f'-i {tests.resources.HOWTO_PYPORTING}', None, id='howto'),
     pytest.param(f'-i {tests.resources.PYPORTING}', None, id='pyporting'),
-    pytest.param(f'-i {tests.resources.BACHELOR63}', bachelor63, id='bachelor63'),
-    pytest.param(f'-i {tests.resources.BACHELOR111}', None, id='bachelor111'),
+    pytest.param(f'-i {tests.resources.RESTRUCT}', None, id='restruct'),
 ])
 # yapf:enable
 def test_run_sections(command, validate, testdir, monkeypatch):
