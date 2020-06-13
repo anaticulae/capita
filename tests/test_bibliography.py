@@ -20,18 +20,12 @@ def test_bibliography_work():
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
     expected = (
-        (60, 0.0),
-        (61, 0.0),
-        (62, 0.0),
-        (63, 0.0),
-        (64, 0.0),
         (65, 0.5),
         (66, 0.5),
         (67, 0.5),
         (68, 0.5),
         (69, 0.5),
         (70, 0.5),
-        (71, 0.0),
     )
     pages = [page for page, _ in expected]
     extracted = sections.feature.bibliography.work(
