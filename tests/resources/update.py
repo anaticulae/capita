@@ -36,6 +36,7 @@ def extract_examples():
 # yapf:disable
 PACKAGE = [
     (tests.resources.MASTER72_PDF, tests.resources.MASTER72, None),
+    (tests.resources.MASTER98_PDF, tests.resources.MASTER98, None),
     (tests.resources.BACHELOR37_PDF, tests.resources.BACHELOR37, '0:30'),
     (tests.resources.BACHELOR63_PDF, tests.resources.BACHELOR63, '0:20,59,60,61'),
     (tests.resources.BACHELOR111_PDF, tests.resources.BACHELOR111, '0:10,90:111'),
