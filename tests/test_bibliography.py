@@ -12,6 +12,8 @@ import serializeraw
 import utila
 
 import sections.feature.abbreviation
+import sections.path
+import tests
 import tests.resources
 
 
@@ -40,3 +42,19 @@ def test_bibliography_work():
         selected = utila.select_page(loaded, page=page)
         current = selected.content.value
         assert current >= value, str(selected)
+
+
+def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
+    source = tests.resources.MASTER98
+    tests.run_sections(f'-i {source} --bibliography', monkeypatch=monkeypatch)
+
+    path = sections.path.bibliography(testdir.tmpdir)
+    likelihood = serializeraw.load_likelihood(path)
+
+    non_zero = [item.page for item in likelihood if item.content.value > 0.0]
+
+    diff = utila.diffs(non_zero)
+
+    # ensure to have only one ascending group with holes
+    assert utila.isascending(diff), diff
+    assert max(diff) == 1, diff
