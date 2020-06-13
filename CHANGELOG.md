@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.4.0
+
+### Feature
+
+* select hugest single potential bib group (089a5e3e464d)
+* open interface to use result directly (2bebb735bd8a)
+
 ## v0.3.1
 
 ### Fix
