@@ -38,7 +38,7 @@ class Data:
     pages: tuple = None
 
 
-def work(data: Data, config: Config) -> str:
+def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
     assert config.page_analysis
 
     page_analysis = config.page_analysis
@@ -63,7 +63,4 @@ def work(data: Data, config: Config) -> str:
             content=iamraw.Likelihood(value, config.likelihood_name),
         ) for page, value in uniformed.items()
     ]
-
-    # write result
-    dumped = serializeraw.dump_likelihood(likelihood)
-    return dumped
+    return likelihood

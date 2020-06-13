@@ -58,6 +58,7 @@ Requirements
 [Theisen]
 """
 
+import serializeraw
 import texmex
 import utila
 
@@ -76,11 +77,12 @@ def work(document: str, position: str, pages=None) -> str:
         page_analysis=analyse_page,
     )
 
-    dumped = sections.utils.spa.work(
+    extracted = sections.utils.spa.work(
         data=data,
         config=config,
     )
 
+    dumped = serializeraw.dump_likelihood(extracted)
     return dumped
 
 
