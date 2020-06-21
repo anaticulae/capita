@@ -10,6 +10,7 @@
 import textwrap
 
 import utila
+import utilatest
 
 import sections.feature.section
 import sections.feature.workplan
@@ -122,7 +123,7 @@ def test_setuptestfolder_and_setupplan(testdir):
     assert replaced
 
 
-@utila.skip_longrun
+@utilatest.skip_longrun
 def test_workplan_runner(testdir):
     root = testdir.tmpdir
     extracted = sections.feature.section.extract_sections_frompath(

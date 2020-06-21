@@ -10,6 +10,7 @@
 import pytest
 import serializeraw
 import utila
+import utilatest
 
 import sections.path
 import tests
@@ -41,7 +42,7 @@ def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W
     tests.run_sections_failure(command, monkeypatch=monkeypatch)
 
 
-@utila.skip_longrun
+@utilatest.skip_longrun
 def test_run_sections_multicore(testdir, monkeypatch):
     """Regression test to ensure the correct order of the different
     steps in multicore behavior.

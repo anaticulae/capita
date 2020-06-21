@@ -9,6 +9,7 @@
 
 import pytest
 import utila
+import utilatest
 
 import sections.feature.section
 import tests.resources.update
@@ -44,7 +45,7 @@ SECTIONS.update(tests.validation.master.MASTER)
         ) for key, value in SECTIONS.items()
     ],
 )
-@utila.skip_nightly
+@utilatest.skip_nightly
 def test_run_validation(source, expected, testdir):
     root = testdir.tmpdir
     tests.resources.update.run_package(source, root)

@@ -15,7 +15,7 @@ from pytest import fixture
 from serializeraw import create_fontstore
 from serializeraw import load_document
 from serializeraw import load_horizontals
-from utila import run_command
+from utilatest import run_command
 
 from sections import PROCESS
 from sections.cli import main

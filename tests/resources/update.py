@@ -15,12 +15,13 @@ import utila
 
 import sections
 import tests.resources
+import utilatest
 
 WORKER = 6
 
 
 def install_requirements():
-    utila.clean_install(sections.ROOT, sections.PACKAGE)
+    utilatest.clean_install(sections.ROOT, sections.PACKAGE)
 
 
 def sync_resources():
