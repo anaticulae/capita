@@ -9,7 +9,7 @@
 
 utila==2.0.0
 configo==0.6.13
-iamraw==1.28.0
-hey==3.3.0
+iamraw==1.29.0
+hey==3.4.0
 german==0.6.5
-detector==0.4.2
+detector==0.5.2
