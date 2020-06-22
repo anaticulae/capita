@@ -12,10 +12,10 @@ import os
 
 import detector.feature.titlepage
 import utila
+import utilatest
 
 import sections
 import tests.resources
-import utilatest
 
 WORKER = 6
 

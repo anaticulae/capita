@@ -10,8 +10,8 @@
 import os
 
 import utila
-
 import utilatest
+
 from tests.resources import REQURIED_RESOURCES
 from tests.resources.update import extract_examples
 from tests.resources.update import install_requirements
