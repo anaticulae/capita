@@ -284,20 +284,20 @@ def determine_document_section(
     """It is not always required to change the `current`
     DocumentSection. We require only few DocumentSection, therefore in
     some cases more than one possible parent is defined."""
-    next_ = MATCHING[type(actual)]
-    if inspect.isfunction(next_):
+    nextclass = MATCHING[type(actual)]
+    if inspect.isfunction(nextclass):
         # dynamic next section determiner
-        next_ = next_(actual)
-        return next_
+        nextclass = nextclass(actual)
+        return nextclass
 
-    new_section = next_ == iamraw.sections.DocumentSection
-    use_current = isinstance(next_, list) and\
-                                      not any(item == current for item in next_)
+    new_section = nextclass == iamraw.sections.DocumentSection
+    use_current = (isinstance(nextclass, list) and
+                   not any(item == current for item in nextclass))
     if new_section or use_current:
         if not current:
             return iamraw.sections.Unknown
         return current
-    return next_
+    return nextclass
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
