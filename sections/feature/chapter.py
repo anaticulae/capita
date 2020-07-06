@@ -148,11 +148,11 @@ def contains_listof(content: str) -> bool:
     return result
 
 
-def contain_toc(content, toc):
+def contain_toc(content, toc) -> float:
     flat_toc = [item.title for item in toc.children]
     if not flat_toc:
         # no table of content was extracted
-        return 0
+        return 0.0
     flat_content = ' '.join([item.text for item in content])
 
     # is any toc title part of content
