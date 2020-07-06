@@ -74,7 +74,7 @@ def extract_chapter(document, position, toc):
         text_positions=position,
     )
 
-    result = sections.feature.chapter.space_between_header_and_first_line(
+    result = sections.feature.chapter.extract_chapter(
         navigators,
         tocs,
     )

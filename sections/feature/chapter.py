@@ -47,7 +47,7 @@ def work(
     tocs = serializeraw.load_toc(tocpath)
 
     # work
-    result = space_between_header_and_first_line(
+    result = extract_chapter(
         navigators=navigators,
         tocs=tocs,
     )
@@ -61,7 +61,7 @@ AFTER_HEADER = 0.05  # TODO: HOLY VALUE
 FIRST_QUARTER = 0.35  # TODO: HOLY VALUE
 
 
-def space_between_header_and_first_line(
+def extract_chapter(
         navigators: texmex.PageTextNavigators,
         tocs,
 ) -> iamraw.PageContentLikelihoods:
