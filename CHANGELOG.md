@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v0.5.0
+
+### Feature
+
+* add dynamic next class selector (141806e27f9f)
+* make chapter start detector more robust (1d466e72be67)
+
+### Fix
+
+* do not parse newlines in headline pattern (a97ac4bc366a)
+* do not detect appendix with a lot of points as toc page (81b047fcb1f7)
+
+### Documentation
+
+* extend interface documentation (cc1524c4560c)
+
 ## v0.4.10
 
 ## v0.4.9
