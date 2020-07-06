@@ -33,18 +33,19 @@ import utila
 import yaml
 
 
-def work(document: str, position: str, tocpath: str, pages=None) -> str:
+def work(
+        document: str,
+        position: str,
+        tocpath: str,
+        pages: tuple = None,
+) -> str:
     """Determine likelihood of beeing a chapter startpage."""
-    # load and setup
-    pages = tuple(pages) if pages else None
-    document = serializeraw.load_document(document, pages=pages)
-    position = serializeraw.load_textpositions(position, pages=pages)
-    tocs = serializeraw.load_toc(tocpath)
-
-    navigators = texmex.create_pagetextnavigators(
+    navigators = serializeraw.create_pagetextnavigators_fromfile(
         text=document,
-        text_positions=position,
+        textpositions=position,
+        pages=pages,
     )
+    tocs = serializeraw.load_toc(tocpath)
 
     # work
     result = space_between_header_and_first_line(
