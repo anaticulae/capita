@@ -113,3 +113,13 @@ def test_chapter_work_bachelor63():
     pages = [item.page for item in extracted]
 
     assert pages == expected
+
+
+def test_chapter_work_master98():
+    source = tests.resources.MASTER98
+    extracted = chapter(source)
+
+    expected = [2, 6, 26, 42, 67, 85, 88, 96]
+    pages = [item.page for item in extracted]
+
+    assert pages == expected

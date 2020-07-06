@@ -68,6 +68,7 @@ def extract_chapter(
     result = []
     for page in navigators:
         first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
+
         chapter_rate = contain_chapter(first_content)
         chapter_rate += contain_toc(first_content, tocs)
 
@@ -148,16 +149,29 @@ def contains_listof(content: str) -> bool:
 
 
 def contain_toc(content, toc) -> float:
-    flat_toc = [item.title for item in toc.children]
+    """Check that content starts with a parsed headline entree.
+
+    Supported Pattern; line starts with:
+        * 3. Headline text
+        * Headline text
+    """
+
+    flat_toc = [item.title for item in toc]
     if not flat_toc:
         # no table of content was extracted
         return 0.0
-    flat_content = ' '.join([item.text for item in content])
 
-    # is any toc title part of content
-    toc_count = sum(item in flat_content for item in flat_toc)
-    if 0 < toc_count <= 2:
-        return 1.0
+    for line in content:
+        line = line.text.strip()
+        # remove numbered headline pattern and potential white spaces
+        without_number = re.sub(r'^\d\.{0,1}\s+', '', line)
+        for headline in flat_toc:
+            if all((
+                    not line.startswith(headline),
+                    not without_number.startswith(headline),
+            )):
+                continue
+            return 1.0
     return -0.5
 
 
