@@ -72,7 +72,7 @@ def space_between_header_and_first_line(
         chapter_rate = contain_chapter(first_content)
         chapter_rate += contain_toc(first_content, tocs)
 
-        if is_tocpage(first_content):
+        if contains_listof(first_content):
             # TODO: See todo below
             chapter_rate = 0
         if chapter_rate <= 0.0:
@@ -116,7 +116,6 @@ def contain_chapter(content):
 
     def startwith_chapterpattern(raw):
         firstline = raw.splitlines()[0] if raw else ''
-
         result = 'kapitel' in firstline or 'chapter' in firstline
         return result
 
@@ -140,11 +139,12 @@ def contain_chapter(content):
     return result
 
 
-def is_tocpage(content):
+def contains_listof(content: str) -> bool:
     raw = rawcontent(content)
-    dots = raw.count('.')
+    dots_with_spaces = raw.count('. . . .')
+    connected_dots = raw.count('....')
 
-    result = dots > 20
+    result = dots_with_spaces > 4 or connected_dots >= 3
     return result
 
 
