@@ -23,14 +23,13 @@ What is typical for a start of chapter?
 2. Check the second line
 
 """
+
 import re
-import typing
 
 import iamraw
 import serializeraw
 import texmex
 import utila
-import yaml
 
 
 def work(
@@ -187,13 +186,3 @@ def rawcontent(content) -> str:
     raw = utila.NEWLINE.join([item.text for item in content])
     raw = raw.lower()
     return raw
-
-
-def dump_chapter_detection(pages: typing.List[float]) -> str:
-    result = []
-    for index, chapter in enumerate(pages):
-        result.append({
-            'page': index,
-            'chapter': '%.2f' % chapter,
-        })
-    return yaml.dump(result)
