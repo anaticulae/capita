@@ -9,6 +9,7 @@
 
 import dataclasses
 import functools
+import inspect
 import typing
 
 import configo
@@ -146,7 +147,6 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
                 typ=content.index(item),
             )
             result[pagenumber] = new
-
     grouped = group_sections(result)
     return grouped
 
@@ -244,13 +244,20 @@ BUILDER = [
     iamraw.sections.WhitePage,
 ]
 
+
+def multiplesection_next(multiple):
+    if utila.select_type(multiple.content, iamraw.sections.Bibliography):
+        return iamraw.sections.Appendix
+    return iamraw.MultipleSection
+
+
 # do not change DocumentSection
 # iamraw.sections.DocumentSection
 #       iamraw.sections.Text
 #       iamraw.sections.WhitePage:
 # yapf:disable
 MATCHING = {
-    iamraw.MultipleSection: iamraw.MultipleSection,
+    iamraw.MultipleSection: multiplesection_next,
     iamraw.sections.AbbreviationTable: iamraw.sections.Appendix,
     iamraw.sections.Bibliography: iamraw.sections.Appendix,
     iamraw.sections.Chapter: iamraw.MainPart,
@@ -278,6 +285,11 @@ def determine_document_section(
     DocumentSection. We require only few DocumentSection, therefore in
     some cases more than one possible parent is defined."""
     next_ = MATCHING[type(actual)]
+    if inspect.isfunction(next_):
+        # dynamic next section determiner
+        next_ = next_(actual)
+        return next_
+
     new_section = next_ == iamraw.sections.DocumentSection
     use_current = isinstance(next_, list) and\
                                       not any(item == current for item in next_)
