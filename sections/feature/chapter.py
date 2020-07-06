@@ -97,7 +97,7 @@ NUMBER_PATTERN = re.compile(
     r'^'  # page start
     r'[0-9]{1,2}[\.]{0,1}'  # chapter number with dot
     r'[ ]{1,4}'
-    r'\D{5,}',  # non numeric element
+    r'[^0-9\n]{5,}',  # non numeric element
     re.VERBOSE,
 )
 
