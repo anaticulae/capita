@@ -348,17 +348,6 @@ def chapters(root: iamraw.Sections):
     return result
 
 
-def commandline():
-    return utila.Flag(
-        longcut=name(),
-        message='extract document structure from pdf file',
-    )
-
-
-def name():
-    return 'section'
-
-
 def load_section_likelihood_frompath(path: str, pages: tuple = None):
     # TODO: we need to improve this
     loaded = load_features(
