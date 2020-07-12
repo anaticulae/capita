@@ -11,5 +11,5 @@ utila==2.4.0
 configo==0.6.17
 iamraw==1.31.3
 hey==3.5.3
-german==0.6.9
+german==0.7.0
 detector==0.5.6
