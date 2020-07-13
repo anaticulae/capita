@@ -16,11 +16,11 @@ import utilatest
 import sections.feature.section
 import sections.feature.workplan
 import sections.workplan.serialize
-import tests.example.sections
+import tests.fixtures.sections
 
 
 def test_workplan_simplify_group():
-    example = tests.example.sections.EXAMPLE
+    example = tests.fixtures.sections.EXAMPLE
     merged_title = sections.workplan.creator.simplify(example[0])
     assert len(merged_title) == 1
 
@@ -33,7 +33,7 @@ def test_workplan_simplify_group():
 
 
 def test_workplan_create_plan():
-    example = tests.example.sections.EXAMPLE
+    example = tests.fixtures.sections.EXAMPLE
     plan = sections.workplan.creator.create(example)
     assert len(plan) == 8, str(plan)
 
@@ -71,7 +71,7 @@ EXPECTED = """\
 
 
 def test_workplan_simple_dump_plan():
-    example = tests.example.sections.EXAMPLE
+    example = tests.fixtures.sections.EXAMPLE
     plan = sections.workplan.creator.create(example)
     result = sections.workplan.serialize.dump_cmds(plan)
     assert '>titlepage' in result
@@ -150,7 +150,7 @@ def test_workplan_runner_main(testdir):
 
 
 def example_raw_plan() -> str:
-    example = tests.example.sections.EXAMPLE
+    example = tests.fixtures.sections.EXAMPLE
     plan = sections.workplan.creator.create(example)
     executionplan = sections.workplan.serialize.ExecutionPlan(cmds=plan)
     assert len(executionplan.cmds) == 8, str(executionplan)
