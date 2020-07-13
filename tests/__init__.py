@@ -17,6 +17,7 @@ from serializeraw import load_document
 from serializeraw import load_horizontals
 from utilatest import run_command
 
+import tests.__patch__
 from sections import PROCESS
 from sections.cli import main
 
