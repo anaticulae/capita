@@ -7,31 +7,25 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import partial
+import functools
 
-from iamraw import Document
-from iamraw import FontStore
-from pytest import fixture
-from serializeraw import create_fontstore
-from serializeraw import load_document
-from serializeraw import load_horizontals
-from utilatest import run_command
+import utilatest
 
+import sections
+import sections.cli
 import tests.__patch__
-from sections import PROCESS
-from sections.cli import main
 
 #pylint:disable=C0103
-run_sections = partial(
-    run_command,
-    main=main,
-    process=PROCESS,
+run_sections = functools.partial(
+    utilatest.run_command,
+    main=sections.cli.main,
+    process=sections.PROCESS,
     success=True,
 )
 
-run_sections_failure = partial(
-    run_command,
-    main=main,
-    process=PROCESS,
+run_sections_failure = functools.partial(
+    utilatest.run_command,
+    main=sections.cli.main,
+    process=sections.PROCESS,
     success=False,
 )
