@@ -8,11 +8,13 @@
 # =============================================================================
 
 import iamraw
+import power
 import serializeraw
 
 import sections.creator
 import sections.feature.section
 import tests
+import tests.resources
 # pylint:disable=W0611
 from tests.fixtures.restruct import restructured_sections_manual
 
@@ -50,7 +52,7 @@ def test_extract_sections_restructured(
         restructured_sections_manual,
 ):
     root = testdir.tmpdir
-    source = tests.resources.RESTRUCT
+    source = power.link(power.DOCU27_PDF)
     tests.run_sections(f'-i {source}', monkeypatch=monkeypatch)
 
     result = sections.feature.section.load_section_likelihood_frompath(root)
@@ -79,7 +81,7 @@ def test_chapters(restructured_sections_manual):
 
 def test_extract_sections_simple():
     result = sections.feature.section.extract_sections_frompath(
-        tests.resources.HOWTO_PYPORTING)
+        power.link(power.DOCU07_PDF))
 
     expected = [
         iamraw.MultipleSection,
@@ -101,7 +103,7 @@ def test_extract_sections_simple():
 def test_sections_simple():
     """Check dumped result of section work method"""
     simple_sections = sections.feature.section.extract_sections_frompath(
-        tests.resources.HOWTO_PYPORTING)
+        power.link(power.DOCU07_PDF))
     assert len(simple_sections) == 2, len(simple_sections)
     dumped = serializeraw.dump_sections(simple_sections)
     assert len(dumped) > 100, dumped
@@ -115,7 +117,7 @@ def test_sections_master72():
     problem this test ensure that sorting due the developer is done
     correctly."""
     result = sections.feature.section.extract_sections_frompath(
-        tests.resources.MASTER72)
+        power.link(power.MASTER072_PDF))
     # page 0 is title page
     assert isinstance(result[0], iamraw.sections.Introduction), type(result[0])
     # page 1 and 2 is introduction

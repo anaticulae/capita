@@ -10,17 +10,16 @@
 import iamraw
 import iamraw.path
 import iamraw.sections
+import power
 import pytest
 import serializeraw
 
 import sections.creator
 import sections.feature.section
-import tests.fixtures
-import tests.resources
 
-RESTRUCT_FONT_CONTENT = iamraw.path.fontcontent(tests.resources.RESTRUCT)
-RESTRUCT_FONT_HEADER = iamraw.path.fontheader(tests.resources.RESTRUCT)
-RESTRUCT_TEXT = iamraw.path.text(tests.resources.RESTRUCT)
+RESTRUCT_FONT_CONTENT = iamraw.path.fontcontent(power.link(power.DOCU27_PDF))
+RESTRUCT_FONT_HEADER = iamraw.path.fontheader(power.link(power.DOCU27_PDF))
+RESTRUCT_TEXT = iamraw.path.text(power.link(power.DOCU27_PDF))
 
 
 @pytest.fixture
@@ -92,6 +91,6 @@ def restructured_sections_manual() -> iamraw.sections.Sections:
 
 def restructured_sections():
     extracted = sections.feature.section.extract_sections_frompath(
-        tests.resources.RESTRUCT)
+        power.link(power.DOCU27_PDF))
     dumped = serializeraw.dump_sections(extracted)
     return dumped

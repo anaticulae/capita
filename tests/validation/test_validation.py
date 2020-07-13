@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hey.example
+import power
 import pytest
 import utila
 import utilatest
@@ -17,9 +19,9 @@ import tests.validation.bachelor
 import tests.validation.master
 
 EXPECTED_FAILURE = {
-    tests.resources.BACHELOR37_PDF,
-    tests.resources.BACHELOR56_PDF,
-    tests.resources.BACHELOR111_PDF,
+    power.BACHELOR037_PDF,
+    power.BACHELOR056_PDF,
+    power.BACHELOR111_PDF,
 }
 
 
@@ -40,7 +42,7 @@ SECTIONS.update(tests.validation.master.MASTER)
         pytest.param(
             key,
             value,
-            id=utila.make_relative(key, tests.resources.RESOURCES),
+            id=utila.make_relative(key, power.REPOSITORY),
             marks=determine_mark(key),
         ) for key, value in SECTIONS.items()
     ],
@@ -48,7 +50,9 @@ SECTIONS.update(tests.validation.master.MASTER)
 @utilatest.skip_nightly
 def test_run_validation(source, expected, testdir):
     root = testdir.tmpdir
-    tests.resources.update.run_package(source, root)
+    job = hey.example.create_job(source, root, config=dict(groupme=True))
+    utila.run(job)
+
     extracted = sections.feature.section.extract_sections_frompath(root)
 
     content = [item.__class__ for item in extracted]

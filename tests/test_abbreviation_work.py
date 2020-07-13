@@ -8,15 +8,15 @@
 # =============================================================================
 
 import iamraw.path
+import power
 import serializeraw
 import utila
 
 import sections.feature.abbreviation
-import tests.resources
 
 
 def test_abbreviations_work():
-    source = tests.resources.BACHELOR37
+    source = power.link(power.BACHELOR037_PDF)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
     pages = (0, 1, 2, 5, 6)

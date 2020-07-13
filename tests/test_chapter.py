@@ -9,17 +9,17 @@
 
 import groupme.path
 import iamraw.path
+import power
 import pytest
 import serializeraw
 import texmex
 import utila
 
 import sections.feature.chapter
-import tests.resources
 
-RESTRUCT_TEXT = iamraw.path.text(tests.resources.RESTRUCT)
-RESTRUCT_TEXT_POSITION = iamraw.path.textposition(tests.resources.RESTRUCT)
-RESTRUCT_TOC = iamraw.path.toc(tests.resources.RESTRUCT)
+RESTRUCT_TEXT = iamraw.path.text(power.link(power.DOCU27_PDF))
+RESTRUCT_TEXT_POSITION = iamraw.path.textposition(power.link(power.DOCU27_PDF))
+RESTRUCT_TOC = iamraw.path.toc(power.link(power.DOCU27_PDF))
 
 
 @pytest.mark.parametrize('document, position, toc, expected', [
@@ -31,9 +31,9 @@ RESTRUCT_TOC = iamraw.path.toc(tests.resources.RESTRUCT)
         id='restruct',
     ),
     pytest.param(
-        iamraw.path.text(tests.resources.MASTER72),
-        iamraw.path.textposition(tests.resources.MASTER72),
-        iamraw.path.toc(tests.resources.MASTER72),
+        iamraw.path.text(power.link(power.MASTER072_PDF)),
+        iamraw.path.textposition(power.link(power.MASTER072_PDF)),
+        iamraw.path.toc(power.link(power.MASTER072_PDF)),
         [3, 6, 22, 45, 63],
         id='master72pages',
     ),
@@ -99,7 +99,7 @@ def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
 
 
 def test_chapter_work_bachelor63():
-    source = tests.resources.BACHELOR63
+    source = power.link(power.BACHELOR063_PDF)
     extracted = chapter(source)
     # Einleitung
     first_chapter = utila.select_page(extracted, page=8)
@@ -116,7 +116,7 @@ def test_chapter_work_bachelor63():
 
 
 def test_chapter_work_master98():
-    source = tests.resources.MASTER98
+    source = power.link(power.MASTER098_PDF)
     extracted = chapter(source)
 
     expected = [2, 6, 26, 42, 67, 85, 88, 96]

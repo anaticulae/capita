@@ -12,11 +12,10 @@ import os
 import iamraw
 import iamraw.path
 import iamraw.sections
+import power
 import serializeraw
 import texmex
 import utila
-
-import tests.resources
 
 
 def count_chapter(items):
@@ -62,17 +61,3 @@ def create_pagetextnavigators(path, pages=None):
         text_positions=text_positions,
     )
     return navigators
-
-
-def setup_testresources(source, dest, accept=None):
-    # TODO: REPLACE WITH UTILA CODE
-    # this step is required, cause the test generator already
-    # generates this required items.
-    sources = [
-        item.name
-        for item in os.scandir(tests.resources.RESTRUCT)
-        if accept is None or
-        any([item.name.startswith(pattern) for pattern in accept])
-    ]
-    for item in sources:
-        utila.copy_content(os.path.join(source, item), dest)

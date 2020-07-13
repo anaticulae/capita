@@ -9,25 +9,26 @@
 
 # TODO: REMOVE/MOVE TO TEXMEX
 
+import iamraw
 import iamraw.path
-from iamraw import FontStore
+import power
 from serializeraw import load_document
 from serializeraw import load_font_content
 from serializeraw import load_font_header
 from texmex.iter import PageIter
 
-import tests.resources
 from sections.feature.title import font_positions_from_page
 
 
 def pyporting_pages(pagenumber):  #pagenumber: int):
-    document = load_document(iamraw.path.text(tests.resources.PYPORTING))
+    docu09 = power.link(power.DOCU09_PDF)
+    document = load_document(iamraw.path.text(docu09))
     current_page = document[pagenumber]
 
-    header = load_font_header(iamraw.path.fontheader(tests.resources.PYPORTING)) # yapf:disable
+    header = load_font_header(iamraw.path.fontheader(docu09))
 
-    content = load_font_content(iamraw.path.fontcontent(tests.resources.PYPORTING)) # yapf:disable
-    fontstore = FontStore(header, content)
+    content = load_font_content(iamraw.path.fontcontent(docu09))
+    fontstore = iamraw.FontStore(header, content)
 
     positions = font_positions_from_page(fontstore, pagenumber)
 

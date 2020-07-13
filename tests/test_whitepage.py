@@ -8,10 +8,10 @@
 # =============================================================================
 
 import iamraw.path
+import power
 import serializeraw
 
 import tests.fixtures
-import tests.resources
 from sections.feature.whitepage import PageContentWhitepages
 from sections.feature.whitepage import WhitePage
 from sections.feature.whitepage import extract_whitepages
@@ -48,11 +48,11 @@ RESTRUCT_EXPECTED = [
 
 
 def test_whitepages_extract():
-    navigators = tests.fixtures.create_pagetextnavigators(tests.resources.RESTRUCT) # yapf:disable
+    docu27 = power.link(power.DOCU27_PDF)
+    navigators = tests.fixtures.create_pagetextnavigators(docu27)
+    document = serializeraw.load_document(iamraw.path.text(docu27))
 
-    document = serializeraw.load_document(iamraw.path.text(tests.resources.RESTRUCT)) # yapf:disable
-
-    headerfooters = iamraw.path.headerfooters(tests.resources.RESTRUCT)
+    headerfooters = iamraw.path.headerfooters(docu27)
     headerfooters = serializeraw.load_headerfooter(headerfooters)
 
     # work

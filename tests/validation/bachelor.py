@@ -8,11 +8,10 @@
 # =============================================================================
 
 import iamraw.sections
-
-import tests.resources
+import power
 
 BACHELOR = {
-    tests.resources.BACHELOR37_PDF: [
+    power.BACHELOR037_PDF: [
         (
             iamraw.sections.Introduction,
             (0, 6),
@@ -46,7 +45,7 @@ BACHELOR = {
             ],
         ),
     ],
-    tests.resources.BACHELOR56_PDF: [
+    power.BACHELOR056_PDF: [
         (
             iamraw.sections.Introduction,
             (0, 5),
@@ -63,7 +62,7 @@ BACHELOR = {
             [],
         ),
     ],
-    tests.resources.BACHELOR63_PDF: [
+    power.BACHELOR063_PDF: [
         (
             iamraw.sections.Introduction,
             (0, 8),
@@ -80,7 +79,7 @@ BACHELOR = {
             [],
         ),
     ],
-    tests.resources.BACHELOR111_PDF: [
+    power.BACHELOR111_PDF: [
         (
             iamraw.sections.Introduction,
             (0, 5),

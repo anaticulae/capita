@@ -8,11 +8,11 @@
 # =============================================================================
 
 import iamraw.path
+import power
 import pytest
 import serializeraw
 
 import sections.feature.toc
-import tests.resources
 # pylint:disable=W0611
 from tests.fixtures.restruct import restructured_text
 
@@ -25,7 +25,7 @@ def test_extract_toc_likelihood(restructured_text):
 
 
 def test_extract_toc_likelihood_bachelor63():
-    text = iamraw.path.text(tests.resources.BACHELOR63, prefix='oneline')
+    text = iamraw.path.text(power.link(power.BACHELOR063_PDF), prefix='oneline')
     text = serializeraw.load_document(text, pages=(0, 1, 2, 3, 4, 5, 6, 7))
 
     extracted = sections.feature.toc.extract_toc_likelihood(text)
@@ -38,7 +38,7 @@ def test_extract_toc_likelihood_bachelor63():
 
 def test_extract_toc_likelihood_master72():
     """Check that only second and third page are detected as table of content."""
-    text = iamraw.path.text(tests.resources.MASTER72, prefix='oneline')
+    text = iamraw.path.text(power.link(power.MASTER072_PDF), prefix='oneline')
     text = serializeraw.load_document(text, pages=(0, 1, 2, 3, 4, 5, 6, 7))
 
     extracted = sections.feature.toc.extract_toc_likelihood(text)

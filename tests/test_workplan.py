@@ -9,6 +9,7 @@
 
 import textwrap
 
+import power
 import utila
 import utilatest
 
@@ -16,7 +17,6 @@ import sections.feature.section
 import sections.feature.workplan
 import sections.workplan.serialize
 import tests.example.sections
-import tests.resources
 
 
 def test_workplan_simplify_group():
@@ -40,7 +40,7 @@ def test_workplan_create_plan():
 
 def master72():
     extracted = sections.feature.section.extract_sections_frompath(
-        tests.resources.MASTER72)
+        power.link(power.MASTER072_PDF))
     plan = sections.workplan.creator.create(extracted)
     return plan
 
@@ -112,7 +112,7 @@ def test_workplan_runner_runtime_error():
 
 def test_setuptestfolder_and_setupplan(testdir):
     root = testdir.tmpdir
-    source = tests.resources.MASTER72_PDF
+    source = power.link(power.MASTER072_PDF)
     config = sections.workplan.runner.setup_testfolder(
         root,
         source,
@@ -124,10 +124,10 @@ def test_setuptestfolder_and_setupplan(testdir):
 
 
 @utilatest.skip_longrun
-def test_workplan_runner(testdir):
+def test_workplan_runner_main(testdir):
     root = testdir.tmpdir
-    extracted = sections.feature.section.extract_sections_frompath(
-        tests.resources.HOWTO_ARGPARSE)
+    docu14 = power.link(power.DOCU14_PDF)
+    extracted = sections.feature.section.extract_sections_frompath(docu14)
     extracted_plan = sections.workplan.creator.create(extracted)
     grouped = sections.workplan.serialize.dump_cmds(extracted_plan)
 
@@ -140,7 +140,7 @@ def test_workplan_runner(testdir):
     utila.file_create('rawmaker_cfg_bibliography_oneline.ini')
     config = sections.workplan.runner.setup_testfolder(
         path=root,
-        source=tests.resources.HOWTO_ARGPARSE_PDF,
+        source=power.DOCU14_PDF,
         config=root,
     )
     raw = sections.workplan.runner.setup_plan(grouped, config)

@@ -9,11 +9,11 @@
 
 import iamraw
 import iamraw.path
+import power
 import serializeraw
 import utila
 
 import sections.feature.legal
-import tests.resources
 
 
 def legal(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
@@ -28,7 +28,7 @@ def legal(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
 
 
 def test_legal_work_master116():
-    source = tests.resources.MASTER116
+    source = power.link(power.MASTER116_PDF)
     pages = (0, 1, 2, 3, 4, 5, 96)
 
     extracted = legal(source, pages)
@@ -38,7 +38,7 @@ def test_legal_work_master116():
 
 
 def test_legal_work_bachelor63():
-    source = tests.resources.BACHELOR63
+    source = power.link(power.BACHELOR063_PDF)
     extracted = legal(source)
     legal_page = utila.select_page(extracted, page=2)
     assert legal_page.content.value == 1.0, str(extracted)

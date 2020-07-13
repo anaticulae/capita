@@ -7,17 +7,17 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import pytest
 import serializeraw
 import utila
 
 import sections.utils.text
-import tests.resources
 
 
 def example(pages: tuple = None):
     loaded = serializeraw.create_pagetextnavigators_frompath(
-        tests.resources.BACHELOR37,
+        power.link(power.BACHELOR037_PDF),
         pages=pages,
     )
     if len(loaded) == 1:

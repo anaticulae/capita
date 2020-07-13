@@ -8,17 +8,17 @@
 # =============================================================================
 
 import iamraw.path
+import power
 import serializeraw
 import utila
 
 import sections.feature.abbreviation
 import sections.path
 import tests
-import tests.resources
 
 
 def test_bibliography_work():
-    source = tests.resources.MASTER72
+    source = power.link(power.MASTER072_PDF)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
     expected = (
@@ -45,7 +45,7 @@ def test_bibliography_work():
 
 
 def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
-    source = tests.resources.MASTER98
+    source = power.link(power.MASTER098_PDF)
     tests.run_sections(f'-i {source} --bibliography', monkeypatch=monkeypatch)
 
     path = sections.path.bibliography(testdir.tmpdir)

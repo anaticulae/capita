@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import pytest
 import serializeraw
 import utila
@@ -14,15 +15,17 @@ import utilatest
 
 import sections.path
 import tests
-import tests.resources
+
+BACHELOR111 = power.link(power.BACHELOR111_PDF)
+BACHELOR063 = power.link(power.BACHELOR063_PDF)
 
 
 @pytest.mark.parametrize('command, validate', [
-    pytest.param(f'-i {tests.resources.BACHELOR111}', None, id='bachelor111'),
-    pytest.param(f'-i {tests.resources.BACHELOR63}', None, id='bachelor63'),
-    pytest.param(f'-i {tests.resources.HOWTO_PYPORTING}', None, id='howto'),
-    pytest.param(f'-i {tests.resources.PYPORTING}', None, id='pyporting'),
-    pytest.param(f'-i {tests.resources.RESTRUCT}', None, id='restruct'),
+    pytest.param(f'-i {BACHELOR111}', None, id='bachelor111'),
+    pytest.param(f'-i {BACHELOR063}', None, id='bachelor63'),
+    pytest.param(f'-i {power.link(power.DOCU07_PDF)}', None, id='howto'),
+    pytest.param(f'-i {power.link(power.DOCU09_PDF)}', None, id='pyporting'),
+    pytest.param(f'-i {power.link(power.DOCU27_PDF)}', None, id='restruct'),
 ])
 def test_run_sections(command, validate, testdir, monkeypatch):
     """Run help and version and format command to reach basic test coverage"""
@@ -35,7 +38,7 @@ def test_run_sections(command, validate, testdir, monkeypatch):
 
 
 @pytest.mark.parametrize('command', [
-    ['-i', tests.resources.RESTRUCT_PDF, '-o', '.', '--all'],
+    ['-i', power.DOCU27_PDF, '-o', '.', '--all'],
 ])
 def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W0613
     """Run `sections` with bad input"""
@@ -57,7 +60,7 @@ def test_run_sections_multicore(testdir, monkeypatch):
     # this required items.
     # Copy yaml files which starts with rawmaker or groupme.
     pattern = '(rawmaker|groupme)__*.yaml'
-    utila.copy_content(tests.resources.MASTER72, root, pattern=pattern)
+    utila.copy_content(power.link(power.MASTER072_PDF), root, pattern=pattern)
 
     jobs = 5
     cmd = f'-j{jobs} -i {root} -o {root} --pages=0:5 --all'

@@ -8,11 +8,10 @@
 # =============================================================================
 
 import iamraw.sections
-
-import tests.resources
+import power
 
 MASTER = {
-    tests.resources.MASTER72_PDF: [
+    power.MASTER072_PDF: [
         (
             iamraw.sections.Introduction,
             (0, 3),

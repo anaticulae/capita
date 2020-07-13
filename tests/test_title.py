@@ -9,12 +9,12 @@
 
 import iamraw
 import iamraw.path
+import power
 import pytest
 import serializeraw
 
 import sections.feature.title
 import sections.utils
-import tests.resources
 # pylint:disable=W0611
 from tests.fixtures.restruct import restructured_fontstore
 from tests.fixtures.restruct import restructured_fontstore_fixture
@@ -38,8 +38,8 @@ MIN_TITLE_LIKELIHOOD = 0.70
 
 
 @pytest.mark.parametrize('source', [
-    pytest.param(tests.resources.RESTRUCT, id='restruct'),
-    pytest.param(tests.resources.HOWTO_PYPORTING, id='pyporting'),
+    pytest.param(power.link(power.DOCU27_PDF), id='restruct'),
+    pytest.param(power.link(power.DOCU07_PDF), id='pyporting'),
 ])
 def test_extract_title_likelihood(source):
     document = iamraw.path.text(source)
@@ -76,6 +76,6 @@ def test_dump_and_load_likelhood(
 
 def test_extract_title_likelihood_master72():
     title = sections.feature.title.extract_titlelikelihood_frompath(
-        tests.resources.MASTER72, pages=tuple(range(10)))
+        power.link(power.MASTER072_PDF), pages=tuple(range(10)))
     extracted = sections.utils.simple_content(title)
     assert extracted[0] >= 0.95
