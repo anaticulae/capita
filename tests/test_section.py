@@ -19,15 +19,6 @@ import tests.resources
 from tests.fixtures.restruct import restructured_sections_manual
 
 
-def test_iterable():
-    """Create empty `Sections` and iterate over `Sections` and `AreaItem`s"""
-    document = iamraw.Sections()
-    for section in document:
-        len(section)
-        for item in section:  #pylint:disable=unused-variable
-            pass
-
-
 def test_dump_and_load_sections(restructured_sections_manual):  #pylint:disable=W0621
     data = restructured_sections_manual
 
