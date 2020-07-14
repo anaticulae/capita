@@ -8,10 +8,10 @@
 # =============================================================================
 
 import iamraw
+import iamraw.sections
 import power
 import pytest
 import serializeraw
-import utila
 
 import sections.creator
 import sections.feature.section
@@ -122,16 +122,15 @@ def test_sections_master72():
     assert len(result[1]) == 62  # content pages
 
 
-def test_sections_bachelor90_pages0_15():
+def test_sections_bachelor90():
     result = sections.feature.section.extract_sections_frompath(
-        power.link(power.BACHELOR090_PDF),
-        pages=utila.ranged_tuple(0, 16),
-    )
+        power.link(power.BACHELOR090_PDF))
 
     expected = [
         iamraw.sections.Unknown,
         iamraw.sections.Introduction,
         iamraw.MainPart,
+        iamraw.sections.Appendix,
     ]
     assert len(result) == len(expected)
 
