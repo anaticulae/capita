@@ -30,6 +30,15 @@ def abbreviation(path: str, prefix: str = '') -> str:
     )
 
 
+def abstract(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        sections.PROCESS,
+        'abstract_likelihood',
+        prefix,
+    )
+
+
 def bibliography(path: str, prefix: str = '') -> str:
     return utila.pathconnector(
         path,

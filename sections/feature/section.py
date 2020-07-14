@@ -19,6 +19,7 @@ import serializeraw
 import utila
 
 import sections.feature.abbreviation
+import sections.feature.abstract
 import sections.feature.bibliography
 import sections.feature.chapter
 import sections.feature.figuretable
@@ -40,6 +41,7 @@ MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75).value
 @utila.checkdatatype
 def work(  # pylint:disable=R0913
         abbreviation: str,
+        abstract: str,
         bibliography: str,
         chapter: str,
         figuretable: str,
@@ -57,6 +59,7 @@ def work(  # pylint:disable=R0913
     # TODO: Investigate add check if raw content or file path is used
     loaded = load_features(
         abbreviation,
+        abstract,
         bibliography,
         chapter,
         figuretable,
@@ -79,6 +82,7 @@ def work(  # pylint:disable=R0913
 @dataclasses.dataclass
 class SectionsRequiredResources:
     abbreviation: iamraw.PageContentLikelihoods
+    abstract: iamraw.PageContentLikelihoods
     bibliography: iamraw.PageContentLikelihoods
     chapter: iamraw.PageContentLikelihoods
     figuretable: iamraw.PageContentLikelihoods
@@ -103,6 +107,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
     result = {}
     for pagenumber, content in utila.sync_pages([
             loaded.abbreviation,
+            loaded.abstract,
             loaded.bibliography,
             loaded.chapter,
             loaded.figuretable,
@@ -249,8 +254,14 @@ class TableTable(iamraw.AreaItem):
     """Table of table."""
 
 
+@dataclasses.dataclass
+class Abstract(iamraw.AreaItem):
+    """Table of table."""
+
+
 BUILDER = [
     iamraw.sections.AbbreviationTable,
+    Abstract,
     iamraw.sections.Bibliography,
     iamraw.sections.Chapter,
     iamraw.sections.FigureTable,
@@ -275,6 +286,9 @@ def multiplesection_next(multiple):
 #       iamraw.sections.WhitePage:
 # yapf:disable
 MATCHING = {
+    Abstract: [
+        iamraw.sections.Introduction,
+    ],
     iamraw.MultipleSection: multiplesection_next,
     iamraw.sections.AbbreviationTable: [
         iamraw.sections.Appendix,
@@ -332,6 +346,7 @@ def determine_document_section(
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_features(  # pylint:disable=R0913
         abbreviation,
+        abstract,
         bibliography,
         chapter,
         figuretable,
@@ -344,6 +359,7 @@ def load_features(  # pylint:disable=R0913
         pages: tuple = None,
 ) -> SectionsRequiredResources:
     abbreviation = serializeraw.load_likelihood(abbreviation, pages=pages)
+    abstract = serializeraw.load_likelihood(abstract, pages=pages)
     bibliography = serializeraw.load_likelihood(bibliography, pages=pages)
     chapter = serializeraw.load_likelihood(chapter, pages=pages)
     figuretable = serializeraw.load_likelihood(figuretable, pages=pages)
@@ -356,6 +372,7 @@ def load_features(  # pylint:disable=R0913
 
     result = SectionsRequiredResources(
         abbreviation=abbreviation,
+        abstract=abstract,
         bibliography=bibliography,
         chapter=chapter,
         figuretable=figuretable,
@@ -387,6 +404,7 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
     # TODO: we need to improve this
     loaded = load_features(
         sections.path.abbreviation(path),
+        sections.path.abstract(path),
         sections.path.bibliography(path),
         sections.path.chapter(path),
         sections.path.figuretable(path),
@@ -414,6 +432,11 @@ def extract_sections_frompath(  # pylint:disable=R0914
     fontcontent = iamraw.path.fontcontent(path, prefix=prefix)
     footers = iamraw.path.headerfooters(path, prefix=prefix)
 
+    abstract = sections.feature.abstract.work(
+        text,
+        textposition,
+        pages=pages,
+    )
     chapter = sections.feature.chapter.work(
         text,
         textposition,
@@ -457,6 +480,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
     )
     loaded = load_features(
         abbreviation,
+        abstract,
         bibliography,
         chapter,
         figuretable,
