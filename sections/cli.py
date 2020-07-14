@@ -39,6 +39,14 @@ WORKPLAN = [
         output=('likelihood',),
     ),
     step(
+        'appendix',
+        inputs=[
+            ResultFile('rawmaker', 'oneline_text_text'),
+            ResultFile('rawmaker', 'oneline_text_positions'),
+        ],
+        output=('likelihood',),
+    ),
+    step(
         'bibliography',
         inputs=[
             ResultFile('rawmaker', 'text_text'),
@@ -117,6 +125,7 @@ WORKPLAN = [
         inputs=[
             ResultFile('sections', 'abbreviation_likelihood'),
             ResultFile('sections', 'abstract_likelihood'),
+            ResultFile('sections', 'appendix_likelihood'),
             ResultFile('sections', 'bibliography_likelihood'),
             ResultFile('sections', 'chapter_likelihood'),
             ResultFile('sections', 'figuretable_likelihood'),

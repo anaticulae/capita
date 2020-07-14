@@ -39,6 +39,15 @@ def abstract(path: str, prefix: str = '') -> str:
     )
 
 
+def appendix(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        sections.PROCESS,
+        'appendix_likelihood',
+        prefix,
+    )
+
+
 def bibliography(path: str, prefix: str = '') -> str:
     return utila.pathconnector(
         path,

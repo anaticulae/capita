@@ -20,6 +20,7 @@ import utila
 
 import sections.feature.abbreviation
 import sections.feature.abstract
+import sections.feature.appendix
 import sections.feature.bibliography
 import sections.feature.chapter
 import sections.feature.figuretable
@@ -39,9 +40,10 @@ MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75).value
 
 
 @utila.checkdatatype
-def work(  # pylint:disable=R0913
+def work(  # pylint:disable=R0913,R0914
         abbreviation: str,
         abstract: str,
+        appendix: str,
         bibliography: str,
         chapter: str,
         figuretable: str,
@@ -60,6 +62,7 @@ def work(  # pylint:disable=R0913
     loaded = load_features(
         abbreviation,
         abstract,
+        appendix,
         bibliography,
         chapter,
         figuretable,
@@ -83,6 +86,7 @@ def work(  # pylint:disable=R0913
 class SectionsRequiredResources:
     abbreviation: iamraw.PageContentLikelihoods
     abstract: iamraw.PageContentLikelihoods
+    appendix: iamraw.PageContentLikelihoods
     bibliography: iamraw.PageContentLikelihoods
     chapter: iamraw.PageContentLikelihoods
     figuretable: iamraw.PageContentLikelihoods
@@ -108,6 +112,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
     for pagenumber, content in utila.sync_pages([
             loaded.abbreviation,
             loaded.abstract,
+            loaded.appendix,
             loaded.bibliography,
             loaded.chapter,
             loaded.figuretable,
@@ -252,6 +257,7 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
 BUILDER = [
     iamraw.sections.AbbreviationTable,
     iamraw.sections.Abstract,  # pylint:disable=E1101
+    iamraw.sections.Appendix,
     iamraw.sections.Bibliography,
     iamraw.sections.Chapter,
     iamraw.sections.FigureTable,
@@ -279,6 +285,7 @@ MATCHING = {
     iamraw.sections.Abstract: [  # pylint:disable=E1101
         iamraw.sections.Introduction,
     ],
+    iamraw.sections.Appendix: iamraw.sections.Appendix,
     iamraw.MultipleSection: multiplesection_next,
     iamraw.sections.AbbreviationTable: [
         iamraw.sections.Appendix,
@@ -312,20 +319,21 @@ MATCHING = {
 
 def determine_document_section(
         current: iamraw.sections.DocumentSection,
-        actual: iamraw.sections.AreaItem,
+        after: iamraw.sections.AreaItem,
 ):
     """It is not always required to change the `current`
     DocumentSection. We require only few DocumentSection, therefore in
     some cases more than one possible parent is defined."""
-    nextclass = MATCHING[type(actual)]
+    nextclass = MATCHING[type(after)]
     if inspect.isfunction(nextclass):
         # dynamic next section determiner
-        nextclass = nextclass(actual)
+        nextclass = nextclass(after)
         return nextclass
 
     new_section = nextclass == iamraw.sections.DocumentSection
     use_current = (isinstance(nextclass, list) and
                    not any(item == current for item in nextclass))
+
     if new_section or use_current:
         if not current:
             return iamraw.sections.Unknown
@@ -337,6 +345,7 @@ def determine_document_section(
 def load_features(  # pylint:disable=R0913
         abbreviation,
         abstract,
+        appendix,
         bibliography,
         chapter,
         figuretable,
@@ -350,6 +359,7 @@ def load_features(  # pylint:disable=R0913
 ) -> SectionsRequiredResources:
     abbreviation = serializeraw.load_likelihood(abbreviation, pages=pages)
     abstract = serializeraw.load_likelihood(abstract, pages=pages)
+    appendix = serializeraw.load_likelihood(appendix, pages=pages)
     bibliography = serializeraw.load_likelihood(bibliography, pages=pages)
     chapter = serializeraw.load_likelihood(chapter, pages=pages)
     figuretable = serializeraw.load_likelihood(figuretable, pages=pages)
@@ -363,6 +373,7 @@ def load_features(  # pylint:disable=R0913
     result = SectionsRequiredResources(
         abbreviation=abbreviation,
         abstract=abstract,
+        appendix=appendix,
         bibliography=bibliography,
         chapter=chapter,
         figuretable=figuretable,
@@ -395,6 +406,7 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
     loaded = load_features(
         sections.path.abbreviation(path),
         sections.path.abstract(path),
+        sections.path.appendix(path),
         sections.path.bibliography(path),
         sections.path.chapter(path),
         sections.path.figuretable(path),
@@ -438,6 +450,11 @@ def extract_sections_frompath(  # pylint:disable=R0914
         textposition,
         pages=pages,
     )
+    appendix = sections.feature.appendix.work(
+        text,
+        textposition,
+        pages=pages,
+    )
     figuretable = sections.feature.figuretable.work(
         text,
         textposition,
@@ -471,6 +488,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
     loaded = load_features(
         abbreviation,
         abstract,
+        appendix,
         bibliography,
         chapter,
         figuretable,
