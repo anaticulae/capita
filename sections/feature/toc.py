@@ -16,9 +16,13 @@ TODO:
 
 import iamraw
 import serializeraw
+import utila
 
 import sections
 import sections.feature
+
+# no possible toc later than page 20
+VALID_TOC_PAGES = utila.ranged_tuple(0, 20)  # HOLY VALUE
 
 
 def work(text_linewise: str, pages=None) -> str:
@@ -31,14 +35,14 @@ def work(text_linewise: str, pages=None) -> str:
 
 def extract_toc_likelihood(document: iamraw.Document,
                           ) -> iamraw.PageContentLikelihood:
-    """Iterate throw the document and determine the uni- or multiformed
-    likelihood of beeing a table page."""
+    """Iterate thru document and determine uni- or multiformed
+    likelihood of beeing a table of content page."""
 
     result = {page.page: analyse_page(page) for page in document}
 
-    # NO TOC AFTER PAGE 30: TODO: HOLY VALUE
     result = {
-        page: value if page < 30 else (0, 0) for page, value in result.items()
+        page: value if page in VALID_TOC_PAGES else (0, 0)
+        for page, value in result.items()
     }
 
     uniformed = sections.feature.uniform_result(result)
@@ -57,7 +61,7 @@ def extract_toc_likelihood(document: iamraw.Document,
 
 
 def analyse_page(page) -> float:
-    """Extract the number of lines which can be contain any table-content
+    """Extract the number of lines which can contain any table-content
 
     Dots(. . .) are charactaristical for table lines.
 
