@@ -249,25 +249,15 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
     return result
 
 
-@dataclasses.dataclass
-class TableTable(iamraw.AreaItem):
-    """Table of table."""
-
-
-@dataclasses.dataclass
-class Abstract(iamraw.AreaItem):
-    """Table of table."""
-
-
 BUILDER = [
     iamraw.sections.AbbreviationTable,
-    Abstract,
+    iamraw.sections.Abstract,  # pylint:disable=E1101
     iamraw.sections.Bibliography,
     iamraw.sections.Chapter,
     iamraw.sections.FigureTable,
     iamraw.sections.Index,
     iamraw.sections.LegalInformation,
-    TableTable,
+    iamraw.sections.TableTable,  # pylint:disable=E1101
     iamraw.sections.TitlePage,
     iamraw.sections.TableOfContent,
     iamraw.sections.WhitePage,
@@ -286,7 +276,7 @@ def multiplesection_next(multiple):
 #       iamraw.sections.WhitePage:
 # yapf:disable
 MATCHING = {
-    Abstract: [
+    iamraw.sections.Abstract: [  # pylint:disable=E1101
         iamraw.sections.Introduction,
     ],
     iamraw.MultipleSection: multiplesection_next,
@@ -309,7 +299,7 @@ MATCHING = {
         iamraw.sections.Introduction,
         iamraw.sections.Table,
     ],
-    TableTable: [
+    iamraw.sections.TableTable: [  # pylint:disable=E1101
         iamraw.sections.Appendix,
         iamraw.sections.Introduction,
     ],
