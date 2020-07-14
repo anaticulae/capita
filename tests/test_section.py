@@ -9,6 +9,7 @@
 
 import iamraw
 import power
+import pytest
 import serializeraw
 
 import sections.creator
@@ -73,6 +74,7 @@ def test_chapters(restructured_sections_manual):
 HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
 
 
+@pytest.mark.xfail(reason='require multiple page toc detector')
 def test_extract_sections_simple():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.DOCU07_PDF))

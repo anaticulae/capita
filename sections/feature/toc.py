@@ -14,68 +14,22 @@ TODO:
               table of abbreviation
 """
 
-import iamraw
-import serializeraw
 import utila
 
-import sections
-import sections.feature
+import sections.table.strategy
 
 # no possible toc later than page 20
 VALID_TOC_PAGES = utila.ranged_tuple(0, 20)  # HOLY VALUE
 
 
-def work(text_linewise: str, pages=None) -> str:
-    document = serializeraw.load_document(text_linewise, pages=pages)
+def work(text_linewise: str, textpositions: str, pages=None) -> str:
+    dumped = sections.table.strategy.work(
+        text_linewise,
+        textpositions,
+        headline=['Inhalt', 'Inhaltsverzeichnis', 'Contents'],
+        shortcut='toc',
+        valid_pages=VALID_TOC_PAGES,
+        pages=pages,
+    )
 
-    extracted = extract_toc_likelihood(document)
-    dumped = serializeraw.dump_likelihood(extracted)
     return dumped
-
-
-def extract_toc_likelihood(document: iamraw.Document,
-                          ) -> iamraw.PageContentLikelihood:
-    """Iterate thru document and determine uni- or multiformed
-    likelihood of beeing a table of content page."""
-
-    result = {page.page: analyse_page(page) for page in document}
-
-    result = {
-        page: value if page in VALID_TOC_PAGES else (0, 0)
-        for page, value in result.items()
-    }
-
-    uniformed = sections.feature.uniform_result(result)
-    multiformed = sections.feature.multiform_result(result)
-    if multiformed is not None:
-        uniformed = multiformed
-    assert len(uniformed) == len(document)
-
-    result = [
-        iamraw.PageContentLikelihood(
-            page=page, content=iamraw.Likelihood(value, 'toc'))
-        for page, value in uniformed.items()
-    ]
-    result = sorted(result, key=lambda x: x.page)
-    return result
-
-
-def analyse_page(page) -> float:
-    """Extract the number of lines which can contain any table-content
-
-    Dots(. . .) are charactaristical for table lines.
-
-    Args:
-        page():
-    Returns:
-        (linecount, possible_table_lines)
-    """
-    content = page.text.splitlines()
-    linecount = len(content)
-
-    possible_toc_line = len([
-        line for line in content
-        if line.count('. .') > 3 or line.count('..') > 3
-    ])
-    # likelihood = possible_toc_line / linecount if linecount else 0.0
-    return linecount, possible_toc_line

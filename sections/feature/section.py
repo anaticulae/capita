@@ -401,7 +401,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
         fontcontent,
         pages=pages,
     )
-    toc = sections.feature.toc.work(text, pages=pages)
+    toc = sections.feature.toc.work(text, textposition, pages=pages)
     whitepage = sections.feature.whitepage.work(
         text,
         textposition,

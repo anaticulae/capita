@@ -7,28 +7,35 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import iamraw.path
 import power
 import pytest
 import serializeraw
+import utila
 
 import sections.feature.toc
-# pylint:disable=W0611
-from tests.fixtures.restruct import restructured_text
+import sections.table.strategy
+
+DOCU27 = power.link(power.DOCU27_PDF)
 
 
 #pylint:disable=W0621
-def test_extract_toc_likelihood(restructured_text):
-    extracted = sections.feature.toc.extract_toc_likelihood(restructured_text)
+def test_extract_toc_likelihood():
+    navigator = serializeraw.create_pagetextnavigators_frompath(DOCU27)
+    extracted = sections.table.strategy.extract_xxx_likelihood(navigator)
     extracted = [item.content.value for item in extracted]
     assert sum(extracted) == pytest.approx(1.0)
 
 
 def test_extract_toc_likelihood_bachelor63():
-    text = iamraw.path.text(power.link(power.BACHELOR063_PDF), prefix='oneline')
-    text = serializeraw.load_document(text, pages=(0, 1, 2, 3, 4, 5, 6, 7))
-
-    extracted = sections.feature.toc.extract_toc_likelihood(text)
+    text = serializeraw.create_pagetextnavigators_frompath(
+        power.link(power.BACHELOR063_PDF),
+        pages=utila.ranged_tuple(0, 8),
+        prefix='oneline',
+    )
+    extracted = sections.table.strategy.extract_xxx_likelihood(
+        text,
+        headline='Inhaltsverzeichnis',
+    )
     extracted = [item.content.value for item in extracted]
     likelihood = sum(extracted)
     # table of content is spreaded over two pages. Therefore the
@@ -38,10 +45,15 @@ def test_extract_toc_likelihood_bachelor63():
 
 def test_extract_toc_likelihood_master72():
     """Check that only second and third page are detected as table of content."""
-    text = iamraw.path.text(power.link(power.MASTER072_PDF), prefix='oneline')
-    text = serializeraw.load_document(text, pages=(0, 1, 2, 3, 4, 5, 6, 7))
-
-    extracted = sections.feature.toc.extract_toc_likelihood(text)
+    text = serializeraw.create_pagetextnavigators_frompath(
+        power.link(power.MASTER072_PDF),
+        pages=utila.ranged_tuple(0, 8),
+        prefix='oneline',
+    )
+    extracted = sections.table.strategy.extract_xxx_likelihood(
+        text,
+        headline='Inhaltsverzeichnis',
+    )
     extracted = [item.content.value for item in extracted]
 
     expected_result = [False, True, True, False, False, False, False, False]
