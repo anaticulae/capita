@@ -70,7 +70,7 @@ import os
 
 import sections.__patch__
 
-__version__ = '0.5.1'
+__version__ = '0.6.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 

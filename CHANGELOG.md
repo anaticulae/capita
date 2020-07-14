@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v0.6.0
+
+### Feature
+
+* add first draft of appendix detector (a75419b2c438)
+* add abstract step detection step (2c741ec74623)
+* add figuretable and tabletable section detection step (affd2043478f)
+* use new toc likelihood detector (e1254f89c517)
+* add method to determine potential headline out of text style (12530995b1ee)
+
+### Fix
+
+* use mean bib value to avoid holes in group while merging with (817f6f697aec)
+
 ## v0.5.1
 
 ## v0.5.0
