@@ -70,6 +70,9 @@ def test_chapters(restructured_sections_manual):
     assert len(result) == 8, str(result)
 
 
+HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
+
+
 def test_extract_sections_simple():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.DOCU07_PDF))
@@ -86,8 +89,8 @@ def test_extract_sections_simple():
         assert current == wanted, f'{current} != {wanted}'
 
     # Title and Table of MultipleSection
-    chapter = tests.resources.HOWTO_PYPORTING_CHAPTER_PAGE_COUNT
-    assert len(result[0].content) == chapter
+    expected_chapter = HOWTO_PYPORTING_CHAPTER_PAGE_COUNT
+    assert len(result[0].content) == expected_chapter
     # TODO: Test order of multiple items
 
 

@@ -11,6 +11,7 @@ import os
 
 import hey.example
 import power
+import utila
 
 import sections
 
@@ -52,3 +53,7 @@ RESOURCES = [
     power.todo(power.DOCU09_PDF),
     power.todo(power.DOCU27_PDF),
 ]
+
+REQURIED_RESOURCES = [power.link(pdf) for pdf, _ in RESOURCES]
+
+REQURIED_RESOURCES = [utila.forward_slash(item) for item in REQURIED_RESOURCES]

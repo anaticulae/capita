@@ -11,7 +11,6 @@ import power
 import pytest
 
 import sections
-import tests.resources
 import tests.resources.update
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
@@ -23,7 +22,7 @@ power.setup(sections.ROOT)
 
 @pytest.mark.usefixtures('session')
 def pytest_sessionstart():
-    power.run(tests.resources.REQURIED_RESOURCES)
+    power.run(tests.resources.update.REQURIED_RESOURCES)
 
 
 def extract():
