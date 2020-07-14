@@ -9,6 +9,7 @@
 
 import iamraw
 import serializeraw
+import utila
 
 import sections.feature
 import sections.utils.headline
@@ -21,6 +22,7 @@ def work(
         shortcut: str,
         valid_pages: tuple = None,
         pages: tuple = None,
+        blacklist: list = None,
 ) -> str:
     navigators = serializeraw.create_pagetextnavigators_fromfile(
         text_linewise,
@@ -30,8 +32,9 @@ def work(
     extracted = extract_xxx_likelihood(
         navigators,
         headline,
-        shortcut,
-        valid_pages,
+        shortcut=shortcut,
+        valid_pages=valid_pages,
+        blacklist=blacklist,
     )
 
     dumped = serializeraw.dump_likelihood(extracted)
@@ -46,6 +49,7 @@ def extract_xxx_likelihood(
         headline: str = None,
         shortcut: str = 'xxx',
         valid_pages: tuple = None,
+        blacklist: list = None,
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multiformed
     likelihood of beeing a table page."""
@@ -54,17 +58,17 @@ def extract_xxx_likelihood(
 
     def valid(item):
         detected = sections.utils.headline.headlines(item)
-        if not headline:
-            return True
-        if detected:
+        if blacklist and detected in blacklist:
+            return False
+        if detected and headline:
             if isinstance(headline, str):
                 return detected == headline
             return detected in headline
-        return True
+        return False
 
     result = {
         page: value if ((valid_pages is None or page in valid_pages) and
-                        valid(document[page])) else NO_PAGE
+                        valid(utila.select_page(document, page))) else NO_PAGE
         for page, value in result.items()
     }
 

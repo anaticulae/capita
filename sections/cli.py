@@ -39,6 +39,14 @@ WORKPLAN = [
         output=('likelihood',),
     ),
     step(
+        'figuretable',
+        inputs=[
+            ResultFile('rawmaker', 'oneline_text_text'),
+            ResultFile('rawmaker', 'oneline_text_positions'),
+        ],
+        output=('likelihood',),
+    ),
+    step(
         'index',
         inputs=[
             ResultFile('rawmaker', 'oneline_text_text'),
@@ -54,7 +62,7 @@ WORKPLAN = [
         output=('likelihood',),
     ),
     step(
-        'toc',
+        'tabletable',
         inputs=[
             ResultFile('rawmaker', 'oneline_text_text'),
             ResultFile('rawmaker', 'oneline_text_positions'),
@@ -67,6 +75,14 @@ WORKPLAN = [
             ResultFile('rawmaker', 'text_text'),
             ResultFile('rawmaker', 'fonts_header'),
             ResultFile('rawmaker', 'fonts_content'),
+        ],
+        output=('likelihood',),
+    ),
+    step(
+        'toc',
+        inputs=[
+            ResultFile('rawmaker', 'oneline_text_text'),
+            ResultFile('rawmaker', 'oneline_text_positions'),
         ],
         output=('likelihood',),
     ),
@@ -94,8 +110,10 @@ WORKPLAN = [
             ResultFile('sections', 'abbreviation_likelihood'),
             ResultFile('sections', 'bibliography_likelihood'),
             ResultFile('sections', 'chapter_likelihood'),
+            ResultFile('sections', 'figuretable_likelihood'),
             ResultFile('sections', 'index_likelihood'),
             ResultFile('sections', 'legal_likelihood'),
+            ResultFile('sections', 'tabletable_likelihood'),
             ResultFile('sections', 'title_likelihood'),
             ResultFile('sections', 'toc_likelihood'),
             ResultFile('sections', 'whitepage_likelihood'),

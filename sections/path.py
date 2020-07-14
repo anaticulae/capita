@@ -84,6 +84,24 @@ def toc(path: str, prefix: str = '') -> str:
     )
 
 
+def tabletable(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        sections.PROCESS,
+        'tabletable_likelihood',
+        prefix,
+    )
+
+
+def figuretable(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        sections.PROCESS,
+        'figuretable_likelihood',
+        prefix,
+    )
+
+
 def whitepage(path: str, prefix: str = '') -> str:
     return utila.pathconnector(
         path,

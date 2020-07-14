@@ -21,8 +21,10 @@ import utila
 import sections.feature.abbreviation
 import sections.feature.bibliography
 import sections.feature.chapter
+import sections.feature.figuretable
 import sections.feature.index
 import sections.feature.legal
+import sections.feature.tabletable
 import sections.feature.title
 import sections.feature.toc
 import sections.feature.whitepage
@@ -36,12 +38,14 @@ MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75).value
 
 
 @utila.checkdatatype
-def work(
+def work(  # pylint:disable=R0913
         abbreviation: str,
         bibliography: str,
         chapter: str,
+        figuretable: str,
         index: str,
         legal: str,
+        tabletable: str,
         title: str,
         toc: str,
         whitepage: str,
@@ -55,8 +59,10 @@ def work(
         abbreviation,
         bibliography,
         chapter,
+        figuretable,
         index,
         legal,
+        tabletable,
         title,
         toc,
         whitepage,
@@ -75,8 +81,10 @@ class SectionsRequiredResources:
     abbreviation: iamraw.PageContentLikelihoods
     bibliography: iamraw.PageContentLikelihoods
     chapter: iamraw.PageContentLikelihoods
+    figuretable: iamraw.PageContentLikelihoods
     index: iamraw.PageContentLikelihoods
     legal: iamraw.PageContentLikelihoods
+    tabletable: iamraw.PageContentLikelihoods
     title: iamraw.PageContentLikelihoods
     toc: iamraw.PageContentLikelihoods
     whitepage: typing.List[iamraw.sections.WhitePage]
@@ -97,8 +105,10 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
             loaded.abbreviation,
             loaded.bibliography,
             loaded.chapter,
+            loaded.figuretable,
             loaded.index,
             loaded.legal,
+            loaded.tabletable,
             loaded.title,
             loaded.toc,
             loaded.whitepage,
@@ -130,6 +140,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
                 # TODO: Preseve order on page
                 start = pagenumber + index * 1 / len(trusted)
                 end = pagenumber + (index + 1) * 1 / len(trusted)
+                start, end = utila.roundme(start, end)
                 new = create(
                     start=start,
                     end=end,
@@ -233,12 +244,19 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
     return result
 
 
+@dataclasses.dataclass
+class TableTable(iamraw.AreaItem):
+    """Table of table."""
+
+
 BUILDER = [
     iamraw.sections.AbbreviationTable,
     iamraw.sections.Bibliography,
     iamraw.sections.Chapter,
+    iamraw.sections.FigureTable,
     iamraw.sections.Index,
     iamraw.sections.LegalInformation,
+    TableTable,
     iamraw.sections.TitlePage,
     iamraw.sections.TableOfContent,
     iamraw.sections.WhitePage,
@@ -258,9 +276,16 @@ def multiplesection_next(multiple):
 # yapf:disable
 MATCHING = {
     iamraw.MultipleSection: multiplesection_next,
-    iamraw.sections.AbbreviationTable: iamraw.sections.Appendix,
+    iamraw.sections.AbbreviationTable: [
+        iamraw.sections.Appendix,
+        iamraw.sections.Introduction,
+    ],
     iamraw.sections.Bibliography: iamraw.sections.Appendix,
     iamraw.sections.Chapter: iamraw.MainPart,
+    iamraw.sections.FigureTable: [
+        iamraw.sections.Appendix,
+        iamraw.sections.Introduction,
+    ],
     iamraw.sections.Index: iamraw.sections.Table,
     iamraw.sections.LegalInformation: [
         iamraw.sections.Appendix,
@@ -269,6 +294,10 @@ MATCHING = {
     iamraw.sections.TableOfContent: [
         iamraw.sections.Introduction,
         iamraw.sections.Table,
+    ],
+    TableTable: [
+        iamraw.sections.Appendix,
+        iamraw.sections.Introduction,
     ],
     iamraw.sections.Text: iamraw.sections.DocumentSection,
     iamraw.sections.TitlePage: iamraw.sections.Introduction,
@@ -301,22 +330,26 @@ def determine_document_section(
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_features(
+def load_features(  # pylint:disable=R0913
         abbreviation,
         bibliography,
         chapter,
+        figuretable,
         index,
         legal,
+        tabletable,
         title,
         toc,
         whitepage,
-        pages=None,
+        pages: tuple = None,
 ) -> SectionsRequiredResources:
     abbreviation = serializeraw.load_likelihood(abbreviation, pages=pages)
     bibliography = serializeraw.load_likelihood(bibliography, pages=pages)
     chapter = serializeraw.load_likelihood(chapter, pages=pages)
+    figuretable = serializeraw.load_likelihood(figuretable, pages=pages)
     index = serializeraw.load_likelihood(index, pages=pages)
     legal = serializeraw.load_likelihood(legal, pages=pages)
+    tabletable = serializeraw.load_likelihood(tabletable, pages=pages)
     title = serializeraw.load_likelihood(title, pages=pages)
     toc = serializeraw.load_likelihood(toc, pages=pages)
     white = serializeraw.load_whitepages(whitepage, pages=pages)
@@ -325,8 +358,10 @@ def load_features(
         abbreviation=abbreviation,
         bibliography=bibliography,
         chapter=chapter,
+        figuretable=figuretable,
         index=index,
         legal=legal,
+        tabletable=tabletable,
         title=title,
         toc=toc,
         whitepage=white,
@@ -354,8 +389,10 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
         sections.path.abbreviation(path),
         sections.path.bibliography(path),
         sections.path.chapter(path),
+        sections.path.figuretable(path),
         sections.path.index(path),
         sections.path.legal(path),
+        sections.path.tabletable(path),
         sections.path.title(path),
         sections.path.toc(path),
         sections.path.whitepage(path),
@@ -388,6 +425,11 @@ def extract_sections_frompath(  # pylint:disable=R0914
         textposition,
         pages=pages,
     )
+    figuretable = sections.feature.figuretable.work(
+        text,
+        textposition,
+        pages=pages,
+    )
     bibliography = sections.feature.bibliography.work(
         text,
         textposition,
@@ -401,6 +443,11 @@ def extract_sections_frompath(  # pylint:disable=R0914
         fontcontent,
         pages=pages,
     )
+    tabletable = sections.feature.tabletable.work(
+        text,
+        textposition,
+        pages=pages,
+    )
     toc = sections.feature.toc.work(text, textposition, pages=pages)
     whitepage = sections.feature.whitepage.work(
         text,
@@ -412,8 +459,10 @@ def extract_sections_frompath(  # pylint:disable=R0914
         abbreviation,
         bibliography,
         chapter,
+        figuretable,
         index,
         legal,
+        tabletable,
         title,
         toc,
         whitepage,

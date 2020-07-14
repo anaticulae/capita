@@ -17,9 +17,9 @@ BACHELOR90 = power.link(power.BACHELOR090_PDF)
 
 
 @pytest.mark.parametrize('source, page, expected', [
-    (BACHELOR90, 2, 'Eidesstattliche Erklärung'),
-    (BACHELOR90, 3, ['Kurzfassung', 'Abstract']),
-    (BACHELOR90, 4, 'Inhaltsverzeichnis'),
+    pytest.param(BACHELOR90, 2, 'Eidesstattliche Erklärung', id='eides'),
+    pytest.param(BACHELOR90, 3, ['Kurzfassung', 'Abstract'], id='abstract'),
+    pytest.param(BACHELOR90, 4, 'Inhaltsverzeichnis', id='toc'),
 ])
 def test_detect_page_headlines(source, page, expected):
     navigator = serializeraw.create_pagetextnavigators_frompath(

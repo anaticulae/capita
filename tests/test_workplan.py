@@ -47,7 +47,9 @@ def master72():
 
 def test_workplan_master72_create_plan():
     plan = master72()
-    assert len(plan) == 8, str(plan)
+    # TODO: REMOVE PLAN STEP, CAUSE PLAN COUPLE TO MUCH LOGIC IN SECTIONS
+    # MODULE?
+    assert len(plan) == 10, str(plan)
 
 
 EXPECTED = """\

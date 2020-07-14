@@ -6,36 +6,25 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""Toc Likelihood Detector
+"""Table of Table Detector
 =======================
-
-TODO:
-    - support table of figures
-              table of abbreviation
 """
 
-import utila
-
 import sections.table.strategy
-
-# no possible toc later than page 20
-VALID_TOC_PAGES = utila.ranged_tuple(0, 20)  # HOLY VALUE
 
 
 def work(text_linewise: str, textpositions: str, pages=None) -> str:
     dumped = sections.table.strategy.work(
         text_linewise,
         textpositions,
-        headline=['Inhalt', 'Inhaltsverzeichnis', 'Contents'],
+        headline=['Tabellenverzeichnis', 'Tabellen'],
         blacklist=[
             'Abbildungen',
             'Abbildungsverzeichnis',
-            'Tabellen',
-            'Tabellenverzeichnis',
+            'Inhalt',
+            'Inhaltsverzeichnis',
         ],
-        shortcut='toc',
-        valid_pages=VALID_TOC_PAGES,
+        shortcut='tableoftable',
         pages=pages,
     )
-
     return dumped
