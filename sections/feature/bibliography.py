@@ -10,6 +10,7 @@
 import german
 import serializeraw
 import texmex
+import utila
 
 import sections.utils.spa
 
@@ -42,6 +43,11 @@ def work(document: str, position: str, pages=None) -> str:
     hugest = sorted(
         grouped, key=lambda x: sum(item.content.value for item in x)
     )[-1] if grouped else []
+    if hugest:
+        avg = sum([item.content.value for item in hugest]) / len(hugest)
+        for item in hugest:
+            # every item of the group should have the same likelihood
+            item.content.value = utila.roundme(avg)
 
     dumped = serializeraw.dump_likelihood(hugest)
     return dumped
