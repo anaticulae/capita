@@ -20,7 +20,7 @@ from texmex.iter import PageIter
 from sections.feature.title import font_positions_from_page
 
 
-def pyporting_pages(pagenumber):  #pagenumber: int):
+def pyporting_pages(pagenumber: int):
     docu09 = power.link(power.DOCU09_PDF)
     document = load_document(iamraw.path.text(docu09))
     current_page = document[pagenumber]
@@ -34,43 +34,6 @@ def pyporting_pages(pagenumber):  #pagenumber: int):
 
     pageiter = PageIter(page=current_page)
     return pageiter, positions
-
-
-# def test_textprocessor_small_snippet_page2():
-#     pageiter, _ = pyporting_pages(2)
-#     first = pageiter.next(1, 0, 0)
-#     second = pageiter.next(1, 0, 7)
-#     third = pageiter.next(2, 0, 0)
-#     fourth = pageiter.next(2, 2, 6)
-#     fifth = pageiter.next(4, 0, 0)
-#     # TODO: Investigate newline at the end of line
-#     assert first == '(continued from previous page)\n'
-#     assert second == 'return'
-#     assert third == ' NULL;\n'
-
-#     assert fourth == ('result = PyBytes_FromString(encoded);\n'
-#                       'free(encoded);\n'
-#                       ' return'), fourth
-
-#     assert fifth == (' result;\n' '}\n')
-
-# def test_textprocessor_small_snippet_page7():
-#     pageiter, _ = pyporting_pages(6)
-
-#     selections = [
-#         ((1, 0, 0), '(continued from previous page)\n'),
-#         ((1, 0, 5), 'char'),
-#         ((1, 1, 0), '*trace;\n'),
-#         ((1, 1, 7), 'size_t '),
-#         ((1, 1, 42), 'name_length = (strlen(name) + 1) * '),
-#         ((1, 1, 48), 'sizeof'),
-#         ((1, 1, 49), '('),
-#         ((1, 1, 53), 'char'),
-#         ((1, 2, 0), ');\n'),
-#     ]
-#     for item, text in selections:
-#         collected = pageiter.next(*item)
-#         assert collected == text, collected
 
 
 def test_textprocessor_example_pyporting_page_2():
