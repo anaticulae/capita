@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v0.7.0
+
+### Feature
+
+* add symbol section detection step (f8ce1ba7cdc7)
+* extend chapter headline detector (6f1c09b4bf50)
+
+### Fix
+
+* clarify source of error message (03f2b84755e8)
+
+### Documentation
+
+* fix interface documentation (d5ae25577c69)
+
 ## v0.6.0
 
 ### Feature
