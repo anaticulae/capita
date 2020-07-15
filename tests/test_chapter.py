@@ -17,29 +17,24 @@ import utila
 
 import sections.feature.chapter
 
-RESTRUCT_TEXT = iamraw.path.text(power.link(power.DOCU27_PDF))
-RESTRUCT_TEXT_POSITION = iamraw.path.textposition(power.link(power.DOCU27_PDF))
-RESTRUCT_TOC = iamraw.path.toc(power.link(power.DOCU27_PDF))
 
-
-@pytest.mark.parametrize('document, position, toc, expected', [
+@pytest.mark.parametrize('source, expected', [
     pytest.param(
-        RESTRUCT_TEXT,
-        RESTRUCT_TEXT_POSITION,
-        RESTRUCT_TOC,
+        power.link(power.DOCU27_PDF),
         [6, 8, 10, 12, 18, 20, 22, 24],
         id='restruct',
     ),
     pytest.param(
-        iamraw.path.text(power.link(power.MASTER072_PDF)),
-        iamraw.path.textposition(power.link(power.MASTER072_PDF)),
-        iamraw.path.toc(power.link(power.MASTER072_PDF)),
+        power.link(power.MASTER072_PDF),
         [3, 6, 22, 45, 63],
         id='master72pages',
         marks=pytest.mark.xfail(reason='matches to many headlines'),
     ),
 ])
-def test_chapter_extract(document, position, toc, expected):
+def test_chapter_extract(source, expected):
+    document = iamraw.path.text(source)
+    position = iamraw.path.textposition(source)
+    toc = iamraw.path.text(source)
     result = extract_chapter(document, position, toc)
 
     pages = [item.page for item in result]
