@@ -57,8 +57,6 @@ def work(  # pylint:disable=R0913,R0914
 ) -> str:
     """Combine different featuretypes to determine the page type with more
     confidence. Returns dumped `Section`."""
-    # TODO: Add @checkfile decorator to utila, to ensure that files exists
-    # TODO: Investigate add check if raw content or file path is used
     loaded = load_features(
         abbreviation,
         abstract,
