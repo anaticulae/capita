@@ -29,7 +29,7 @@ def create_group(group):
         try:
             mapper = MAPPING[item.__class__]
         except KeyError:
-            utila.error(f'could not group: {item.__class__}')
+            utila.error(f'workplan - could not group: {item.__class__}')
             continue
         groupname = mapper.__name__.split('_', maxsplit=1)[1]
         result.append(groupname)
