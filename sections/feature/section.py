@@ -53,7 +53,7 @@ def work(  # pylint:disable=R0913,R0914
         title: str,
         toc: str,
         whitepage: str,
-        pages: list = None,
+        pages: tuple = None,
 ) -> str:
     """Combine different featuretypes to determine the page type with more
     confidence. Returns dumped `Section`."""
