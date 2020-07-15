@@ -28,4 +28,21 @@ MASTER = {
             [],
         ),
     ],
+    power.MASTER116_PDF: [
+        (
+            iamraw.sections.Introduction,
+            (0, 8),
+            [],
+        ),
+        (
+            iamraw.sections.MainPart,
+            (8, 88),
+            [],
+        ),
+        (
+            iamraw.sections.Appendix,
+            (88, 116),
+            [],
+        ),
+    ],
 }
