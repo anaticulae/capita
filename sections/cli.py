@@ -78,6 +78,14 @@ WORKPLAN = [
         output=('likelihood',),
     ),
     step(
+        'symboltable',
+        inputs=[
+            ResultFile('rawmaker', 'oneline_text_text'),
+            ResultFile('rawmaker', 'oneline_text_positions'),
+        ],
+        output=('likelihood',),
+    ),
+    step(
         'tabletable',
         inputs=[
             ResultFile('rawmaker', 'oneline_text_text'),
@@ -131,6 +139,7 @@ WORKPLAN = [
             ResultFile('sections', 'figuretable_likelihood'),
             ResultFile('sections', 'index_likelihood'),
             ResultFile('sections', 'legal_likelihood'),
+            ResultFile('sections', 'symboltable_likelihood'),
             ResultFile('sections', 'tabletable_likelihood'),
             ResultFile('sections', 'title_likelihood'),
             ResultFile('sections', 'toc_likelihood'),

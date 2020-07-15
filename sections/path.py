@@ -111,6 +111,15 @@ def tabletable(path: str, prefix: str = '') -> str:
     )
 
 
+def symboltable(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        sections.PROCESS,
+        'symboltable_likelihood',
+        prefix,
+    )
+
+
 def figuretable(path: str, prefix: str = '') -> str:
     return utila.pathconnector(
         path,

@@ -26,6 +26,7 @@ import sections.feature.chapter
 import sections.feature.figuretable
 import sections.feature.index
 import sections.feature.legal
+import sections.feature.symboltable
 import sections.feature.tabletable
 import sections.feature.title
 import sections.feature.toc
@@ -49,6 +50,7 @@ def work(  # pylint:disable=R0913,R0914
         figuretable: str,
         index: str,
         legal: str,
+        symboltable: str,
         tabletable: str,
         title: str,
         toc: str,
@@ -66,6 +68,7 @@ def work(  # pylint:disable=R0913,R0914
         figuretable,
         index,
         legal,
+        symboltable,
         tabletable,
         title,
         toc,
@@ -90,6 +93,7 @@ class SectionsRequiredResources:
     figuretable: iamraw.PageContentLikelihoods
     index: iamraw.PageContentLikelihoods
     legal: iamraw.PageContentLikelihoods
+    symboltable: iamraw.PageContentLikelihoods
     tabletable: iamraw.PageContentLikelihoods
     title: iamraw.PageContentLikelihoods
     toc: iamraw.PageContentLikelihoods
@@ -116,6 +120,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
             loaded.figuretable,
             loaded.index,
             loaded.legal,
+            loaded.symboltable,
             loaded.tabletable,
             loaded.title,
             loaded.toc,
@@ -261,6 +266,7 @@ BUILDER = [
     iamraw.sections.FigureTable,
     iamraw.sections.Index,
     iamraw.sections.LegalInformation,
+    iamraw.sections.SymbolTable,
     iamraw.sections.TableTable,  # pylint:disable=E1101
     iamraw.sections.TitlePage,
     iamraw.sections.TableOfContent,
@@ -303,6 +309,10 @@ MATCHING = {
     iamraw.sections.TableOfContent: [
         iamraw.sections.Introduction,
         iamraw.sections.Table,
+    ],
+    iamraw.sections.SymbolTable: [
+        iamraw.sections.Appendix,
+        iamraw.sections.Introduction,
     ],
     iamraw.sections.TableTable: [  # pylint:disable=E1101
         iamraw.sections.Appendix,
@@ -360,6 +370,7 @@ def load_features(  # pylint:disable=R0913
         figuretable,
         index,
         legal,
+        symboltable,
         tabletable,
         title,
         toc,
@@ -374,6 +385,7 @@ def load_features(  # pylint:disable=R0913
     figuretable = serializeraw.load_likelihood(figuretable, pages=pages)
     index = serializeraw.load_likelihood(index, pages=pages)
     legal = serializeraw.load_likelihood(legal, pages=pages)
+    symboltable = serializeraw.load_likelihood(symboltable, pages=pages)
     tabletable = serializeraw.load_likelihood(tabletable, pages=pages)
     title = serializeraw.load_likelihood(title, pages=pages)
     toc = serializeraw.load_likelihood(toc, pages=pages)
@@ -388,6 +400,7 @@ def load_features(  # pylint:disable=R0913
         figuretable=figuretable,
         index=index,
         legal=legal,
+        symboltable=symboltable,
         tabletable=tabletable,
         title=title,
         toc=toc,
@@ -421,6 +434,7 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
         sections.path.figuretable(path),
         sections.path.index(path),
         sections.path.legal(path),
+        sections.path.symboltable(path),
         sections.path.tabletable(path),
         sections.path.title(path),
         sections.path.toc(path),
@@ -482,6 +496,11 @@ def extract_sections_frompath(  # pylint:disable=R0914
         fontcontent,
         pages=pages,
     )
+    symboltable = sections.feature.symboltable.work(
+        text,
+        textposition,
+        pages=pages,
+    )
     tabletable = sections.feature.tabletable.work(
         text,
         textposition,
@@ -503,6 +522,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
         figuretable,
         index,
         legal,
+        symboltable,
         tabletable,
         title,
         toc,
