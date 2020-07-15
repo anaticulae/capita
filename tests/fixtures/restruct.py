@@ -87,10 +87,3 @@ def restructured_sections_manual() -> iamraw.sections.Sections:
     add_children(table_second, sections.creator.add_index, 26, 26)
 
     return result
-
-
-def restructured_sections():
-    extracted = sections.feature.section.extract_sections_frompath(
-        power.link(power.DOCU27_PDF))
-    dumped = serializeraw.dump_sections(extracted)
-    return dumped
