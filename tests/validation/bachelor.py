@@ -118,4 +118,26 @@ BACHELOR = {
             [],
         ),
     ],
+    power.BACHELOR090_PDF: [
+        (
+            iamraw.sections.Unknown,
+            (0, 1),
+            [],
+        ),
+        (
+            iamraw.sections.Introduction,
+            (1, 5),
+            [],
+        ),
+        (
+            iamraw.sections.MainPart,
+            (5, 84),
+            [],
+        ),
+        (
+            iamraw.sections.Appendix,
+            (84, 111),
+            [],
+        ),
+    ]
 }
