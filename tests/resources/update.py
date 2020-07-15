@@ -46,7 +46,7 @@ RESOURCES = [
     power.todo(power.BACHELOR063_PDF, '0:20,59,60,61'),
     power.todo(power.BACHELOR111_PDF, '0:10,90:111'),
     power.todo(power.BACHELOR056_PDF, '0:55'),
-    power.todo(power.MASTER116_PDF, '0,1,2,3,4,96,97,98,99,100'),
+    power.todo(power.MASTER116_PDF, '0:13,85:117'),
     power.todo(power.BACHELOR090_PDF, '0:20,75:90'),
     power.todo(power.DOCU14_PDF),
     power.todo(power.DOCU07_PDF),
