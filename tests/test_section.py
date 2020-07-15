@@ -85,16 +85,20 @@ def test_extract_sections_simple():
         iamraw.MainPart,
     ]
 
-    assert len(result) == len(expected), 'wrong area split'
-    for current, wanted in zip(result, expected):
-        current = current.__class__.__name__
-        wanted = wanted.__name__
-        assert current == wanted, f'{current} != {wanted}'
+    check_sections(result, expected)
 
     # Title and Table of MultipleSection
     expected_chapter = HOWTO_PYPORTING_CHAPTER_PAGE_COUNT
     assert len(result[0].content) == expected_chapter
     # TODO: Test order of multiple items
+
+
+def check_sections(result, expected):
+    assert len(result) == len(expected)
+    for current, wanted in zip(result, expected):
+        current = current.__class__.__name__
+        wanted = wanted.__name__
+        assert current == wanted, f'{current} != {wanted}'
 
 
 def test_sections_simple():
@@ -132,9 +136,4 @@ def test_sections_bachelor90():
         iamraw.MainPart,
         iamraw.sections.Appendix,
     ]
-    assert len(result) == len(expected)
-
-    for current, wanted in zip(result, expected):
-        current = current.__class__.__name__
-        wanted = wanted.__name__
-        assert current == wanted, f'{current} != {wanted}'
+    check_sections(result, expected)
