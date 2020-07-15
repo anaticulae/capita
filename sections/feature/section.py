@@ -328,6 +328,17 @@ def determine_document_section(
         nextclass = nextclass(after)
         return nextclass
 
+    if isinstance(current, iamraw.sections.MainPart):
+        changer = (
+            iamraw.sections.AbbreviationTable,
+            iamraw.sections.FigureTable,
+            iamraw.sections.SymbolTable,
+            iamraw.sections.TableTable,  # pylint:disable=E1101
+        )
+        if isinstance(after, changer):
+            # TODO: HACK?
+            return iamraw.sections.Appendix
+
     new_section = nextclass == iamraw.sections.DocumentSection
     use_current = (isinstance(nextclass, list) and
                    not any(item == current for item in nextclass))

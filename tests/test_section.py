@@ -137,3 +137,21 @@ def test_sections_bachelor90():
         iamraw.sections.Appendix,
     ]
     check_sections(result, expected)
+
+
+def test_sections_master116():
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.MASTER116_PDF))
+
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.MainPart,
+        iamraw.sections.Appendix,
+    ]
+    check_sections(result, expected)
+
+    intro, mainpart, appendix = result
+
+    assert (intro.start, intro.end) == (0, 8)
+    assert (mainpart.start, mainpart.end) == (8, 88)
+    assert (appendix.start, appendix.end) == (88, 116)

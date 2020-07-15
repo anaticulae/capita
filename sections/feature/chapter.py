@@ -101,8 +101,10 @@ NUMBER_PATTERN = re.compile(
     re.VERBOSE,
 )
 
+HEADLINES_CHECK_FIRST_N_LINES = 4
 
-def contain_chapter(content):
+
+def contain_chapter(content) -> float:
     """Check if `content` contains elements which are hints that this
     content is part of the start of the chapter.
 
@@ -114,28 +116,30 @@ def contain_chapter(content):
     A second option is to look for the headline-pattern: '1. Einleitung'.
     """
 
-    def startwith_chapterpattern(raw):
-        firstline = raw.splitlines()[0] if raw else ''
-        result = 'kapitel' in firstline or 'chapter' in firstline
-        return result
+    def startwith_chapterpattern(raw: list) -> bool:
+        raw = [
+            item.text.lower() for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]
+        ]
+        for line in raw:
+            if 'kapitel' in line or 'chapter' in line:
+                return True
+        return False
 
-    def startwith_firstlevelheadline(raw):
-        """This pattern does not work on documents with header part,
-        because first line could never be a headline. A potential header
-        is excluded via ``AFTER_HEADER``."""
-        matched = re.match(NUMBER_PATTERN, raw)
-        return matched is not None
-
-    raw = rawcontent(content)
+    def startwith_firstlevelheadline(raw: list) -> bool:
+        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
+        for line in raw:
+            matched = re.match(NUMBER_PATTERN, line)
+            if matched:
+                return True
+        return False
 
     result = 0.0
-    if startwith_chapterpattern(raw):
+    if startwith_chapterpattern(content):
         result += 1.0
-    if startwith_firstlevelheadline(raw):
+    if startwith_firstlevelheadline(content):
         result += 0.5
     else:
         result -= 0.5
-
     return result
 
 
@@ -155,8 +159,9 @@ def contain_toc(content, toc) -> float:
         * 3. Headline text
         * Headline text
     """
+    firstlevel_dot_pattern = re.compile(r'^\d\.{0,1}\s+')
 
-    flat_toc = [item.title for item in toc]
+    flat_toc = [firstlevel_dot_pattern.sub('', item.title) for item in toc]
     if not flat_toc:
         # no table of content was extracted
         return 0.0
@@ -164,7 +169,7 @@ def contain_toc(content, toc) -> float:
     for line in content:
         line = line.text.strip()
         # remove numbered headline pattern and potential white spaces
-        without_number = re.sub(r'^\d\.{0,1}\s+', '', line)
+        without_number = firstlevel_dot_pattern.sub('', line)
         for headline in flat_toc:
             if all((
                     not line.startswith(headline),
