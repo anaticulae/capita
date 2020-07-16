@@ -56,5 +56,5 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     diff = utila.diffs(non_zero)
 
     # ensure to have only one ascending group with holes
-    assert utila.isascending(diff), diff
+    assert utila.isascending(diff, strict=False)
     assert max(diff) == 1, diff
