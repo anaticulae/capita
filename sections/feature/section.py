@@ -361,7 +361,7 @@ def determine_document_section(
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_features(  # pylint:disable=R0913
+def load_features(  # pylint:disable=R0913,R0914
         abbreviation,
         abstract,
         appendix,
