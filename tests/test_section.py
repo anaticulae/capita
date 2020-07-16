@@ -171,6 +171,8 @@ def test_sections_docu35():
     intro, mainpart = result
 
     assert isinstance(intro[0], iamraw.sections.TitlePage)
+    # TODO: ADD BLANK PAGE CHECK
+    # assert isinstance(intro[1], iamraw.sections.WhitePage)
 
     assert (intro.start, intro.end) == (0, 6)
     assert (mainpart.start, mainpart.end) == (6, 35)
