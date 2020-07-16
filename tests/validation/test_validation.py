@@ -33,6 +33,7 @@ def determine_mark(pdf):
 
 SECTIONS = {}
 SECTIONS.update(tests.validation.bachelor.BACHELOR)
+SECTIONS.update(tests.validation.docu.DOCU)
 SECTIONS.update(tests.validation.master.MASTER)
 
 

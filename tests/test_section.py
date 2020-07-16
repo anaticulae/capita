@@ -155,3 +155,22 @@ def test_sections_master116():
     assert (intro.start, intro.end) == (0, 8)
     assert (mainpart.start, mainpart.end) == (8, 88)
     assert (appendix.start, appendix.end) == (88, 116)
+
+
+def test_sections_docu35():
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.DOCU35_PDF))
+
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.MainPart,
+        # TODO: ADD APPENDIX
+    ]
+    check_sections(result, expected)
+
+    intro, mainpart = result
+
+    assert isinstance(intro[0], iamraw.sections.TitlePage)
+
+    assert (intro.start, intro.end) == (0, 6)
+    assert (mainpart.start, mainpart.end) == (6, 35)

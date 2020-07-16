@@ -37,7 +37,6 @@ def work(document: str, position: str, pages=None) -> str:
     minimal = [
         item for item in extracted if item.content.value > MIN_LIKELIHOOD
     ]
-
     # select hugest(max sum likelihood value) group
     grouped = ascending_page_groups(minimal)
     hugest = sorted(
@@ -77,7 +76,11 @@ def analyse_page(navigator: texmex.PageTextNavigator
     if special_chars(raw):
         # thirty percent bonus
         marker *= 1.3  # TODO: HOLY VALUE
-    likelihood = len(navigator) / marker if marker else 0.0
+
+    likelihood = 0.0
+    if marker and len(navigator) >= 1:
+        likelihood = marker / len(navigator)
+
     if likelihood < MIN_LIKELIHOOD:
         # TODO: CHECK THIS
         # this can not be a bib table

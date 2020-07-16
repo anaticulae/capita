@@ -27,6 +27,7 @@ RESOURCES = [
     power.todo(power.DOCU07_PDF),
     power.todo(power.DOCU09_PDF),
     power.todo(power.DOCU27_PDF),
+    power.todo(power.DOCU35_PDF),
 ]
 
 REQURIED_RESOURCES = [power.link(pdf) for pdf, _ in RESOURCES]
