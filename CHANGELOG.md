@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.7.1
+
+### Fix
+
+* adjust test to correct page ranges (98c78534467a)
+
 ## v0.7.0
 
 ### Feature
