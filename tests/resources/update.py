@@ -7,38 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-
-import hey.example
 import power
 import utila
 
 import sections
 
-WORKER = 6
-
 power.setup(sections.ROOT)
 
-
-def extract_examples():
-    if os.path.exists(power.generated()):
-        return
-    hey.example.extract(
-        files=RESOURCES,
-        destination=power.generated(),
-        worker=WORKER,
-        groupme=True,
-        caption=False,
-        detector=False,
-        doctextstyle=False,
-        magic=False,
-        sections=False,
-        words=False,
-    )
-
-
-# TODO: remove after upgrading power
-# pylint:disable=E1101
 RESOURCES = [
     power.todo(power.MASTER072_PDF),
     power.todo(power.MASTER098_PDF),

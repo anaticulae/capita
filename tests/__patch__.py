@@ -7,7 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+
 import power
+import power.generator
 import utila
 
 
@@ -22,3 +25,20 @@ def todo(path, pages: str = None) -> tuple:
 
 
 power.todo = todo
+
+
+def incremental_todo(resources: list) -> list:
+    result = []
+    for item in resources:
+        try:
+            path, _ = item
+        except ValueError:
+            path = item
+        path = power.link(path)
+        if not os.path.exists(str(path)):
+            utila.debug(f'missing, run generator: {path}')
+            result.append(item)
+    return result
+
+
+power.generator.incremental_todo = incremental_todo

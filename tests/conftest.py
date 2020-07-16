@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hey.example
 import power
 import pytest
 
@@ -16,6 +17,9 @@ import tests.resources.update
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
 PACKAGE = sections.PACKAGE
+RESOURCES = tests.resources.update.RESOURCES
+
+WORKER = 6
 
 power.setup(sections.ROOT)
 
@@ -25,5 +29,17 @@ def pytest_sessionstart():
     power.run(tests.resources.update.REQURIED_RESOURCES)
 
 
-def extract():
-    tests.resources.update.extract_examples()
+def extract(resources):
+    # ensure to handle single file generation or common resource subfolder
+    # correctly. To determine the output path it is required to determine
+    # the parent path of at least two files. If resources provide only a
+    # single file the parental determination is not possible. Therefore we
+    # have to add the data root of all test files.
+    resources.append(power.REPOSITORY)
+
+    hey.example.extract(
+        files=resources,
+        destination=power.generated(),
+        worker=WORKER,
+        groupme=True,
+    )
