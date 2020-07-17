@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.8.0
+
+### Feature
+
+* extend table headline detector (f1d4df159f44)
+
+### Fix
+
+* fix wrong detected bib section detection (215e4048dfb6)
+
 ## v0.7.1
 
 ### Fix
