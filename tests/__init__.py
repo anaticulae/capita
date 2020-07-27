@@ -13,7 +13,6 @@ import utilatest
 
 import sections
 import sections.cli
-import tests.__patch__
 
 #pylint:disable=C0103
 run_sections = functools.partial(
