@@ -17,7 +17,7 @@ power.setup(sections.ROOT)
 RESOURCES = [
     (power.MASTER072_PDF, None),
     (power.MASTER098_PDF, None),
-    (power.BACHELOR037_PDF, '0:30'),
+    (power.BACHELOR037_PDF, None),
     (power.BACHELOR063_PDF, '0:20,59,60,61'),
     (power.BACHELOR111_PDF, '0:10,90:111'),
     (power.BACHELOR056_PDF, '0:55'),
