@@ -49,6 +49,10 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
 HEADLINES = [
     'Anhang',
     'A. Anhang',
+    'Anhang A',
+    'Anhang B',
+    'Anhang C',
+    'Anhang D',
 ]
 
 
@@ -59,7 +63,14 @@ def analyse_page(content):
     if isinstance(headlines, str):
         headlines = [headlines]
 
-    for item in HEADLINES:
+    # ensure that every cased headlines are parsed correctly
+    headlines = lower(headlines)
+    for item in lower(HEADLINES):
         if item in headlines:
             return 1, 1
     return NO_PAGE
+
+
+# TODO: MOVE TO UTILA
+def lower(items):
+    return [item.lower() for item in items]
