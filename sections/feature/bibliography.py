@@ -17,7 +17,7 @@ import sections.utils.spa
 MIN_LIKELIHOOD = 0.3  # TODO: HOLY VALUE
 
 
-def work(document: str, position: str, pages=None) -> str:
+def work(document: str, position: str, pages: tuple = None) -> str:
     data = sections.utils.spa.Data(
         document=document,
         position=position,
