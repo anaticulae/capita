@@ -58,3 +58,13 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     # ensure to have only one ascending group with holes
     assert utila.isascending(diff, strict=False)
     assert max(diff) == 1, diff
+
+
+def test_bibliography_bachelor37(testdir, monkeypatch):
+    source = power.link(power.BACHELOR037_PDF)
+    tests.run_sections(f'-i {source} --bibliography', monkeypatch=monkeypatch)
+
+    path = sections.path.bibliography(testdir.tmpdir)
+    likelihood = serializeraw.load_likelihood(path)
+    pages = [item.page for item in likelihood if item.content.value > 0.0]
+    assert pages == [33, 34, 35, 36]

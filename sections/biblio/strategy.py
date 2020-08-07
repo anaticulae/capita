@@ -7,9 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import sections.biblio.doublecolumn
 import sections.biblio.specialchars
 
 
 def extract(data: sections.utils.spa.Data) -> list:
     special = sections.biblio.specialchars.extract(data)
-    return special
+    double = sections.biblio.doublecolumn.extract(data)
+
+    # select "better" result
+    special_sum = sum(item.content.value for item in special)
+    double_sum = sum(item.content.value for item in double)
+    result = special if special_sum > double_sum else double
+    return result
