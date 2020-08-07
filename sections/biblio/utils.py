@@ -7,18 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import serializeraw
 
-import sections.biblio.strategy
-import sections.utils.spa
-
-
-def work(document: str, position: str, pages: tuple = None) -> str:
-    data = sections.utils.spa.Data(
-        document=document,
-        position=position,
-        pages=pages,
-    )
-    hugest = sections.biblio.strategy.extract(data)
-    dumped = serializeraw.dump_likelihood(hugest)
-    return dumped
+def ascending_page_groups(items):
+    # TODO: MOVE TO UTILA
+    if not items:
+        return []
+    result = [[items[0]]]
+    for item in items[1:]:
+        if item.page - result[-1][-1].page == 1:
+            result[-1].append(item)
+        else:
+            result.append([item])
+    return result
