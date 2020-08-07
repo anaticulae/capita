@@ -6,6 +6,18 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""Special Chars
+=============
+
+Determine potential bib pages dues analysing the structure of used
+characters on a page. Bib pages contain a lot of brackets, dots,
+semicolons. etc.
+
+A document contains only one bib page(s) block. Therefore we look for
+the highest rated valued block of bib pages and return only this single
+one. Without selecting the biggest cluster, more than one bib can be
+detected.
+"""
 
 import german
 import texmex
