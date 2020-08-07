@@ -51,7 +51,13 @@ SECTIONS.update(tests.validation.master.MASTER)
 @utilatest.skip_nightly
 def test_run_validation(source, expected, testdir):
     root = testdir.tmpdir
-    job = hey.example.create_job(source, root, config=dict(groupme=True))
+    job = hey.example.create_job(
+        source,
+        root,
+        config=dict(groupme=True),
+        rawmaker=hey.example.CONFIG,
+        oneline=hey.example.ONELINE,
+    )
     utila.run(job)
 
     extracted = sections.feature.section.extract_sections_frompath(root)
