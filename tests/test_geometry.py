@@ -21,3 +21,16 @@ def test_extract_columns_bachelor37_page33():
 
     # parse two columns
     assert len(parsed) == 2
+
+
+def test_extract_columns_bachelor37_complete():
+    source = power.link(power.BACHELOR037_PDF)
+    ptns = serializeraw.create_pagetextnavigators_frompath(source)
+
+    doubled = [
+        page.page for page in ptns if sections.geometry.column.parse(page)
+    ]
+
+    # it is possible that more than required pages can be inside
+    inside = [item in doubled for item in [33, 34, 35, 36]]
+    assert all(inside), str(inside)
