@@ -9,7 +9,6 @@
 
 import german
 import texmex
-import utila
 
 import sections.biblio.utils
 import sections.utils.spa
@@ -25,19 +24,10 @@ def extract(data: sections.utils.spa.Data) -> list:
 
     extracted = sections.utils.spa.work(data=data, config=config)
 
-    minimal = [
-        item for item in extracted if item.content.value > MIN_LIKELIHOOD
-    ]
-    # select hugest(max sum likelihood value) group
-    grouped = sections.biblio.utils.ascending_page_groups(minimal)
-    hugest = sorted(
-        grouped, key=lambda x: sum(item.content.value for item in x)
-    )[-1] if grouped else []
-    if hugest:
-        avg = sum([item.content.value for item in hugest]) / len(hugest)
-        for item in hugest:
-            # every item of the group should have the same likelihood
-            item.content.value = utila.roundme(avg)
+    # ignore to low valued bib pages
+    valid = [item for item in extracted if item.content.value > MIN_LIKELIHOOD]
+
+    hugest = sections.biblio.utils.cluster_bibpages(valid)
     return hugest
 
 
