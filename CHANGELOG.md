@@ -2,6 +2,25 @@
 
 Every noteable change is logged here.
 
+## v0.9.0
+
+### Feature
+
+* add double column bib detector (c1d99317cb58)
+* add double column parser (786bb6e06aa9)
+* introduce strategy infrastructure (7e3d12af23dc)
+* support more appendix start headlines (8f5e8ee5e155)
+
+### Fix
+
+* add missing default values (76bb51dac5e2)
+
+### Documentation
+
+* add module information (41291b73681f)
+* extend interface documentation (2c6d8517f540)
+* extend interface documentation (3bc29f1ae811)
+
 ## v0.8.3
 
 ## v0.8.2
