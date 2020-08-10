@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.9.1
+
+### Fix
+
+* add missing package (1343968e2853)
+
 ## v0.9.0
 
 ### Feature
