@@ -46,6 +46,7 @@ if __name__ == "__main__":
         ],
         packages=[
             'sections',
+            'sections.biblio',
             'sections.feature',
             'sections.table',
             'sections.utils',
