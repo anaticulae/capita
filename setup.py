@@ -48,6 +48,7 @@ if __name__ == "__main__":
             'sections',
             'sections.biblio',
             'sections.feature',
+            'sections.geometry',
             'sections.table',
             'sections.utils',
             'sections.workplan',
