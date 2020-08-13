@@ -22,6 +22,9 @@ What is typical for a start of chapter?
 1. Locate the distance between first line and header
 2. Check the second line
 
+QUESTIONS:
+
+* TODO: Are chapters only content based or is appendix etc. a chapter too?
 """
 
 import re
@@ -152,6 +155,16 @@ def contains_listof(content: str) -> bool:
     return result
 
 
+BLACKLIST = {
+    'Abbildungsverzeichnis',
+    'Abkürzungsverzeichnis',
+    'Inhaltsverzeichnis',
+    # 'Literaturverzeichnis',
+    'Tabellenverzeichnis',
+    'Vorwort',
+}
+
+
 def contain_toc(content, toc) -> float:
     """Check that content starts with a parsed headline entree.
 
@@ -165,6 +178,8 @@ def contain_toc(content, toc) -> float:
     if not flat_toc:
         # no table of content was extracted
         return 0.0
+
+    flat_toc = [item for item in flat_toc if item not in BLACKLIST]
 
     for line in content:
         line = line.text.strip()

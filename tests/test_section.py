@@ -176,3 +176,14 @@ def test_sections_docu35():
 
     assert (intro.start, intro.end) == (0, 6)
     assert (mainpart.start, mainpart.end) == (6, 35)
+
+
+def test_sections_diss264():
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.DISS264_PDF))
+
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.MainPart,
+    ]
+    check_sections(result, expected)
