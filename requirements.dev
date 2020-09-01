@@ -15,4 +15,4 @@ power==0.15.0
 # ensure that test data is generated with the right version of rawmaker
 rawmaker==2.4.1
 
-detector==0.8.0
+detector==0.8.1
