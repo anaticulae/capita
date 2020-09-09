@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import hey.example
+import genex
 import power
 import pytest
 import utila
@@ -51,12 +51,12 @@ SECTIONS.update(tests.validation.master.MASTER)
 @utilatest.skip_nightly
 def test_run_validation(source, expected, testdir):
     root = testdir.tmpdir
-    job = hey.example.create_job(
+    job = genex.create_job(
         source,
         root,
         config=dict(groupme=True),
-        rawmaker=hey.example.CONFIG,
-        oneline=hey.example.ONELINE,
+        rawmaker=genex.CONFIG,
+        oneline=genex.ONELINE,
     )
     utila.run(job)
 

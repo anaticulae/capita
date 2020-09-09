@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import hey.example
+import genex
 import power
 import pytest
 
@@ -37,7 +37,7 @@ def extract(resources):
     # have to add the data root of all test files.
     resources.append(power.REPOSITORY)
 
-    hey.example.extract(
+    genex.extract(
         files=resources,
         destination=power.generated(),
         worker=WORKER,
