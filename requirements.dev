@@ -16,3 +16,5 @@ power==0.15.0
 rawmaker==2.4.1
 
 detector==0.8.1
+
+genex==0.1.1
