@@ -44,14 +44,18 @@ def test_bibliography_work():
         assert current >= value, str(selected)
 
 
-def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
-    source = power.link(power.MASTER098_PDF)
+def extract_bibliography(source, testdir, monkeypatch):
+    source = power.link(source)
     tests.run_sections(f'-i {source} --bibliography', monkeypatch=monkeypatch)
 
     path = sections.path.bibliography(testdir.tmpdir)
     likelihood = serializeraw.load_likelihood(path)
+    pages = [item.page for item in likelihood if item.content.value > 0.0]
+    return pages
 
-    non_zero = [item.page for item in likelihood if item.content.value > 0.0]
+
+def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
+    non_zero = extract_bibliography(power.MASTER098_PDF, testdir, monkeypatch)
 
     diff = utila.diffs(non_zero)
 
@@ -61,10 +65,5 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
 
 
 def test_bibliography_bachelor37(testdir, monkeypatch):
-    source = power.link(power.BACHELOR037_PDF)
-    tests.run_sections(f'-i {source} --bibliography', monkeypatch=monkeypatch)
-
-    path = sections.path.bibliography(testdir.tmpdir)
-    likelihood = serializeraw.load_likelihood(path)
-    pages = [item.page for item in likelihood if item.content.value > 0.0]
+    pages = extract_bibliography(power.BACHELOR037_PDF, testdir, monkeypatch)
     assert pages == [33, 34, 35, 36]
