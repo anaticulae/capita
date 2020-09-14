@@ -14,7 +14,6 @@ import utila
 import utilatest
 
 import sections.feature.section
-import tests.resources.update
 import tests.validation.bachelor
 import tests.validation.master
 
