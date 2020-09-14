@@ -8,14 +8,19 @@
 # =============================================================================
 
 import utila
-import utila.math
 
 # TODO: MOVE TO HEY PROJECT
 
 
 def parse(navigator, column_elements_min=10) -> list:
+    # TODO: ADD PARAMETER TO SELECT REQUESTED COLUMN COUNT
     marker = columns(navigator, min_elements=column_elements_min)
     if not marker:
+        return None
+
+    if len(marker) > 2:
+        utila.debug(f'more than 2 marker: {len(marker)} page: {navigator.page}')
+        utila.debug('skip column extraction')
         return None
 
     firstcolumn, secondcolumn = split_bymarker(navigator, marker)
