@@ -67,3 +67,8 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
 def test_bibliography_bachelor37(testdir, monkeypatch):
     pages = extract_bibliography(power.BACHELOR037_PDF, testdir, monkeypatch)
     assert pages == [33, 34, 35, 36]
+
+
+def test_bibliography_paper18(testdir, monkeypatch):
+    pages = extract_bibliography(power.PAPER18_PDF, testdir, monkeypatch)
+    assert pages == [15, 16, 17]
