@@ -73,7 +73,11 @@ def extract_chapter(
         first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
 
         chapter_rate = contain_chapter(first_content)
-        chapter_rate += contain_toc(first_content, tocs)
+        if len(tocs) >= 3:  # TODO: HOLY VALUE
+            chapter_rate += contain_toc(first_content, tocs)
+        else:
+            # disable feature if no toc is given
+            utila.info('chapter: no toc provided')
 
         if contains_listof(first_content):
             # TODO: See todo below

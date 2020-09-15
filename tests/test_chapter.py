@@ -116,3 +116,14 @@ def test_chapter_work_master98():
     pages = [item.page for item in extracted]
 
     assert pages == expected
+
+
+def test_chapter_work_paper18():
+    """Regression test to ensure that chapter start is detected."""
+    source = power.link(power.PAPER18_PDF)
+    extracted = chapter(source)
+
+    expected = [1]  # extend after upgrader chapter parser
+    pages = [item.page for item in extracted]
+
+    assert pages == expected
