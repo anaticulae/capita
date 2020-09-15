@@ -23,6 +23,7 @@ import german
 import texmex
 
 import sections.biblio.utils
+import sections.utils.headline
 import sections.utils.spa
 
 MIN_LIKELIHOOD = 0.3  # TODO: HOLY VALUE
@@ -43,8 +44,24 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
+KEYWORDS = [
+    'Bibliography',
+    'Literatur',
+    'Literature',
+    'Literaturverzeichnis',
+    'Reference',
+    'References',
+]
+
+
 def analyse_page(navigator: texmex.PageTextNavigator
                 ) -> sections.feature.StatisticalResultItem:
+
+    headlines = sections.utils.headline.headlines(navigator)
+    if headlines and keyworded(headlines):
+        # Bibliography headline on page
+        return len(navigator), len(navigator)
+
     raw = ' '.join([line.text for line in navigator])
     collected = []
     for method in [german.years, german.dates, german.pagenumbers]:
@@ -64,6 +81,21 @@ def analyse_page(navigator: texmex.PageTextNavigator
         # this can not be a bib table
         marker = 0
     return len(navigator), marker
+
+
+def keyworded(items) -> bool:
+    """\
+    >>> keyworded('Literatur')
+    True
+    """
+    if isinstance(items, str):
+        items = [items]
+    for item in items:
+        item = item.lower()
+        for check in KEYWORDS:
+            if check.lower() == item:
+                return True
+    return False
 
 
 def special_chars(raw: str) -> list:
