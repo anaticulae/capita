@@ -25,6 +25,7 @@ What is typical for a start of chapter?
 QUESTIONS:
 
 * TODO: Are chapters only content based or is appendix etc. a chapter too?
+* TODO: REQUIRE APPROACH FOR SHORT PAPERS WIHTOUT CHPATER START AT TOP OF PAGE
 """
 
 import re
@@ -111,7 +112,7 @@ NUMBER_PATTERN = re.compile(
 HEADLINES_CHECK_FIRST_N_LINES = 4
 
 
-def contain_chapter(content) -> float:
+def contain_chapter(content) -> float:  # pylint:disable=R1260
     """Check if `content` contains elements which are hints that this
     content is part of the start of the chapter.
 
@@ -140,10 +141,22 @@ def contain_chapter(content) -> float:
                 return True
         return False
 
+    def startwith_whitelist(raw: list) -> bool:
+        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
+        for line in raw:
+            matched = re.match(NUMBER_PATTERN, line)
+            if not matched:
+                continue
+            if any([item in line for item in WHITELIST]):
+                return True
+        return False
+
     result = 0.0
     if startwith_chapterpattern(content):
         result += 1.0
-    if startwith_firstlevelheadline(content):
+    if startwith_whitelist(content):
+        result += 1.0
+    elif startwith_firstlevelheadline(content):
         result += 0.5
     else:
         result -= 0.5
@@ -166,6 +179,13 @@ BLACKLIST = {
     # 'Literaturverzeichnis',
     'Tabellenverzeichnis',
     'Vorwort',
+}
+
+# TODO: Make more robust against CAPS
+WHITELIST = {
+    'Einleitung',
+    'Introduction',
+    'Grundlagen',
 }
 
 
