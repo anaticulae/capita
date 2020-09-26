@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.10.0
+
+### Feature
+
+* add white list to improve headline detection (0d6dcb2b9669)
+* add headline as hundred percent marker (152114a16026)
+
+### Fix
+
+* disable check for (short) document without toc (bc87038042cc)
+* skip pages with more than two column (8e64164ab26f)
+
 ## v0.9.7
 
 ## v0.9.6
