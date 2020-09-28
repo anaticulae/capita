@@ -37,6 +37,7 @@ RESOURCES = [
     (power.DOCU27_PDF, None),
     (power.DOCU35_PDF, None),
     (power.PAPER18_PDF, None),
+    (power.MASTER031_PDF, None),
 ]
 
 
