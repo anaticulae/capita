@@ -9,10 +9,10 @@
 
 import re
 
+import geostrat.column
 import texmex
 
 import sections.biblio.utils
-import sections.geometry.column
 import sections.utils.spa
 
 MIN_LIKELIHOOD = 0.5
@@ -37,7 +37,7 @@ def extract(data: sections.utils.spa.Data) -> list:
 
 def analyse_page(navigator: texmex.PageTextNavigator
                 ) -> sections.feature.StatisticalResultItem:
-    parsed = sections.geometry.column.parse(navigator)
+    parsed = geostrat.column.parse(navigator, column_count=2)
     if not parsed:
         return len(navigator), 0
 
