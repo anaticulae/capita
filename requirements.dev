@@ -18,3 +18,4 @@ rawmaker==2.6.0
 detector==0.8.4
 
 genex==0.1.3
+groupme==0.4.0
