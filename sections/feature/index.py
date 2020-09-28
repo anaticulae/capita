@@ -7,15 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from re import X
-from re import compile as recompile
-from re import match
-from typing import Tuple
+import re
+import typing
 
 import iamraw
 import serializeraw
 
-import sections
 import sections.feature
 
 
@@ -60,17 +57,17 @@ def extract_index_likelihood(document: iamraw.Document,
 
 
 # INDEX, PAGENUMBER
-INDEX_ITEM_PATTERN = recompile(
+INDEX_ITEM_PATTERN = re.compile(
     r"""^([a-zA-Z]+\s?){1,3} # one till three words
           [\s|,]?            # optional `,`
           \s{0,5}            # between zero and five spaces
           [0-9]+$            # a pagenumber at the end
-     """, X)
+     """, re.X)
 
 MINIMAL_DETECTED_PATTERN_PERCENT = 0.4  # TODO: HOLY VALUE
 
 
-def analyse_page(page: iamraw.Page) -> Tuple[int, int]:
+def analyse_page(page: iamraw.Page) -> typing.Tuple[int, int]:
     """Extract potential features of an index page
 
     This methods search for 2 features. The simpelst feature is a single
@@ -93,7 +90,7 @@ def analyse_page(page: iamraw.Page) -> Tuple[int, int]:
     ]
 
     index_with_page = [
-        line for line in content if match(INDEX_ITEM_PATTERN, line)
+        line for line in content if re.match(INDEX_ITEM_PATTERN, line)
     ]
     single_char_or_index_with_page = len(single_char) + len(index_with_page)
 
