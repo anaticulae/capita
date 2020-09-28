@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import statistics
 import typing
 
 import iamraw
 import serializeraw
-import texmex
 import utila
 
 import sections.feature
@@ -103,13 +103,25 @@ def font_positions_from_page(store: iamraw.FontStore, pagenumber: int):
     return positions
 
 
-def determine_hugest_font(fonts, positions, page: iamraw.Page):
-    # determine the biggest font size
-    max_font = max(fonts)
-    max_font_index = fonts.index(max_font)
-
-    text_length = [len(item) for item in texmex.split_page(page, positions)]
-    max_font_length = text_length[max_font_index]
+def determine_hugest_font(fonts, positions, page: iamraw.Page):  # pylint:disable=W0613
+    """Determine the biggest font size."""
+    # TODO: USE OLD APPROACH?
+    # max_font = max(fonts)
+    # max_font_index = fonts.index(max_font)
+    #
+    # text_length = [len(item) for item in texmex.split_page(page, positions)]
+    # max_font_length = text_length[max_font_index]
+    max_font, max_font_length = -utila.INF, -utila.INF
+    for container in page:
+        # TODO: MERGE EQUAL TEXT LINE TOGETHER?
+        for line in container:
+            fontsize = statistics.mean([char.size for char in line])
+            if fontsize > max_font:
+                max_font = fontsize
+                max_font_length = len(line)
+            if fontsize == max_font and len(line) > max_font_length:
+                max_font = fontsize
+                max_font_length = len(line)
     return max_font, max_font_length
 
 
