@@ -11,3 +11,5 @@ utila==2.11.0
 configo==0.8.3
 iamraw==4.0.1
 german==0.8.6
+
+geostrat==1.0.0
