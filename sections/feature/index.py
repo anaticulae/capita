@@ -88,6 +88,8 @@ def analyse_page(page: iamraw.Page) -> typing.Tuple[int, int]:
     single_char = [
         item for item in content if len(item) == 1 and item.isupper()
     ]
+    # TODO: ADD UNQIUE CHAR FACTOR APPROACH TO REDUCE MISS DETECTIONS
+    # len(set(single_char)) / len(single_char) for example
 
     index_with_page = [
         line for line in content if re.match(INDEX_ITEM_PATTERN, line)
