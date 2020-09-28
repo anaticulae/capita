@@ -187,3 +187,15 @@ def test_sections_diss264():
         iamraw.MainPart,
     ]
     check_sections(result, expected)
+
+
+def test_sections_master31():
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.MASTER031_PDF))
+
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    ]
+    check_sections(result, expected)
