@@ -71,8 +71,8 @@ def analyse_page(page: iamraw.Page) -> typing.Tuple[int, int]:
     """Extract potential features of an index page
 
     This methods search for 2 features. The simpelst feature is a single
-    char. This char represents the index A-Z. The second feature is a pattern
-    out of index-name and index-page.
+    uppercased char. This char represents the index A-Z. The second
+    feature is a pattern out of index-name and index-page.
 
     Args:
         page(Page): page to search for index features
@@ -84,9 +84,9 @@ def analyse_page(page: iamraw.Page) -> typing.Tuple[int, int]:
     content = [item for item in content if item]
     linecount = len(content)
 
-    # search for single chars, which represents the index
+    # search for single upper cased chars, which represents the index
     single_char = [
-        item for item in content if len(item) == 1 and item.isalpha()
+        item for item in content if len(item) == 1 and item.isupper()
     ]
 
     index_with_page = [
