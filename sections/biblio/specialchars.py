@@ -19,8 +19,10 @@ one. Without selecting the biggest cluster, more than one bib can be
 detected.
 """
 
+import configo
 import german
 import texmex
+import utila
 
 import sections.biblio.utils
 import sections.utils.headline
@@ -52,6 +54,7 @@ KEYWORDS = [
     'Reference',
     'References',
 ]
+MARKER_MIN_COUNT = configo.HV_INT_PLUS(5).value
 
 
 def analyse_page(navigator: texmex.PageTextNavigator
@@ -68,6 +71,11 @@ def analyse_page(navigator: texmex.PageTextNavigator
         collected.extend(method(raw))
 
     marker = len(collected)
+
+    if marker < MARKER_MIN_COUNT:
+        utila.debug(f'too few marker: {marker}')
+        marker = 0
+
     if special_chars(raw):
         # thirty percent bonus
         marker *= 1.3  # TODO: HOLY VALUE
