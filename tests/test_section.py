@@ -199,3 +199,17 @@ def test_sections_master31():
         iamraw.sections.Appendix,
     ]
     check_sections(result, expected)
+
+
+def test_sections_docu27():
+    """Regression test to ensure that no bib is detected on first page.
+    Before fixing, there was a divided title/bib page."""
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.DOCU27_PDF))
+
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Table,  # TODO: REPLACE WITH APPENDIX?
+    ]
+    check_sections(result, expected)
