@@ -11,12 +11,14 @@ import iamraw.path
 import power
 import serializeraw
 import utila
+import utilatest
 
 import sections.feature.abbreviation
 import sections.path
 import tests
 
 
+@utilatest.skip_longrun
 def test_bibliography_work():
     source = power.link(power.MASTER072_PDF)
     text = iamraw.path.text(source)
@@ -54,6 +56,7 @@ def extract_bibliography(source, testdir, monkeypatch):
     return pages
 
 
+@utilatest.skip_longrun
 def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     non_zero = extract_bibliography(power.MASTER098_PDF, testdir, monkeypatch)
 
@@ -64,6 +67,7 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     assert max(diff) == 1, diff
 
 
+@utilatest.skip_longrun
 def test_bibliography_bachelor37(testdir, monkeypatch):
     pages = extract_bibliography(power.BACHELOR037_PDF, testdir, monkeypatch)
     assert pages == [33, 34, 35, 36]

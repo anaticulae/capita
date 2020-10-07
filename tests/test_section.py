@@ -12,6 +12,7 @@ import iamraw.sections
 import power
 import pytest
 import serializeraw
+import utilatest
 
 import sections.creator
 import sections.feature.section
@@ -112,6 +113,7 @@ def test_sections_simple():
     assert loaded == simple_sections, loaded
 
 
+@utilatest.skip_longrun
 def test_sections_master72():
     """Ensure that BUILDER in section is sorted correctly. There is a
     problem if we sort TOC and Title alphabetically. To avoid this
@@ -139,6 +141,7 @@ def test_sections_bachelor90():
     check_sections(result, expected)
 
 
+@utilatest.skip_longrun
 def test_sections_master116():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.MASTER116_PDF))
@@ -178,6 +181,7 @@ def test_sections_docu35():
     assert (mainpart.start, mainpart.end) == (6, 35)
 
 
+@utilatest.skip_longrun
 def test_sections_diss264():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.DISS264_PDF))
@@ -189,6 +193,7 @@ def test_sections_diss264():
     check_sections(result, expected)
 
 
+@utilatest.skip_longrun
 def test_sections_master31():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.MASTER031_PDF))

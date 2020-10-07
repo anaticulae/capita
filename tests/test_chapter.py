@@ -14,6 +14,7 @@ import pytest
 import serializeraw
 import texmex
 import utila
+import utilatest
 
 import sections.feature.chapter
 
@@ -31,6 +32,7 @@ import sections.feature.chapter
         marks=pytest.mark.xfail(reason='matches to many headlines'),
     ),
 ])
+@utilatest.skip_longrun
 def test_chapter_extract(source, expected):
     document = iamraw.path.text(source)
     position = iamraw.path.textposition(source)
@@ -108,6 +110,7 @@ def test_chapter_work_bachelor63():
     assert pages == expected
 
 
+@utilatest.skip_longrun
 def test_chapter_work_master98():
     source = power.link(power.MASTER098_PDF)
     extracted = chapter(source)

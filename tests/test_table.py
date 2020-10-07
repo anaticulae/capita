@@ -9,11 +9,13 @@
 
 import power
 import serializeraw
+import utilatest
 
 import sections.path
 import tests
 
 
+@utilatest.skip_longrun
 def test_table_table_master98_page95(testdir, monkeypatch):
     source = power.link(power.MASTER098_PDF)
     tests.run_sections(

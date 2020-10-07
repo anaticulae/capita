@@ -45,6 +45,7 @@ def master72():
     return plan
 
 
+@utilatest.skip_longrun
 def test_workplan_master72_create_plan():
     plan = master72()
     # TODO: REMOVE PLAN STEP, CAUSE PLAN COUPLE TO MUCH LOGIC IN SECTIONS
@@ -125,7 +126,7 @@ def test_setuptestfolder_and_setupplan(testdir):
     assert replaced
 
 
-@utilatest.skip_longrun
+@utilatest.skip_nightly
 def test_workplan_runner_main(testdir):
     root = testdir.tmpdir
     docu14 = power.link(power.DOCU14_PDF)

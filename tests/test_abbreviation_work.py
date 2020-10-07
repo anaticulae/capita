@@ -11,10 +11,12 @@ import iamraw.path
 import power
 import serializeraw
 import utila
+import utilatest
 
 import sections.feature.abbreviation
 
 
+@utilatest.skip_longrun
 def test_abbreviations_work():
     source = power.link(power.BACHELOR037_PDF)
     text = iamraw.path.text(source)

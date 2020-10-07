@@ -27,6 +27,7 @@ BACHELOR063 = power.link(power.BACHELOR063_PDF)
     pytest.param(f'-i {power.link(power.DOCU09_PDF)}', None, id='pyporting'),
     pytest.param(f'-i {power.link(power.DOCU27_PDF)}', None, id='restruct'),
 ])
+@utilatest.skip_longrun
 def test_run_sections(command, validate, testdir, monkeypatch):
     """Run help and version and format command to reach basic test coverage"""
     tests.run_sections(command, monkeypatch=monkeypatch)
@@ -45,7 +46,7 @@ def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W
     tests.run_sections_failure(command, monkeypatch=monkeypatch)
 
 
-@utilatest.skip_longrun
+@utilatest.skip_nightly
 def test_run_sections_multicore(testdir, monkeypatch):
     """Regression test to ensure the correct order of the different
     steps in multicore behavior.
