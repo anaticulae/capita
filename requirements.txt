@@ -13,3 +13,6 @@ iamraw==4.0.1
 german==0.8.6
 
 geostrat==1.0.0
+
+# toc level extraction
+groupme==0.4.0
