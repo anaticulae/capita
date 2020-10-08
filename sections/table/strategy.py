@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import groupme.toc.group
 import iamraw
 import serializeraw
 import utila
@@ -101,8 +102,8 @@ def analyse_page(content) -> float:
     linecount = len(content)
 
     possible_toc_line = len([
-        line for line in content
-        if line.text.count('. .') > 3 or line.text.count('..') > 3
+        line for line in content if line.text.count('. .') > 3 or
+        line.text.count('..') > 3 or groupme.toc.group.numbered_level(line.text)
     ])
     # likelihood = possible_toc_line / linecount if linecount else 0.0
     return linecount, possible_toc_line
