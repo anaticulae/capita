@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v0.11.0
+
+### Feature
+
+* use authors to improve bib section detection (8e0d84514f5f)
+* add authors to extract list of authors (1c1f0504d704)
+* use parse level for toc line detection (aee74d45a72d)
+* make bib detector more robust against level (de9b7c12cce4)
+
+### Fix
+
+* add min value of marker to use feature (aaa5d0e941ce)
+* improve single char feature (279e0c51814f)
+* fix hugest font size determiner for correct title page extraction (673bb33043f4)
+
 ## v0.10.0
 
 ### Feature
