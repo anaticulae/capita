@@ -67,7 +67,12 @@ def analyse_page(navigator: texmex.PageTextNavigator
 
     raw = ' '.join([line.text for line in navigator])
     collected = []
-    for method in [german.years, german.dates, german.pagenumbers]:
+    for method in [
+            german.years,
+            german.dates,
+            german.pagenumbers,
+            german.authors,  # pylint:disable=E1101
+    ]:
         collected.extend(method(raw))
 
     marker = len(collected)
