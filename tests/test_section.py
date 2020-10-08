@@ -218,3 +218,19 @@ def test_sections_docu27():
         iamraw.sections.Table,  # TODO: REPLACE WITH APPENDIX?
     ]
     check_sections(result, expected)
+
+
+def test_sections_master112():
+    """Add test to ensure, that toc is not parsed as bib."""
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.MASTER112_PDF))
+
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+    ]
+    check_sections(result, expected)
+
+    # page 5
+    expected_toc = result[0].content[5]
+    assert isinstance(expected_toc, iamraw.sections.TableOfContent)
