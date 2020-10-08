@@ -21,21 +21,28 @@ import sections.table.strategy
 # no possible toc later than page 20
 VALID_TOC_PAGES = utila.ranged_tuple(0, 20)  # HOLY VALUE
 
+HEADLINES = [
+    'Inhalt',
+    'Inhaltsverzeichnis',
+    'Contents',
+]
+
+BLACKLIST = [
+    'Abbildungen',
+    'Abbildungsverzeichnis',
+    'Tabellen',
+    'Tabellenverzeichnis',
+]
+
 
 def work(text_linewise: str, textpositions: str, pages=None) -> str:
     dumped = sections.table.strategy.work(
         text_linewise,
         textpositions,
-        headline=['Inhalt', 'Inhaltsverzeichnis', 'Contents'],
-        blacklist=[
-            'Abbildungen',
-            'Abbildungsverzeichnis',
-            'Tabellen',
-            'Tabellenverzeichnis',
-        ],
+        headline=HEADLINES,
+        blacklist=BLACKLIST,
         shortcut='toc',
         valid_pages=VALID_TOC_PAGES,
         pages=pages,
     )
-
     return dumped
