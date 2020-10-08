@@ -189,6 +189,7 @@ def test_sections_diss264():
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,
+        iamraw.sections.Appendix,
     ]
     check_sections(result, expected)
 
