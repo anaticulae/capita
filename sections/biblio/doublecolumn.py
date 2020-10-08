@@ -58,4 +58,7 @@ def prenom(raw: str) -> list:
     >>> prenom('Becker J. & Franz S.')
     ['J.', 'S.']
     """
-    return re.findall(r'\w\.', raw)
+    result = [
+        item[0] + '.' for item in re.findall(r'\w+\s(?P<prenom>\w\.)', raw)
+    ]
+    return result
