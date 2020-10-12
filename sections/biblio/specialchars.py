@@ -47,10 +47,13 @@ def extract(data: sections.utils.spa.Data) -> list:
 
 
 KEYWORDS = [
+    'Bibliografie',
     'Bibliography',
     'Literatur',
     'Literature',
     'Literaturverzeichnis',
+    'Quellen',
+    'Quellenverzeichnis',
     'Reference',
     'References',
 ]
