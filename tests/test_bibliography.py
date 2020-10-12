@@ -13,7 +13,6 @@ import serializeraw
 import utila
 import utilatest
 
-import sections.feature.abbreviation
 import sections.path
 import tests
 
@@ -59,7 +58,6 @@ def extract_bibliography(source, testdir, monkeypatch):
 @utilatest.skip_longrun
 def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     non_zero = extract_bibliography(power.MASTER098_PDF, testdir, monkeypatch)
-
     diff = utila.diffs(non_zero)
 
     # ensure to have only one ascending group with holes
@@ -70,12 +68,14 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
 @utilatest.skip_longrun
 def test_bibliography_bachelor37(testdir, monkeypatch):
     pages = extract_bibliography(power.BACHELOR037_PDF, testdir, monkeypatch)
-    assert pages == [33, 34, 35, 36]
+    expected = [33, 34, 35, 36]
+    assert pages == expected
 
 
 def test_bibliography_paper18(testdir, monkeypatch):
     pages = extract_bibliography(power.PAPER18_PDF, testdir, monkeypatch)
-    assert pages == [15, 16, 17]
+    expected = [15, 16, 17]
+    assert pages == expected
 
 
 def test_bibliography_bachelor128(testdir, monkeypatch):
