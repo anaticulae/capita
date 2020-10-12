@@ -76,3 +76,9 @@ def test_bibliography_bachelor37(testdir, monkeypatch):
 def test_bibliography_paper18(testdir, monkeypatch):
     pages = extract_bibliography(power.PAPER18_PDF, testdir, monkeypatch)
     assert pages == [15, 16, 17]
+
+
+def test_bibliography_bachelor128(testdir, monkeypatch):
+    pages = extract_bibliography(power.BACHELOR128_PDF, testdir, monkeypatch)
+    expected = [96, 97, 98, 99, 100, 101, 102, 103]
+    assert pages == expected
