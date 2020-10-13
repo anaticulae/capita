@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.12.0
+
+### Feature
+
+* extend keywords to detect bib section (b702f4cd82c0)
+
 ## v0.11.0
 
 ### Feature
