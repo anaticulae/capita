@@ -9,7 +9,7 @@
 
 import re
 
-import geostrat.column
+import geostrat
 import texmex
 
 import sections.biblio.utils
@@ -37,7 +37,7 @@ def extract(data: sections.utils.spa.Data) -> list:
 
 def analyse_page(navigator: texmex.PageTextNavigator
                 ) -> sections.feature.StatisticalResultItem:
-    parsed = geostrat.column.parse(navigator, column_count=2)
+    parsed = geostrat.parse(navigator, column_count=2)
     if not parsed:
         return len(navigator), 0
 
