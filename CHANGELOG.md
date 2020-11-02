@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.12.2
+
+### Feature
+
+* extend special word list (2fdfab60d16d)
+
+### Fix
+
+* fix broken import (2becc5c609fe)
+
 ## v0.12.1
 
 ## v0.12.0
