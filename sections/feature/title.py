@@ -81,6 +81,9 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
     # the lower the likelihood to be the title page.
     # TODO: investigate if this is a good idea
     title_indicator = title_indicator * pow(0.10, pagenumber)
+    # For high pages title_indicator produces very small number 10^-45. To
+    # stabilize further algorithms, we do not want this "precision".
+    title_indicator = utila.roundme(title_indicator)  # pylint:disable=R0204
     return max_font_length, title_indicator
 
 
