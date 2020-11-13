@@ -14,7 +14,10 @@ import texmex
 import utila
 
 
-def headlines(navigator: texmex.PageTextNavigator):
+def headlines(
+        navigator: texmex.PageTextNavigator,
+        min_length: int = 5,  # TODO: HOLY VALUE
+):
     styles = common_textstyle(navigator[:])
     if not styles:
         return None
@@ -28,6 +31,8 @@ def headlines(navigator: texmex.PageTextNavigator):
     maxsize = sorted(styles, key=lambda x: x.center.style.textsize())[-1]
 
     result = [item.text.strip() for item in maxsize]
+    # remove numbers or very short text chunks
+    result = [item for item in result if len(item) >= min_length]
 
     result = remove_numbered_pattern(result)
 
