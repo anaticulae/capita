@@ -10,6 +10,7 @@
 import groupme.toc.group
 import iamraw
 import serializeraw
+import texmex
 import utila
 
 import sections.feature
@@ -17,19 +18,12 @@ import sections.utils.headline
 
 
 def work(
-        text_linewise: str,
-        textpositions: str,
+        navigators: texmex.PageTextContentNavigators,
         headline: str,
         shortcut: str,
         valid_pages: tuple = None,
-        pages: tuple = None,
         blacklist: list = None,
 ) -> str:
-    navigators = serializeraw.create_pagetextnavigators_fromfile(
-        text_linewise,
-        textpositions,
-        pages=pages,
-    )
     extracted = extract_xxx_likelihood(
         navigators,
         headline,
@@ -46,7 +40,7 @@ NO_PAGE = (0, 0)
 
 
 def extract_xxx_likelihood(
-        document: iamraw.Document,
+        document: texmex.PageTextContentNavigators,
         headline: str = None,
         shortcut: str = 'xxx',
         valid_pages: tuple = None,
@@ -54,7 +48,6 @@ def extract_xxx_likelihood(
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multiformed
     likelihood of beeing a table page."""
-
     result = {page.page: analyse_page(page) for page in document}
 
     def valid(item):
@@ -72,9 +65,9 @@ def extract_xxx_likelihood(
                         valid(utila.select_page(document, page))) else NO_PAGE
         for page, value in result.items()
     }
-
     uniformed = sections.feature.uniform_result(result)
     multiformed = sections.feature.multiform_result(result)
+
     if multiformed is not None:
         uniformed = multiformed
     assert len(uniformed) == len(document)

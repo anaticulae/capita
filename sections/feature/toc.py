@@ -14,6 +14,7 @@ TODO:
               table of abbreviation
 """
 
+import serializeraw
 import utila
 
 import sections.table.strategy
@@ -35,14 +36,25 @@ BLACKLIST = [
 ]
 
 
-def work(text_linewise: str, textpositions: str, pages=None) -> str:
+def work(
+        text_linewise: str,
+        textpositions: str,
+        sizeandborder: str,
+        headerfooters: str,
+        pages=None,
+) -> str:
+    ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
+        text=text_linewise,
+        textpositions=textpositions,
+        sizeandborderpath=sizeandborder,
+        headerfooterpath=headerfooters,
+        pages=pages,
+    )
     dumped = sections.table.strategy.work(
-        text_linewise,
-        textpositions,
+        ptcns,
         headline=HEADLINES,
         blacklist=BLACKLIST,
         shortcut='toc',
         valid_pages=VALID_TOC_PAGES,
-        pages=pages,
     )
     return dumped

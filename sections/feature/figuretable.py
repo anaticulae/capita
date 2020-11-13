@@ -10,13 +10,27 @@
 ========================
 """
 
+import serializeraw
+
 import sections.table.strategy
 
 
-def work(text_linewise: str, textpositions: str, pages=None) -> str:
+def work(
+        text_linewise: str,
+        textpositions: str,
+        sizeandborder: str,
+        headerfooters: str,
+        pages=None,
+) -> str:
+    ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
+        text=text_linewise,
+        textpositions=textpositions,
+        sizeandborderpath=sizeandborder,
+        headerfooterpath=headerfooters,
+        pages=pages,
+    )
     dumped = sections.table.strategy.work(
-        text_linewise,
-        textpositions,
+        ptcns,
         headline=['Abbildungsverzeichnis', 'Abbildungen'],
         blacklist=[
             'Inhalt',
@@ -25,6 +39,5 @@ def work(text_linewise: str, textpositions: str, pages=None) -> str:
             'Tabellenverzeichnis',
         ],
         shortcut='figuretable',
-        pages=pages,
     )
     return dumped

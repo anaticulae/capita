@@ -455,6 +455,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
     toc = iamraw.path.toc(path, prefix=prefix)
     fontheader = iamraw.path.fontheader(path, prefix=prefix)
     fontcontent = iamraw.path.fontcontent(path, prefix=prefix)
+    sizeandborder = iamraw.path.sizeandborder(path, prefix=prefix)
     footers = iamraw.path.headerfooters(path, prefix=prefix)
 
     abstract = sections.feature.abstract.work(
@@ -481,6 +482,8 @@ def extract_sections_frompath(  # pylint:disable=R0914
     figuretable = sections.feature.figuretable.work(
         text,
         textposition,
+        sizeandborder,
+        footers,
         pages=pages,
     )
     bibliography = sections.feature.bibliography.work(
@@ -504,9 +507,17 @@ def extract_sections_frompath(  # pylint:disable=R0914
     tabletable = sections.feature.tabletable.work(
         text,
         textposition,
+        sizeandborder,
+        footers,
         pages=pages,
     )
-    toc = sections.feature.toc.work(text, textposition, pages=pages)
+    toc = sections.feature.toc.work(
+        text,
+        textposition,
+        sizeandborder,
+        footers,
+        pages=pages,
+    )
     whitepage = sections.feature.whitepage.work(
         text,
         textposition,

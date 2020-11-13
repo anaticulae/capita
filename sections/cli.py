@@ -59,6 +59,8 @@ WORKPLAN = [
         inputs=[
             ResultFile('rawmaker', 'oneline_text_text'),
             ResultFile('rawmaker', 'oneline_text_positions'),
+            ResultFile('rawmaker', 'border_pages'),
+            ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),
@@ -90,6 +92,8 @@ WORKPLAN = [
         inputs=[
             ResultFile('rawmaker', 'oneline_text_text'),
             ResultFile('rawmaker', 'oneline_text_positions'),
+            ResultFile('rawmaker', 'border_pages'),
+            ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),
@@ -107,6 +111,8 @@ WORKPLAN = [
         inputs=[
             ResultFile('rawmaker', 'oneline_text_text'),
             ResultFile('rawmaker', 'oneline_text_positions'),
+            ResultFile('rawmaker', 'border_pages'),
+            ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),
