@@ -235,3 +235,32 @@ def test_sections_master112():
     # page 5
     expected_toc = result[0].content[5]
     assert isinstance(expected_toc, iamraw.sections.TableOfContent)
+
+
+def test_sections_master075_appendix():
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.MASTER075_PDF),
+        pages=(70, 71, 72, 73, 74),
+    )
+    result = result[0]
+    assert isinstance(result, iamraw.sections.Appendix)
+
+    appendix = result.content
+    # page 71
+    assert isinstance(appendix[1], iamraw.sections.FigureTable)
+
+    # expected
+    expected = [
+        iamraw.sections.Bibliography,
+        iamraw.sections.FigureTable,
+        # [  # TODO: SUPPORT MULTIPLE PAGE
+        #     iamraw.sections.FigureTable,
+        #     iamraw.sections.TableTable,
+        # ],
+        iamraw.sections.TableTable,
+        iamraw.sections.WhitePage,
+        iamraw.sections.LegalInformation,
+    ]
+
+    for page, valid in zip(appendix, expected):
+        assert isinstance(page, valid)
