@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 # TODO: MOVE TO UTILA
+
 import typing
 
 import iamraw
@@ -19,10 +20,31 @@ StatisticalResultItem = typing.Tuple[texmex.Occurrence, Count]  # number
 StatisticalResult = typing.Dict[Page, StatisticalResultItem]
 
 
-def uniform_result(items: StatisticalResult) -> iamraw.PageContentLikelihoods:
+def uniform_result(
+        items: StatisticalResult,
+        common_feature_threshold: float = 0.1,
+) -> iamraw.PageContentLikelihoods:
+    """\
+    Args:
+        items(StatisticalResult): page results to uniform
+        common_feature_threshold(float): minimal value for sum of page
+        results. Do not determine uniformed result for a list of very
+        small numbers.
+    Returns:
+        uniformed result(base 1.0)
+
+    >>> uniform_result({0: (5, 0.0001), 1: (2, 0.00045), 2: (8, 0.00011)})
+    {0: 0.0, 1: 0.0, 2: 0.0}
+
+    Use lower threshold to avoid useless results:
+    >>> uniform_result({0: (5, 0.0001), 1: (2, 0.00045), 2: (8, 0.00011)}, common_feature_threshold=0.0)
+    {0: 0.15, 1: 0.68, 2: 0.17}
+    """
     assert isinstance(items, dict), type(items)
     values = items.values()
     max_features = sum([feature for _, feature in values])
+    if max_features < common_feature_threshold:
+        max_features = 0
     if not max_features:
         # no potential feature in document
         return {page: 0.0 for page in items}
