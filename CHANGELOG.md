@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.13.0
+
+### Feature
+
+* cut non required `precision` (def3a31f0de6)
+* introduce threshold to avoid surprising results (04aa24bb219b)
+* use content navigator to improve performance (d07938d2fb76)
+
+### Fix
+
+* skip very small headlines (82e8d5fa09a4)
+
 ## v0.12.2
 
 ### Feature
