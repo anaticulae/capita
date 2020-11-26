@@ -10,7 +10,7 @@
 utila==2.14.0
 configo==0.8.5
 iamraw==4.4.2
-german==0.9.2
+german==0.11.2
 
 geostrat==1.1.4
 
