@@ -7,12 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-utila==2.15.0
+utila==2.16.1
 configo==0.8.6
-iamraw==4.5.0
-german==0.12.1
+iamraw==4.6.0
+german==0.13.3
 
-geostrat==1.1.5
+geostrat==1.1.6
 
 # toc level extraction
-groupme==0.7.1
+groupme==0.7.2
