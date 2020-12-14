@@ -9,6 +9,7 @@
 
 import iamraw.path
 import power
+import pytest
 import serializeraw
 import utila
 import utilatest
@@ -65,28 +66,15 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     assert max(diff) == 1, diff
 
 
+# yapf:disable
+@pytest.mark.parametrize('source, expected', [
+    pytest.param(power.BACHELOR037_PDF, [33, 34, 35, 36], id='bachelor37'),
+    pytest.param(power.BACHELOR128_PDF, [96, 97, 98, 99, 100, 101, 102, 103], id='bachelor128'),
+    pytest.param(power.HOME018_PDF, [17], id='home18'),
+    pytest.param(power.PAPER18_PDF, [15, 16, 17], id='paper18'),
+])
+# yapf:enable
 @utilatest.skip_longrun
-def test_bibliography_bachelor37(testdir, monkeypatch):
-    pages = extract_bibliography(power.BACHELOR037_PDF, testdir, monkeypatch)
-    expected = [33, 34, 35, 36]
-    assert pages == expected
-
-
-def test_bibliography_paper18(testdir, monkeypatch):
-    pages = extract_bibliography(power.PAPER18_PDF, testdir, monkeypatch)
-    expected = [15, 16, 17]
-    assert pages == expected
-
-
-def test_bibliography_bachelor128(testdir, monkeypatch):
-    pages = extract_bibliography(power.BACHELOR128_PDF, testdir, monkeypatch)
-    expected = [96, 97, 98, 99, 100, 101, 102, 103]
-    assert pages == expected
-
-
-def test_bibliography_home018(testdir, monkeypatch):
-    pages = extract_bibliography(power.HOME018_PDF, testdir, monkeypatch)
-    expected = [
-        17,
-    ]
+def test_bibliography_x(source, expected, testdir, monkeypatch):
+    pages = extract_bibliography(source, testdir, monkeypatch)
     assert pages == expected
