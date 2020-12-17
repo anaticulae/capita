@@ -29,7 +29,6 @@ import sections.feature.chapter
         power.link(power.MASTER072_PDF),
         [3, 6, 22, 45, 63],
         id='master72pages',
-        marks=pytest.mark.xfail(reason='matches to many headlines'),
     ),
 ])
 @utilatest.skip_longrun

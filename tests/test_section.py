@@ -12,6 +12,7 @@ import iamraw.sections
 import power
 import pytest
 import serializeraw
+import utila
 import utilatest
 
 import sections.creator
@@ -124,8 +125,16 @@ def test_sections_master72():
     # page 0 is title page
     assert isinstance(result[0], iamraw.sections.Introduction), type(result[0])
     # page 1 and 2 is introduction
-    assert isinstance(result[1], iamraw.sections.MainPart), type(result[1])
-    assert len(result[1]) == 62  # content pages
+    mainpart = result[1]
+    assert isinstance(mainpart, iamraw.sections.MainPart), type(mainpart)
+    assert len(mainpart) == 62  # content pages
+
+    chapternumbers = [
+        item.start
+        for item in utila.select_type(mainpart.content, iamraw.sections.Chapter)
+    ]
+    expected = [3, 6, 22, 45, 63]
+    assert chapternumbers == expected
 
 
 def test_sections_bachelor90():

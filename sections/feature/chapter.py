@@ -130,6 +130,9 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
         ]
         for line in raw:
             if 'kapitel' in line or 'chapter' in line:
+                if len(line) > 15:  # TODO: HOLY VALUE
+                    # skip sentences which contains Chapter or Kapitel
+                    continue
                 return True
         return False
 
@@ -138,6 +141,11 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
         for line in raw:
             matched = re.match(NUMBER_PATTERN, line)
             if matched:
+                line = utila.extract_match(matched)
+                if len(line) > 75:  # TODO: HOLY VALUE
+                    # TODO: REQUIRE A BETTER SELECTOR
+                    # seam to be a content line.
+                    continue
                 return True
         return False
 
