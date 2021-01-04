@@ -69,6 +69,7 @@ The following sections are planned to be supported:
 import os
 
 import sections.__patch__
+import sections.path
 
 __version__ = '0.13.8'
 

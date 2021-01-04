@@ -13,7 +13,7 @@ import serializeraw
 import utila
 import utilatest
 
-import sections.path
+import sections
 import tests
 
 BACHELOR111 = power.link(power.BACHELOR111_PDF)
