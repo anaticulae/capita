@@ -16,20 +16,18 @@ import utilatest
 import sections
 import tests
 
-BACHELOR111 = power.link(power.BACHELOR111_PDF)
-BACHELOR063 = power.link(power.BACHELOR063_PDF)
 
-
-@pytest.mark.parametrize('command, validate', [
-    pytest.param(f'-i {BACHELOR111}', None, id='bachelor111'),
-    pytest.param(f'-i {BACHELOR063}', None, id='bachelor63'),
-    pytest.param(f'-i {power.link(power.DOCU07_PDF)}', None, id='howto'),
-    pytest.param(f'-i {power.link(power.DOCU09_PDF)}', None, id='pyporting'),
-    pytest.param(f'-i {power.link(power.DOCU27_PDF)}', None, id='restruct'),
+@pytest.mark.parametrize('source, validate', [
+    pytest.param(power.BACHELOR111_PDF, None, id='bachelor111'),
+    pytest.param(power.BACHELOR063_PDF, None, id='bachelor63'),
+    pytest.param(power.DOCU07_PDF, None, id='howto'),
+    pytest.param(power.DOCU09_PDF, None, id='pyporting'),
+    pytest.param(power.DOCU27_PDF, None, id='restruct'),
 ])
 @utilatest.skip_longrun
-def test_run_sections(command, validate, testdir, monkeypatch):
-    """Run help and version and format command to reach basic test coverage"""
+def test_run_sections(source, validate, testdir, monkeypatch):
+    source = power.link(source)
+    command = f'-i {source}'
     tests.run_sections(command, monkeypatch=monkeypatch)
 
     loaded = serializeraw.load_sections(sections.path.sections_(testdir.tmpdir))
