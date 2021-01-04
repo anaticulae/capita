@@ -22,6 +22,7 @@ PACKAGE = sections.PACKAGE
 WORKER = 6
 
 RESOURCES = [
+    (power.DISS266_PDF, None),
     (power.MASTER110_PDF, None),
     (power.MASTER072_PDF, None),
     (power.MASTER098_PDF, None),
