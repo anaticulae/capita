@@ -12,13 +12,17 @@ import utila
 import sections
 
 
-def sections_(path: str, prefix: str = '') -> str:
+def result(path: str, prefix: str = '') -> str:
     return utila.pathconnector(
         path,
         sections.PROCESS,
         'section_result',
         prefix,
     )
+
+
+# TODO: REMOVE LATER
+sections_ = result  # pylint:disable=C0103
 
 
 def abbreviation(path: str, prefix: str = '') -> str:
