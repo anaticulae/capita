@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.13.7
+
+### Fix
+
+* shrink chapter selector for better results (777a01c1843e)
+
 ## v0.13.6
 
 ## v0.13.5
