@@ -21,25 +21,26 @@ import sections.feature.chapter
 
 @pytest.mark.parametrize('source, expected', [
     pytest.param(
-        power.link(power.DOCU27_PDF),
+        power.DOCU27_PDF,
         [6, 8, 10, 12, 18, 20, 22, 24],
         id='restruct',
     ),
     pytest.param(
-        power.link(power.MASTER072_PDF),
+        power.MASTER072_PDF,
         [3, 6, 22, 45, 63],
         id='master72pages',
     ),
 ])
 @utilatest.skip_longrun
 def test_chapter_extract(source, expected):
+    source = power.link(source)
     document = iamraw.path.text(source)
     position = iamraw.path.textposition(source)
     toc = iamraw.path.text(source)
+    # run
     result = extract_chapter(document, position, toc)
-
+    # verify result
     pages = [item.page for item in result]
-
     assert pages == expected
 
 
