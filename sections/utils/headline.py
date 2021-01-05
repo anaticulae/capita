@@ -49,7 +49,7 @@ def common_textstyle(items, min_elements=1):
     def equal_fontsize(candidat, clusteritem):
         cluster = clusteritem.style.textsize()
         candidat = candidat.style.textsize()
-        return pnear(cluster, candidat, rel_tol=MAX_FONTSIZE_DIFF)
+        return utila.pnear(cluster, candidat, rel_tol=MAX_FONTSIZE_DIFF)
 
     def classifier(candidat, clusteritem) -> bool:
         if not equal_fontsize(candidat, clusteritem):
@@ -61,31 +61,6 @@ def common_textstyle(items, min_elements=1):
         classifier=classifier,
         min_elements=min_elements,
     )
-
-
-def pnear(
-        reference,
-        current,
-        rel_tol: float = 0.0,
-        abs_tol: float = 0.05,
-) -> bool:
-    """\
-    >>> pnear(10, 8, 0.2)
-    True
-    >>> pnear(10, 8, 0.19)
-    False
-    >>> pnear(0, 0.1, rel_tol=0.02, abs_tol=0.1)
-    True
-    """
-    lower = reference * (1 - rel_tol)
-    upper = reference * (1 + rel_tol)
-    if lower <= current <= upper:
-        return True
-    lower = reference - abs_tol
-    upper = reference + abs_tol
-    if lower <= current <= upper:
-        return True
-    return False
 
 
 # TODO: CODE DUPLICATION, COLLECT DIFFERENT HEADLINE PARSING APPROACHES
