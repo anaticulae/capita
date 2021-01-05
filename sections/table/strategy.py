@@ -46,8 +46,8 @@ def extract_xxx_likelihood(
         valid_pages: tuple = None,
         blacklist: list = None,
 ) -> iamraw.PageContentLikelihood:
-    """Iterate thru document and determine uni- or multiformed
-    likelihood of beeing a table page."""
+    """Iterate thru document and determine uni- or multi formed
+    likelihood of being a table page."""
     result = {page.page: analyse_page(page) for page in document}
 
     def valid(item):
