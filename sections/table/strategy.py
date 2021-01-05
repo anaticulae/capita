@@ -93,10 +93,16 @@ def analyse_page(content) -> float:
         (linecount, possible_table_lines)
     """
     linecount = len(content)
-
-    possible_toc_line = len([
-        line for line in content if line.text.count('. .') > 3 or
-        line.text.count('..') > 3 or groupme.toc.group.numbered_level(line.text)
-    ])
+    possible_toc_line = len([line for line in content if valid_line(line.text)])
     # likelihood = possible_toc_line / linecount if linecount else 0.0
     return linecount, possible_toc_line
+
+
+def valid_line(line: str) -> bool:
+    if line.count('. .') > 3:
+        return True
+    if line.count('..') > 3:
+        return True
+    if groupme.toc.group.numbered_level(line):
+        return True
+    return False
