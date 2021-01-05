@@ -37,15 +37,15 @@ BLACKLIST = [
 
 
 def work(
-        text_linewise: str,
-        textpositions: str,
+        oneline_text: str,
+        oneline_textposition: str,
         sizeandborder: str,
         headerfooters: str,
         pages=None,
 ) -> str:
     ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
-        text=text_linewise,
-        textpositions=textpositions,
+        text=oneline_text,
+        textpositions=oneline_textposition,
         sizeandborderpath=sizeandborder,
         headerfooterpath=headerfooters,
         pages=pages,
