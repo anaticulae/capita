@@ -8,6 +8,7 @@
 # =============================================================================
 
 import genex
+import genex.example
 import power
 import pytest
 import utila
@@ -57,7 +58,7 @@ def test_run_validation(source, expected, testdir):
         rawmaker=genex.CONFIG,
         oneline=genex.ONELINE,
     )
-    utila.run(job)
+    genex.example.run_job(job)
 
     extracted = sections.feature.section.extract_sections_frompath(root)
 
