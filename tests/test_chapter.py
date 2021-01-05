@@ -7,12 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import groupme.path
 import iamraw.path
 import power
 import pytest
 import serializeraw
-import texmex
 import utila
 import utilatest
 
@@ -34,11 +32,8 @@ import sections.feature.chapter
 @utilatest.skip_longrun
 def test_chapter_extract(source, expected):
     source = power.link(source)
-    document = iamraw.path.text(source)
-    position = iamraw.path.textposition(source)
-    toc = iamraw.path.text(source)
     # run
-    result = extract_chapter(document, position, toc)
+    result = extract_chapter(source)
     # verify result
     pages = [item.page for item in result]
     assert pages == expected
@@ -46,29 +41,19 @@ def test_chapter_extract(source, expected):
 
 def test_chapter_dump_and_load_detection():
     source = power.link(power.DOCU27_PDF)
-    document = iamraw.path.text(source)
-    position = iamraw.path.textposition(source)
-    toc = iamraw.path.text(source)
 
-    result = extract_chapter(document, position, toc)
+    result = extract_chapter(source)
 
     dumped = serializeraw.dump_likelihood(result)
     loaded = serializeraw.load_likelihood(dumped)
-
     assert loaded == result
 
 
-def extract_chapter(document, position, toc):
+def extract_chapter(source):
     # load
-    document = serializeraw.load_document(document)
-    position = serializeraw.load_textpositions(position)
-    tocs = serializeraw.load_toc(toc)
-
-    navigators = texmex.create_pagetextnavigators(
-        text=document,
-        text_positions=position,
-    )
-
+    navigators = serializeraw.create_pagetextnavigators_frompath(source)
+    tocs = serializeraw.load_toc(iamraw.path.text(source))
+    # run
     result = sections.feature.chapter.extract_chapter(
         navigators,
         tocs,
@@ -77,18 +62,13 @@ def extract_chapter(document, position, toc):
 
 
 def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
-    text = iamraw.path.text(source)
-    textposition = iamraw.path.textposition(source)
-    tocs = groupme.path.toc(source)
-
     dumped = sections.feature.chapter.work(
-        text,
-        textposition,
-        tocpath=tocs,
+        document=source,  # use default path
+        position=source,
+        tocpath=source,
         pages=pages,
     )
     assert dumped, dumped
-
     loaded = serializeraw.load_likelihood(dumped)
     return loaded
 
