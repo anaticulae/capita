@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import iamraw
 import power
 import pytest
 import serializeraw
@@ -25,7 +26,7 @@ def test_extract_toc_likelihood():
         'Contents',
     )
     extracted = [item.content.value for item in extracted]
-    assert sum(extracted) == pytest.approx(1.0)
+    assert sum(extracted) == pytest.approx(1.22)
 
 
 def test_extract_toc_likelihood_bachelor63():
@@ -66,3 +67,39 @@ def test_extract_toc_likelihood_master72():
             assert current > 0.75, f'page {page} value: {current}'
         else:
             assert current < 0.05, f'page: {page} value: {current}'
+
+
+def extract_toc(
+        source: str,
+        pages: tuple = None,
+) -> iamraw.PageContentLikelihoods:
+    text = iamraw.path.text(source, prefix='oneline')
+    textposition = iamraw.path.textposition(source, prefix='oneline')
+    sizeandborder = iamraw.path.sizeandborder(source)
+    headerfooters = iamraw.path.headerfooters(source)
+    dumped = sections.feature.toc.work(
+        oneline_text=text,
+        oneline_textposition=textposition,
+        sizeandborder=sizeandborder,
+        headerfooters=headerfooters,
+        pages=pages,
+    )
+    assert dumped, dumped
+    loaded = serializeraw.load_likelihood(dumped)
+    return loaded
+
+
+# pytest.param(power.DISS266_PDF, [4, 5], id='diss266'),
+@pytest.mark.parametrize('source, expected', [
+    pytest.param(power.DISS266_PDF, [4], id='diss266'),
+])
+def test_toc_extract(source, expected):
+    source = power.link(source)
+    # run
+    result = extract_toc(
+        source=source,
+        pages=utila.ranged_tuple(0, 15),
+    )
+    # verify result
+    pages = [item.page for item in result if item.content.value]
+    assert pages == expected

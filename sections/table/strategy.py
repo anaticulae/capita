@@ -51,7 +51,7 @@ def extract_xxx_likelihood(
     result = {page.page: analyse_page(page) for page in document}
 
     def valid(item):
-        detected = sections.utils.headline.headlines(item)
+        detected = sections.utils.headline.headlines(item, topsearch=True)
         if blacklist and detected in blacklist:
             return False
         if detected and headline:

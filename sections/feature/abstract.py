@@ -61,7 +61,7 @@ HEADLINES = [
 
 
 def analyse_page(content):
-    headlines = sections.utils.headline.headlines(content)
+    headlines = sections.utils.headline.headlines(content, topsearch=False)
     if not headlines:
         return NO_PAGE
     if isinstance(headlines, str):

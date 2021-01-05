@@ -26,7 +26,13 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
         pages=pages,
     )
 
-    result = {page.page: analyse_page(page) for page in navigators}
+    # TODO: MAY CHANGE LATER?
+    # do not detect appendix at the start of the document
+    minpage = len(navigators) * 0.3
+    result = {
+        page.page: analyse_page(page) if page.page > minpage else NO_PAGE
+        for page in navigators
+    }
 
     uniformed = sections.feature.uniform_result(result)
     multiformed = sections.feature.multiform_result(result)

@@ -17,8 +17,25 @@ import utila
 def headlines(
         navigator: texmex.PageTextNavigator,
         min_length: int = 5,  # TODO: HOLY VALUE
+        # max_length: int = 50,  # TODO: HOLY VALUE
+        min_word_count: int = 1,
+        max_word_count: int = 3,
+        topsearch: bool = False,
 ):
-    styles = common_textstyle(navigator[:])
+    """\
+    #topsearch: use upper area of page
+    """
+
+    navigator = navigator[0:6] if topsearch else navigator[:]
+    navigator = [
+        item for item in navigator if valid_headline(
+            headline=item.text,
+            length_min=min_length,
+            wordcount_max=max_word_count,
+        )
+    ]
+
+    styles = common_textstyle(navigator)
     if not styles:
         return None
 
@@ -31,14 +48,34 @@ def headlines(
     maxsize = sorted(styles, key=lambda x: x.center.style.textsize())[-1]
 
     result = [item.text.strip() for item in maxsize]
-    # remove numbers or very short text chunks
-    result = [item for item in result if len(item) >= min_length]
-
+    # remove to many spaces
+    result = [
+        item for item in result
+        if min_word_count <= len(item.split()) <= max_word_count
+    ]
+    result = [item.title() for item in result]
     result = remove_numbered_pattern(result)
 
     if len(result) == 1:
         return result[0]
     return result
+
+
+def valid_headline(
+        headline: str,
+        length_min: int,
+        wordcount_max: int,
+) -> bool:
+    headline = headline.strip()
+    if len(headline) < length_min:
+        # remove numbers or very short text chunks
+        return False
+    if len(headline.split()) > wordcount_max:
+        return False
+    if headline.count(' ') >= 10:
+        # POTENZIALBESCHREIBUNG                 114
+        return False
+    return True
 
 
 MAX_FONTSIZE_DIFF = configo.HV_PERCENT_PLUS(10).value
