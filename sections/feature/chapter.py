@@ -99,6 +99,18 @@ def extract_chapter(
     return result
 
 
+CHAPTER_PATTERN = re.compile(
+    r"""^
+    (chapter|kapitel)
+    [ ]{0,3}
+    \d{1,2}
+    [ ]{0,3}
+    \:
+    .+
+""",
+    re.VERBOSE,
+)
+
 # We need only one number with dot, because we want only chapters, not
 # sections etc.
 NUMBER_PATTERN = re.compile(
@@ -129,6 +141,9 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
             item.text.lower() for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]
         ]
         for line in raw:
+            if re.match(CHAPTER_PATTERN, line):
+                # KAPITEL 1: EINLEITUNG
+                return True
             if 'kapitel' in line or 'chapter' in line:
                 if len(line) > 15:  # TODO: HOLY VALUE
                     # skip sentences which contains Chapter or Kapitel
