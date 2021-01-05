@@ -17,6 +17,7 @@ import utilatest
 import sections.feature.chapter
 
 
+# TODO: DISS266 - IMPROVE LATER
 @pytest.mark.parametrize('source, expected', [
     pytest.param(
         power.DOCU27_PDF,
@@ -27,6 +28,11 @@ import sections.feature.chapter
         power.MASTER072_PDF,
         [3, 6, 22, 45, 63],
         id='master72pages',
+    ),
+    pytest.param(
+        power.DISS266_PDF,
+        [4, 5, 9, 23, 81, 103, 136, 197, 203, 205, 253],
+        id='diss266',
     ),
 ])
 @utilatest.skip_longrun
