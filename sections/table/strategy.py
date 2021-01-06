@@ -24,14 +24,14 @@ def work(
         headline: str,
         shortcut: str,
         pages: tuple = None,
-        blacklist: list = None,
+        noheadlines: list = None,
 ) -> str:
     extracted = extract_xxx_likelihood(
         navigators,
         headline,
         shortcut=shortcut,
         pages=pages,
-        blacklist=blacklist,
+        noheadlines=noheadlines,
     )
 
     dumped = serializeraw.dump_likelihood(extracted)
@@ -43,7 +43,7 @@ def extract_xxx_likelihood(
         headline: str = None,
         shortcut: str = 'xxx',
         pages: tuple = None,
-        blacklist: list = None,
+        noheadlines: list = None,
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multi formed
     likelihood of being a table page."""
@@ -51,7 +51,7 @@ def extract_xxx_likelihood(
 
     result = {
         page: judged if not utila.should_skip(page, pages) and
-        matched(content, headline, blacklist) else NO_PAGE
+        matched(content, headline, noheadlines) else NO_PAGE
         for page, (content, judged) in result.items()
     }
     uniformed = sections.feature.uniform_result(result)
@@ -70,11 +70,11 @@ def extract_xxx_likelihood(
     return result
 
 
-def matched(navigator, headline, blacklist) -> bool:
+def matched(navigator, headline, noheadlines) -> bool:
     """Collect headlines from `navigator` and check if given `headline`
-    is found and colected headline is not `blacklisted`."""
+    is found and colected headline is not `noheadlines`."""
     detected = sections.utils.headline.headlines(navigator, topsearch=True)
-    if blacklist and detected in blacklist:
+    if noheadlines and detected in noheadlines:
         return False
     if detected and headline:
         if isinstance(headline, str):

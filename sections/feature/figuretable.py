@@ -32,7 +32,7 @@ def work(
     dumped = sections.table.strategy.work(
         ptcns,
         headline=['Abbildungsverzeichnis', 'Abbildungen'],
-        blacklist=[
+        noheadlines=[
             'Inhalt',
             'Inhaltsverzeichnis',
             'Tabellen',

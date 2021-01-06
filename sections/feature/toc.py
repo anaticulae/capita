@@ -28,7 +28,7 @@ HEADLINES = [
     'Contents',
 ]
 
-BLACKLIST = [
+NOHEADLINES = [
     'Abbildungen',
     'Abbildungsverzeichnis',
     'Tabellen',
@@ -53,7 +53,7 @@ def work(
     dumped = sections.table.strategy.work(
         ptcns,
         headline=HEADLINES,
-        blacklist=BLACKLIST,
+        noheadlines=NOHEADLINES,
         shortcut='toc',
         pages=VALID_TOC_PAGES,
     )

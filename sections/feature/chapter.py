@@ -195,7 +195,7 @@ def contains_listof(content: str) -> bool:
     return result
 
 
-BLACKLIST = {
+NOHEADLINES = {
     'Abbildungsverzeichnis',
     'Abkürzungsverzeichnis',
     'Inhaltsverzeichnis',
@@ -226,7 +226,7 @@ def contain_toc(content, toc) -> float:
         # no table of content was extracted
         return 0.0
 
-    flat_toc = [item for item in flat_toc if item not in BLACKLIST]
+    flat_toc = [item for item in flat_toc if item not in NOHEADLINES]
 
     for line in content:
         line = line.text.strip()
