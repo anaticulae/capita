@@ -12,6 +12,7 @@ import power
 import pytest
 import serializeraw
 import utila
+import utilatest
 
 import sections.feature.toc
 import sections.table.strategy
@@ -93,6 +94,7 @@ def extract_toc(
 @pytest.mark.parametrize('source, expected', [
     pytest.param(power.DISS266_PDF, [4], id='diss266'),
 ])
+@utilatest.longrun
 def test_toc_extract(source, expected):
     source = power.link(source)
     # run

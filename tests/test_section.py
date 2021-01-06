@@ -137,6 +137,7 @@ def test_sections_master72():
     assert chapternumbers == expected
 
 
+@utilatest.longrun
 def test_sections_bachelor90():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.BACHELOR090_PDF))
@@ -230,6 +231,7 @@ def test_sections_docu27():
     check_sections(result, expected)
 
 
+@utilatest.longrun
 def test_sections_master112():
     """Add test to ensure, that toc is not parsed as bib."""
     result = sections.feature.section.extract_sections_frompath(
