@@ -55,6 +55,6 @@ def work(
         headline=HEADLINES,
         blacklist=BLACKLIST,
         shortcut='toc',
-        valid_pages=VALID_TOC_PAGES,
+        pages=VALID_TOC_PAGES,
     )
     return dumped

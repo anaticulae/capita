@@ -23,14 +23,14 @@ def work(
         navigators: texmex.PageTextContentNavigators,
         headline: str,
         shortcut: str,
-        valid_pages: tuple = None,
+        pages: tuple = None,
         blacklist: list = None,
 ) -> str:
     extracted = extract_xxx_likelihood(
         navigators,
         headline,
         shortcut=shortcut,
-        valid_pages=valid_pages,
+        pages=pages,
         blacklist=blacklist,
     )
 
@@ -42,7 +42,7 @@ def extract_xxx_likelihood(
         document: texmex.PageTextContentNavigators,
         headline: str = None,
         shortcut: str = 'xxx',
-        valid_pages: tuple = None,
+        pages: tuple = None,
         blacklist: list = None,
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multi formed
@@ -50,7 +50,7 @@ def extract_xxx_likelihood(
     result = {page.page: (page, analyse_page(page)) for page in document}
 
     result = {
-        page: judged if not utila.should_skip(page, valid_pages) and
+        page: judged if not utila.should_skip(page, pages) and
         matched(content, headline, blacklist) else NO_PAGE
         for page, (content, judged) in result.items()
     }
