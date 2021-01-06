@@ -16,6 +16,8 @@ import utila
 import sections.feature
 import sections.utils.headline
 
+NO_PAGE = (0, 0)
+
 
 def work(
         navigators: texmex.PageTextContentNavigators,
@@ -36,9 +38,6 @@ def work(
     return dumped
 
 
-NO_PAGE = (0, 0)
-
-
 def extract_xxx_likelihood(
         document: texmex.PageTextContentNavigators,
         headline: str = None,
@@ -48,28 +47,17 @@ def extract_xxx_likelihood(
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multi formed
     likelihood of being a table page."""
-    result = {page.page: analyse_page(page) for page in document}
-
-    def valid(item):
-        detected = sections.utils.headline.headlines(item, topsearch=True)
-        if blacklist and detected in blacklist:
-            return False
-        if detected and headline:
-            if isinstance(headline, str):
-                return detected == headline
-            return detected in headline
-        return False
+    result = {page.page: (page, analyse_page(page)) for page in document}
 
     result = {
-        page: value if ((valid_pages is None or page in valid_pages) and
-                        valid(utila.select_page(document, page))) else NO_PAGE
-        for page, value in result.items()
+        page: judged if not utila.should_skip(page, valid_pages) and
+        matched(content, headline, blacklist) else NO_PAGE
+        for page, (content, judged) in result.items()
     }
     uniformed = sections.feature.uniform_result(result)
     multiformed = sections.feature.multiform_result(result)
 
-    if multiformed is not None:
-        uniformed = multiformed
+    uniformed = multiformed if multiformed else uniformed
     assert len(uniformed) == len(document)
 
     result = [
@@ -80,6 +68,19 @@ def extract_xxx_likelihood(
     ]
     result = sorted(result, key=lambda x: x.page)
     return result
+
+
+def matched(navigator, headline, blacklist) -> bool:
+    """Collect headlines from `navigator` and check if given `headline`
+    is found and colected headline is not `blacklisted`."""
+    detected = sections.utils.headline.headlines(navigator, topsearch=True)
+    if blacklist and detected in blacklist:
+        return False
+    if detected and headline:
+        if isinstance(headline, str):
+            return detected == headline
+        return detected in headline
+    return False
 
 
 def analyse_page(content) -> float:
