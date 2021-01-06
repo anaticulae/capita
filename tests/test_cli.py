@@ -37,7 +37,7 @@ def diss266(result):
     pytest.param(power.DOCU27_PDF, None, id='restruct'),
     pytest.param(power.DISS266_PDF, diss266, id='diss266'),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_run_sections(source, validate, testdir, monkeypatch):
     source = power.link(source)
     command = f'-i {source}'
@@ -57,7 +57,7 @@ def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W
     tests.run_sections_failure(command, monkeypatch=monkeypatch)
 
 
-@utilatest.skip_nightly
+@utilatest.nightly
 def test_run_sections_multicore(testdir, monkeypatch):
     """Regression test to ensure the correct order of the different
     steps in multicore behavior.

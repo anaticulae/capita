@@ -18,7 +18,7 @@ import sections.path
 import tests
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_bibliography_work():
     source = power.link(power.MASTER072_PDF)
     text = iamraw.path.text(source)
@@ -56,7 +56,7 @@ def extract_bibliography(source, testdir, monkeypatch):
     return pages
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     non_zero = extract_bibliography(power.MASTER098_PDF, testdir, monkeypatch)
     diff = utila.diffs(non_zero)
@@ -75,7 +75,7 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     pytest.param(power.MASTER110_PDF, [104, 105, 106, 107, 108], id='master110'),
 ])
 # yapf:enable
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_bibliography_x(source, expected, testdir, monkeypatch):
     pages = extract_bibliography(source, testdir, monkeypatch)
     assert pages == expected

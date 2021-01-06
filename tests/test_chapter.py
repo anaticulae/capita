@@ -35,7 +35,7 @@ import sections.feature.chapter
         id='diss266',
     ),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_chapter_extract(source, expected):
     source = power.link(source)
     # run
@@ -96,7 +96,7 @@ def test_chapter_work_bachelor63():
     assert pages == expected
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_chapter_work_master98():
     source = power.link(power.MASTER098_PDF)
     extracted = chapter(source)

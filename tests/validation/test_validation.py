@@ -48,7 +48,7 @@ SECTIONS.update(tests.validation.master.MASTER)
         ) for key, value in SECTIONS.items()
     ],
 )
-@utilatest.skip_nightly
+@utilatest.nightly
 def test_run_validation(source, expected, testdir):
     root = testdir.tmpdir
     job = genex.create_job(
