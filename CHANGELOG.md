@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.14.0
+
+### Feature
+
+* extend toc page detection (edd73cc03c7a)
+* improve chapter start detector (3c91c267a034)
+
 ## v0.13.8
 
 ## v0.13.7
