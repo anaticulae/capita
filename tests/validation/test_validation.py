@@ -16,6 +16,7 @@ import utilatest
 
 import sections.feature.section
 import tests.validation.bachelor
+import tests.validation.docu
 import tests.validation.master
 
 EXPECTED_FAILURE = {

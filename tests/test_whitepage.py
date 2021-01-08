@@ -11,7 +11,6 @@ import iamraw.path
 import power
 import serializeraw
 
-import tests.fixtures
 from sections.feature.whitepage import PageContentWhitepages
 from sections.feature.whitepage import WhitePage
 from sections.feature.whitepage import extract_whitepages
