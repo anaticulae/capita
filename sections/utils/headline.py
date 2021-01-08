@@ -10,6 +10,7 @@
 import re
 
 import configo
+import elements
 import texmex
 import utila
 
@@ -28,8 +29,8 @@ def headlines(
 
     navigator = navigator[0:6] if topsearch else navigator[:]
     navigator = [
-        item for item in navigator if valid_headline(
-            headline=item.text,
+        item for item in navigator if not elements.noheadline(
+            line=item.text,
             length_min=min_length,
             wordcount_max=max_word_count,
         )
@@ -59,23 +60,6 @@ def headlines(
     if len(result) == 1:
         return result[0]
     return result
-
-
-def valid_headline(
-        headline: str,
-        length_min: int,
-        wordcount_max: int,
-) -> bool:
-    headline = headline.strip()
-    if len(headline) < length_min:
-        # remove numbers or very short text chunks
-        return False
-    if len(headline.split()) > wordcount_max:
-        return False
-    if headline.count(' ') >= 10:
-        # POTENZIALBESCHREIBUNG                 114
-        return False
-    return True
 
 
 MAX_FONTSIZE_DIFF = configo.HV_PERCENT_PLUS(10).value
