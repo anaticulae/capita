@@ -12,6 +12,7 @@
 
 import iamraw
 import serializeraw
+import utila
 
 import sections.feature
 import sections.utils.headline
@@ -70,13 +71,8 @@ def analyse_page(content):
         headlines = [headlines]
 
     # ensure that every cased headlines are parsed correctly
-    headlines = lower(headlines)
-    for item in lower(HEADLINES):
+    headlines = utila.lower(*headlines)
+    for item in utila.lower(*HEADLINES):
         if item in headlines:
             return 1, 1
     return NO_PAGE
-
-
-# TODO: MOVE TO UTILA
-def lower(items):
-    return [item.lower() for item in items]
