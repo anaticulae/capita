@@ -47,10 +47,10 @@ def test_extract_toc_likelihood_bachelor63():
     assert likelihood >= 1.0, str(likelihood)  # holy value
 
 
-# TODO: ENABLE LATER
-@pytest.mark.xfail(reason='toc parser was shrunk to toc page with headline')
 def test_extract_toc_likelihood_master72():
-    """Check that only second and third page are detected as toc."""
+    """Check that only second and third page are detected as toc.
+    Repeating the strategy due `without` is required to discover
+    complete table of content."""
     text = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.MASTER072_PDF),
         pages=utila.ranged_tuple(0, 8),
@@ -60,6 +60,11 @@ def test_extract_toc_likelihood_master72():
         text,
         headline='Inhaltsverzeichnis',
     )
+    without = sections.table.strategy.extract_xxx_likelihood(
+        text,
+        headline=None,
+    )
+    extracted = sections.table.strategy.merge_second(extracted, without)
     extracted = [item.content.value for item in extracted]
 
     expected_result = [False, True, True, False, False, False, False, False]
