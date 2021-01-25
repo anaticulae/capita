@@ -28,3 +28,5 @@ run_sections_failure = functools.partial(
     process=sections.PROCESS,
     success=False,
 )
+
+utilatest.register_marker('huge')
