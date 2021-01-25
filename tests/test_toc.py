@@ -90,9 +90,9 @@ def extract_toc(
     return loaded
 
 
-# pytest.param(power.DISS266_PDF, [4, 5], id='diss266'),
+# DISS266 VALIDATED!
 @pytest.mark.parametrize('source, expected', [
-    pytest.param(power.DISS266_PDF, [4], id='diss266'),
+    pytest.param(power.DISS266_PDF, [4, 5, 6], id='diss266'),
 ])
 @utilatest.longrun
 def test_toc_extract(source, expected):

@@ -125,6 +125,9 @@ def valid_line(line: str) -> bool:
         return True
     if groupme.toc.group.numbered_level(line):
         return True
+    if appendix_line(line):
+        # TODO: REMOVE THIS FROM GENERAL STRATEGY
+        return True
     return False
 
 
