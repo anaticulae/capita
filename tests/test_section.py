@@ -114,7 +114,7 @@ def test_sections_simple():
     assert loaded == simple_sections, loaded
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_sections_master72():
     """Ensure that BUILDER in section is sorted correctly. There is a
     problem if we sort TOC and Title alphabetically. To avoid this
@@ -191,7 +191,7 @@ def test_sections_docu35():
     assert (mainpart.start, mainpart.end) == (6, 35)
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_sections_diss264():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.DISS264_PDF))

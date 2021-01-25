@@ -35,7 +35,7 @@ import sections.feature.chapter
         id='diss266',
     ),
 ])
-@utilatest.longrun
+@utilatest.nightly
 def test_chapter_extract(source, expected):
     source = power.link(source)
     # run

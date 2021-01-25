@@ -37,7 +37,7 @@ def diss266(result):
     pytest.param(power.DOCU27_PDF, None, id='restruct'),
     pytest.param(power.DISS266_PDF, diss266, id='diss266'),
 ])
-@utilatest.longrun
+@utilatest.nightly
 def test_run_sections(source, validate, testdir, monkeypatch):
     source = power.link(source)
     command = f'-i {source}'
