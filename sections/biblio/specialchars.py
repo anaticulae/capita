@@ -115,7 +115,7 @@ def keyworded(items) -> bool:
     return False
 
 
-def special_chars(raw: str) -> list:
+def special_chars(raw: str) -> bool:
     # TODO: A LOT OF MISMATCHES AS A RESULT OF PROGRAM CODE IN DOCUMENT
     result = []
     for line in raw.splitlines():
