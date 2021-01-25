@@ -27,6 +27,7 @@ def work(
         shortcut: str,
         pages: tuple = None,
         noheadlines: list = None,
+        second: bool = False,
 ) -> str:
     extracted = extract_xxx_likelihood(
         navigators,
@@ -35,6 +36,17 @@ def work(
         pages=pages,
         noheadlines=noheadlines,
     )
+    if second:
+        # disable required headline to merge table pages which follows
+        # start page.
+        without = extract_xxx_likelihood(
+            navigators,
+            headline=None,
+            shortcut=shortcut,
+            noheadlines=noheadlines,
+            pages=pages,
+        )
+        extracted = merge_second(extracted, without)
 
     dumped = serializeraw.dump_likelihood(extracted)
     return dumped
@@ -78,6 +90,11 @@ def matched(navigator, headline, noheadlines) -> bool:
     detected = sections.utils.headline.headlines(navigator, topsearch=True)
     if noheadlines and detected in noheadlines:
         return False
+    if not headline:
+        # disable headline check, use noheadline to skip false positive
+        # matches. False positive is detected when table of figure follow
+        # a table of content for example.
+        return True
     if detected and headline:
         if isinstance(headline, str):
             return detected == headline
@@ -125,3 +142,23 @@ def appendix_line(line: str) -> bool:
     if APPENDIX.match(line):
         return True
     return False
+
+
+def merge_second(extracted, without, min_merge=0.5):
+    """Merge following table pages which follows `extracted` first
+    table. Break merging after detecting first empty page."""
+    # TODO: DIRTY
+    start = -1
+    for index, item in enumerate(extracted):
+        if item.content.value == 1.0:
+            start = index
+            break
+    if start == -1:
+        return extracted
+    start += 1
+    for index, item in enumerate(without[start:], start=start):
+        if item.content.value <= 0.5:
+            break
+        # update value of first extraction
+        extracted[index].content.value = item.content.value
+    return extracted

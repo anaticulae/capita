@@ -56,5 +56,6 @@ def work(
         noheadlines=NOHEADLINES,
         shortcut='toc',
         pages=VALID_TOC_PAGES,
+        second=True,
     )
     return dumped
