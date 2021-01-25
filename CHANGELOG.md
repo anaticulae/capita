@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.14.2
+
+### Feature
+
+* extend table detection strategy (6e5299ba2ec4)
+* unite strategy with detected pages without headline (c2f828337aac)
+* add appendix line checker (c3cbe681d637)
+
 ## v0.14.1
 
 ## v0.14.0
