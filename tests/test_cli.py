@@ -33,8 +33,18 @@ def diss266(result):
     validate(result, expected)
 
 
+def bachelor37(result):
+    expected = [
+        (iamraw.sections.Introduction, 0, 6),
+        (iamraw.sections.MainPart, 6, 33),
+        (iamraw.sections.Appendix, 33, 37),
+    ]
+    validate(result, expected)
+
+
 @pytest.mark.parametrize('source, validate', [
     pytest.param(power.BACHELOR111_PDF, None, id='bachelor111'),
+    pytest.param(power.BACHELOR037_PDF, bachelor37, id='bachelor37'),
     pytest.param(power.BACHELOR063_PDF, None, id='bachelor63'),
     pytest.param(power.DOCU07_PDF, None, id='howto'),
     pytest.param(power.DOCU09_PDF, None, id='pyporting'),
