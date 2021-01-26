@@ -43,13 +43,13 @@ def bachelor37(result):
 
 
 @pytest.mark.parametrize('source, validate', [
-    pytest.param(power.BACHELOR111_PDF, None, id='bachelor111'),
     pytest.param(power.BACHELOR037_PDF, bachelor37, id='bachelor37'),
     pytest.param(power.BACHELOR063_PDF, None, id='bachelor63'),
+    pytest.param(power.BACHELOR111_PDF, None, id='bachelor111'),
+    pytest.param(power.DISS266_PDF, diss266, id='diss266'),
     pytest.param(power.DOCU07_PDF, None, id='howto'),
     pytest.param(power.DOCU09_PDF, None, id='pyporting'),
     pytest.param(power.DOCU27_PDF, None, id='restruct'),
-    pytest.param(power.DISS266_PDF, diss266, id='diss266'),
 ])
 @utilatest.nightly
 def test_run_sections(source, validate, testdir, monkeypatch):
