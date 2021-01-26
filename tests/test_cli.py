@@ -18,6 +18,11 @@ import sections
 import tests
 
 
+def validate(current, expected):
+    current = [(type(item), item.start, item.end) for item in current]
+    assert current == expected
+
+
 def diss266(result):
     expected = [  # TODO: MAY CHANGE LATER
         (iamraw.sections.Introduction, 0, 9),
@@ -25,8 +30,7 @@ def diss266(result):
         (iamraw.sections.Appendix, 214, 253),
         (iamraw.sections.MainPart, 253, 266),
     ]
-    current = [(type(item), item.start, item.end) for item in result]
-    assert current == expected
+    validate(result, expected)
 
 
 @pytest.mark.parametrize('source, validate', [
