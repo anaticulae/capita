@@ -131,25 +131,6 @@ def valid_line(line: str) -> bool:
         return True
     if groupme.toc.group.numbered_level(line):
         return True
-    if appendix_line(line):
-        # TODO: REMOVE THIS FROM GENERAL STRATEGY
-        return True
-    return False
-
-
-APPENDIX = re.compile(
-    r'(ANHANG|APPENDIX)[ ]{0,3}\d{1,2}[ ]{0,3}:{0,1}[ ]{0,5}.{0,50}\d{1,3}',
-    re.X,
-)
-
-
-def appendix_line(line: str) -> bool:
-    """\
-    >>> appendix_line('ANHANG 4: ABBILDUNGSVERZEICHNIS               251')
-    True
-    """
-    if APPENDIX.match(line):
-        return True
     return False
 
 

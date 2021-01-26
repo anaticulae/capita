@@ -14,6 +14,8 @@ TODO:
               table of abbreviation
 """
 
+import re
+
 import serializeraw
 import utila
 
@@ -57,5 +59,22 @@ def work(
         shortcut='toc',
         pages=VALID_TOC_PAGES,
         second=True,
+        pattern=appendix_line,
     )
     return dumped
+
+
+APPENDIX = re.compile(
+    r'(ANHANG|APPENDIX)[ ]{0,3}\d{1,2}[ ]{0,3}:{0,1}[ ]{0,5}.{0,50}\d{1,3}',
+    re.X,
+)
+
+
+def appendix_line(line: str) -> bool:
+    """\
+    >>> appendix_line('ANHANG 4: ABBILDUNGSVERZEICHNIS               251')
+    True
+    """
+    if APPENDIX.match(line):
+        return True
+    return False
