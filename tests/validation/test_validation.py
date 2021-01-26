@@ -20,7 +20,6 @@ import tests.validation.docu
 import tests.validation.master
 
 EXPECTED_FAILURE = {
-    power.BACHELOR037_PDF,
     power.BACHELOR056_PDF,
     power.BACHELOR111_PDF,
 }

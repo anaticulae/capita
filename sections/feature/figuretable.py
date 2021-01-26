@@ -10,6 +10,8 @@
 ========================
 """
 
+import re
+
 import serializeraw
 
 import sections.table.strategy
@@ -39,5 +41,22 @@ def work(
             'Tabellenverzeichnis',
         ],
         shortcut='figuretable',
+        pattern=figure,
     )
     return dumped
+
+
+FIGURE = re.compile(
+    r'(Abb\.{0,1}|Abbildung)[ ]{0,3}\d{1,2}[ ]{0,3}.{0,50}',
+    re.X,
+)
+
+
+def figure(line: str) -> bool:
+    """\
+    >>> figure('Abb. 7        Durchschnittliche Reaktionszeit (korrekte und')
+    True
+    """
+    if FIGURE.match(line):
+        return True
+    return False
