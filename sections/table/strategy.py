@@ -28,6 +28,7 @@ def work(
         pages: tuple = None,
         noheadlines: list = None,
         second: bool = False,
+        pattern: callable = None,
 ) -> str:
     extracted = extract_xxx_likelihood(
         navigators,
@@ -35,6 +36,7 @@ def work(
         shortcut=shortcut,
         pages=pages,
         noheadlines=noheadlines,
+        pattern=pattern,
     )
     if second:
         # disable required headline to merge table pages which follows
@@ -45,6 +47,7 @@ def work(
             shortcut=shortcut,
             noheadlines=noheadlines,
             pages=pages,
+            pattern=pattern,
         )
         extracted = merge_second(extracted, without)
 
@@ -58,10 +61,13 @@ def extract_xxx_likelihood(
         shortcut: str = 'xxx',
         pages: tuple = None,
         noheadlines: list = None,
+        pattern: callable = None,
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multi formed
     likelihood of being a table page."""
-    result = {page.page: (page, analyse_page(page)) for page in document}
+    result = {
+        page.page: (page, analyse_page(page, pattern)) for page in document
+    }
 
     result = {
         page: judged if not utila.should_skip(page, pages) and
@@ -102,7 +108,7 @@ def matched(navigator, headline, noheadlines) -> bool:
     return False
 
 
-def analyse_page(content) -> float:
+def analyse_page(content, pattern: callable = None) -> float:
     """Extract the number of lines which can contain any table-content
 
     Dots(. . .) are charactaristical for table lines.
@@ -112,9 +118,9 @@ def analyse_page(content) -> float:
     Returns:
         (linecount, possible_table_lines)
     """
+    valid = valid_line if not pattern else lambda x: valid_line(x) or pattern(x)
     linecount = len(content)
-    possible_toc_line = len([line for line in content if valid_line(line.text)])
-    # likelihood = possible_toc_line / linecount if linecount else 0.0
+    possible_toc_line = len([line for line in content if valid(line.text)])
     return linecount, possible_toc_line
 
 
