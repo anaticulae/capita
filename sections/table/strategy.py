@@ -9,7 +9,7 @@
 
 import re
 
-import groupme.toc.group
+import elements
 import iamraw
 import serializeraw
 import texmex
@@ -129,7 +129,7 @@ def valid_line(line: str) -> bool:
         return True
     if line.count('..') > 3:
         return True
-    if groupme.toc.group.numbered_level(line):
+    if elements.level_numbered(line):
         return True
     return False
 
