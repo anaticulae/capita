@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.15.0
+
+### Feature
+
+* use pattern to extend figuretable detector (dfc90182f950)
+* add option to define own valid line strategy (8bae99681b91)
+
 ## v0.14.2
 
 ### Feature
