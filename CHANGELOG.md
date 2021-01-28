@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.15.1
+
+### Fix
+
+* pass minimal value to method checker (5d7dfbf5c042)
+
 ## v0.15.0
 
 ### Feature
