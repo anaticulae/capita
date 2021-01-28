@@ -147,7 +147,7 @@ def merge_second(extracted, without, min_merge=0.5):
         return extracted
     start += 1
     for index, item in enumerate(without[start:], start=start):
-        if item.content.value <= 0.5:
+        if item.content.value <= min_merge:
             break
         # update value of first extraction
         extracted[index].content.value = item.content.value
