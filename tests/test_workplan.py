@@ -10,7 +10,6 @@
 import textwrap
 
 import power
-import pytest
 import utila
 import utilatest
 

@@ -42,7 +42,7 @@ def bachelor37(result):
     validate(result, expected)
 
 
-@pytest.mark.parametrize('source, validate', [
+@pytest.mark.parametrize('source, expected', [
     pytest.param(power.BACHELOR037_PDF, bachelor37, id='bachelor37'),
     pytest.param(power.BACHELOR063_PDF, None, id='bachelor63'),
     pytest.param(power.BACHELOR111_PDF, None, id='bachelor111'),
@@ -52,15 +52,15 @@ def bachelor37(result):
     pytest.param(power.DOCU27_PDF, None, id='restruct'),
 ])
 @utilatest.nightly
-def test_run_sections(source, validate, testdir, monkeypatch):
+def test_run_sections(source, expected, testdir, monkeypatch):
     source = power.link(source)
     command = f'-i {source}'
     tests.run_sections(command, monkeypatch=monkeypatch)
 
     loaded = serializeraw.load_sections(sections.path.sections_(testdir.tmpdir))
 
-    if validate:
-        validate(loaded)
+    if expected:
+        expected(loaded)
 
 
 @pytest.mark.parametrize('command', [
