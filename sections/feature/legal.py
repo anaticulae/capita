@@ -64,6 +64,8 @@ import utila
 
 import sections.utils.spa
 
+MIN_FEATURE_POINT_COUNT = 5  # TODO: HOLY VALUE
+
 
 def work(document: str, position: str, pages=None) -> str:
     data = sections.utils.spa.Data(
@@ -84,6 +86,32 @@ def work(document: str, position: str, pages=None) -> str:
 
     dumped = serializeraw.dump_likelihood(extracted)
     return dumped
+
+
+def analyse_page(navigator: texmex.PageTextNavigator
+                ) -> sections.feature.StatisticalResultItem:
+    # TODO: REPLACE AFTER UPGRADING TEXMEX
+    raw = utila.NEWLINE.join([item.text.strip() for item in navigator])
+
+    lower = raw.lower()
+    located = [item for item in FEATURE_POINTS if item in lower]
+
+    trust = 0.0
+    if 'Eidesstattliche Erklärung' in raw:
+        trust += 0.5
+    if 'Selbstständigkeitserklärung' in raw:
+        trust += 0.5
+
+    feature_point_count = len(located)
+    if feature_point_count >= MIN_FEATURE_POINT_COUNT:
+        trust += 0.25
+    if feature_point_count > 8:
+        trust += 0.5
+
+    if feature_point_count < MIN_FEATURE_POINT_COUNT:
+        feature_point_count = 0
+        trust = 0.0
+    return len(located), trust
 
 
 FEATURE_POINTS = utila.splitlines("""\
@@ -115,31 +143,3 @@ vorliegende Arbeit
 wörtlich
 ähnlicher Form
 """)
-
-MIN_FEATURE_POINT_COUNT = 5  # TODO: HOLY VALUE
-
-
-def analyse_page(navigator: texmex.PageTextNavigator
-                ) -> sections.feature.StatisticalResultItem:
-    # TODO: REPLACE AFTER UPGRADING TEXMEX
-    raw = utila.NEWLINE.join([item.text.strip() for item in navigator])
-
-    lower = raw.lower()
-    located = [item for item in FEATURE_POINTS if item in lower]
-
-    trust = 0.0
-    if 'Eidesstattliche Erklärung' in raw:
-        trust += 0.5
-    if 'Selbstständigkeitserklärung' in raw:
-        trust += 0.5
-
-    feature_point_count = len(located)
-    if feature_point_count >= MIN_FEATURE_POINT_COUNT:
-        trust += 0.25
-    if feature_point_count > 8:
-        trust += 0.5
-
-    if feature_point_count < MIN_FEATURE_POINT_COUNT:
-        feature_point_count = 0
-        trust = 0.0
-    return len(located), trust
