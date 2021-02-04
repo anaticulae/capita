@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import iamraw.path
+import iamraw
 import power
 import serializeraw
 import utila
@@ -17,17 +17,22 @@ import sections.feature.abbreviation
 
 
 @utilatest.longrun
-def test_abbreviations_work():
-    source = power.link(power.BACHELOR037_PDF)
+def test_abbreviations_bachelor37_work():
+    pages = (0, 1, 2, 5, 6)
+    source = power.BACHELOR037_PDF
+    extracted = abbreviations(source, pages)
+    selected = utila.select_page(extracted, page=1)
+    assert selected.content.value >= 0.8, str(selected)
+
+
+def abbreviations(source, pages):
+    source = power.link(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
-    pages = (0, 1, 2, 5, 6)
     extracted = sections.feature.abbreviation.work(
         text,
         textposition,
         pages=pages,
     )
-    assert len(extracted) > 50, str(extracted)
     loaded = serializeraw.load_likelihood(extracted)
-    selected = utila.select_page(loaded, page=1)
-    assert selected.content.value >= 0.8, str(selected)
+    return loaded
