@@ -86,35 +86,35 @@ def work(document: str, position: str, pages=None) -> str:
     return dumped
 
 
-FEATURE_POINTS = [
-    'Arbeit',
-    'Datum',
-    'Eidesstattliche Erklärung',
-    'Hilfsmittel',
-    'Ort',
-    'Prüfungsleistung',
-    'Quellen',
-    'Selbstständigkeitserklärung',
-    'Studienleistung',
-    'Unterschrift',
-    'angefertigt',
-    'aufgeführten Quellen und Hilfsmittel',
-    'ausschließlich',
-    'diese Arbeit',
-    'eigenhändig',
-    'entnommen',
-    'erkläre ich',
-    'fremden Quellen wörtlich',
-    'gleicher oder ähnlicher Form',
-    'hiermit erkläre ich',
-    'selbstständig',
-    'sinngemäß entnommen',
-    'sinngemäß',
-    'versichere ich',
-    'vorliegende Arbeit',
-    'wörtlich',
-    'ähnlicher Form',
-]
+FEATURE_POINTS = utila.splitlines("""\
+Arbeit
+Datum
+Eidesstattliche Erklärung
+Hilfsmittel
+Ort
+Prüfungsleistung
+Quellen
+Selbstständigkeitserklärung
+Studienleistung
+Unterschrift
+angefertigt
+aufgeführten Quellen und Hilfsmittel
+ausschließlich
+diese Arbeit
+eigenhändig
+entnommen
+erkläre ich
+fremden Quellen wörtlich
+gleicher oder ähnlicher Form
+hiermit erkläre ich
+selbstständig
+sinngemäß
+sinngemäß entnommen
+versichere ich
+vorliegende Arbeit
+wörtlich
+ähnlicher Form
+""")
 
 MIN_FEATURE_POINT_COUNT = 5  # TODO: HOLY VALUE
 
@@ -125,7 +125,7 @@ def analyse_page(navigator: texmex.PageTextNavigator
     raw = utila.NEWLINE.join([item.text.strip() for item in navigator])
 
     lower = raw.lower()
-    located = [item for item in FEATURE_POINTS if item.lower() in lower]
+    located = [item for item in FEATURE_POINTS if item in lower]
 
     trust = 0.0
     if 'Eidesstattliche Erklärung' in raw:
