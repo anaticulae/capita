@@ -171,8 +171,8 @@ def test_sections_master116():
 
 
 def test_sections_docu35():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.DOCU35_PDF))
+    source = power.link(power.DOCU35_PDF)
+    result = sections.feature.section.extract_sections_frompath(source)
 
     expected = [
         iamraw.sections.Introduction,
