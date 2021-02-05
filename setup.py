@@ -50,7 +50,6 @@ if __name__ == "__main__":
             'sections.feature',
             'sections.table',
             'sections.utils',
-            'sections.workplan',
         ],
         entry_points={
             'console_scripts': ['sections = sections.cli:main'],

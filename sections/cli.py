@@ -153,14 +153,6 @@ WORKPLAN = [
         ],
         output=('result',),
     ),
-    step(
-        'workplan',
-        inputs=[
-            ResultFile('sections', 'section_result'),
-        ],
-        # working plan (.pl)
-        output=(('todo', 'pl'),),
-    ),
 ]
 
 
