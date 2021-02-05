@@ -23,6 +23,7 @@ WORKER = 6
 
 RESOURCES = [
     (power.DISS266_PDF, None),
+    (power.DISS170_PDF, None),
     (power.MASTER110_PDF, None),
     (power.MASTER072_PDF, None),
     (power.MASTER098_PDF, None),
@@ -54,8 +55,9 @@ def pytest_sessionstart():
 
 def extract(resources):
     genex.extract(
-        files=resources,
+        base=power.REPOSITORY,
         destination=power.generated(),
-        worker=WORKER,
+        files=resources,
         groupme=True,
+        worker=WORKER,
     )
