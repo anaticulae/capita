@@ -45,8 +45,8 @@ def bachelor37(result):
 def diss170(result):
     expected = [
         (iamraw.sections.Introduction, 0, 6),
-        (iamraw.sections.MainPart, 6, 33),
-        (iamraw.sections.Appendix, 33, 37),
+        (iamraw.sections.MainPart, 6, 141),
+        (iamraw.sections.Appendix, 141, 170),
     ]
     validate(result, expected)
 

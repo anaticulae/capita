@@ -25,6 +25,15 @@ def test_abbreviations_bachelor37_work():
     assert selected.content.value >= 0.8, str(selected)
 
 
+def test_abbreviations_diss170_work():
+    pages = (141, 142)
+    source = power.DISS170_PDF
+    extracted = abbreviations(source, pages)
+    selected = utila.select_pages(extracted, pages=pages)
+    current = [item.content.value >= 0.6 for item in selected]
+    assert current == [True, True], str(selected)
+
+
 def abbreviations(source, pages):
     source = power.link(source)
     text = iamraw.path.text(source)
