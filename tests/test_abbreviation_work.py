@@ -34,6 +34,14 @@ def test_abbreviations_diss170_work():
     assert current == [True, True], str(selected)
 
 
+def test_no_abbreviations_master72_page9():
+    source = power.MASTER072_PDF
+    page = 9
+    extracted = abbreviations(source, page)
+    selected = utila.select_page(extracted, page=page)
+    assert not selected.content.value
+
+
 def abbreviations(source, pages):
     source = power.link(source)
     text = iamraw.path.text(source)
