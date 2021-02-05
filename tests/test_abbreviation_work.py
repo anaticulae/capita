@@ -25,6 +25,7 @@ def test_abbreviations_bachelor37_work():
     assert selected.content.value >= 0.8, str(selected)
 
 
+@utilatest.longrun
 def test_abbreviations_diss170_work():
     pages = (141, 142)
     source = power.DISS170_PDF
