@@ -82,7 +82,7 @@ def analyse_page(content):
         # Use backup strategy to collect double column page which can
         # follow headlined page
         parsed = geostrat.parse(content, column_count=2)
-        if parsed:
+        if not invalid_column(parsed):
             return BACKUP_PAGE
         return NO_PAGE
     if isinstance(headlines, str):
@@ -91,3 +91,16 @@ def analyse_page(content):
         if item in headlines:
             return 1, 1
     return NO_PAGE
+
+
+def invalid_column(data: list) -> bool:
+    if not data:
+        return True
+    if not data[0]:
+        return True
+    if not data[1]:
+        return True
+    if len(data) != 2:
+        return True
+    # TODO: CHECK THAT LEFT AND RIGHT COLUMN ARE NEARLY EQUAL
+    return False
