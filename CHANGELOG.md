@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v1.0.0
+
+### Feature
+
+* remove workplan (95eeda297026)
+* increase strictness of column check (29a96bf2016a)
+* use merge to merge following non headlined pages (dd79bd146b12)
+* use better headline selector strategy (c082c4772fb7)
+* improve code style and use better data structure (2cdb26c95969)
+
+### Documentation
+
+* Happy New Year! (dc9688b42eda)
+
 ## v0.15.1
 
 ### Fix
