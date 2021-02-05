@@ -14,13 +14,18 @@ We search for selective headline "Abkuerzungsverzeichnis, ...".
 NOTE: This approach is only for demo time.
 """
 
+import geostrat
 import iamraw
 import serializeraw
 
 import sections.feature
+import sections.table.strategy
 import sections.utils.headline
 
 NO_PAGE = (0, 0)
+BACKUP_PAGE = (1, 0.5)
+
+ABBREVIATION_TRUST_MIN = 0.65  # TODO: HOLY VALUE
 
 
 def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
@@ -46,6 +51,19 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
     ]
     result = sorted(result, key=lambda x: x.page)
 
+    # TODO: A LITTLE HACKY BUT WORKS
+    result = sections.table.strategy.merge_second(
+        result,
+        result,
+        min_merge=0.49,
+        replace=0.75,
+    )
+    for item in result:
+        if item.content.value >= ABBREVIATION_TRUST_MIN:
+            continue
+        # remove too low confidence items. Skip to much double column pages
+        item.content.value = 0.0
+
     dumped = serializeraw.dump_likelihood(result)
     return dumped
 
@@ -61,6 +79,11 @@ HEADLINES = [
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
+        # Use backup strategy to collect double column page which can
+        # follow headlined page
+        parsed = geostrat.parse(content, column_count=2)
+        if parsed:
+            return BACKUP_PAGE
         return NO_PAGE
     if isinstance(headlines, str):
         headlines = [headlines]

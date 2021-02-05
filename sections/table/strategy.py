@@ -132,7 +132,7 @@ def valid_line(line: str) -> bool:
     return False
 
 
-def merge_second(extracted, without, min_merge=0.5):
+def merge_second(extracted, without, min_merge=0.5, replace=None):
     """Merge following table pages which follows `extracted` first
     table. Break merging after detecting first empty page."""
     # TODO: DIRTY
@@ -148,5 +148,6 @@ def merge_second(extracted, without, min_merge=0.5):
         if item.content.value <= min_merge:
             break
         # update value of first extraction
-        extracted[index].content.value = item.content.value
+        extracted[index].content.value = (item.content.value
+                                          if replace is None else replace)
     return extracted
