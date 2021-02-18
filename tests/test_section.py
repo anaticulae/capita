@@ -248,6 +248,19 @@ def test_sections_master112():
     assert isinstance(expected_toc, iamraw.sections.TableOfContent)
 
 
+@utilatest.longrun
+def test_sections_bachelor128():
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.BACHELOR128_PDF))
+
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    ]
+    check_sections(result, expected)
+
+
 @pytest.mark.xfail(reason='toc detector changed?')
 def test_sections_master075_appendix():
     result = sections.feature.section.extract_sections_frompath(
