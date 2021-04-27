@@ -74,8 +74,15 @@ def test_dump_and_load_likelhood(
     assert loaded == result
 
 
-def test_extract_title_likelihood_master72():
+def titlepage_likelihood(document: str) -> tuple:
     title = sections.feature.title.extract_titlelikelihood_frompath(
-        power.link(power.MASTER072_PDF), pages=tuple(range(10)))
+        power.link(document),
+        pages=tuple(range(10)),
+    )
     extracted = sections.utils.simple_content(title)
+    return extracted
+
+
+def test_extract_title_likelihood_master72():
+    extracted = titlepage_likelihood(power.MASTER072_PDF)
     assert extracted[0] >= 0.95
