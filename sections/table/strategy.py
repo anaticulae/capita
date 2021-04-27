@@ -98,17 +98,17 @@ def matched(navigator, headline, noheadlines) -> bool:
     """Collect headlines from `navigator` and check if given `headline`
     is found and colected headline is not `noheadlines`."""
     detected = sections.utils.headline.headlines(navigator, topsearch=True)
-    if noheadlines and detected in noheadlines:
-        return False
+    if noheadlines and detected:
+        if utila.similar(noheadlines, detected, maxdiff=0.95):
+            return False
     if not headline:
         # disable headline check, use noheadline to skip false positive
         # matches. False positive is detected when table of figure follow
         # a table of content for example.
         return True
     if detected and headline:
-        if isinstance(headline, str):
-            return detected == headline
-        return detected in headline
+        if utila.similar(headline, detected, maxdiff=0.95):
+            return True
     return False
 
 
