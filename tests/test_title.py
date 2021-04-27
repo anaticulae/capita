@@ -86,3 +86,9 @@ def titlepage_likelihood(document: str) -> tuple:
 def test_extract_title_likelihood_master72():
     extracted = titlepage_likelihood(power.MASTER072_PDF)
     assert extracted[0] >= 0.95
+
+
+def test_extract_title_likelihood_order107():
+    extracted = titlepage_likelihood(power.ORDER109_PDF)  # TODO: CHANGE 107
+    # assert extracted[0] >= 0.95
+    assert extracted[2] == 0.0
