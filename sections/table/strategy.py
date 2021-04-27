@@ -60,6 +60,7 @@ def extract_xxx_likelihood(
         pages: tuple = None,
         noheadlines: list = None,
         pattern: callable = None,
+        likelihood_min: float = 0.2,
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multi formed
     likelihood of being a table page."""
@@ -77,6 +78,11 @@ def extract_xxx_likelihood(
 
     uniformed = multiformed if multiformed else uniformed
     assert len(uniformed) == len(document)
+
+    uniformed = {
+        page: 0.0 if value < likelihood_min else value
+        for page, value in uniformed.items()
+    }
 
     result = [
         iamraw.PageContentLikelihood(
