@@ -30,6 +30,7 @@ RESOURCES = [
     (power.BACHELOR128_PDF, None),
     (power.BACHELOR037_PDF, None),
     (power.DOCU35_PDF, None),
+    (power.ORDER109_PDF, None),  # TODO: CHANGE TO 107
     (power.MASTER031_PDF, None),
     (power.MASTER075_PDF, None),
     (power.DISS264_PDF, '0:50,215:234'),
