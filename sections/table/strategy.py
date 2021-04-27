@@ -148,6 +148,8 @@ def merge_second(extracted, without, min_merge=0.5, replace=None):
         if item.content.value <= min_merge:
             break
         # update value of first extraction
-        extracted[index].content.value = (item.content.value
-                                          if replace is None else replace)
+        if replace is None:
+            extracted[index].content.value = item.content.value
+        else:
+            extracted[index].content.value = replace
     return extracted
