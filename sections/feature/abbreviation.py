@@ -17,6 +17,7 @@ NOTE: This approach is only for demo time.
 import geostrat
 import iamraw
 import serializeraw
+import utila
 
 import sections.feature
 import sections.table.strategy
@@ -102,5 +103,23 @@ def invalid_column(data: list) -> bool:
         return True
     if len(data) != 2:
         return True
+    if numbered_column(data):
+        return True
     # TODO: CHECK THAT LEFT AND RIGHT COLUMN ARE NEARLY EQUAL
     return False
+
+
+def numbered_column(data: list) -> bool:
+    right = data[1]
+    right_numbers = [
+        item for item in right if item and utila.parse_numbers(item.text)
+    ]
+    if len(right) < 6:
+        return False
+    if not right_numbers:
+        return False
+    rate = len(right) / len(right_numbers)
+    if rate <= 0.3:
+        return False
+    # right number column, maybe a table of content page
+    return True
