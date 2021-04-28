@@ -19,6 +19,8 @@ one. Without selecting the biggest cluster, more than one bib can be
 detected.
 """
 
+import statistics
+
 import configo
 import german
 import texmex
@@ -93,6 +95,9 @@ def analyse_page(navigator: texmex.PageTextNavigator
         # thirty percent bonus
         marker *= 1.3  # TODO: HOLY VALUE
 
+    if content_page(raw):
+        marker = 0
+
     likelihood = 0.0
     if marker and len(navigator) >= 1:
         likelihood = marker / len(navigator)
@@ -117,5 +122,20 @@ def special_chars(raw: str) -> bool:
     word_count = len(result)
     classifier = counted / word_count if word_count else 0
     if word_count > 40 and classifier > 0.3:  # TODO HOLY VALUE
+        return True
+    return False
+
+
+def content_page(raw: str) -> bool:
+    """Verify that page contains a `normal` number of sentences."""
+    sentences = german.sentence_tokenize(raw, normalize_spaces=True)
+    if not sentences:
+        return False
+    # german does not split sentences at `:` but bib tables uses : often
+    # for separating parts. If we do not split by double collon we archive
+    # a lot of false postive results.
+    sentences = utila.flatten([item.split(':') for item in sentences])
+    length_mean = statistics.mean([len(sentence) for sentence in sentences])
+    if length_mean > 100:
         return True
     return False
