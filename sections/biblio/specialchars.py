@@ -108,7 +108,7 @@ def special_chars(raw: str) -> bool:
     # TODO: A LOT OF MISMATCHES AS A RESULT OF PROGRAM CODE IN DOCUMENT
     result = []
     for line in raw.splitlines():
-        parsed = german.split_words(line, validate_sentences=False)
+        parsed = german.word_tokenize(line, validate_sentences=False)
         result.extend(parsed)
     counted = raw.count(';') + raw.count(',') + raw.count('/') + raw.count(':')
     counted += raw.count('[') + raw.count(']') + raw.count(')') + raw.count('(')

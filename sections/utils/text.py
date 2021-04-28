@@ -87,7 +87,7 @@ def textonpage(page: texmex.PageTextNavigator) -> TextOnPage:
     result = TextOnPage()
     for chunk in page:
         text = chunk.text.strip()
-        sentences = german.split_sentences(text)
+        sentences = german.sentence_tokenize(text)
         for item in sentences:
             if not german.is_sentence(item, min_length=20):  # TODO: HOLY VALUE
                 continue
