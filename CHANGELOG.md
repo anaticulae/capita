@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v1.1.0
+
+### Feature
+
+* add method to skip regular content pages (1bc3b43610fd)
+* use improved headline comparer (a83e47634317)
+* add short left column check (bc682e41912f)
+* skip potential toc page as title page (3f8205466eb7)
+* add min toc value to identify as table of content (d2844d7dde41)
+
+### Fix
+
+* skip numbered column as abbreviation table (50ea7a268f0c)
+* ensure to support double headline detection (9ccb42d641c4)
+
 ## v1.0.1
 
 ## v1.0.0
