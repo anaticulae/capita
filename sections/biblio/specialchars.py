@@ -65,7 +65,11 @@ def analyse_page(navigator: texmex.PageTextNavigator
                 ) -> sections.feature.StatisticalResultItem:
 
     headlines = sections.utils.headline.headlines(navigator)
-    if headlines and keyworded(headlines):
+    if headlines and utila.similar(
+            expected=KEYWORDS,
+            current=headlines,
+            maxdiff=0.95,
+    ):
         # Bibliography headline on page
         return len(navigator), len(navigator)
 
@@ -98,21 +102,6 @@ def analyse_page(navigator: texmex.PageTextNavigator
         # this can not be a bib table
         marker = 0
     return len(navigator), marker
-
-
-def keyworded(items) -> bool:
-    """\
-    >>> keyworded('Literatur')
-    True
-    """
-    if isinstance(items, str):
-        items = [items]
-    for item in items:
-        item = item.lower()
-        for check in KEYWORDS:
-            if check.lower() == item:
-                return True
-    return False
 
 
 def special_chars(raw: str) -> bool:
