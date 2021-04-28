@@ -88,11 +88,8 @@ def analyse_page(content):
         if not invalid_column(parsed):
             return BACKUP_PAGE
         return NO_PAGE
-    if isinstance(headlines, str):
-        headlines = [headlines]
-    for item in HEADLINES:
-        if item in headlines:
-            return 1, 1
+    if utila.similar(expected=HEADLINES, current=headlines, maxdiff=0.95):
+        return 1, 1
     return NO_PAGE
 
 
