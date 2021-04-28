@@ -14,6 +14,8 @@ We search for selective headline "Abkuerzungsverzeichnis, ...".
 NOTE: This approach is only for demo time.
 """
 
+import statistics
+
 import geostrat
 import iamraw
 import serializeraw
@@ -94,7 +96,7 @@ def analyse_page(content):
     return NO_PAGE
 
 
-def invalid_column(data: list) -> bool:
+def invalid_column(data: list) -> bool:  # pylint:disable=R0911
     if not data:
         return True
     if not data[0]:
@@ -104,6 +106,8 @@ def invalid_column(data: list) -> bool:
     if len(data) != 2:
         return True
     if numbered_column(data):
+        return True
+    if not short_column(data[0]):
         return True
     # TODO: CHECK THAT LEFT AND RIGHT COLUMN ARE NEARLY EQUAL
     return False
@@ -122,4 +126,13 @@ def numbered_column(data: list) -> bool:
     if rate <= 0.3:
         return False
     # right number column, maybe a table of content page
+    return True
+
+
+def short_column(left) -> bool:
+    if not left:
+        return False
+    mean = statistics.mean([len(item.text) for item in left])
+    if mean > 10.0:  # HOLY VALUE
+        return False
     return True
