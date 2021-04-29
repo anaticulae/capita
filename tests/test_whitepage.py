@@ -11,8 +11,10 @@ import os
 
 import iamraw.path
 import power
+import pytest
 import serializeraw
 import serializeraw.images
+import utila
 
 import sections.feature.whitepage
 
@@ -22,6 +24,8 @@ RESTRUCT_EXPECTED = (
     [1],
     [3, 5, 7, 11, 19, 21, 23, 25],
 )
+# CONTENT, BLANK, WHITE
+MASTER155_EXPECTED = (utila.ranged_list(0, 155), [], [])
 
 
 def current(items):
@@ -68,8 +72,11 @@ def whitepages(document: str):
     return result
 
 
-def test_whitepages_extract():
-    result = whitepages(power.DOCU27_PDF)
+@pytest.mark.parametrize('source, expected', [
+    pytest.param(power.DOCU27_PDF, RESTRUCT_EXPECTED, id='docu27'),
+    pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
+])
+def test_whitepages_extract_x(source, expected):
+    result = whitepages(source)
     result = current(result)
-    # convert dict to list
-    assert result == RESTRUCT_EXPECTED
+    assert result == expected
