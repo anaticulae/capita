@@ -15,47 +15,43 @@ from sections.feature.whitepage import PageContentWhitepages
 from sections.feature.whitepage import WhitePage
 from sections.feature.whitepage import extract_whitepages
 
-RESTRUCT_EXPECTED = [
-    PageContentWhitepages(content=WhitePage.CONTENT, page=0),
-    PageContentWhitepages(content=WhitePage.BLANK, page=1),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=2),
-    PageContentWhitepages(content=WhitePage.WHITE, page=3),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=4),
-    PageContentWhitepages(content=WhitePage.WHITE, page=5),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=6),
-    PageContentWhitepages(content=WhitePage.WHITE, page=7),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=8),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=9),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=10),
-    PageContentWhitepages(content=WhitePage.WHITE, page=11),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=12),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=13),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=14),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=15),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=16),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=17),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=18),
-    PageContentWhitepages(content=WhitePage.WHITE, page=19),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=20),
-    PageContentWhitepages(content=WhitePage.WHITE, page=21),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=22),
-    PageContentWhitepages(content=WhitePage.WHITE, page=23),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=24),
-    PageContentWhitepages(content=WhitePage.WHITE, page=25),
-    PageContentWhitepages(content=WhitePage.CONTENT, page=26),
-]
+# CONTENT, BLANK, WHITE
+RESTRUCT_EXPECTED = (
+    [0, 2, 4, 6, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 20, 22, 24, 26],
+    [1],
+    [3, 5, 7, 11, 19, 21, 23, 25],
+)
 
 
-def test_whitepages_extract():
-    docu27 = power.link(power.DOCU27_PDF)
-    navigators = serializeraw.create_pagetextnavigators_frompath(docu27)
-    document = serializeraw.load_document(iamraw.path.text(docu27))
+def current(items):
+    content, blank, white = [], [], []
+    for item in items:
+        if item.content == WhitePage.CONTENT:
+            content.append(item.page)
+        elif item.content == WhitePage.BLANK:
+            blank.append(item.page)
+        elif item.content == WhitePage.WHITE:
+            white.append(item.page)
+        else:
+            raise ValueError(f'should not happen: {item}')
+    return content, blank, white
 
-    headerfooters = iamraw.path.headerfooters(docu27)
+
+def whitepages(document: str):
+    source = power.link(document)
+    navigators = serializeraw.create_pagetextnavigators_frompath(source)
+    document = serializeraw.load_document(iamraw.path.text(source))
+
+    headerfooters = iamraw.path.headerfooters(source)
     headerfooters = serializeraw.load_headerfooter(headerfooters)
 
     # work
     result = extract_whitepages(document, navigators, headerfooters)
+    return result
 
+
+def test_whitepages_extract():
+    result = whitepages(power.DOCU27_PDF)
+    result = current(result)
     # convert dict to list
     assert result == RESTRUCT_EXPECTED
