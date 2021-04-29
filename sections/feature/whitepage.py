@@ -27,7 +27,6 @@ required resources:
 
 import collections
 import enum
-import os
 import typing
 
 import iamraw
