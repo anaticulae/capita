@@ -11,9 +11,7 @@ import iamraw.path
 import power
 import serializeraw
 
-from sections.feature.whitepage import PageContentWhitepages
-from sections.feature.whitepage import WhitePage
-from sections.feature.whitepage import extract_whitepages
+import sections.feature.whitepage
 
 # CONTENT, BLANK, WHITE
 RESTRUCT_EXPECTED = (
@@ -26,11 +24,11 @@ RESTRUCT_EXPECTED = (
 def current(items):
     content, blank, white = [], [], []
     for item in items:
-        if item.content == WhitePage.CONTENT:
+        if item.content == sections.feature.whitepage.WhitePage.CONTENT:
             content.append(item.page)
-        elif item.content == WhitePage.BLANK:
+        elif item.content == sections.feature.whitepage.WhitePage.BLANK:
             blank.append(item.page)
-        elif item.content == WhitePage.WHITE:
+        elif item.content == sections.feature.whitepage.WhitePage.WHITE:
             white.append(item.page)
         else:
             raise ValueError(f'should not happen: {item}')
@@ -46,7 +44,11 @@ def whitepages(document: str):
     headerfooters = serializeraw.load_headerfooter(headerfooters)
 
     # work
-    result = extract_whitepages(document, navigators, headerfooters)
+    result = sections.feature.whitepage.extract_whitepages(
+        document,
+        navigators,
+        headerfooters,
+    )
     return result
 
 
