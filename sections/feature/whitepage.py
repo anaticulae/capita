@@ -133,10 +133,3 @@ def extract_whitepages(
     ]
     result = sorted(result, key=lambda x: x.page)
     return result
-
-
-def whitepage_value_to_percent(whitepage: WhitePage):
-    if whitepage is None or whitepage == '':
-        # TODO: str comparison is not very consequent, but ok in the moment
-        return 0.0
-    return 1.0
