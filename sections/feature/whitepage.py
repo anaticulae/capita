@@ -126,22 +126,27 @@ def extract_whitepages(  # pylint:disable=R0914
         images: list = None,
         figures: list = None,
 ):
+    images = images if images else []
+    figures = figures if figures else []
     result = {}
-    for pagenumber, (currentpage, navigator, headerfooter) in utila.sync_pages([
+    for pagenumber, data in utila.sync_pages([
             document,
             navigators,
             headerfooters,
+            images,
+            figures,
     ]):
+        currentpage, navigator, headerfooter, figure, image = data
+        noimage = not image and not figure
+        nocontent = not navigator and noimage
         header, footer = None, None
         if headerfooter:
             header, footer = headerfooter.header, headerfooter.footer
-
-        if not navigator:
+        if nocontent:
             result[pagenumber] = WhitePage.BLANK
             continue
-
         if not header and not footer:
-            if not currentpage.children:
+            if not currentpage.children and noimage:
                 result[pagenumber] = WhitePage.BLANK
             else:
                 # Elements on the page, maybe title page, chapter page...
@@ -149,12 +154,12 @@ def extract_whitepages(  # pylint:disable=R0914
         else:
             top = header.end if header else texmex.START
             bottom = footer.begin if footer else texmex.END
-            if not navigator.between(top, bottom):
+            if not navigator.between(top, bottom) and noimage:
                 result[pagenumber] = WhitePage.WHITE
             else:
                 # page with footer and/or header and content - "normal page"
                 result[pagenumber] = WhitePage.CONTENT
-
+    # convert
     result = [
         PageContentWhitepages(
             page=page,
