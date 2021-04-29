@@ -122,6 +122,8 @@ WORKPLAN = [
             ResultFile('rawmaker', 'text_text'),
             ResultFile('rawmaker', 'text_positions'),
             ResultFile('groupme', 'footer_footerheader'),
+            utila.Directory('rawmaker__images_images'),
+            utila.Directory('rawmaker__figures_figures'),
         ],
         output=('likelihood',),
     ),

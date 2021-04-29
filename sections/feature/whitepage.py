@@ -27,10 +27,12 @@ required resources:
 
 import collections
 import enum
+import os
 import typing
 
 import iamraw
 import serializeraw
+import serializeraw.images
 import texmex
 import utila
 
@@ -50,6 +52,8 @@ def work(
         document: str,
         position: str,
         footers: str,
+        images: str = None,
+        figures: str = None,
         pages=None,
 ) -> str:
     """Extract `WhitePage` out of document.
@@ -60,6 +64,8 @@ def work(
         document(path): path to document text
         position(path): path to document text positions
         footers(path): path to extract footers
+        images(path): path to images
+        figures(path): path to figures
         pages(list): select `pages` to load
     Returns:
         dumped `yaml` result of extracted whitepages
@@ -75,26 +81,50 @@ def work(
         footers,
         pages=pages,
     )
-
     navigators = texmex.create_pagetextnavigators(
         text=document,
         text_positions=position,
     )
+    images, figures = load_imagesfigures(images, figures, pages)
 
     # work
     extracted = extract_whitepages(
         document,
         navigators,
         headerfooters,
+        images,
+        figures,
     )
     dumped = serializeraw.dump_whitepages(extracted)
     return dumped
 
 
-def extract_whitepages(
+def load_imagesfigures(images, figures, pages):
+    if images and utila.exists(images[0]):
+        images = serializeraw.images.load_image_informations_frompath(
+            images[0],
+            pages=pages,
+        )
+    else:
+        utila.error(f'no images: {images}')
+        images = None
+    if figures and utila.exists(figures[0]):
+        figures = serializeraw.images.load_image_informations_frompath(
+            figures[0],
+            pages=pages,
+        )
+    else:
+        utila.error(f'no figures: {figures}')
+        figures = None
+    return images, figures
+
+
+def extract_whitepages(  # pylint:disable=R0914
         document: iamraw.Document,
         navigators: typing.List[texmex.PageTextNavigator],
         headerfooters,
+        images: list = None,
+        figures: list = None,
 ):
     result = {}
     for pagenumber, (currentpage, navigator, headerfooter) in utila.sync_pages([
