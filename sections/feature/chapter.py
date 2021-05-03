@@ -39,13 +39,17 @@ import utila
 def work(
         document: str,
         position: str,
+        sizeandborder: str,
+        footerheader: str,
         tocpath: str,
         pages: tuple = None,
 ) -> str:
     """Determine likelihood of beeing a chapter startpage."""
-    navigators = serializeraw.create_pagetextnavigators_fromfile(
+    navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
         text=document,
         textpositions=position,
+        sizeandborderpath=sizeandborder,
+        headerfooterpath=footerheader,
         pages=pages,
     )
     tocs = serializeraw.load_toc(tocpath)

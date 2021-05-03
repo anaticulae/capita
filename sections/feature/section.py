@@ -466,6 +466,8 @@ def extract_sections_frompath(  # pylint:disable=R0914
     chapter = sections.feature.chapter.work(
         text,
         textposition,
+        sizeandborder,
+        footers,
         toc,
         pages=pages,
     )

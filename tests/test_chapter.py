@@ -71,6 +71,8 @@ def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     dumped = sections.feature.chapter.work(
         document=source,  # use default path
         position=source,
+        sizeandborder=source,
+        footerheader=source,
         tocpath=source,
         pages=pages,
     )
