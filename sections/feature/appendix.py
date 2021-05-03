@@ -60,6 +60,10 @@ HEADLINES = [
     'Anhang B',
     'Anhang C',
     'Anhang D',
+    'I Anhang',
+    'II Anhang',
+    'III Anhang',
+    'Appendix',
 ]
 
 
