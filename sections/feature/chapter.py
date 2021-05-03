@@ -119,7 +119,7 @@ CHAPTER_PATTERN = re.compile(
 # sections etc.
 NUMBER_PATTERN = re.compile(
     r'^'  # page start
-    r'[0-9]{1,2}[\.]{0,1}'  # chapter number with dot
+    r'(?P<number>[0-9]{1,2})[\.]{0,1}'  # chapter number with dot
     r'[ ]{1,4}'
     r'[^0-9\n]{5,}',  # non numeric element
     re.VERBOSE,
@@ -164,6 +164,10 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
                 if len(line) > 75:  # TODO: HOLY VALUE
                     # TODO: REQUIRE A BETTER SELECTOR
                     # seam to be a content line.
+                    continue
+                chapternumber = int(matched['number'])
+                if chapternumber > 13:  # TODO: HOLY VALYE
+                    utila.debug(f'chapter number to hight: {line}')
                     continue
                 return True
         return False
