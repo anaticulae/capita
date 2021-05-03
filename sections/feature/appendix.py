@@ -67,12 +67,7 @@ def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
         return NO_PAGE
-    if isinstance(headlines, str):
-        headlines = [headlines]
-
     # ensure that every cased headlines are parsed correctly
-    headlines = utila.lower(*headlines)
-    for item in utila.lower(*HEADLINES):
-        if item in headlines:
-            return 1, 1
+    if utila.similar(HEADLINES, headlines, maxdiff=0.75):
+        return 1, 1
     return NO_PAGE
