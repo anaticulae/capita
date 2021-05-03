@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
 import elements
 import iamraw
 import serializeraw
@@ -17,6 +18,9 @@ import sections.feature
 import sections.utils.headline
 
 NO_PAGE = (0, 0)
+
+HEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(0.85, limit=1.0)
+NOHEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(0.85, limit=1.0)
 
 
 def work(
@@ -99,7 +103,7 @@ def matched(navigator, headline, noheadlines) -> bool:
     is found and colected headline is not `noheadlines`."""
     detected = sections.utils.headline.headlines(navigator, topsearch=True)
     if noheadlines and detected:
-        if utila.similar(noheadlines, detected, maxdiff=0.95):
+        if utila.similar(noheadlines, detected, maxdiff=HEADLINE_COLLECT_MIN):
             return False
     if not headline:
         # disable headline check, use noheadline to skip false positive
@@ -107,7 +111,7 @@ def matched(navigator, headline, noheadlines) -> bool:
         # a table of content for example.
         return True
     if detected and headline:
-        if utila.similar(headline, detected, maxdiff=0.95):
+        if utila.similar(headline, detected, maxdiff=NOHEADLINE_COLLECT_MIN):
             return True
     return False
 
