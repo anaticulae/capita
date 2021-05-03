@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.2.0
+
+### Feature
+
+* skip too hight chapter cause of false positive (bd4f5efc50c1)
+* extend appendix pattern (eaacc4d87805)
+* use content navigator to exclude header (8e27921b9885)
+* lower min headline match (2589e256f935)
+* use figures for blank/empty page check (bf5a11026556)
+* load figures and images if exists (7d4a2b9275cd)
+
 ## v1.1.0
 
 ### Feature
