@@ -289,3 +289,22 @@ def test_sections_master075_appendix():
 
     for page, valid in zip(appendix, expected):
         assert isinstance(page, valid)
+
+
+@utilatest.longrun
+def test_sections_master91a():
+    result = sections.feature.section.extract_sections_frompath(
+        power.link(power.MASTER091A_PDF))
+
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    ]
+    check_sections(result, expected)
+
+    intro, mainpart, appendix = result
+
+    assert (intro.start, intro.end) == (0, 13)
+    assert (mainpart.start, mainpart.end) == (13, 74)
+    assert (appendix.start, appendix.end) == (74, 91)
