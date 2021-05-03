@@ -31,7 +31,7 @@ import sections.feature.chapter
     ),
     pytest.param(
         power.DISS266_PDF,
-        [4, 5, 9, 23, 81, 103, 136, 197, 203, 205, 253],
+        [4, 5, 9, 23, 81, 103, 197, 203, 205, 253],
         id='diss266',
     ),
 ])
