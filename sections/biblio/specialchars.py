@@ -48,7 +48,7 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-KEYWORDS = [
+HEADLINES = [
     'Bibliografie',
     'Bibliographie',
     'Bibliography',
@@ -69,7 +69,7 @@ def analyse_page(navigator: texmex.PageTextNavigator
 
     headlines = sections.utils.headline.headlines(navigator)
     if headlines and utila.similar(
-            expected=KEYWORDS,
+            expected=HEADLINES,
             current=headlines,
             maxdiff=0.95,
     ):
