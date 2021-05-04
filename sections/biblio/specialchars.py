@@ -59,6 +59,7 @@ KEYWORDS = [
     'Quellenverzeichnis',
     'Reference',
     'References',
+    'Weiterführende Literatur',
 ]
 MARKER_MIN_COUNT = configo.HV_INT_PLUS(5).value
 
