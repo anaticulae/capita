@@ -30,6 +30,11 @@ import sections.feature.chapter
         id='master72pages',
     ),
     pytest.param(
+        power.MASTER091A_PDF,
+        [7, 12, 20, 32, 51, 66, 90, 93],
+        id='master91a',
+    ),
+    pytest.param(
         power.DISS266_PDF,
         [4, 5, 9, 23, 81, 103, 197, 203, 205, 253],
         id='diss266',
