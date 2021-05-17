@@ -203,14 +203,13 @@ def contains_listof(content: str) -> bool:
     return result
 
 
-NOHEADLINES = {
-    'Abbildungsverzeichnis',
-    'Abkürzungsverzeichnis',
-    'Inhaltsverzeichnis',
-    # 'Literaturverzeichnis',
-    'Tabellenverzeichnis',
-    'Vorwort',
-}
+NOHEADLINES = utila.splitlines("""
+Abbildungsverzeichnis
+Abkürzungsverzeichnis
+Inhaltsverzeichnis
+Tabellenverzeichnis
+Vorwort
+""")
 
 # TODO: Make more robust against CAPS
 WHITELIST = {
@@ -234,8 +233,7 @@ def contain_toc(content, toc) -> float:
         # no table of content was extracted
         return 0.0
 
-    flat_toc = [item for item in flat_toc if item not in NOHEADLINES]
-
+    flat_toc = [item for item in flat_toc if item.lower() not in NOHEADLINES]
     for line in content:
         line = line.text.strip()
         # remove numbered headline pattern and potential white spaces
