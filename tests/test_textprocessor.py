@@ -41,5 +41,5 @@ def test_textprocessor_example_pyporting_page_2():
 
     result = []
     for item in positions:
-        extracted = pageiter.next(*item).strip()
+        extracted = pageiter.next(*item).strip()  # pylint:disable=not-callable
         result.append(extracted)

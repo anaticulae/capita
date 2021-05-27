@@ -71,7 +71,7 @@ def test_chapters(restructured_sections_manual):
     # start is lower or equal than end page size
     # start = item[0]
     # end   = item[1]
-    ascending_page_order = all([item[0] <= item[1] for item in result])
+    ascending_page_order = all(item[0] <= item[1] for item in result)
 
     assert ascending_page_order, str([result])
     assert len(result) == 8, str(result)

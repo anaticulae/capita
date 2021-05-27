@@ -178,7 +178,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
             matched = re.match(NUMBER_PATTERN, line)
             if not matched:
                 continue
-            if any([item in line for item in WHITELIST]):
+            if any(item in line for item in WHITELIST):
                 return True
         return False
 

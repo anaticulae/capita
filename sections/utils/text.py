@@ -44,15 +44,15 @@ class TextOnPage:
 
     @property
     def words(self):
-        return [item for item in self.words_]  # pylint:disable=E1133
+        return list(self.words_)  # pylint:disable=E1133
 
     @property
     def sentences(self):
-        return [item for item in self.sentences_]  # pylint:disable=E1133
+        return list(self.sentences_)  # pylint:disable=E1133
 
     @property
     def signs(self):
-        return [item for item in self.signs_]  # pylint:disable=E1133
+        return list(item for item in self.signs_)  # pylint:disable=E1133
 
     @property
     def dots(self):
@@ -62,8 +62,8 @@ class TextOnPage:
         action, variable = key.split('_', maxsplit=1)
         try:
             data = self.__dict__[f'{variable}_']
-        except KeyError:
-            raise AttributeError(f'could not access `{key}``')
+        except KeyError as error:
+            raise AttributeError(f'could not access `{key}``') from error
         if not data:
             return None
         length = (len(item) for item in data)
