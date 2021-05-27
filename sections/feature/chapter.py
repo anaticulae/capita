@@ -178,7 +178,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
             matched = re.match(NUMBER_PATTERN, line)
             if not matched:
                 continue
-            if any(item in line for item in HEADLINES_CHAPTER):
+            if any(item in line.lower() for item in HEADLINES_CHAPTER):
                 return True
         return False
 
@@ -215,12 +215,11 @@ Vorwort
 Zusammenfassung
 """)
 
-# TODO: Make more robust against CAPS
-HEADLINES_CHAPTER = {
-    'Einleitung',
-    'Introduction',
-    'Grundlagen',
-}
+HEADLINES_CHAPTER = utila.splitlines("""
+Einleitung
+Introduction
+Grundlagen
+""")
 
 
 def contain_toc(content, toc) -> float:
