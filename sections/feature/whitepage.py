@@ -48,12 +48,12 @@ class WhitePage(enum.Enum):
 
 
 def work(
-        document: str,
-        position: str,
-        footers: str,
-        images: str = None,
-        figures: str = None,
-        pages=None,
+    document: str,
+    position: str,
+    footers: str,
+    images: str = None,
+    figures: str = None,
+    pages=None,
 ) -> str:
     """Extract `WhitePage` out of document.
 
@@ -119,11 +119,11 @@ def load_imagesfigures(images, figures, pages):
 
 
 def extract_whitepages(  # pylint:disable=R0914
-        document: iamraw.Document,
-        navigators: typing.List[texmex.PageTextNavigator],
-        headerfooters,
-        images: list = None,
-        figures: list = None,
+    document: iamraw.Document,
+    navigators: typing.List[texmex.PageTextNavigator],
+    headerfooters,
+    images: list = None,
+    figures: list = None,
 ):
     images = images if images else []
     figures = figures if figures else []

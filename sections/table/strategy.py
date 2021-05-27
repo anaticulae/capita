@@ -24,13 +24,13 @@ NOHEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(0.85, limit=1.0)
 
 
 def work(
-        navigators: texmex.PageTextContentNavigators,
-        headline: str,
-        shortcut: str,
-        pages: tuple = None,
-        noheadlines: list = None,
-        second: bool = False,
-        pattern: callable = None,
+    navigators: texmex.PageTextContentNavigators,
+    headline: str,
+    shortcut: str,
+    pages: tuple = None,
+    noheadlines: list = None,
+    second: bool = False,
+    pattern: callable = None,
 ) -> str:
     extracted = extract_xxx_likelihood(
         navigators,
@@ -58,13 +58,13 @@ def work(
 
 
 def extract_xxx_likelihood(
-        document: texmex.PageTextContentNavigators,
-        headline: str = None,
-        shortcut: str = 'xxx',
-        pages: tuple = None,
-        noheadlines: list = None,
-        pattern: callable = None,
-        likelihood_min: float = 0.2,
+    document: texmex.PageTextContentNavigators,
+    headline: str = None,
+    shortcut: str = 'xxx',
+    pages: tuple = None,
+    noheadlines: list = None,
+    pattern: callable = None,
+    likelihood_min: float = 0.2,
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multi formed
     likelihood of being a table page."""

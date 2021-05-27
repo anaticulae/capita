@@ -26,11 +26,11 @@ from iamraw.sections import WhitePage
 
 
 def _add_x(
-        root: Sections,  # or DocumentSection
-        pstart: Position,
-        pend: Position,
-        trust: Percentage,
-        constructor,
+    root: Sections,  # or DocumentSection
+    pstart: Position,
+    pend: Position,
+    trust: Percentage,
+    constructor,
 ):
     insert = constructor(start=pstart, end=pend, trust=trust)
     root.content.append(insert)
@@ -51,11 +51,11 @@ add_text = partial(_add_x, constructor=Text)
 
 
 def add_chapter(
-        root: MainPart,
-        pstart: float,
-        pend: float,
-        trust: Percentage = PERCENT_100,
-        number: int = 0,
+    root: MainPart,
+    pstart: float,
+    pend: float,
+    trust: Percentage = PERCENT_100,
+    number: int = 0,
 ):
 
     insert = Chapter(

@@ -16,12 +16,12 @@ import utila
 
 
 def headlines(
-        navigator: texmex.PageTextNavigator,
-        min_length: int = 5,  # TODO: HOLY VALUE
-        # max_length: int = 50,  # TODO: HOLY VALUE
-        min_word_count: int = 1,
-        max_word_count: int = 3,
-        topsearch: bool = False,
+    navigator: texmex.PageTextNavigator,
+    min_length: int = 5,  # TODO: HOLY VALUE
+    # max_length: int = 50,  # TODO: HOLY VALUE
+    min_word_count: int = 1,
+    max_word_count: int = 3,
+    topsearch: bool = False,
 ):
     """\
     #topsearch: use upper area of page

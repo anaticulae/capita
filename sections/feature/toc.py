@@ -39,11 +39,11 @@ NOHEADLINES = [
 
 
 def work(
-        oneline_text: str,
-        oneline_textposition: str,
-        sizeandborder: str,
-        headerfooters: str,
-        pages=None,
+    oneline_text: str,
+    oneline_textposition: str,
+    sizeandborder: str,
+    headerfooters: str,
+    pages=None,
 ) -> str:
     ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
         text=oneline_text,

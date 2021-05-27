@@ -35,8 +35,9 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-def analyse_page(navigator: texmex.PageTextNavigator
-                ) -> sections.feature.StatisticalResultItem:
+def analyse_page(
+    navigator: texmex.PageTextNavigator
+) -> sections.feature.StatisticalResultItem:
     parsed = geostrat.parse(navigator, column_count=2)
     if not parsed:
         return len(navigator), 0

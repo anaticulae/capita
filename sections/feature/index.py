@@ -31,8 +31,8 @@ def work(text_linewise: str, pages: tuple = None) -> str:
     return dumped
 
 
-def extract_index_likelihood(document: iamraw.Document,
-                            ) -> iamraw.PageContentLikelihoods:
+def extract_index_likelihood(
+    document: iamraw.Document,) -> iamraw.PageContentLikelihoods:
     """Extract likelihood of beeing an index page. Determine a likelihood for
     every single page.
 
@@ -48,8 +48,8 @@ def extract_index_likelihood(document: iamraw.Document,
     assert len(uniformed) == len(document)
 
     result = [
-        iamraw.PageContentLikelihood(
-            page=page, content=iamraw.Likelihood(value, 'index'))
+        iamraw.PageContentLikelihood(page=page,
+                                     content=iamraw.Likelihood(value, 'index'))
         for page, value in uniformed.items()
     ]
     result = sorted(result, key=lambda x: x.page)

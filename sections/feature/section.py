@@ -42,20 +42,20 @@ MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75).value
 
 @utila.checkdatatype
 def work(  # pylint:disable=R0913,R0914
-        abbreviation: str,
-        abstract: str,
-        appendix: str,
-        bibliography: str,
-        chapter: str,
-        figuretable: str,
-        index: str,
-        legal: str,
-        symboltable: str,
-        tabletable: str,
-        title: str,
-        toc: str,
-        whitepage: str,
-        pages: tuple = None,
+    abbreviation: str,
+    abstract: str,
+    appendix: str,
+    bibliography: str,
+    chapter: str,
+    figuretable: str,
+    index: str,
+    legal: str,
+    symboltable: str,
+    tabletable: str,
+    title: str,
+    toc: str,
+    whitepage: str,
+    pages: tuple = None,
 ) -> str:
     """Combine different featuretypes to determine the page type with more
     confidence. Returns dumped `Section`."""
@@ -326,8 +326,8 @@ MATCHING = {
 
 
 def determine_document_section(
-        current: iamraw.sections.DocumentSection,
-        after: iamraw.sections.AreaItem,
+    current: iamraw.sections.DocumentSection,
+    after: iamraw.sections.AreaItem,
 ):
     """It is not always required to change the `current`
     DocumentSection. We require only few DocumentSection, therefore in
@@ -362,20 +362,20 @@ def determine_document_section(
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_features(  # pylint:disable=R0913,R0914
-        abbreviation,
-        abstract,
-        appendix,
-        bibliography,
-        chapter,
-        figuretable,
-        index,
-        legal,
-        symboltable,
-        tabletable,
-        title,
-        toc,
-        whitepage,
-        pages: tuple = None,
+    abbreviation,
+    abstract,
+    appendix,
+    bibliography,
+    chapter,
+    figuretable,
+    index,
+    legal,
+    symboltable,
+    tabletable,
+    title,
+    toc,
+    whitepage,
+    pages: tuple = None,
 ) -> SectionsRequiredResources:
     abbreviation = serializeraw.load_likelihood(abbreviation, pages=pages)
     abstract = serializeraw.load_likelihood(abstract, pages=pages)
@@ -446,9 +446,9 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
 
 
 def extract_sections_frompath(  # pylint:disable=R0914
-        path: str,
-        prefix: str = '',
-        pages: tuple = None,
+    path: str,
+    prefix: str = '',
+    pages: tuple = None,
 ) -> iamraw.Sections:
     text = iamraw.path.text(path, prefix=prefix)
     textposition = iamraw.path.textposition(path, prefix=prefix)

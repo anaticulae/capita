@@ -18,10 +18,10 @@ import sections.feature
 
 
 def work(
-        text_linewise: str,
-        font_header: str,
-        font_content: str,
-        pages=None,
+    text_linewise: str,
+    font_header: str,
+    font_content: str,
+    pages=None,
 ) -> str:
     document = serializeraw.load_document(text_linewise, pages=pages)
 
@@ -33,8 +33,8 @@ def work(
 
 
 def extract_title_likelihood(
-        document: iamraw.Document,
-        fontstore: iamraw.FontStore,
+    document: iamraw.Document,
+    fontstore: iamraw.FontStore,
 ) -> iamraw.PageContentLikelihood:
     result = {page.page: analyse_page(page, fontstore) for page in document}
 
@@ -134,8 +134,8 @@ def determine_hugest_font(fonts, positions, page: iamraw.Page):  # pylint:disabl
 
 
 def extract_titlelikelihood_frompath(
-        path: str,
-        pages: tuple = None,
+    path: str,
+    pages: tuple = None,
 ) -> typing.List[float]:
     document = serializeraw.load_document(iamraw.path.text(path), pages=pages)
     fontstore = serializeraw.create_fontstore(

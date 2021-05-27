@@ -18,11 +18,11 @@ import sections.table.strategy
 
 
 def work(
-        text_linewise: str,
-        textpositions: str,
-        sizeandborder: str,
-        headerfooters: str,
-        pages=None,
+    text_linewise: str,
+    textpositions: str,
+    sizeandborder: str,
+    headerfooters: str,
+    pages=None,
 ) -> str:
     ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
         text=text_linewise,

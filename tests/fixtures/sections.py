@@ -30,12 +30,18 @@ EXAMPLE = [
         end=9,
         trust=1.0,
         content=[
-            iamraw.sections.Chapter(
-                start=3, end=3, trust=0.5, number=1, title='Kapitel 1'),
+            iamraw.sections.Chapter(start=3,
+                                    end=3,
+                                    trust=0.5,
+                                    number=1,
+                                    title='Kapitel 1'),
             iamraw.sections.Text(start=4, end=4, trust=1.0),
             iamraw.sections.Text(start=5, end=5, trust=1.0),
-            iamraw.sections.Chapter(
-                start=6, end=6, trust=0.5, number=2, title='Kapitel 2'),
+            iamraw.sections.Chapter(start=6,
+                                    end=6,
+                                    trust=0.5,
+                                    number=2,
+                                    title='Kapitel 2'),
             iamraw.sections.Text(start=7, end=7, trust=1.0),
             iamraw.sections.Text(start=8, end=8, trust=1.0),
             iamraw.sections.Text(start=9, end=9, trust=1.0)

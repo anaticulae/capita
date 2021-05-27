@@ -64,8 +64,9 @@ HEADLINES = [
 MARKER_MIN_COUNT = configo.HV_INT_PLUS(5).value
 
 
-def analyse_page(navigator: texmex.PageTextNavigator
-                ) -> sections.feature.StatisticalResultItem:
+def analyse_page(
+    navigator: texmex.PageTextNavigator
+) -> sections.feature.StatisticalResultItem:
 
     headlines = sections.utils.headline.headlines(navigator)
     if headlines and utila.similar(

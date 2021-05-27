@@ -37,12 +37,12 @@ import utila
 
 
 def work(
-        document: str,
-        position: str,
-        sizeandborder: str,
-        footerheader: str,
-        tocpath: str,
-        pages: tuple = None,
+    document: str,
+    position: str,
+    sizeandborder: str,
+    footerheader: str,
+    tocpath: str,
+    pages: tuple = None,
 ) -> str:
     """Determine likelihood of beeing a chapter startpage."""
     navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
@@ -70,8 +70,8 @@ FIRST_QUARTER = 0.35  # TODO: HOLY VALUE
 
 
 def extract_chapter(
-        navigators: texmex.PageTextNavigators,
-        tocs,
+    navigators: texmex.PageTextNavigators,
+    tocs,
 ) -> iamraw.PageContentLikelihoods:
     result = []
     for page in navigators:

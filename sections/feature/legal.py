@@ -88,8 +88,9 @@ def work(document: str, position: str, pages=None) -> str:
     return dumped
 
 
-def analyse_page(navigator: texmex.PageTextNavigator
-                ) -> sections.feature.StatisticalResultItem:
+def analyse_page(
+    navigator: texmex.PageTextNavigator
+) -> sections.feature.StatisticalResultItem:
     # TODO: REPLACE AFTER UPGRADING TEXMEX
     raw = utila.NEWLINE.join([item.text.strip() for item in navigator])
 

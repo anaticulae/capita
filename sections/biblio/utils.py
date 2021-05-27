@@ -29,7 +29,9 @@ def cluster_bibpages(items):
     if not grouped:
         return []
     hugest = sorted(
-        grouped, key=lambda x: sum(item.content.value for item in x))
+        grouped,
+        key=lambda x: sum(item.content.value for item in x),
+    )
     hugest = hugest[-1]
 
     avg = sum([item.content.value for item in hugest]) / len(hugest)

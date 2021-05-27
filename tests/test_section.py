@@ -42,9 +42,9 @@ def test_validate_restructured(restructured_sections_manual):  #pylint:disable=W
 
 #pylint:disable=W0621
 def test_extract_sections_restructured(
-        testdir,
-        monkeypatch,
-        restructured_sections_manual,
+    testdir,
+    monkeypatch,
+    restructured_sections_manual,
 ):
     root = testdir.tmpdir
     source = power.link(power.DOCU27_PDF)
@@ -53,7 +53,10 @@ def test_extract_sections_restructured(
     result = sections.feature.section.load_section_likelihood_frompath(root)
     assert result
     for index, (actual, expected) in enumerate(
-            zip(result, restructured_sections_manual)):
+            zip(
+                result,
+                restructured_sections_manual,
+            )):
         # Compare only the first level
         assert actual.start == expected.start, 'on level: %d' % index
         assert actual.end == expected.end, 'on level: %d' % index

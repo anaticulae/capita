@@ -76,8 +76,8 @@ def test_extract_toc_likelihood_master72():
 
 
 def extract_toc(
-        source: str,
-        pages: tuple = None,
+    source: str,
+    pages: tuple = None,
 ) -> iamraw.PageContentLikelihoods:
     text = iamraw.path.text(source, prefix='oneline')
     textposition = iamraw.path.textposition(source, prefix='oneline')

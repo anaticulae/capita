@@ -21,8 +21,8 @@ StatisticalResult = typing.Dict[Page, StatisticalResultItem]
 
 
 def uniform_result(
-        items: StatisticalResult,
-        common_feature_threshold: float = 0.1,
+    items: StatisticalResult,
+    common_feature_threshold: float = 0.1,
 ) -> iamraw.PageContentLikelihoods:
     """\
     Args:
