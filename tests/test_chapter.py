@@ -98,7 +98,7 @@ def test_chapter_work_bachelor63():
     second_chapter = utila.select_page(extracted, page=9)
     assert second_chapter.content.value >= 0.5, str(extracted)
 
-    expected = [8, 9, 17, 19, 59]
+    expected = [8, 9, 17, 19]
     pages = [item.page for item in extracted]
 
     assert pages == expected
@@ -109,7 +109,7 @@ def test_chapter_work_master98():
     source = power.link(power.MASTER098_PDF)
     extracted = chapter(source)
 
-    expected = [2, 6, 26, 42, 67, 85, 88, 96]
+    expected = [2, 6, 26, 42, 67, 85, 88]
     pages = [item.page for item in extracted]
 
     assert pages == expected

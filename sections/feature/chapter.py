@@ -205,18 +205,24 @@ NOHEADLINES = utila.splitlines("""
 Abbildungsverzeichnis
 Abkürzungsverzeichnis
 Abstract
+Anhang
 Danksagung
 Eidesstattliche Erklärung
 Inhaltsverzeichnis
+Symbolverzeichnis
 Tabellenverzeichnis
 Vorwort
 Zusammenfassung
 """)
 
 HEADLINES_CHAPTER = utila.splitlines("""
+Ausblick
+Diskussion
+Diskussion und Ausblick
 Einleitung
-Introduction
+Ergebnisse
 Grundlagen
+Introduction
 """)
 
 
@@ -227,21 +233,16 @@ def contain_toc(content, toc) -> float:
         * 3. Headline text
         * Headline text
     """
-    firstlevel_dot_pattern = re.compile(r'^\d\.{0,1}\s+')
-
-    flat_toc = [firstlevel_dot_pattern.sub('', item.title) for item in toc]
+    flat_toc = level_remove(toc)
+    flat_toc = toc_shrink(flat_toc)
     if not flat_toc:
         # no table of content was extracted
         return 0.0
-
     flat_toc = [item for item in flat_toc if item.lower() not in NOHEADLINES]
     for line in content:
         line = line.text.strip()
-        if line.lower().startswith('anhang'):
-            # anhang could not be an chapter
-            return -1.0
         # remove numbered headline pattern and potential white spaces
-        without_number = firstlevel_dot_pattern.sub('', line)
+        without_number = FIRSTLEVEL_DOT_PATTERN.sub('', line)
         for headline in flat_toc:
             if all((
                     not line.startswith(headline),
@@ -254,6 +255,35 @@ def contain_toc(content, toc) -> float:
                 continue
             return 1.0
     return -0.5
+
+
+def toc_shrink(items):
+    """Remove tocs after Anhang."""
+    result = []
+    for item in items:
+        if 'anhang' in item.lower():
+            break
+        result.append(item)
+    return result
+
+
+FIRSTLEVEL_DOT_PATTERN = re.compile(r'^\d\.{0,1}\s+')
+
+
+def level_remove(toc):
+    flat = [FIRSTLEVEL_DOT_PATTERN.sub('', item.title) for item in toc]
+    # remove roman level
+    result = []
+    for item in flat:
+        splitted = item.split(maxsplit=1)
+        if len(splitted) == 1:
+            result.append(item)
+            continue
+        if utila.isroman(splitted[0]):
+            result.append(splitted[1])
+            continue
+        result.append(item)
+    return result
 
 
 def chaptervalue_to_percent(chaptervalue: float, hastoc: bool) -> float:
