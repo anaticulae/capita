@@ -248,6 +248,10 @@ def contain_toc(content, toc) -> float:
                     not without_number.startswith(headline),
             )):
                 continue
+            rate = len(without_number) / len(headline)
+            if rate > 2.0:
+                # headline is too long, could not match with detected toc
+                continue
             return 1.0
     return -0.5
 
