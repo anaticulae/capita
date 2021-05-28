@@ -78,22 +78,18 @@ def extract_chapter(
         if rotated(page):
             continue
         first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
-
         chapter_rate = contain_chapter(first_content)
         if len(tocs) >= 3:  # TODO: HOLY VALUE
             chapter_rate += contain_toc(first_content, tocs)
         else:
             # disable feature if no toc is given
             utila.info('chapter: no toc provided')
-
         if contains_listof(first_content):
             # TODO: See todo below
             chapter_rate = 0
         if chapter_rate <= 0.0:
             continue
-
         rate_in_percent = chaptervalue_to_percent(chapter_rate, tocs)
-
         result.append(
             iamraw.PageContentLikelihood(
                 page=page.page,
@@ -241,6 +237,9 @@ def contain_toc(content, toc) -> float:
     flat_toc = [item for item in flat_toc if item.lower() not in NOHEADLINES]
     for line in content:
         line = line.text.strip()
+        if line.lower().startswith('anhang'):
+            # anhang could not be an chapter
+            return -1.0
         # remove numbered headline pattern and potential white spaces
         without_number = firstlevel_dot_pattern.sub('', line)
         for headline in flat_toc:
