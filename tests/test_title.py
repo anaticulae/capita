@@ -12,6 +12,7 @@ import iamraw.path
 import power
 import pytest
 import serializeraw
+import utilatest
 
 import sections.feature.title
 import sections.utils
@@ -88,6 +89,7 @@ def test_extract_title_likelihood_master72():
     assert extracted[0] >= 0.95
 
 
+@utilatest.longrun
 def test_extract_title_likelihood_order107():
     extracted = titlepage_likelihood(power.ORDER109_PDF)  # TODO: CHANGE 107
     # assert extracted[0] >= 0.95

@@ -15,6 +15,7 @@ import pytest
 import serializeraw
 import serializeraw.images
 import utila
+import utilatest
 
 import sections.feature.whitepage
 
@@ -76,6 +77,7 @@ def whitepages(document: str):
     pytest.param(power.DOCU27_PDF, RESTRUCT_EXPECTED, id='docu27'),
     pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
 ])
+@utilatest.longrun
 def test_whitepages_extract_x(source, expected):
     result = whitepages(source)
     result = current(result)
