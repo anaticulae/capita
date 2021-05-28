@@ -48,9 +48,10 @@ def extract_index_likelihood(
     assert len(uniformed) == len(document)
 
     result = [
-        iamraw.PageContentLikelihood(page=page,
-                                     content=iamraw.Likelihood(value, 'index'))
-        for page, value in uniformed.items()
+        iamraw.PageContentLikelihood(
+            page=page,
+            content=iamraw.Likelihood(value, 'index'),
+        ) for page, value in uniformed.items()
     ]
     result = sorted(result, key=lambda x: x.page)
     return result

@@ -53,7 +53,6 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
     return dumped
 
 
-
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
@@ -62,6 +61,7 @@ def analyse_page(content):
     if utila.similar(expected=HEADLINES, current=headlines, maxdiff=0.9):
         return 1, 1
     return NO_PAGE
+
 
 HEADLINES = utila.splitlines("""
 A. Anhang
