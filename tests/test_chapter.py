@@ -18,6 +18,7 @@ import sections.feature.chapter
 
 
 # TODO: DISS266 - IMPROVE LATER
+# TODO: REMOVE MASTER91A PAGE 66 later
 @pytest.mark.parametrize('source, expected', [
     pytest.param(
         power.DOCU27_PDF,
@@ -31,7 +32,7 @@ import sections.feature.chapter
     ),
     pytest.param(
         power.MASTER091A_PDF,
-        [7, 12, 20, 32, 51, 66, 90, 93],
+        [13, 16, 18, 37, 47, 58, 66, 72, 82],
         id='master91a',
     ),
     pytest.param(
@@ -62,7 +63,7 @@ def test_chapter_dump_and_load_detection():
 
 def extract_chapter(source):
     # load
-    navigators = serializeraw.create_pagetextnavigators_frompath(source)
+    navigators = serializeraw.create_pagetextcontentnavigators_frompath(source)
     tocs = serializeraw.load_toc(iamraw.path.text(source))
     # run
     result = sections.feature.chapter.extract_chapter(
