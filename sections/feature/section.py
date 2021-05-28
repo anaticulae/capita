@@ -41,7 +41,7 @@ MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75).value
 
 
 @utila.checkdatatype
-def work(  # pylint:disable=R0913,R0914
+def work(  # pylint:disable=R0913,R0914,W0613
     abbreviation: str,
     abstract: str,
     appendix: str,
@@ -59,22 +59,7 @@ def work(  # pylint:disable=R0913,R0914
 ) -> str:
     """Combine different featuretypes to determine the page type with more
     confidence. Returns dumped `Section`."""
-    loaded = load_features(
-        abbreviation,
-        abstract,
-        appendix,
-        bibliography,
-        chapter,
-        figuretable,
-        index,
-        legal,
-        symboltable,
-        tabletable,
-        title,
-        toc,
-        whitepage,
-        pages=pages,
-    )
+    loaded = load_features(**locals())
     # work
     extracted = extract_sections(loaded)
 
