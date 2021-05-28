@@ -66,7 +66,6 @@ def analyse_page(content):
         return NO_PAGE
     if isinstance(headlines, str):
         headlines = [headlines]
-
     for item in HEADLINES:
         if item in headlines:
             return 1, 1
