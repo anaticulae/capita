@@ -206,9 +206,13 @@ def contains_listof(content: str) -> bool:
 NOHEADLINES = utila.splitlines("""
 Abbildungsverzeichnis
 Abkürzungsverzeichnis
+Abstract
+Danksagung
+Eidesstattliche Erklärung
 Inhaltsverzeichnis
 Tabellenverzeichnis
 Vorwort
+Zusammenfassung
 """)
 
 # TODO: Make more robust against CAPS
