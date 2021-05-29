@@ -240,13 +240,13 @@ def contain_toc(content, toc) -> float:
         return 0.0
     flat_toc = [item for item in flat_toc if item.lower() not in NOHEADLINES]
     for line in content:
-        line = line.text.strip()
+        line = utila.normalize_whitespaces(line.text.strip())
         # remove numbered headline pattern and potential white spaces
         without_number = FIRSTLEVEL_DOT_PATTERN.sub('', line)
         for headline in flat_toc:
             if all((
-                    not line.startswith(headline),
-                    not without_number.startswith(headline),
+                    not startswith(line, headline),
+                    not startswith(without_number, headline),
             )):
                 continue
             rate = len(without_number) / len(headline)
@@ -255,6 +255,11 @@ def contain_toc(content, toc) -> float:
                 continue
             return 1.0
     return -0.5
+
+
+def startswith(line, start):
+    start = start[0:len(line)]
+    return line.startswith(start)
 
 
 def toc_shrink(items):
