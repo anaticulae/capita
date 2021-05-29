@@ -2,6 +2,26 @@
 
 Every noteable change is logged here.
 
+## v1.3.0
+
+### Feature
+
+* extend pattern (389c687b52ac)
+* remove roman number from flat toc (a88ff8b3c957)
+* skip not matching chapter headlines (a9d7c6eed58a)
+* skip rotated pages (e4382e4332ae)
+* extend chapter noheadline pattern (20aa5f4eb652)
+* use improved chapter headline detector (c8bce5d4954b)
+* add another headline to bib section detector (0811f3bbb1af)
+
+### Fix
+
+* do not detect single character as headline (9a49029ec218)
+* make start comparison more robust against white spaces (c954e438e097)
+* do not handle anhang as separate chapter (3483e984c56b)
+* adjust method name (eff5e1a8df6c)
+* make approach more stable against caps (86b6e1325eb9)
+
 ## v1.2.0
 
 ### Feature
