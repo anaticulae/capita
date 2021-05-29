@@ -24,18 +24,19 @@ import sections.table.strategy
 # no possible toc later than page 20
 VALID_TOC_PAGES = utila.ranged_tuple(0, 20)  # HOLY VALUE
 
-HEADLINES = [
-    'Inhalt',
-    'Inhaltsverzeichnis',
-    'Contents',
-]
+HEADLINES = utila.splitlines("""
+Contents
+Inhalt
+Inhaltsverzeichnis
+Table of Content
+""")
 
-NOHEADLINES = [
-    'Abbildungen',
-    'Abbildungsverzeichnis',
-    'Tabellen',
-    'Tabellenverzeichnis',
-]
+NOHEADLINES = utila.splitlines("""
+Abbildungen
+Abbildungsverzeichnis
+Tabellen
+Tabellenverzeichnis
+""")
 
 
 def work(
