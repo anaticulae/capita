@@ -54,16 +54,36 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
 
 
 HEADLINES = [
-    'Anhang',
     'A. Anhang',
+    'Anhang 1',
+    'Anhang 10',
+    'Anhang 2',
+    'Anhang 3',
+    'Anhang 4',
+    'Anhang 5',
+    'Anhang 6',
+    'Anhang 7',
+    'Anhang 8',
+    'Anhang 9',
     'Anhang A',
     'Anhang B',
     'Anhang C',
     'Anhang D',
+    'Anhang',
+    'Anhangsverzeichnis',
+    'Appendix',
+    'B. Anhang',
+    'C. Anhang',
+    'D. Anhang',
     'I Anhang',
     'II Anhang',
     'III Anhang',
-    'Appendix',
+    'IIII Anhang',
+    'IV Anhang',
+    'V Anhang',
+    'VI Anhang',
+    'VII Anhang',
+    'VIII Anhang',
 ]
 
 
@@ -72,6 +92,6 @@ def analyse_page(content):
     if not headlines:
         return NO_PAGE
     # ensure that every cased headlines are parsed correctly
-    if utila.similar(HEADLINES, headlines, maxdiff=0.75):
+    if utila.similar(expected=HEADLINES, current=headlines, maxdiff=0.9):
         return 1, 1
     return NO_PAGE
