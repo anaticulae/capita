@@ -130,8 +130,8 @@ WORKPLAN = [
     step(
         'chapter',
         inputs=[
-            ResultFile('rawmaker', 'text_text'),
-            ResultFile('rawmaker', 'text_positions'),
+            ResultFile('rawmaker', 'oneline_text_text'),
+            ResultFile('rawmaker', 'oneline_text_positions'),
             ResultFile('rawmaker', 'border_pages'),
             ResultFile('groupme', 'footer_footerheader'),
             ResultFile('rawmaker', 'outlines_outlines'),
