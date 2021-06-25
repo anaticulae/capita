@@ -51,6 +51,15 @@ def diss170(result):
     validate(result, expected)
 
 
+def master83(result):
+    expected = [
+        (iamraw.sections.Introduction, 0, 4),
+        (iamraw.sections.MainPart, 4, 75),
+        (iamraw.sections.Appendix, 75, 83),
+    ]
+    validate(result, expected)
+
+
 @pytest.mark.parametrize('source, expected', [
     pytest.param(power.BACHELOR037_PDF, bachelor37, id='bachelor37'),
     pytest.param(power.BACHELOR063_PDF, None, id='bachelor63'),
@@ -60,6 +69,7 @@ def diss170(result):
     pytest.param(power.DOCU09_PDF, None, id='pyporting'),
     pytest.param(power.DOCU27_PDF, None, id='restruct'),
     pytest.param(power.DISS170_PDF, diss170, id='diss170'),
+    pytest.param(power.MASTER083_PDF, master83, id='master83'),
 ])
 @utilatest.nightly
 def test_run_sections(source, expected, testdir, monkeypatch):
