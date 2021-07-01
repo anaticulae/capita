@@ -19,6 +19,7 @@ import sections.feature.chapter
 
 # TODO: DISS266 - IMPROVE LATER
 # TODO: REMOVE MASTER91A PAGE 66 later
+# BACHELOR51: [3, 4, 20, 28, 35, 40, 42],
 @pytest.mark.parametrize('source, expected', [
     pytest.param(
         power.DOCU27_PDF,
@@ -39,6 +40,11 @@ import sections.feature.chapter
         power.DISS266_PDF,
         [4, 5, 9, 23, 81, 103, 197, 203, 205, 253],
         id='diss266',
+    ),
+    pytest.param(
+        power.BACHELOR051_PDF,
+        [3, 4, 28, 42],
+        id='bachelor51',
     ),
 ])
 @utilatest.nightly

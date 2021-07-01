@@ -176,7 +176,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
             matched = re.match(NUMBER_PATTERN, line)
             if not matched:
                 continue
-            if any(item in line.lower() for item in HEADLINES_CHAPTER):
+            if any(huge_match(line, item) for item in HEADLINES_CHAPTER):
                 return True
         return False
 
@@ -190,6 +190,22 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
     else:
         result -= 0.5
     return result
+
+
+def huge_match(line: str, part: str) -> bool:
+    """Ensure that matched `part` is long enough in detected line.
+
+    >>> huge_match('20 Bilanz und Ausblick einer Wissenschaft', 'Ausblick')
+    False
+    """
+    line = line.lower()
+    if not part in line:
+        return False
+    percent = len(part) / len(line)
+    if percent < 0.5:
+        # matched part is to small
+        return False
+    return True
 
 
 def contains_listof(content: str) -> bool:
