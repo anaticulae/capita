@@ -17,6 +17,7 @@ import utilatest
 import sections.feature.chapter
 
 
+# TODO: BACHELOR37: ADD HEADLINES IN THE MIDDLE OF THE PAGE LATER
 # TODO: DISS266 - IMPROVE LATER
 # TODO: REMOVE MASTER91A PAGE 66 later
 # BACHELOR51: [3, 4, 20, 28, 35, 40, 42],
@@ -45,6 +46,11 @@ import sections.feature.chapter
         power.BACHELOR051_PDF,
         [3, 4, 28, 42],
         id='bachelor51',
+    ),
+    pytest.param(
+        power.BACHELOR037_PDF,
+        [6, 15],
+        id='bachelor37',
     ),
 ])
 @utilatest.nightly
