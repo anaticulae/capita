@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.3.1
+
+### Fix
+
+* ensure that part of headline is long enough (c27b1ff7f7b8)
+
 ## v1.3.0
 
 ### Feature
