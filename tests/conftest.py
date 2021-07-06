@@ -23,6 +23,7 @@ WORKER = 6
 
 RESOURCES = [
     (power.DISS266_PDF, None),
+    (power.BACHELOR241_PDF, '60:80'),
     (power.DISS170_PDF, None),
     (power.MASTER110_PDF, None),
     (power.MASTER155_PDF, None),
