@@ -79,6 +79,7 @@ def whitepages(document: str):
 ])
 @utilatest.longrun
 def test_whitepages_extract_x(source, expected):
+    utilatest.fixture_requires(source)
     result = whitepages(source)
     result = current(result)
     assert result == expected

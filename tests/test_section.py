@@ -41,6 +41,7 @@ def test_validate_restructured(restructured_sections_manual):  #pylint:disable=W
 
 
 #pylint:disable=W0621
+@utilatest.requires(power.DOCU27_PDF)
 def test_extract_sections_restructured(
     testdir,
     monkeypatch,
@@ -81,6 +82,7 @@ HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
 
 
 @pytest.mark.xfail(reason='require multiple page toc detector')
+@utilatest.requires(power.DOCU07_PDF)
 def test_extract_sections_simple():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.DOCU07_PDF))
@@ -106,6 +108,7 @@ def check_sections(result, expected):
         assert current == wanted, f'{current} != {wanted}'
 
 
+@utilatest.requires(power.DOCU07_PDF)
 def test_sections_simple():
     """Check dumped result of section work method"""
     simple_sections = sections.feature.section.extract_sections_frompath(
@@ -118,6 +121,7 @@ def test_sections_simple():
 
 
 @utilatest.nightly
+@utilatest.requires(power.MASTER072_PDF)
 def test_sections_master72():
     """Ensure that BUILDER in section is sorted correctly. There is a
     problem if we sort TOC and Title alphabetically. To avoid this
@@ -141,6 +145,7 @@ def test_sections_master72():
 
 
 @utilatest.longrun
+@utilatest.requires(power.BACHELOR090_PDF)
 def test_sections_bachelor90():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.BACHELOR090_PDF))
@@ -155,6 +160,7 @@ def test_sections_bachelor90():
 
 
 @utilatest.longrun
+@utilatest.requires(power.MASTER116_PDF)
 def test_sections_master116():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.MASTER116_PDF))
@@ -173,6 +179,7 @@ def test_sections_master116():
     assert (appendix.start, appendix.end) == (88, 116)
 
 
+@utilatest.requires(power.DOCU35_PDF)
 def test_sections_docu35():
     source = power.link(power.DOCU35_PDF)
     result = sections.feature.section.extract_sections_frompath(source)
@@ -195,6 +202,7 @@ def test_sections_docu35():
 
 
 @utilatest.nightly
+@utilatest.requires(power.DISS264_PDF)
 def test_sections_diss264():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.DISS264_PDF))
@@ -208,6 +216,7 @@ def test_sections_diss264():
 
 
 @utilatest.longrun
+@utilatest.requires(power.MASTER031_PDF)
 def test_sections_master31():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.MASTER031_PDF))
@@ -220,6 +229,7 @@ def test_sections_master31():
     check_sections(result, expected)
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_sections_docu27():
     """Regression test to ensure that no bib is detected on first page.
     Before fixing, there was a divided title/bib page."""
@@ -235,6 +245,7 @@ def test_sections_docu27():
 
 
 @utilatest.longrun
+@utilatest.requires(power.MASTER112_PDF)
 def test_sections_master112():
     """Add test to ensure, that toc is not parsed as bib."""
     result = sections.feature.section.extract_sections_frompath(
@@ -252,6 +263,7 @@ def test_sections_master112():
 
 
 @utilatest.longrun
+@utilatest.requires(power.BACHELOR128_PDF)
 def test_sections_bachelor128():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.BACHELOR128_PDF))
@@ -265,6 +277,7 @@ def test_sections_bachelor128():
 
 
 @pytest.mark.xfail(reason='toc detector changed?')
+@utilatest.requires(power.MASTER075_PDF)
 def test_sections_master075_appendix():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.MASTER075_PDF),
@@ -295,6 +308,7 @@ def test_sections_master075_appendix():
 
 
 @utilatest.longrun
+@utilatest.requires(power.MASTER091A_PDF)
 def test_sections_master91a():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.MASTER091A_PDF))

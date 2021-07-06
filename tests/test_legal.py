@@ -12,11 +12,13 @@ import iamraw.path
 import power
 import serializeraw
 import utila
+import utilatest
 
 import sections.feature.legal
 
 
 def legal(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
+    utilatest.fixture_requires(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
 

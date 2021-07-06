@@ -50,6 +50,7 @@ SECTIONS.update(tests.validation.master.MASTER)
 )
 @utilatest.nightly
 def test_run_validation(source, expected, testdir):
+    utilatest.fixture_requires(source)
     root = testdir.tmpdir
     job = genex.create_job(
         source,

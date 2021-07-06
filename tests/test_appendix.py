@@ -12,12 +12,14 @@ import iamraw.path
 import power
 import serializeraw
 import utila
+import utilatest
 
 import sections.feature.appendix
 
 
 def appendix(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     source = power.link(source)
+    utilatest.fixture_requires(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
 

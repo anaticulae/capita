@@ -20,6 +20,7 @@ import sections.table.strategy
 DOCU27 = power.link(power.DOCU27_PDF)
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_extract_toc_likelihood():
     navigator = serializeraw.create_pagetextnavigators_frompath(DOCU27)
     extracted = sections.table.strategy.extract_xxx_likelihood(
@@ -30,6 +31,7 @@ def test_extract_toc_likelihood():
     assert sum(extracted) == pytest.approx(1.22)
 
 
+@utilatest.requires(power.BACHELOR063_PDF)
 def test_extract_toc_likelihood_bachelor63():
     text = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.BACHELOR063_PDF),
@@ -47,6 +49,7 @@ def test_extract_toc_likelihood_bachelor63():
     assert likelihood >= 1.0, str(likelihood)  # holy value
 
 
+@utilatest.requires(power.MASTER072_PDF)
 def test_extract_toc_likelihood_master72():
     """Check that only second and third page are detected as toc.
     Repeating the strategy due `without` is required to discover
@@ -79,6 +82,7 @@ def extract_toc(
     source: str,
     pages: tuple = None,
 ) -> iamraw.PageContentLikelihoods:
+    utilatest.fixture_requires(source)
     text = iamraw.path.text(source, prefix='oneline')
     textposition = iamraw.path.textposition(source, prefix='oneline')
     sizeandborder = iamraw.path.sizeandborder(source)

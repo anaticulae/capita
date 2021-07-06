@@ -12,6 +12,7 @@
 import iamraw
 import iamraw.path
 import power
+import utilatest
 from serializeraw import load_document
 from serializeraw import load_font_content
 from serializeraw import load_font_header
@@ -21,6 +22,7 @@ from sections.feature.title import font_positions_from_page
 
 
 def pyporting_pages(pagenumber: int):
+    utilatest.fixture_requires(power.DOCU09_PDF)
     docu09 = power.link(power.DOCU09_PDF)
     document = load_document(iamraw.path.text(docu09))
     current_page = document[pagenumber]
@@ -38,7 +40,6 @@ def pyporting_pages(pagenumber: int):
 
 def test_textprocessor_example_pyporting_page_2():
     pageiter, positions = pyporting_pages(2)
-
     result = []
     for item in positions:
         extracted = pageiter.next_item(*item).strip()

@@ -44,6 +44,7 @@ def test_no_abbreviations_master72_page9():
 
 
 def abbreviations(source, pages):
+    utilatest.fixture_requires(source)
     source = power.link(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)

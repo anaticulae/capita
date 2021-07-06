@@ -65,15 +65,14 @@ def test_chapter_extract(source, expected):
 
 def test_chapter_dump_and_load_detection():
     source = power.link(power.DOCU27_PDF)
-
     result = extract_chapter(source)
-
     dumped = serializeraw.dump_likelihood(result)
     loaded = serializeraw.load_likelihood(dumped)
     assert loaded == result
 
 
 def extract_chapter(source):
+    utilatest.fixture_requires(source)
     # load
     navigators = serializeraw.create_pagetextcontentnavigators_frompath(source)
     tocs = serializeraw.load_toc(iamraw.path.text(source))
@@ -86,6 +85,7 @@ def extract_chapter(source):
 
 
 def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
+    utilatest.fixture_requires(source)
     dumped = sections.feature.chapter.work(
         document=source,  # use default path
         position=source,

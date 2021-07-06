@@ -19,6 +19,7 @@ import tests
 
 
 @utilatest.longrun
+@utilatest.requires(power.MASTER072_PDF)
 def test_bibliography_work():
     source = power.link(power.MASTER072_PDF)
     text = iamraw.path.text(source)
@@ -48,6 +49,7 @@ def test_bibliography_work():
 
 def extract_bibliography(source, testdir, monkeypatch):
     source = power.link(source)
+    utilatest.fixture_requires(source)
     tests.run_sections(f'-i {source} --bibliography', monkeypatch=monkeypatch)
 
     path = sections.path.bibliography(testdir.tmpdir)

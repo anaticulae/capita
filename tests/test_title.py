@@ -39,10 +39,12 @@ MIN_TITLE_LIKELIHOOD = 0.70
 
 
 @pytest.mark.parametrize('source', [
-    pytest.param(power.link(power.DOCU27_PDF), id='restruct'),
-    pytest.param(power.link(power.DOCU07_PDF), id='pyporting'),
+    pytest.param(power.DOCU27_PDF, id='restruct'),
+    pytest.param(power.DOCU07_PDF, id='pyporting'),
 ])
 def test_extract_title_likelihood(source):
+    utilatest.fixture_requires(source)
+    source = power.link(source)
     document = iamraw.path.text(source)
     fontheader = iamraw.path.fontheader(source)
     fontcontent = iamraw.path.fontcontent(source)
@@ -76,6 +78,7 @@ def test_dump_and_load_likelhood(
 
 
 def titlepage_likelihood(document: str) -> tuple:
+    utilatest.fixture_requires(document)
     title = sections.feature.title.extract_titlelikelihood_frompath(
         power.link(document),
         pages=tuple(range(10)),

@@ -74,6 +74,7 @@ def master83(result):
 @utilatest.nightly
 def test_run_sections(source, expected, testdir, monkeypatch):
     source = power.link(source)
+    utilatest.fixture_requires(source)
     command = f'-i {source}'
     tests.run_sections(command, monkeypatch=monkeypatch)
 
@@ -92,6 +93,7 @@ def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W
 
 
 @utilatest.nightly
+@utilatest.requires(power.MASTER072_PDF)
 def test_run_sections_multicore(testdir, monkeypatch):
     """Regression test to ensure the correct order of the different
     steps in multicore behavior.
@@ -101,13 +103,12 @@ def test_run_sections_multicore(testdir, monkeypatch):
 
     Solved by: upgrading utila lib.
     """
-    root = str(testdir)
+    source = power.link(power.MASTER072_PDF)
     # this step is required, cause the test generator already generates
     # this required items.
     # Copy yaml files which starts with rawmaker or groupme.
     pattern = '(rawmaker|groupme)__*.yaml'
-    utila.copy_content(power.link(power.MASTER072_PDF), root, pattern=pattern)
-
+    utila.copy_content(source, testdir.tmpdir, pattern=pattern)
     jobs = 5
-    cmd = f'-j{jobs} -i {root} -o {root} --pages=0:5 --all'
+    cmd = f'-j{jobs} -i {testdir.tmpdir} -o {testdir.tmpdir} --pages=0:5 --all'
     tests.run_sections(cmd, monkeypatch=monkeypatch)
