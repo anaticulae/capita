@@ -43,7 +43,16 @@ def test_no_abbreviations_master72_page9():
     assert not selected.content.value
 
 
-def abbreviations(source, pages):
+def test_no_abbreviations_bachelor241_page75():
+    source = power.BACHELOR241_PDF
+    page = 75
+    extracted = abbreviations(source, pages=page)
+    selected = utila.select_page(extracted, page=page)
+    assert not selected.content.value
+    assert all(item.content.value == 0 for item in extracted)
+
+
+def abbreviations(source, pages=None):
     utilatest.fixture_requires(source)
     source = power.link(source)
     text = iamraw.path.text(source)
