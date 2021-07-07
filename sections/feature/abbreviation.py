@@ -95,6 +95,11 @@ def analyse_page(content):
 
 
 def invalid_column(data: list) -> bool:  # pylint:disable=R0911
+    """\
+    unbalanced columns, equal factor is not matching
+    >>> invalid_column((['sos'], ['This is just data']*10))
+    True
+    """
     if not data:
         return True
     if not data[0]:
@@ -107,7 +112,12 @@ def invalid_column(data: list) -> bool:  # pylint:disable=R0911
         return True
     if not short_column(data[0]):
         return True
-    # TODO: CHECK THAT LEFT AND RIGHT COLUMN ARE NEARLY EQUAL
+    equal_factor = len(data[0]) / len(data[1])
+    if equal_factor < 0.3:
+        # CHECK THAT LEFT AND RIGHT COLUMN ARE NEARLY EQUAL
+        # assumption: the second column has max. 3 times more lines then
+        # the left side.
+        return True
     return False
 
 
