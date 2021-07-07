@@ -19,28 +19,22 @@ import sections.creator
 import sections.feature.section
 import tests
 import tests.resources
-# pylint:disable=W0611
-from tests.fixtures.restruct import restructured_sections_manual
 
 
-def test_dump_and_load_sections(restructured_sections_manual):  #pylint:disable=W0621
+def test_dump_and_load_sections(restructured_sections_manual):
     data = restructured_sections_manual
-
     dumped = serializeraw.dump_sections(data)
     assert dumped
-
     loaded = serializeraw.load_sections(dumped)
     assert loaded
-
     assert loaded == data
 
 
-def test_validate_restructured(restructured_sections_manual):  #pylint:disable=W0621
+def test_validate_restructured(restructured_sections_manual):
     validated = sections.creator.validate(restructured_sections_manual)
     assert validated
 
 
-#pylint:disable=W0621
 @utilatest.requires(power.DOCU27_PDF)
 def test_extract_sections_restructured(
     testdir,
@@ -68,12 +62,10 @@ def test_extract_sections_restructured(
 
 def test_chapters(restructured_sections_manual):
     result = sections.feature.section.chapters(restructured_sections_manual)
-
     # start is lower or equal than end page size
     # start = item[0]
     # end   = item[1]
     ascending_page_order = all(item[0] <= item[1] for item in result)
-
     assert ascending_page_order, str([result])
     assert len(result) == 8, str(result)
 
@@ -86,14 +78,11 @@ HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
 def test_extract_sections_simple():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.DOCU07_PDF))
-
     expected = [
         iamraw.MultipleSection,
         iamraw.MainPart,
     ]
-
     check_sections(result, expected)
-
     # Title and Table of MultipleSection
     expected_chapter = HOWTO_PYPORTING_CHAPTER_PAGE_COUNT
     assert len(result[0].content) == expected_chapter
@@ -149,7 +138,6 @@ def test_sections_master72():
 def test_sections_bachelor90():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.BACHELOR090_PDF))
-
     expected = [
         iamraw.sections.Unknown,
         iamraw.sections.Introduction,
@@ -164,7 +152,6 @@ def test_sections_bachelor90():
 def test_sections_master116():
     result = sections.feature.section.extract_sections_frompath(
         power.link(power.MASTER116_PDF))
-
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,

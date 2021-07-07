@@ -16,20 +16,15 @@ import utilatest
 
 import sections.feature.title
 import sections.utils
-# pylint:disable=W0611
-from tests.fixtures.restruct import restructured_fontstore
-from tests.fixtures.restruct import restructured_fontstore_fixture
-from tests.fixtures.restruct import restructured_text
 
 
-def test_load_font_lookup(restructured_fontstore):  #pylint:disable=W0621
+def test_load_font_lookup(restructured_fontstore):
     first_font = restructured_fontstore.font(
         number=0,
         container=0,
         line=2,
         char=0,
     )
-
     assert first_font
     assert isinstance(first_font, iamraw.Font)
 
@@ -64,8 +59,8 @@ def test_extract_title_likelihood(source):
 
 
 def test_dump_and_load_likelhood(
-        restructured_text,  #pylint:disable=W0621
-        restructured_fontstore,  #pylint:disable=W0621
+    restructured_text,
+    restructured_fontstore,
 ):
     result = sections.feature.title.extract_title_likelihood(
         restructured_text,

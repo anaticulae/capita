@@ -12,6 +12,11 @@ import power
 import pytest
 
 import sections
+# pylint:disable=W0611
+from tests.fixtures.restruct import restructured_fontstore
+from tests.fixtures.restruct import restructured_fontstore_fixture
+from tests.fixtures.restruct import restructured_sections_manual
+from tests.fixtures.restruct import restructured_text
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 

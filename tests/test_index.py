@@ -13,14 +13,11 @@ import serializeraw
 import utilatest
 
 import sections.feature.index
-# pylint:disable=W0611
-from tests.fixtures.restruct import restructured_text
 
 # manually set to secure index finder quality, TODO: investigate later
 LAST_PAGE_INDEX_LIKELYHOOD = 0.45
 
 
-#pylint:disable=W0621
 def test_extract_index_likelihood(restructured_text):
     result = sections.feature.index.extract_index_likelihood(restructured_text)
     result = [item.content.value for item in result]
