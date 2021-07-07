@@ -14,6 +14,7 @@ We search for selective headline "Abkuerzungsverzeichnis, ...".
 NOTE: This approach is only for demo time.
 """
 
+import contextlib
 import statistics
 
 import geostrat
@@ -113,7 +114,7 @@ def invalid_column(data: list) -> bool:  # pylint:disable=R0911
 def numbered_column(data: list) -> bool:
     right = data[1]
     right_numbers = [
-        item for item in right if item and utila.parse_numbers(item.text)
+        item for item in right if item and utila.parse_numbers(text(item))
     ]
     if len(right) < 6:
         return False
@@ -129,7 +130,14 @@ def numbered_column(data: list) -> bool:
 def short_column(left) -> bool:
     if not left:
         return False
-    mean = statistics.mean([len(item.text) for item in left])
+    mean = statistics.mean([len(text(item)) for item in left])
     if mean > 10.0:  # HOLY VALUE
         return False
     return True
+
+
+def text(item):
+    """Support simple str items."""
+    with contextlib.suppress(AttributeError):
+        return item.text
+    return item
