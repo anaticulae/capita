@@ -28,7 +28,6 @@ WORKER = 6
 
 RESOURCES = [
     (power.DISS266_PDF, None),
-    (power.BACHELOR241_PDF, '60:80'),
     (power.DISS170_PDF, None),
     (power.MASTER110_PDF, None),
     (power.MASTER155_PDF, None),
@@ -50,6 +49,7 @@ RESOURCES = [
     (power.BACHELOR063_PDF, '0:20,59,60,61'),
     (power.MASTER116_PDF, '0:13,85:117'),
     (power.BACHELOR090_PDF, '0:20,75:90'),
+    (power.BACHELOR241_PDF, '60:80'),
     (power.DOCU27_PDF, None),
     (power.PAPER18_PDF, None),
     (power.HOME018_PDF, None),
@@ -69,6 +69,6 @@ def extract(resources):
         base=power.REPOSITORY,
         destination=power.generated(),
         files=resources,
-        groupme=True,
+        groupme='--pagenumbers --footer ',
         worker=WORKER,
     )
