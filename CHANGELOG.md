@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.3.2
+
+### Feature
+
+* ensure that left and right column are balanced (d349b401988f)
+* ease testing ability (97deb2082ba9)
+
 ## v1.3.1
 
 ### Fix
