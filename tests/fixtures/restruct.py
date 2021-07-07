@@ -18,15 +18,11 @@ import utilatest
 import sections.creator
 import sections.feature.section
 
-RESTRUCT_FONT_CONTENT = iamraw.path.fontcontent(power.link(power.DOCU27_PDF))
-RESTRUCT_FONT_HEADER = iamraw.path.fontheader(power.link(power.DOCU27_PDF))
-RESTRUCT_TEXT = iamraw.path.text(power.link(power.DOCU27_PDF))
-
 
 @pytest.fixture
 def restructured_text() -> iamraw.Document:
     utilatest.fixture_requires(power.DOCU27_PDF)
-    loaded = serializeraw.load_document(RESTRUCT_TEXT)
+    loaded = serializeraw.load_document(power.link(power.DOCU27_PDF))
     return loaded
 
 
@@ -34,8 +30,8 @@ def restructured_text() -> iamraw.Document:
 def restructured_fontstore() -> iamraw.FontStore:
     utilatest.fixture_requires(power.DOCU27_PDF)
     lookup = serializeraw.create_fontstore(
-        RESTRUCT_FONT_HEADER,
-        RESTRUCT_FONT_CONTENT,
+        power.link(power.DOCU27_PDF),
+        power.link(power.DOCU27_PDF),
     )
     return lookup
 
@@ -45,8 +41,8 @@ def restructured_fontstore_fixture() -> iamraw.FontStore:
     # TODO: Remove with new pytest - this is required, because pytest carn't
     # use pytest.fixture in paramertized tests.
     lookup = serializeraw.create_fontstore(
-        RESTRUCT_FONT_HEADER,
-        RESTRUCT_FONT_CONTENT,
+        power.link(power.DOCU27_PDF),
+        power.link(power.DOCU27_PDF),
     )
     return lookup
 
