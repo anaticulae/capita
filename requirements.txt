@@ -16,3 +16,5 @@ geostrat>=1.1.12<2.0.0
 
 # toc level, headline extraction
 elements>=0.7.0<1.0.0
+
+opencv-python==4.5.2.52
