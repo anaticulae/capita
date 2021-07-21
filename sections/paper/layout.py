@@ -58,7 +58,7 @@ def double_column(boundings, stepsize=5.0) -> float:  # pylint:disable=R0914
             else:
                 normal.append(yn)
     double, normal = utila.make_unique(double), utila.make_unique(normal)
-    double = [item for item in double if double not in normal]
+    double = [item for item in double if item not in normal]
     double = utila.groupby_diff(double, diff=stepsize * 2)
     double.sort()
     normal.sort()
