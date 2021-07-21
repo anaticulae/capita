@@ -17,3 +17,10 @@ def test_layout():
     expected = (0.61, 1.0, 0.25, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.55, 0.93,
                 1.0, 1.0)
     assert percent == expected
+
+
+def test_layout_page2_page10():
+    percent = sections.paper.layout.percentage(power.PAPER14_PDF, pages=2)
+    assert percent[0] == 0.25  # VALIDATED
+    percent = sections.paper.layout.percentage(power.PAPER14_PDF, pages=10)
+    assert percent[0] == 0.55  # VALIDATED

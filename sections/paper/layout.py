@@ -16,9 +16,9 @@ import sections.paper.rectangle
 
 def percentage(path: str, pages: tuple = None) -> tuple:
     utila.exists_assert(path)
-    pages = pdfinfo.pages.determine(path)
+    pdfpages = pdfinfo.pages.determine(path)
     collected = []
-    for page in range(pages):
+    for page in range(pdfpages):
         if utila.should_skip(page, pages):
             continue
         image = sections.paper.rectangle.image_frompdf(path, page)
