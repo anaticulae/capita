@@ -8,6 +8,7 @@
 # =============================================================================
 
 import power
+import pytest
 
 import sections.paper.layout
 
@@ -24,3 +25,14 @@ def test_layout_page2_page10():
     assert percent[0] == 0.25  # VALIDATED
     percent = sections.paper.layout.percentage(power.PAPER14_PDF, pages=10)
     assert percent[0] == 0.55  # VALIDATED
+
+
+@pytest.mark.parametrize('source', [
+    pytest.param(power.PAPER18_PDF, id='paper18'),
+    pytest.param(power.PAPER23_PDF, id='paper23'),
+    pytest.param(power.PAPER42_PDF, id='paper42'),
+])
+def test_layout_no_double_column(source):
+    percent = sections.paper.layout.percentage(source)
+    counted = len([item for item in percent if item is not None and item > 0.5])
+    assert counted < 5, counted
