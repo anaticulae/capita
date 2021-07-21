@@ -29,10 +29,13 @@ def percentage(path: str, pages: tuple = None, debug: bool = False) -> tuple:
 def extract_page(path: str, page: int, debug: bool = False) -> float:
     image = sections.paper.rectangle.image_frompdf(path, page)
     boundings = sections.paper.rectangle.image_boundings(image)
+    img = cv2.imread(image)
     if debug:
-        img = cv2.imread(image)
         sections.paper.rectangle.image_render_rectangle(img, boundings)
         cv2.imwrite(image, img)
+    height, width, _ = img.shape
+    if width > height:
+        return 'rotated'
     rate = double_column(boundings)
     return rate
 
