@@ -15,6 +15,7 @@ import utilatest
 import sections.paper.layout
 
 
+@utilatest.longrun
 def test_layout():
     percent = sections.paper.layout.percentage(power.PAPER14_PDF)
     expected = (0.61, 1.0, 0.25, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.4, 0.5,
@@ -34,6 +35,7 @@ def test_layout_page2_page10():
     pytest.param(power.PAPER23_PDF, id='paper23'),
     pytest.param(power.PAPER42_PDF, id='paper42'),
 ])
+@utilatest.longrun
 def test_layout_no_double_column(source):
     percent = sections.paper.layout.percentage(source)
     counted = len([item for item in percent if item is not None and item > 0.5])
@@ -47,6 +49,7 @@ def test_layout_no_double_column(source):
     pytest.param(power.PAPER09_PDF, id='paper09'),
     pytest.param(power.PAPER10_PDF, id='paper10'),
 ])
+@utilatest.longrun
 def test_layout_double_column(source):
     percent = sections.paper.layout.percentage(source)
     counted = len([item for item in percent if item is not None and item > 0.6])
