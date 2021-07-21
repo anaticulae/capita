@@ -43,7 +43,7 @@ def image_boundings(image: str) -> list:
         255,
         cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
         cv2.THRESH_BINARY,
-        blockSize=191,
+        blockSize=51,
         C=-11,
     )
     # determine contours

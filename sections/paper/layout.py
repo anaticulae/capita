@@ -45,12 +45,14 @@ def double_column(boundings, stepsize=5.0) -> float:  # pylint:disable=R0914
     ]
     width = max(item[2] for item in boundings)
     height = max(item[3] for item in boundings)
-    center_left = width * 0.4
-    center_right = width * 0.6
+    center_left = width * 0.40
+    center_right = width * 0.60
     normal = []
     double = []
     for x0, y0, x1, y1 in boundings:
-        doubled = x1 < center_right or x0 > center_left
+        doubled = (x1 < center_right or x0 > center_left)
+        if x0 < center_left and x1 > center_right:
+            doubled = False
         for yn in utila.ranges(start=y0, stop=y1, step=stepsize):  # pylint:disable=C0103
             yn = int(yn / 5) * 5  # pylint:disable=C0103
             if doubled:
