@@ -36,3 +36,17 @@ def test_layout_no_double_column(source):
     percent = sections.paper.layout.percentage(source)
     counted = len([item for item in percent if item is not None and item > 0.5])
     assert counted < 5, counted
+
+
+@pytest.mark.parametrize('source', [
+    pytest.param(power.PAPER06_PDF, id='paper6'),
+    pytest.param(power.PAPER06B_PDF, id='paper6b'),
+    pytest.param(power.PAPER06MATH_PDF, id='paper6math'),
+    pytest.param(power.PAPER09_PDF, id='paper09'),
+    pytest.param(power.PAPER10_PDF, id='paper10'),
+])
+def test_layout_double_column(source):
+    percent = sections.paper.layout.percentage(source)
+    counted = len([item for item in percent if item is not None and item > 0.6])
+    rate = counted / len(percent)
+    assert rate >= 0.8, rate
