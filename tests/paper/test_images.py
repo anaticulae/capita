@@ -22,8 +22,8 @@ def test_image_frompdf():
 @pytest.mark.parametrize(
     'source, page, expected',
     [
-        pytest.param(power.PAPER18_PDF, 1, 2, id='paper18page1'),
-        pytest.param(power.PAPER14_PDF, 10, 9, id='paper14page10'),
+        pytest.param(power.PAPER18_PDF, 1, 1, id='paper18page1'),
+        pytest.param(power.PAPER14_PDF, 10, 5, id='paper14page10'),
     ],
 )
 def test_image_bounding(source, page, expected):

@@ -29,7 +29,9 @@ def image_frompdf(pdf: str, page: int) -> str:
     return outpath
 
 
-RECTANGLE_SIZE_MIN = 150  # TODO: HOLY VALUE
+RECTANGLE_WIDTH_MIN = 250
+RECTANGLE_HEIGHT_MIN = 150
+RECTANGLE_SIZE_MIN = RECTANGLE_WIDTH_MIN * RECTANGLE_HEIGHT_MIN  # TODO: HOLY VALUE
 
 
 def image_boundings(image: str) -> list:
@@ -60,6 +62,10 @@ def image_boundings(image: str) -> list:
         ytop, ybottom = min(y), max(y)
         rectangle = (xleft, ytop, xright, ybottom)
         if utila.rectangle_size(rectangle) < RECTANGLE_SIZE_MIN:
+            continue
+        if utila.rectangle_width(rectangle) < RECTANGLE_WIDTH_MIN:
+            continue
+        if utila.rectangle_height(rectangle) < RECTANGLE_HEIGHT_MIN:
             continue
         result.append(rectangle)
     for _ in range(10):
