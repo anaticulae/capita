@@ -36,6 +36,8 @@ def double_column(boundings, stepsize=5.0) -> float:  # pylint:disable=R0914
     >>> double_column(((0, 2, 500, 250), (0, 270, 250, 400), (290, 270, 500, 400)), stepsize=5.0)
     0.33
     """
+    if not boundings:
+        return None
     # remove yoffset to ignore space before first rectangle
     y0 = min(item[1] for item in boundings)
     boundings = [
