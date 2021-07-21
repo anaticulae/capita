@@ -62,6 +62,10 @@ def image_boundings(image: str) -> list:
         if utila.rectangle_size(rectangle) < RECTANGLE_SIZE_MIN:
             continue
         result.append(rectangle)
+    for _ in range(10):
+        # TODO: REMOVE AFTER FIXING RECTANGLE CLUSTER
+        result = utila.intersecting_rectangle_cluster(result)
+        result = [utila.rectangle_max(item) for item in result]
     return result
 
 
