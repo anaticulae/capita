@@ -14,21 +14,27 @@ import utila
 import sections.paper.rectangle
 
 
-def percentage(path: str, pages: tuple = None) -> tuple:
+def percentage(path: str, pages: tuple = None, debug: bool = False) -> tuple:
     utila.exists_assert(path)
     pdfpages = pdfinfo.pages.determine(path)
-    collected = []
-    for page in range(pdfpages):
-        if utila.should_skip(page, pages):
-            continue
-        image = sections.paper.rectangle.image_frompdf(path, page)
-        boundings = sections.paper.rectangle.image_boundings(image)
+    with utila.GeorgFork(returncode=False, worker=14) as fork:
+        for page in range(pdfpages):
+            if utila.should_skip(page, pages):
+                continue
+            fork.fork(extract_page, path=path, page=page, debug=debug)
+    result = tuple(fork.result)
+    return result
+
+
+def extract_page(path: str, page: int, debug: bool = False) -> float:
+    image = sections.paper.rectangle.image_frompdf(path, page)
+    boundings = sections.paper.rectangle.image_boundings(image)
+    if debug:
         img = cv2.imread(image)
         sections.paper.rectangle.image_render_rectangle(img, boundings)
-        collected.append(boundings)
         cv2.imwrite(image, img)
-    result = tuple(double_column(page) for page in collected)
-    return result
+    rate = double_column(boundings)
+    return rate
 
 
 def double_column(boundings, stepsize=5.0) -> float:  # pylint:disable=R0914
