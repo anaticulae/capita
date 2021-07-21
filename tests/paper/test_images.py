@@ -9,6 +9,7 @@
 
 import cv2
 import power
+import pytest
 
 import sections.paper.rectangle
 
@@ -18,11 +19,18 @@ def test_image_frompdf():
     assert image
 
 
-def test_image_bounding():
-    image = sections.paper.rectangle.image_frompdf(power.PAPER18_PDF, page=1)
+@pytest.mark.parametrize(
+    'source, page, expected',
+    [
+        pytest.param(power.PAPER18_PDF, 1, 2, id='paper18page1'),
+        pytest.param(power.PAPER14_PDF, 10, 9, id='paper14page10'),
+    ],
+)
+def test_image_bounding(source, page, expected):
+    image = sections.paper.rectangle.image_frompdf(source, page=page)
     boundings = sections.paper.rectangle.image_boundings(image)
-    assert len(boundings) == 2
     # render detected boundings
     img = cv2.imread(image)
-    sections.paper.rectangle.image_render_rectangle(img, boundings)
+    img = sections.paper.rectangle.image_render_rectangle(img, boundings)
     cv2.imwrite(image, img)
+    assert len(boundings) == expected
