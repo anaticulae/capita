@@ -139,6 +139,13 @@ WORKPLAN = [
         output=('likelihood',),
     ),
     step(
+        'paper',
+        inputs=[
+            utila.Value('pdf', typ=None, defaultvar=None),
+        ],
+        output=('likelihood',),
+    ),
+    step(
         'section',
         inputs=[
             ResultFile('sections', 'abbreviation_likelihood'),
