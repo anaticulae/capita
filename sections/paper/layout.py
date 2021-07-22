@@ -73,10 +73,10 @@ def double_column(boundings, stepsize=5.0) -> float:  # pylint:disable=R0914
     double = utila.groupby_diff(double, diff=stepsize * 2)
     double.sort()
     normal.sort()
-    doubled = 0.0
     percent = 1.0 / height
+    result = 0.0
     for item in double:
         start, end = item[0], item[-1]
-        doubled += percent * (end - start)
-    doubled: float = utila.roundme(doubled)
-    return doubled
+        result += percent * (end - start)
+    result: float = utila.roundme(result)
+    return result

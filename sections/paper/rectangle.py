@@ -8,6 +8,7 @@
 # =============================================================================
 
 import os
+import typing
 
 import cv2
 import utila
@@ -55,12 +56,7 @@ def image_boundings(image: str) -> list:
     # merge contour to maximized rectangle
     result = []
     for group in contours:
-        items = [item[0] for item in group]
-        x = [item[0] for item in items]
-        y = [item[1] for item in items]
-        xleft, xright = min(x), max(x)
-        ytop, ybottom = min(y), max(y)
-        rectangle = (xleft, ytop, xright, ybottom)
+        rectangle = contour_maximize(group)
         if utila.rectangle_size(rectangle) < RECTANGLE_SIZE_MIN:
             continue
         if utila.rectangle_width(rectangle) < RECTANGLE_WIDTH_MIN:
@@ -86,3 +82,19 @@ def image_render_rectangle(image, boundings: tuple):
             10,
         )
     return image
+
+
+def contour_maximize(contour: typing.List[typing.Tuple]) -> tuple:
+    """\
+    Args:
+        contour: list of points(x, y)
+    Returns:
+        maximized rectangle containing contour
+    """
+    items = [item[0] for item in contour]
+    x = [item[0] for item in items]
+    y = [item[1] for item in items]
+    xleft, xright = min(x), max(x)
+    ytop, ybottom = min(y), max(y)
+    rectangle = (xleft, ytop, xright, ybottom)
+    return rectangle
