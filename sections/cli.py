@@ -156,6 +156,7 @@ WORKPLAN = [
             ResultFile('sections', 'figuretable_likelihood'),
             ResultFile('sections', 'index_likelihood'),
             ResultFile('sections', 'legal_likelihood'),
+            ResultFile('sections', 'paper_likelihood'),
             ResultFile('sections', 'symboltable_likelihood'),
             ResultFile('sections', 'tabletable_likelihood'),
             ResultFile('sections', 'title_likelihood'),

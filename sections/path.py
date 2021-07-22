@@ -140,3 +140,12 @@ def whitepage(path: str, prefix: str = '') -> str:
         'whitepage_likelihood',
         prefix,
     )
+
+
+def paper(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        sections.PROCESS,
+        'paper_likelihood',
+        prefix,
+    )

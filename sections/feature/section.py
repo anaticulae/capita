@@ -50,6 +50,7 @@ def work(  # pylint:disable=R0913,R0914,W0613
     figuretable: str,
     index: str,
     legal: str,
+    paper: str,
     symboltable: str,
     tabletable: str,
     title: str,
@@ -77,6 +78,7 @@ class SectionsRequiredResources:
     figuretable: iamraw.PageContentLikelihoods
     index: iamraw.PageContentLikelihoods
     legal: iamraw.PageContentLikelihoods
+    paper: iamraw.PageContentLikelihoods
     symboltable: iamraw.PageContentLikelihoods
     tabletable: iamraw.PageContentLikelihoods
     title: iamraw.PageContentLikelihoods
@@ -369,6 +371,7 @@ def load_features(  # pylint:disable=R0913,R0914
     figuretable = serializeraw.load_likelihood(figuretable, pages=pages)
     index = serializeraw.load_likelihood(index, pages=pages)
     legal = serializeraw.load_likelihood(legal, pages=pages)
+    paper = serializeraw.load_likelihood(paper, pages=pages)
     symboltable = serializeraw.load_likelihood(symboltable, pages=pages)
     tabletable = serializeraw.load_likelihood(tabletable, pages=pages)
     title = serializeraw.load_likelihood(title, pages=pages)
@@ -384,6 +387,7 @@ def load_features(  # pylint:disable=R0913,R0914
         figuretable=figuretable,
         index=index,
         legal=legal,
+        paper=paper,
         symboltable=symboltable,
         tabletable=tabletable,
         title=title,
@@ -418,6 +422,7 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
         sections.path.figuretable(path),
         sections.path.index(path),
         sections.path.legal(path),
+        sections.path.paper(path),
         sections.path.symboltable(path),
         sections.path.tabletable(path),
         sections.path.title(path),
@@ -510,6 +515,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
         footers=footers,
         pages=pages,
     )
+    paper = '[]'
     loaded = load_features(
         abbreviation,
         abstract,
@@ -519,6 +525,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
         figuretable,
         index,
         legal,
+        paper,
         symboltable,
         tabletable,
         title,
