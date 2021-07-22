@@ -245,7 +245,7 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
 
 BUILDER = [
     iamraw.sections.AbbreviationTable,
-    iamraw.sections.Abstract,  # pylint:disable=E1101
+    iamraw.sections.Abstract,
     iamraw.sections.Appendix,
     iamraw.sections.Bibliography,
     iamraw.sections.Chapter,
@@ -253,7 +253,7 @@ BUILDER = [
     iamraw.sections.Index,
     iamraw.sections.LegalInformation,
     iamraw.sections.SymbolTable,
-    iamraw.sections.TableTable,  # pylint:disable=E1101
+    iamraw.sections.TableTable,
     iamraw.sections.TitlePage,
     iamraw.sections.TableOfContent,
     iamraw.sections.WhitePage,
@@ -300,7 +300,7 @@ MATCHING = {
         iamraw.sections.Appendix,
         iamraw.sections.Introduction,
     ],
-    iamraw.sections.TableTable: [  # pylint:disable=E1101
+    iamraw.sections.TableTable: [
         iamraw.sections.Appendix,
         iamraw.sections.Introduction,
     ],
@@ -348,19 +348,20 @@ def determine_document_section(
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_features(  # pylint:disable=R0913,R0914
-    abbreviation,
-    abstract,
-    appendix,
-    bibliography,
-    chapter,
-    figuretable,
-    index,
-    legal,
-    symboltable,
-    tabletable,
-    title,
-    toc,
-    whitepage,
+    abbreviation: str,
+    abstract: str,
+    appendix: str,
+    bibliography: str,
+    chapter: str,
+    figuretable: str,
+    index: str,
+    legal: str,
+    paper: str,
+    symboltable: str,
+    tabletable: str,
+    title: str,
+    toc: str,
+    whitepage: str,
     pages: tuple = None,
 ) -> SectionsRequiredResources:
     abbreviation = serializeraw.load_likelihood(abbreviation, pages=pages)
@@ -377,7 +378,7 @@ def load_features(  # pylint:disable=R0913,R0914
     title = serializeraw.load_likelihood(title, pages=pages)
     toc = serializeraw.load_likelihood(toc, pages=pages)
     white = serializeraw.load_whitepages(whitepage, pages=pages)
-
+    # prepare result
     result = SectionsRequiredResources(
         abbreviation=abbreviation,
         abstract=abstract,
