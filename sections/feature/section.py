@@ -62,7 +62,6 @@ def work(  # pylint:disable=R0913,R0914,W0613
     loaded = load_features(**locals())
     # work
     extracted = extract_sections(loaded)
-
     # save
     dumped = serializeraw.dump_sections(extracted)
     return dumped
