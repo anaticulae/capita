@@ -20,6 +20,8 @@ def work(pdf: str, pages=None) -> str:
         return '[]'
     utila.exists_assert(pdf)
     detected = sections.paper.main.detect_paper(pdf, pages=pages)
+    if detected is None:
+        return '[]'
     dumped = dump_groups(detected)
     return dumped
 
