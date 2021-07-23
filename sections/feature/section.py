@@ -336,7 +336,7 @@ def determine_document_section(
             iamraw.sections.AbbreviationTable,
             iamraw.sections.FigureTable,
             iamraw.sections.SymbolTable,
-            iamraw.sections.TableTable,  # pylint:disable=E1101
+            iamraw.sections.TableTable,
         )
         if isinstance(after, changer):
             # TODO: HACK?
@@ -410,12 +410,10 @@ def chapters(root: iamraw.Sections):
     if not content:
         # no content in document
         return []
-
     result = []
     for area in content:
         for chapter in area:
             result.append((chapter.start, chapter.end))
-
     return result
 
 
