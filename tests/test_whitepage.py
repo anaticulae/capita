@@ -77,7 +77,7 @@ def whitepages(document: str):
     pytest.param(power.DOCU27_PDF, RESTRUCT_EXPECTED, id='docu27'),
     pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
 ])
-@utilatest.longrun
+@utilatest.nightly
 def test_whitepages_extract_x(source, expected):
     utilatest.fixture_requires(source)
     result = whitepages(source)

@@ -133,7 +133,7 @@ def test_sections_master72():
     assert chapternumbers == expected
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.BACHELOR090_PDF)
 def test_sections_bachelor90():
     result = sections.feature.section.extract_sections_frompath(
@@ -147,7 +147,7 @@ def test_sections_bachelor90():
     check_sections(result, expected)
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.MASTER116_PDF)
 def test_sections_master116():
     result = sections.feature.section.extract_sections_frompath(
@@ -166,6 +166,7 @@ def test_sections_master116():
     assert (appendix.start, appendix.end) == (88, 116)
 
 
+@utilatest.nightly
 @utilatest.requires(power.DOCU35_PDF)
 def test_sections_docu35():
     source = power.link(power.DOCU35_PDF)
@@ -202,7 +203,7 @@ def test_sections_diss264():
     check_sections(result, expected)
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.MASTER031_PDF)
 def test_sections_master31():
     result = sections.feature.section.extract_sections_frompath(
@@ -216,6 +217,7 @@ def test_sections_master31():
     check_sections(result, expected)
 
 
+@utilatest.longrun
 @utilatest.requires(power.DOCU27_PDF)
 def test_sections_docu27():
     """Regression test to ensure that no bib is detected on first page.
@@ -231,7 +233,7 @@ def test_sections_docu27():
     check_sections(result, expected)
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.MASTER112_PDF)
 def test_sections_master112():
     """Add test to ensure, that toc is not parsed as bib."""
@@ -249,7 +251,7 @@ def test_sections_master112():
     assert isinstance(expected_toc, iamraw.sections.TableOfContent)
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.BACHELOR128_PDF)
 def test_sections_bachelor128():
     result = sections.feature.section.extract_sections_frompath(
@@ -294,7 +296,7 @@ def test_sections_master075_appendix():
         assert isinstance(page, valid)
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.MASTER091A_PDF)
 def test_sections_master91a():
     result = sections.feature.section.extract_sections_frompath(
