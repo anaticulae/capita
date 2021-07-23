@@ -11,23 +11,36 @@ import cv2
 import pdfinfo.pages
 import utila
 
+import sections
 import sections.paper.rectangle
 
 
 def percentage(path: str, pages: tuple = None, debug: bool = False) -> tuple:
     utila.exists_assert(path)
     pdfpages = pdfinfo.pages.determine(path)
+    tmpdir = utila.tmpdir(root=sections.ROOT)
     with utila.GeorgFork(returncode=False, worker=14) as fork:
         for page in range(pdfpages):
             if utila.should_skip(page, pages):
                 continue
-            fork.fork(extract_page, path=path, page=page, debug=debug)
+            fork.fork(
+                extract_page,
+                path=path,
+                page=page,
+                debug=debug,
+                tmpdir=tmpdir,
+            )
     result = tuple(fork.result)
     return result
 
 
-def extract_page(path: str, page: int, debug: bool = False) -> float:
-    image = sections.paper.rectangle.image_frompdf(path, page)
+def extract_page(
+    path: str,
+    page: int,
+    debug: bool = False,
+    tmpdir=None,
+) -> float:
+    image = sections.paper.rectangle.image_frompdf(path, page, tmpdir=tmpdir)
     boundings = sections.paper.rectangle.image_boundings(image)
     img = cv2.imread(image)
     if debug:

@@ -18,8 +18,9 @@ import sections
 GHOST = 'gswin64c' if os.name == 'nt' else 'gs'
 
 
-def image_frompdf(pdf: str, page: int) -> str:
-    tmpdir = utila.tmpdir(sections.ROOT)
+def image_frompdf(pdf: str, page: int, tmpdir=None) -> str:
+    if tmpdir is None:
+        tmpdir = utila.tmpdir(sections.ROOT)
     outpath = utila.forward_slash(
         os.path.join(tmpdir, f'image-{page}.png'),
         newline=True,
