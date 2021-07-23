@@ -243,6 +243,7 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
     return result
 
 
+# THE ORDER IS IMPORTANT!
 BUILDER = [
     iamraw.sections.AbbreviationTable,
     iamraw.sections.Abstract,
@@ -252,12 +253,15 @@ BUILDER = [
     iamraw.sections.FigureTable,
     iamraw.sections.Index,
     iamraw.sections.LegalInformation,
+    iamraw.sections.CitePart,
     iamraw.sections.SymbolTable,
     iamraw.sections.TableTable,
     iamraw.sections.TitlePage,
     iamraw.sections.TableOfContent,
     iamraw.sections.WhitePage,
 ]
+assert BUILDER.index(iamraw.sections.TableOfContent) > BUILDER.index(
+    iamraw.sections.TitlePage), 'do not sort BUILDER'
 
 
 def multiplesection_next(multiple):
