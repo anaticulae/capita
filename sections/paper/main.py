@@ -17,7 +17,7 @@ import sections.paper.layout
 
 
 def detect_paper(pdf: str, pages: tuple = None) -> tuple:
-    percents = sections.paper.layout.percentage(pdf)
+    percents = sections.paper.layout.percentage(pdf, pages=pages)
     grouped = group_percentage(percents)
     if not grouped:
         return None
