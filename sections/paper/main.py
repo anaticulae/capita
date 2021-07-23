@@ -6,6 +6,12 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""\
+>>> group_percentage([0.0, 0.0, 0.0, 0.61, 0.4, 0.39, 0.72, 0.0, None, 0.39,
+... 0.0, None, 0.83, 'rotated', 'rotated', 'rotated', 'rotated', 'rotated',
+... 'rotated', 'rotated', 0.8])
+[]
+"""
 
 import sections.paper.layout
 
@@ -51,7 +57,17 @@ def group_percentage(
             grouped[-1].append((page, percent))
         else:
             grouped.append([(page, percent)])
-        failure = 0
     # remove little groups
-    grouped = [item for item in grouped if len(item) >= pages_min]
+    grouped = [item for item in grouped if count_start(item) >= pages_min]
     return grouped
+
+
+def count_start(items):
+    """Ensure to have a valid, hight quality group start."""
+    counted = 0
+    for _, item in items:
+        if item != 'rotated':
+            counted += 1
+        else:
+            break
+    return counted
