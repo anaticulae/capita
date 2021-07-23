@@ -53,9 +53,18 @@ def extract_page(
     return rate
 
 
-def double_column(boundings, stepsize=5.0) -> float:  # pylint:disable=R0914
+PAGE_HEIGHT = '3508'  # 300 DPI DINA4
+DOUBLE_MIN_HEIGHT = 1000  # TODO: HOLY VALUE
+
+
+def double_column(
+    boundings,
+    stepsize=5.0,
+    height_min=DOUBLE_MIN_HEIGHT,
+) -> float:  # pylint:disable=R0914
     """\
-    >>> double_column(((0, 2, 500, 250), (0, 270, 250, 400), (290, 270, 500, 400)), stepsize=5.0)
+    >>> double_column(((0, 2, 500, 250), (0, 270, 250, 400), (290, 270, 500, 400)),
+    ... stepsize=5.0, height_min=250)
     0.33
     """
     if not boundings:
@@ -67,6 +76,9 @@ def double_column(boundings, stepsize=5.0) -> float:  # pylint:disable=R0914
     ]
     width = max(item[2] for item in boundings)
     height = max(item[3] for item in boundings)
+    if height < height_min:
+        # potential area is not high enough
+        return 0.0
     center_left = width * 0.40
     center_right = width * 0.60
     normal = []

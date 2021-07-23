@@ -34,6 +34,7 @@ def test_layout_page2_page10():
     pytest.param(power.PAPER18_PDF, id='paper18'),
     pytest.param(power.PAPER23_PDF, id='paper23'),
     pytest.param(power.PAPER42_PDF, id='paper42'),
+    pytest.param(power.MASTER072_PDF, id='master72'),
 ])
 @utilatest.nightly
 def test_layout_no_double_column(source):
