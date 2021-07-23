@@ -105,7 +105,7 @@ def load_imagesfigures(images, figures, pages):
             pages=pages,
         )
     else:
-        utila.error(f'no images: {images}')
+        utila.debug(f'no images: {images}')
         images = None
     if figures and utila.exists(figures[0]):
         figures = serializeraw.images.load_image_informations_frompath(
@@ -113,7 +113,7 @@ def load_imagesfigures(images, figures, pages):
             pages=pages,
         )
     else:
-        utila.error(f'no figures: {figures}')
+        utila.debug(f'no figures: {figures}')
         figures = None
     return images, figures
 
