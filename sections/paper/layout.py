@@ -105,7 +105,7 @@ def double_column(  # pylint:disable=R0914
     # avoid duplicated content
     double, normal = utila.make_unique(double), utila.make_unique(normal)
     double = [item for item in double if item not in normal]
-    double = utila.groupby_diff(double, diff=stepsize * 2)
+    double = utila.groupby_diff(double, maxdiff=stepsize * 2)
     double.sort()
     normal.sort()
     # determine rate of being a double column page
