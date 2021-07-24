@@ -16,7 +16,6 @@ import serializeraw
 import utilatest
 
 import sections.creator
-import sections.feature.section
 
 
 @pytest.fixture

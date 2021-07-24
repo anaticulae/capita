@@ -14,7 +14,7 @@ import pytest
 import utila
 import utilatest
 
-import sections.feature.section
+import tests.section
 import tests.validation.bachelor
 import tests.validation.docu
 import tests.validation.master
@@ -49,20 +49,11 @@ SECTIONS.update(tests.validation.master.MASTER)
     ],
 )
 @utilatest.nightly
-def test_run_validation(source, expected, testdir):
+def test_run_validation(source, expected):
     utilatest.fixture_requires(source)
-    root = str(testdir.tmpdir)
-    job = genex.create_job(
-        source,
-        root,
-        config=dict(groupme=True),
-        rawmaker=genex.CONFIG,
-        oneline=genex.ONELINE,
-    )
-    genex.example.run_job(job)
-
-    extracted = sections.feature.section.extract_sections_frompath(root)
-
+    # run extractor
+    extracted = tests.section.extract_sections_frompath(source)
+    # validate
     content = [item.__class__ for item in extracted]
     sectiontype = [item[0] for item in expected]
     utila.log(f'expected: {sectiontype}')

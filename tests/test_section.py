@@ -19,6 +19,7 @@ import sections.creator
 import sections.feature.section
 import tests
 import tests.resources
+import tests.section
 
 
 def test_dump_and_load_sections(restructured_sections_manual):
@@ -76,8 +77,7 @@ HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
 @pytest.mark.xfail(reason='require multiple page toc detector')
 @utilatest.requires(power.DOCU07_PDF)
 def test_extract_sections_simple():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.DOCU07_PDF))
+    result = tests.section.extract_sections_frompath(power.DOCU007_PDF)
     expected = [
         iamraw.MultipleSection,
         iamraw.MainPart,
@@ -100,8 +100,7 @@ def check_sections(result, expected):
 @utilatest.requires(power.DOCU07_PDF)
 def test_sections_simple():
     """Check dumped result of section work method"""
-    simple_sections = sections.feature.section.extract_sections_frompath(
-        power.link(power.DOCU07_PDF))
+    simple_sections = tests.section.extract_sections_frompath(power.DOCU07_PDF)
     assert len(simple_sections) == 2, len(simple_sections)
     dumped = serializeraw.dump_sections(simple_sections)
     assert len(dumped) > 100, dumped
@@ -116,15 +115,13 @@ def test_sections_master72():
     problem if we sort TOC and Title alphabetically. To avoid this
     problem this test ensure that sorting due the developer is done
     correctly."""
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.MASTER072_PDF))
+    result = tests.section.extract_sections_frompath(power.MASTER072_PDF)
     # page 0 is title page
     assert isinstance(result[0], iamraw.sections.Introduction), type(result[0])
     # page 1 and 2 is introduction
     mainpart = result[1]
     assert isinstance(mainpart, iamraw.sections.MainPart), type(mainpart)
     assert len(mainpart) == 62  # content pages
-
     chapternumbers = [
         item.start
         for item in utila.select_type(mainpart.content, iamraw.sections.Chapter)
@@ -136,8 +133,7 @@ def test_sections_master72():
 @utilatest.nightly
 @utilatest.requires(power.BACHELOR090_PDF)
 def test_sections_bachelor90():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.BACHELOR090_PDF))
+    result = tests.section.extract_sections_frompath(power.BACHELOR090_PDF)
     expected = [
         iamraw.sections.Unknown,
         iamraw.sections.Introduction,
@@ -150,17 +146,14 @@ def test_sections_bachelor90():
 @utilatest.nightly
 @utilatest.requires(power.MASTER116_PDF)
 def test_sections_master116():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.MASTER116_PDF))
+    result = tests.section.extract_sections_frompath(power.MASTER116_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,
         iamraw.sections.Appendix,
     ]
     check_sections(result, expected)
-
     intro, mainpart, appendix = result
-
     assert (intro.start, intro.end) == (0, 8)
     assert (mainpart.start, mainpart.end) == (8, 88)
     assert (appendix.start, appendix.end) == (88, 116)
@@ -169,9 +162,7 @@ def test_sections_master116():
 @utilatest.nightly
 @utilatest.requires(power.DOCU35_PDF)
 def test_sections_docu35():
-    source = power.link(power.DOCU35_PDF)
-    result = sections.feature.section.extract_sections_frompath(source)
-
+    result = tests.section.extract_sections_frompath(power.DOCU35_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,
@@ -192,9 +183,7 @@ def test_sections_docu35():
 @utilatest.nightly
 @utilatest.requires(power.DISS264_PDF)
 def test_sections_diss264():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.DISS264_PDF))
-
+    result = tests.section.extract_sections_frompath(power.DISS264_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,
@@ -206,9 +195,7 @@ def test_sections_diss264():
 @utilatest.nightly
 @utilatest.requires(power.MASTER031_PDF)
 def test_sections_master31():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.MASTER031_PDF))
-
+    result = tests.section.extract_sections_frompath(power.MASTER031_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -222,9 +209,7 @@ def test_sections_master31():
 def test_sections_docu27():
     """Regression test to ensure that no bib is detected on first page.
     Before fixing, there was a divided title/bib page."""
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.DOCU27_PDF))
-
+    result = tests.section.extract_sections_frompath(power.DOCU27_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -237,9 +222,7 @@ def test_sections_docu27():
 @utilatest.requires(power.MASTER112_PDF)
 def test_sections_master112():
     """Add test to ensure, that toc is not parsed as bib."""
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.MASTER112_PDF))
-
+    result = tests.section.extract_sections_frompath(power.MASTER112_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -254,9 +237,7 @@ def test_sections_master112():
 @utilatest.nightly
 @utilatest.requires(power.BACHELOR128_PDF)
 def test_sections_bachelor128():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.BACHELOR128_PDF))
-
+    result = tests.section.extract_sections_frompath(power.BACHELOR128_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -268,17 +249,15 @@ def test_sections_bachelor128():
 @pytest.mark.xfail(reason='toc detector changed?')
 @utilatest.requires(power.MASTER075_PDF)
 def test_sections_master075_appendix():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.MASTER075_PDF),
+    result = tests.section.extract_sections_frompath(
+        power.MASTER075_PDF,
         pages=(70, 71, 72, 73, 74),
     )
     result = result[0]
     assert isinstance(result, iamraw.sections.Appendix)
-
     appendix = result.content
     # page 71
     assert isinstance(appendix[1], iamraw.sections.FigureTable)
-
     # expected
     expected = [
         iamraw.sections.Bibliography,
@@ -291,7 +270,6 @@ def test_sections_master075_appendix():
         iamraw.sections.WhitePage,
         iamraw.sections.LegalInformation,
     ]
-
     for page, valid in zip(appendix, expected):
         assert isinstance(page, valid)
 
@@ -299,18 +277,14 @@ def test_sections_master075_appendix():
 @utilatest.nightly
 @utilatest.requires(power.MASTER091A_PDF)
 def test_sections_master91a():
-    result = sections.feature.section.extract_sections_frompath(
-        power.link(power.MASTER091A_PDF))
-
+    result = tests.section.extract_sections_frompath(power.MASTER091A_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
         iamraw.sections.Appendix,
     ]
     check_sections(result, expected)
-
     intro, mainpart, appendix = result
-
     assert (intro.start, intro.end) == (0, 13)
     assert (mainpart.start, mainpart.end) == (13, 74)
     assert (appendix.start, appendix.end) == (74, 91)
