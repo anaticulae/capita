@@ -13,7 +13,7 @@ import german
 import utila
 
 
-def authors(raw: str) -> list:
+def authors(raw: str, verbose: bool = False) -> list:
     """\
     >>> authors('PEREIRA, M.G., VOLCHAN, E., SOUZA, G. G. DE, OLIVEIRA, L.,'
     ... 'CAMPAGNOLI, R. R., PINHEIRO, W. M., & PESSOA, L. ')
@@ -28,7 +28,10 @@ def authors(raw: str) -> list:
     """
     result = []
     for item in re.finditer(pattern, raw, re.VERBOSE):
-        result.append(utila.extract_match(item).strip())
+        item = utila.extract_match(item).strip()
+        if verbose:
+            item = (item, item)
+        result.append(item)
     return result
 
 
