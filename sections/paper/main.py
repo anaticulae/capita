@@ -48,9 +48,11 @@ def group_percentage(  # pylint:disable=R1260,R0912
         if failure and bonus % 3 == 0:
             failure -= 1
             bonus = 0
+        # close group if failure count is too high
         if failure > failure_max:
             grouped.append([])
             failure = 0
+        # close group if page distance is higher than `page_diff_max`
         if grouped and grouped[-1]:
             pagediff_error = (page - grouped[-1][-1][0]) > page_diff_max
         else:
@@ -59,6 +61,7 @@ def group_percentage(  # pylint:disable=R1260,R0912
             grouped.append([])
             failure = 0
             bonus = 0
+        # decide if merging roated page to valid content before
         if percent == 'rotated':
             if pagediff_error:
                 grouped.append([])
@@ -67,12 +70,14 @@ def group_percentage(  # pylint:disable=R1260,R0912
             if grouped:
                 grouped[-1].append((page, 'rotated'))
             continue
+        # double column rate is higher than requested rate
         success = percent is not None and percent > double_column_min
         if not success:
             if grouped:
                 failure += 1
                 bonus = 0
             continue
+        # merge valid to group before or create a new group
         if grouped:
             grouped[-1].append((page, percent))
         else:

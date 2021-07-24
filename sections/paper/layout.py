@@ -44,6 +44,7 @@ def extract_page(
     boundings = sections.paper.rectangle.image_boundings(image)
     img = cv2.imread(image)
     if debug:
+        # render detected rectangle into result image
         sections.paper.rectangle.image_render_rectangle(img, boundings)
         cv2.imwrite(image, img)
     height, width, _ = img.shape
@@ -74,13 +75,19 @@ def double_column(  # pylint:disable=R0914
     boundings = [
         (item[0], item[1] - y0, item[2], item[3] - y0) for item in boundings
     ]
+    # determine rectangle with size of bounding content
+    # TODO: DETERMINE X0?
     width = max(item[2] for item in boundings)
     height = max(item[3] for item in boundings)
     if height < height_min:
         # potential area is not high enough
         return 0.0
+    # determine center which divides left and right content column
     center_left = width * 0.40
     center_right = width * 0.60
+    # decide if bounding is
+    #   normal(spanning complete line) or
+    #   double(left and/or right) content
     normal = []
     double = []
     for x0, y0, x1, y1 in boundings:
@@ -93,11 +100,13 @@ def double_column(  # pylint:disable=R0914
                 double.append(yn)
             else:
                 normal.append(yn)
+    # avoid duplicated content
     double, normal = utila.make_unique(double), utila.make_unique(normal)
     double = [item for item in double if item not in normal]
     double = utila.groupby_diff(double, diff=stepsize * 2)
     double.sort()
     normal.sort()
+    # determine rate of being a double column page
     percent = 1.0 / height
     result = 0.0
     for item in double:
