@@ -14,12 +14,14 @@ import utila
 import sections
 import sections.paper.rectangle
 
+LAYOUT_WORKER = 14
+
 
 def percentage(path: str, pages: tuple = None, debug: bool = False) -> tuple:
     utila.exists_assert(path)
     pdfpages = pdfinfo.pages.determine(path)
     tmpdir = utila.tmpdir(root=sections.ROOT)
-    with utila.GeorgFork(returncode=False, worker=14) as fork:
+    with utila.GeorgFork(returncode=False, worker=LAYOUT_WORKER) as fork:
         for page in range(pdfpages):
             if utila.should_skip(page, pages):
                 continue
