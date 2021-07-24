@@ -57,7 +57,7 @@ PAGE_HEIGHT = '3508'  # 300 DPI DINA4
 DOUBLE_MIN_HEIGHT = 1000  # TODO: HOLY VALUE
 
 
-def double_column(
+def double_column(  # pylint:disable=R0914
     boundings,
     stepsize=5.0,
     height_min=DOUBLE_MIN_HEIGHT,

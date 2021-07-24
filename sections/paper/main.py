@@ -26,7 +26,7 @@ def detect_paper(pdf: str, pages: tuple = None) -> tuple:
     return result
 
 
-def group_percentage(
+def group_percentage(  # pylint:disable=R1260,R0912
     percents,
     pages_min: int = 6,
     double_column_min: float = 0.4,
