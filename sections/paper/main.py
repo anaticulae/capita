@@ -52,6 +52,7 @@ def group_percentage(  # pylint:disable=R1260,R0912
         if failure > failure_max:
             grouped.append([])
             failure = 0
+            bonus = 0
         # close group if page distance is higher than `page_diff_max`
         if grouped and grouped[-1]:
             pagediff_error = (page - grouped[-1][-1][0]) > page_diff_max
