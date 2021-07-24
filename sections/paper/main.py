@@ -22,6 +22,7 @@ def detect_paper(pdf: str, pages: tuple = None) -> tuple:
     if not grouped:
         return None
     result = [(group[0][0], group[-1][0]) for group in grouped]
+    result = merge_groups(result)
     return result
 
 
@@ -29,6 +30,8 @@ def group_percentage(
     percents,
     pages_min: int = 6,
     double_column_min: float = 0.4,
+    failure_max: int = 5,
+    page_diff_max: int = 5,
 ) -> list:
     """Determine connected group of pages.
 
@@ -39,12 +42,28 @@ def group_percentage(
     Return a list of valid groups with pairs of (page, percent)
     """
     failure = 0
+    bonus = 0
     grouped = []
     for page, percent in enumerate(percents):
-        if failure > 5:
+        if failure and bonus % 3 == 0:
+            failure -= 1
+            bonus = 0
+        if failure > failure_max:
             grouped.append([])
             failure = 0
+        if grouped and grouped[-1]:
+            pagediff_error = (page - grouped[-1][-1][0]) > page_diff_max
+        else:
+            pagediff_error = False
+        if pagediff_error:
+            grouped.append([])
+            failure = 0
+            bonus = 0
         if percent == 'rotated':
+            if pagediff_error:
+                grouped.append([])
+                failure = 0
+                bonus = 0
             if grouped:
                 grouped[-1].append((page, 'rotated'))
             continue
@@ -52,17 +71,20 @@ def group_percentage(
         if not success:
             if grouped:
                 failure += 1
+                bonus = 0
             continue
         if grouped:
             grouped[-1].append((page, percent))
         else:
             grouped.append([(page, percent)])
+        if failure:
+            bonus += 1
     # remove little groups
     grouped = [item for item in grouped if count_start(item) >= pages_min]
     return grouped
 
 
-def count_start(items):
+def count_start(items) -> int:
     """Ensure to have a valid, hight quality group start."""
     counted = 0
     for _, item in items:
@@ -71,3 +93,16 @@ def count_start(items):
         else:
             break
     return counted
+
+
+def merge_groups(items, maxdiff: int = 5):
+    if not items:
+        return []
+    result = [items[0]]
+    for item in items[1:]:
+        start, end = item
+        if start - item[1] <= maxdiff:
+            result[-1] = (result[-1][0], end)
+        else:
+            result.append(item)
+    return result
