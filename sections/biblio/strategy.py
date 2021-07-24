@@ -14,7 +14,6 @@ import sections.biblio.specialchars
 def extract(data: sections.utils.spa.Data) -> list:
     special = sections.biblio.specialchars.extract(data)
     double = sections.biblio.doublecolumn.extract(data)
-
     # select "better" result
     special_sum = sum(item.content.value for item in special)
     double_sum = sum(item.content.value for item in double)

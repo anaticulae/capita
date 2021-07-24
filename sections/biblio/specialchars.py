@@ -67,7 +67,6 @@ MARKER_MIN_COUNT = configo.HV_INT_PLUS(5).value
 def analyse_page(
     navigator: texmex.PageTextNavigator
 ) -> sections.feature.StatisticalResultItem:
-
     headlines = sections.utils.headline.headlines(navigator)
     if headlines and utila.similar(
             expected=HEADLINES,
@@ -76,19 +75,15 @@ def analyse_page(
     ):
         # Bibliography headline on page
         return len(navigator), len(navigator)
-
     raw = ' '.join([line.text for line in navigator])
-    collected = []
-    for method in [
-            german.years,
-            german.dates,
-            german.pagenumbers,
-            german.authors,  # pylint:disable=E1101
-    ]:
-        collected.extend(method(raw))
-
+    pattern = [
+        german.dates,
+        german.years,
+        german.pagenumbers,
+        german.authors,
+    ]
+    collected = collect_and_replace(raw, pattern)
     marker = len(collected)
-
     if marker < MARKER_MIN_COUNT:
         utila.debug(f'too few marker: {marker}')
         marker = 0
@@ -109,6 +104,18 @@ def analyse_page(
         # this can not be a bib table
         marker = 0
     return len(navigator), marker
+
+
+def collect_and_replace(raw: str, pattern: list) -> list:
+    """Collect due list of pattern and avoids parsing items twice."""
+    collected = []
+    for method in pattern:
+        parsed = method(raw, verbose=True)
+        for item, itemraw in parsed:
+            # do not parse pattern twice
+            raw = raw.replace(itemraw, ' **************** ')
+            collected.append(item)
+    return collected
 
 
 def special_chars(raw: str) -> bool:
