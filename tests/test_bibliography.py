@@ -76,6 +76,7 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     pytest.param(power.HOME018_PDF, [17], id='home18'),
     pytest.param(power.PAPER18_PDF, [15, 16, 17], id='paper18'),
     pytest.param(power.MASTER110_PDF, [104, 105, 106, 107, 108], id='master110'),
+    pytest.param(power.DISS266_PDF, utila.ranged_list(214, 246), id='diss266'),
 ])
 # yapf:enable
 @utilatest.longrun

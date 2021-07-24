@@ -38,12 +38,9 @@ def extract(data: sections.utils.spa.Data) -> list:
         likelihood_name='bibliography_table',
         page_analysis=analyse_page,
     )
-
     extracted = sections.utils.spa.work(data=data, config=config)
-
     # ignore to low valued bib pages
     valid = [item for item in extracted if item.content.value > MIN_LIKELIHOOD]
-
     hugest = sections.biblio.utils.cluster_bibpages(valid)
     return hugest
 

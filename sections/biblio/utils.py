@@ -7,25 +7,32 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
+import iamraw
 import utila
 
-
-def ascending_page_groups(items):
-    # TODO: MOVE TO UTILA
-    if not items:
-        return []
-    result = [[items[0]]]
-    for item in items[1:]:
-        if item.page - result[-1][-1].page == 1:
-            result[-1].append(item)
-        else:
-            result.append([item])
-    return result
+MAX_DIFF = configo.HolyTable(
+    items=(
+        (1, 0),
+        (5, 0),
+        (6, 1),
+        (10, 2),
+        (12, 2),
+    ),
+    right_outranges_none=False,
+)
 
 
 def cluster_bibpages(items):
     """Select hugest(max sum likelihood value) group."""
-    grouped = ascending_page_groups(items)
+    if not items:
+        return []
+    maxdiff = MAX_DIFF(len(items)) + 1
+    grouped = utila.groupby_diff(
+        items,
+        maxdiff=maxdiff,
+        selector=lambda x: x.page,
+    )
     if not grouped:
         return []
     hugest = sorted(
@@ -33,9 +40,31 @@ def cluster_bibpages(items):
         key=lambda x: sum(item.content.value for item in x),
     )
     hugest = hugest[-1]
-
     avg = sum([item.content.value for item in hugest]) / len(hugest)
+    avg = utila.roundme(avg)
     for item in hugest:
         # every item of the group should have the same likelihood
-        item.content.value = utila.roundme(avg)
-    return hugest
+        item.content.value = avg
+    result = fill_empty(hugest)
+    return result
+
+
+def fill_empty(items: list) -> list:
+    """Fill holes inside connected bib."""
+    result = list(items)
+    start, end = result[0].page, result[-1].page
+    done = {item.page for item in result}
+    avg = result[0].content.value
+    for page in utila.ranged_list(start, end):
+        if page in done:
+            continue
+        result.append(
+            iamraw.PageContentLikelihood(
+                page=page,
+                content=iamraw.Likelihood(
+                    value=avg,
+                    name='bibliography_table',
+                ),
+            ))
+    result.sort(key=lambda x: x.page)
+    return result
