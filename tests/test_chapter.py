@@ -105,14 +105,12 @@ def test_chapter_work_bachelor63():
     # Einleitung
     first_chapter = utila.select_page(extracted, page=8)
     assert first_chapter.content.value >= 0.5, str(extracted)
-
     # Grundlagen
     second_chapter = utila.select_page(extracted, page=9)
     assert second_chapter.content.value >= 0.5, str(extracted)
-
-    expected = [8, 9, 17, 19]
+    # verify
+    expected = [8, 9, 17, 19, 33, 39]
     pages = [item.page for item in extracted]
-
     assert pages == expected
 
 
