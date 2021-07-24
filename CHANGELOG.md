@@ -2,6 +2,46 @@
 
 Every noteable change is logged here.
 
+## v1.4.0
+
+### Feature
+
+* add tolerance in bib grouper (fee6190ce9d1)
+* improve main merger (fc257175cbfd)
+* introduce layout min height to avoid (0482b76cff18)
+* add option to write images to a common folder (360b53832a82)
+* introduce CiteContent (5c2b3b231604)
+* ensure that section is not sorted alphabetically (86e661d5ac68)
+* link paper result to default extractor (3ed045ec2e4f)
+* add paper step (af4cffd136f8)
+* improve code style (cb6317bee156)
+* ensure to have a more proper group start (7527ff4d0a7a)
+* user grouper to determine valid range of pages (9d699ded5041)
+* do not run double column on rotated page (9faeb1940a93)
+* reduce execution time (72ee670f958a)
+* adjust layout extractor (a94d3fe0c861)
+* add option to analyze selected pages (79c6f4b24ae6)
+* add double layout detector (b61e335f2125)
+* skip small rectangles (770564d2009a)
+* add pdf to image converter (d88c1d1e631e)
+* add page font detection (11f67c30a77f)
+* add paper detection package (660e9ae4a8c3)
+
+### Fix
+
+* reset bonus after failure group (04f98a72ceb4)
+* make pattern parser more robust (92bd8235bd84)
+* add missing pages flag (fd1c50834023)
+* ensure correct return value (5813f151697b)
+* reduce verbosity (49130d15fe84)
+* fix normal skipper (95619b50e7d4)
+* skip empty pages (67dce7c73048)
+* run clustering more than once (5022aeadbf56)
+
+### Documentation
+
+* extend code docs (3e800f7dc219)
+
 ## v1.3.2
 
 ### Feature
