@@ -288,3 +288,23 @@ def test_sections_master91a():
     assert (intro.start, intro.end) == (0, 13)
     assert (mainpart.start, mainpart.end) == (13, 74)
     assert (appendix.start, appendix.end) == (74, 91)
+
+
+@utilatest.nightly
+@utilatest.requires(power.DISS148_PDF)
+def test_sections_diss148():
+    result = tests.section.extract_sections_frompath(power.DISS148_PDF)
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.CitePart,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    ]
+    check_sections(result, expected)
+    intro, mainpart, citepart, secondpart, appendix = result
+    assert (intro.start, intro.end) == (0, 18)
+    assert (mainpart.start, mainpart.end) == (18, 46)
+    assert (citepart.start, citepart.end) == (46, 116)
+    assert (secondpart.start, secondpart.end) == (116, 137)
+    assert (appendix.start, appendix.end) == (137, 148)
