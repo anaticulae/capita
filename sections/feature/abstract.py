@@ -64,6 +64,7 @@ def work(
 HEADLINES = [
     'Abstract',
     'Kurzfassung',
+    'Kurzzusammenfassung',
     'Zusammenfassung',
 ]
 
