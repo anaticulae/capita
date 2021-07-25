@@ -21,10 +21,18 @@ VALID_PAGES = utila.ranged_tuple(0, 20)
 NO_PAGE = (0, 0)
 
 
-def work(text_linewise: str, textpositions: str, pages=None) -> str:
-    navigators = serializeraw.create_pagetextnavigators_fromfile(
-        text_linewise,
-        textpositions,
+def work(
+    text_linewise: str,
+    textpositions: str,
+    sizeandborder: str,
+    headerfooters: str,
+    pages=None,
+) -> str:
+    navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
+        text=text_linewise,
+        textpositions=textpositions,
+        sizeandborderpath=sizeandborder,
+        headerfooterpath=headerfooters,
         pages=pages,
     )
 

@@ -45,6 +45,8 @@ def extract_sections_frompath(  # pylint:disable=R0914
     abstract = sections.feature.abstract.work(
         text,
         textposition,
+        sizeandborder,
+        footers,
         pages=pages,
     )
     chapter = sections.feature.chapter.work(
