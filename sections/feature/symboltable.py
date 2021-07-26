@@ -12,6 +12,7 @@
 
 import iamraw
 import serializeraw
+import utila
 
 import sections.feature
 import sections.utils.headline
@@ -46,20 +47,21 @@ def work(text_linewise: str, textpositions: str, pages=None) -> str:
     return dumped
 
 
-HEADLINES = [
-    'Symbol',
-    'Symbolverzeichnis',
-]
+HEADLINES_SYMBOLTABLE = utila.splitlines("""
+SYMBOL
+SYMBOLS
+SYMBOLVERZEICHNIS
+""")
 
 
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
         return NO_PAGE
-    if isinstance(headlines, str):
-        headlines = [headlines]
-
-    for item in HEADLINES:
-        if item in headlines:
-            return 1, 1
+    if utila.similar(
+            expected=HEADLINES_SYMBOLTABLE,
+            current=headlines,
+            maxdiff=0.95,
+    ):
+        return 1, 1
     return NO_PAGE
