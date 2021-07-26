@@ -10,7 +10,6 @@
 =================
 """
 
-import iamraw
 import serializeraw
 import utila
 
@@ -34,28 +33,13 @@ def work(
         headerfooterpath=headerfooters,
         pages=pages,
     )
-
-    result = {page.page: analyse_page(page) for page in navigators}
-
-    result = {
-        page: value if page in VALID_PAGES else sections.feature.NO_PAGE
-        for page, value in result.items()
-    }
-
-    uniformed = sections.feature.uniform_result(result)
-    multiformed = sections.feature.multiform_result(result)
-    if multiformed is not None:
-        uniformed = multiformed
-    assert len(uniformed) == len(navigators)
-
-    result = [
-        iamraw.PageContentLikelihood(
-            page=page,
-            content=iamraw.Likelihood(value, name='abstract'),
-        ) for page, value in uniformed.items()
-    ]
-    result = sorted(result, key=lambda x: x.page)
-
+    result = sections.feature.pagebypage(
+        navigators,
+        pageme=analyse_page,
+        name='abstract',
+        minpage=0,
+        maxpage=20,
+    )
     dumped = serializeraw.dump_likelihood(result)
     return dumped
 

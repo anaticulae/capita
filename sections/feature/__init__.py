@@ -109,3 +109,34 @@ def likelihood(elements, feature):
     if feature == 0:
         return 0.0
     return elements / feature
+
+
+def pagebypage(
+    navigators,
+    pageme: callable,
+    name: str,
+    minpage: int = None,
+    maxpage: int = None,
+) -> list:
+    minpage = 0 if minpage is None else minpage
+    maxpage = navigators[-1].page if maxpage is None else maxpage
+    # analze every page
+    analyzed = {
+        page.page: pageme(page) if minpage <= page.page <= maxpage else NO_PAGE
+        for page in navigators
+    }
+    # prepare result
+    uniformed = uniform_result(analyzed)
+    multiformed = multiform_result(analyzed)
+    if multiformed is not None:
+        uniformed = multiformed
+    assert len(uniformed) == len(navigators)
+    # determine result page by page
+    result = [
+        iamraw.PageContentLikelihood(
+            page=page,
+            content=iamraw.Likelihood(value, name=name),
+        ) for page, value in uniformed.items()
+    ]
+    result.sort(key=lambda x: x.page)
+    return result

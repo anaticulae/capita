@@ -10,7 +10,6 @@
 =================
 """
 
-import iamraw
 import serializeraw
 import utila
 
@@ -24,30 +23,14 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
         textpositions,
         pages=pages,
     )
-
     # TODO: MAY CHANGE LATER?
     # do not detect appendix at the start of the document
-    minpage = len(navigators) * 0.3
-    result = {
-        page.page:
-        analyse_page(page) if page.page > minpage else sections.feature.NO_PAGE
-        for page in navigators
-    }
-
-    uniformed = sections.feature.uniform_result(result)
-    multiformed = sections.feature.multiform_result(result)
-    if multiformed is not None:
-        uniformed = multiformed
-    assert len(uniformed) == len(navigators)
-
-    result = [
-        iamraw.PageContentLikelihood(
-            page=page,
-            content=iamraw.Likelihood(value, name='appendix'),
-        ) for page, value in uniformed.items()
-    ]
-    result = sorted(result, key=lambda x: x.page)
-
+    result = sections.feature.pagebypage(
+        navigators=navigators,
+        pageme=analyse_page,
+        name='appendix',
+        minpage=0.3 * len(navigators),
+    )
     dumped = serializeraw.dump_likelihood(result)
     return dumped
 

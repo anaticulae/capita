@@ -10,7 +10,6 @@
 =================
 """
 
-import iamraw
 import serializeraw
 import utila
 
@@ -24,23 +23,11 @@ def work(text_linewise: str, textpositions: str, pages=None) -> str:
         textpositions,
         pages=pages,
     )
-
-    result = {page.page: analyse_page(page) for page in navigators}
-
-    uniformed = sections.feature.uniform_result(result)
-    multiformed = sections.feature.multiform_result(result)
-    if multiformed is not None:
-        uniformed = multiformed
-    assert len(uniformed) == len(navigators)
-
-    result = [
-        iamraw.PageContentLikelihood(
-            page=page,
-            content=iamraw.Likelihood(value, name='symboltable'),
-        ) for page, value in uniformed.items()
-    ]
-    result = sorted(result, key=lambda x: x.page)
-
+    result = sections.feature.pagebypage(
+        navigators=navigators,
+        pageme=analyse_page,
+        name='symboltable',
+    )
     dumped = serializeraw.dump_likelihood(result)
     return dumped
 

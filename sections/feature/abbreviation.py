@@ -18,7 +18,6 @@ import contextlib
 import statistics
 
 import geostrat
-import iamraw
 import serializeraw
 import utila
 
@@ -37,23 +36,11 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
         oneline_textpositions,
         pages=pages,
     )
-
-    result = {page.page: analyse_page(page) for page in navigators}
-
-    uniformed = sections.feature.uniform_result(result)
-    multiformed = sections.feature.multiform_result(result)
-    if multiformed is not None:
-        uniformed = multiformed
-    assert len(uniformed) == len(navigators)
-
-    result = [
-        iamraw.PageContentLikelihood(
-            page=page,
-            content=iamraw.Likelihood(value, name='abbreviation_table'),
-        ) for page, value in uniformed.items()
-    ]
-    result = sorted(result, key=lambda x: x.page)
-
+    result = sections.feature.pagebypage(
+        navigators,
+        analyse_page,
+        name='abbreviation_table',
+    )
     # TODO: A LITTLE HACKY BUT WORKS
     result = sections.table.strategy.merge_second(
         result,
