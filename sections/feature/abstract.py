@@ -61,12 +61,12 @@ def work(
     return dumped
 
 
-HEADLINES = [
-    'Abstract',
-    'Kurzfassung',
-    'Kurzzusammenfassung',
-    'Zusammenfassung',
-]
+HEADLINES_ABSTRACT = utila.splitlines("""
+ABSTRACT
+KURZFASSUNG
+KURZZUSAMMENFASSUNG
+ZUSAMMENFASSUNG
+""")
 
 
 def analyse_page(content):
@@ -75,7 +75,10 @@ def analyse_page(content):
         return NO_PAGE
     if isinstance(headlines, str):
         headlines = [headlines]
-    for item in HEADLINES:
-        if item in headlines:
-            return 1, 1
+    if utila.similar(
+            expected=HEADLINES_ABSTRACT,
+            current=headlines,
+            maxdiff=0.95,
+    ):
+        return 1, 1
     return NO_PAGE
