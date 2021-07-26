@@ -20,7 +20,7 @@ def headlines(
     min_length: int = 5,  # TODO: HOLY VALUE
     # max_length: int = 50,  # TODO: HOLY VALUE
     min_word_count: int = 1,
-    max_word_count: int = 3,
+    max_word_count: int = 5,
     topsearch: bool = False,
 ):
     """\
