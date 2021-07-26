@@ -53,7 +53,6 @@ def work(
         pages=pages,
     )
     tocs = serializeraw.load_toc(tocpath)
-
     # work
     result = extract_chapter(
         navigators=navigators,
@@ -199,7 +198,7 @@ def huge_match(line: str, part: str) -> bool:
     False
     """
     line = line.lower()
-    if not part in line:
+    if part not in line:
         return False
     percent = len(part) / len(line)
     if percent < 0.5:
@@ -212,7 +211,6 @@ def contains_listof(content: str) -> bool:
     raw = rawcontent(content)
     dots_with_spaces = raw.count('. . . .')
     connected_dots = raw.count('....')
-
     result = dots_with_spaces > 4 or connected_dots >= 3
     return result
 
