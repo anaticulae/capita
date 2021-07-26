@@ -26,7 +26,6 @@ import sections.feature
 import sections.table.strategy
 import sections.utils.headline
 
-NO_PAGE = (0, 0)
 BACKUP_PAGE = (1, 0.5)
 
 ABBREVIATION_TRUST_MIN = 0.65  # TODO: HOLY VALUE
@@ -88,10 +87,10 @@ def analyse_page(content):
         parsed = geostrat.parse(content, column_count=2)
         if not invalid_column(parsed):
             return BACKUP_PAGE
-        return NO_PAGE
+        return sections.feature.NO_PAGE
     if utila.similar(expected=HEADLINES, current=headlines, maxdiff=0.95):
-        return 1, 1
-    return NO_PAGE
+        return sections.feature.PERFECT
+    return sections.feature.NO_PAGE
 
 
 def invalid_column(data: list) -> bool:  # pylint:disable=R0911

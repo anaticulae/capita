@@ -17,8 +17,6 @@ import utila
 import sections.feature
 import sections.utils.headline
 
-NO_PAGE = (0, 0)
-
 HEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(0.85, limit=1.0)
 NOHEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(0.85, limit=1.0)
 
@@ -74,7 +72,7 @@ def extract_xxx_likelihood(
 
     result = {
         page: judged if not utila.should_skip(page, pages) and
-        matched(content, headline, noheadlines) else NO_PAGE
+        matched(content, headline, noheadlines) else sections.feature.NO_PAGE
         for page, (content, judged) in result.items()
     }
     uniformed = sections.feature.uniform_result(result)

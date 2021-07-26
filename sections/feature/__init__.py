@@ -19,6 +19,9 @@ Page = int
 StatisticalResultItem = typing.Tuple[texmex.Occurrence, Count]  # number
 StatisticalResult = typing.Dict[Page, StatisticalResultItem]
 
+NO_PAGE = (0, 0)
+PERFECT = (1, 1)
+
 
 def uniform_result(
     items: StatisticalResult,

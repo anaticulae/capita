@@ -18,7 +18,6 @@ import sections.feature
 import sections.utils.headline
 
 VALID_PAGES = utila.ranged_tuple(0, 20)
-NO_PAGE = (0, 0)
 
 
 def work(
@@ -39,7 +38,7 @@ def work(
     result = {page.page: analyse_page(page) for page in navigators}
 
     result = {
-        page: value if page in VALID_PAGES else NO_PAGE
+        page: value if page in VALID_PAGES else sections.feature.NO_PAGE
         for page, value in result.items()
     }
 
@@ -74,13 +73,11 @@ ZUSAMMENFASSUNG
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(content, topsearch=False)
     if not headlines:
-        return NO_PAGE
-    if isinstance(headlines, str):
-        headlines = [headlines]
+        return sections.feature.NO_PAGE
     if utila.similar(
             expected=HEADLINES_ABSTRACT,
             current=headlines,
             maxdiff=0.95,
     ):
-        return 1, 1
-    return NO_PAGE
+        return sections.feature.PERFECT
+    return sections.feature.NO_PAGE

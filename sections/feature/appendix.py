@@ -17,8 +17,6 @@ import utila
 import sections.feature
 import sections.utils.headline
 
-NO_PAGE = (0, 0)
-
 
 def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
     navigators = serializeraw.create_pagetextnavigators_fromfile(
@@ -31,7 +29,8 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
     # do not detect appendix at the start of the document
     minpage = len(navigators) * 0.3
     result = {
-        page.page: analyse_page(page) if page.page > minpage else NO_PAGE
+        page.page:
+        analyse_page(page) if page.page > minpage else sections.feature.NO_PAGE
         for page in navigators
     }
 
@@ -56,11 +55,11 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
-        return NO_PAGE
+        return sections.feature.NO_PAGE
     # ensure that every cased headlines are parsed correctly
     if utila.similar(expected=HEADLINES, current=headlines, maxdiff=0.9):
-        return 1, 1
-    return NO_PAGE
+        return sections.feature.PERFECT
+    return sections.feature.NO_PAGE
 
 
 HEADLINES = utila.splitlines("""

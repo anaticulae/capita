@@ -17,8 +17,6 @@ import utila
 import sections.feature
 import sections.utils.headline
 
-NO_PAGE = (0, 0)
-
 
 def work(text_linewise: str, textpositions: str, pages=None) -> str:
     navigators = serializeraw.create_pagetextnavigators_fromfile(
@@ -57,11 +55,11 @@ SYMBOLVERZEICHNIS
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
-        return NO_PAGE
+        return sections.feature.NO_PAGE
     if utila.similar(
             expected=HEADLINES_SYMBOLTABLE,
             current=headlines,
             maxdiff=0.95,
     ):
-        return 1, 1
-    return NO_PAGE
+        return sections.feature.PERFECT
+    return sections.feature.NO_PAGE
