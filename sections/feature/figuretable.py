@@ -57,7 +57,11 @@ Tabellenverzeichnis
 
 FIGURE = re.compile(
     r'(Abb\.{0,1}|Abbildung)[ ]{0,3}\d{1,2}[ ]{0,3}.{0,50}',
-    re.X,
+    re.X | re.I,
+)
+FIGURE_ENG = re.compile(
+    r'FIGURE[ ]{0,3}\d{1,2}\-\d{1,2}\.[ ]{0,3}.{0,50}',
+    re.X | re.I,
 )
 
 
@@ -65,7 +69,11 @@ def figure(line: str) -> bool:
     """\
     >>> figure('Abb. 7        Durchschnittliche Reaktionszeit (korrekte und')
     True
+    >>> figure('Figure 5-5. Early WWW Architecture Diagram              81')
+    True
     """
     if FIGURE.match(line):
+        return True
+    if FIGURE_ENG.match(line):
         return True
     return False
