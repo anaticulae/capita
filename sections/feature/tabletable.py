@@ -31,7 +31,11 @@ def work(
     )
     dumped = sections.table.strategy.work(
         ptcns,
-        headline=['Tabellenverzeichnis', 'Tabellen'],
+        headline=[
+            'Tabellenverzeichnis',
+            'Tabellen',
+            'LIST OF TABLES',
+        ],
         noheadlines=[
             'Abbildungen',
             'Abbildungsverzeichnis',
