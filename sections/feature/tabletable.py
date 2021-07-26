@@ -11,6 +11,7 @@
 """
 
 import serializeraw
+import utila
 
 import sections.table.strategy
 
@@ -31,17 +32,22 @@ def work(
     )
     dumped = sections.table.strategy.work(
         ptcns,
-        headline=[
-            'Tabellenverzeichnis',
-            'Tabellen',
-            'LIST OF TABLES',
-        ],
-        noheadlines=[
-            'Abbildungen',
-            'Abbildungsverzeichnis',
-            'Inhalt',
-            'Inhaltsverzeichnis',
-        ],
+        headline=HEADLINES_TABLETABLE,
+        noheadlines=NOHEADLINES_TABLETABLE,
         shortcut='tableoftable',
     )
     return dumped
+
+
+HEADLINES_TABLETABLE = utila.splitlines("""
+LIST OF TABLES
+TABELLEN
+TABELLENVERZEICHNIS
+""")
+
+NOHEADLINES_TABLETABLE = utila.splitlines("""
+ABBILDUNGEN
+ABBILDUNGSVERZEICHNIS
+INHALT
+INHALTSVERZEICHNIS
+""")
