@@ -10,6 +10,8 @@
 =======================
 """
 
+import re
+
 import serializeraw
 import utila
 
@@ -34,6 +36,7 @@ def work(
         ptcns,
         headline=HEADLINES_TABLETABLE,
         noheadlines=NOHEADLINES_TABLETABLE,
+        pattern=table,
         shortcut='tableoftable',
     )
     return dumped
@@ -51,3 +54,26 @@ ABBILDUNGSVERZEICHNIS
 INHALT
 INHALTSVERZEICHNIS
 """)
+
+TABLE = re.compile(
+    r'(Tab\.{0,1}|Tabelle)[ ]{0,3}\d{1,2}[ ]{0,3}.{0,50}',
+    re.X | re.I,
+)
+TABLE_ENG = re.compile(
+    r'TABLE[ ]{0,3}\d{1,2}\-\d{1,2}\.[ ]{0,3}.{0,50}',
+    re.X | re.I,
+)
+
+
+def table(line: str) -> bool:
+    """\
+    >>> table('Tabelle 4 - Aufgabenüberblick der Reflexionsphase ................... 65')
+    True
+    >>> table('TABLE 3-1. Evaluation of Hypermedia                         41')
+    True
+    """
+    if TABLE.match(line):
+        return True
+    if TABLE_ENG.match(line):
+        return True
+    return False
