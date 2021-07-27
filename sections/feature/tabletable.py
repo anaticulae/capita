@@ -38,6 +38,7 @@ def work(
         noheadlines=NOHEADLINES_TABLETABLE,
         pattern=table,
         shortcut='tableoftable',
+        topsearch=False,
     )
     return dumped
 
