@@ -27,7 +27,9 @@ def work(
     shortcut: str,
     pages: tuple = None,
     noheadlines: list = None,
+    *,
     second: bool = False,
+    topsearch: bool = True,
     pattern: callable = None,
 ) -> str:
     extracted = extract_xxx_likelihood(
@@ -37,6 +39,7 @@ def work(
         pages=pages,
         noheadlines=noheadlines,
         pattern=pattern,
+        topsearch=topsearch,
     )
     if second:
         # disable required headline to merge table pages which follows
@@ -48,6 +51,7 @@ def work(
             noheadlines=noheadlines,
             pages=pages,
             pattern=pattern,
+            topsearch=topsearch,
         )
         extracted = merge_second(extracted, without)
 
@@ -63,6 +67,7 @@ def extract_xxx_likelihood(
     noheadlines: list = None,
     pattern: callable = None,
     likelihood_min: float = 0.2,
+    topsearch: bool = True,
 ) -> iamraw.PageContentLikelihood:
     """Iterate thru document and determine uni- or multi formed
     likelihood of being a table page."""
@@ -72,8 +77,8 @@ def extract_xxx_likelihood(
 
     result = {
         page: judged if not utila.should_skip(page, pages) and
-        matched(content, headline, noheadlines) else sections.feature.NO_PAGE
-        for page, (content, judged) in result.items()
+        matched(content, headline, noheadlines, topsearch=topsearch) else
+        sections.feature.NO_PAGE for page, (content, judged) in result.items()
     }
     uniformed = sections.feature.uniform_result(result)
     multiformed = sections.feature.multiform_result(result)
@@ -96,10 +101,16 @@ def extract_xxx_likelihood(
     return result
 
 
-def matched(navigator, headline, noheadlines) -> bool:
+def matched(
+    navigator,
+    headline,
+    noheadlines,
+    *,
+    topsearch: bool = True,
+) -> bool:
     """Collect headlines from `navigator` and check if given `headline`
     is found and colected headline is not `noheadlines`."""
-    detected = sections.utils.headline.headlines(navigator, topsearch=True)
+    detected = sections.utils.headline.headlines(navigator, topsearch=topsearch)
     if noheadlines and detected:
         if utila.similar(noheadlines, detected, maxdiff=HEADLINE_COLLECT_MIN):
             return False
