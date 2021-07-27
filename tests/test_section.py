@@ -312,7 +312,11 @@ def test_sections_diss148():
 
 @utilatest.nightly
 def test_sections_diss180(testdir, monkeypatch):
-    result = tests.sections_from_dir(power.DISS180_PDF, testdir, monkeypatch)
+    result = tests.sections_from_dir(
+        power.DISS180_PDF,
+        testdir,
+        monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -320,6 +324,6 @@ def test_sections_diss180(testdir, monkeypatch):
     ]
     check_sections(result, expected)
     intro, mainpart, appendix = result
-    assert (intro.start, intro.end) == (0, 22)
-    assert (mainpart.start, mainpart.end) == (22, 169)
+    assert (intro.start, intro.end) == (0, 18)
+    assert (mainpart.start, mainpart.end) == (18, 169)
     assert (appendix.start, appendix.end) == (169, 180)
