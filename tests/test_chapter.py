@@ -134,3 +134,9 @@ def test_chapter_work_paper18():
     pages = [item.page for item in extracted]
 
     assert pages == expected
+
+
+def test_chapter_diss180_introduction():
+    source = power.link(power.DISS180_PDF)
+    extracted = chapter(source, pages=(18,))
+    assert extracted[0].content.value >= 0.5
