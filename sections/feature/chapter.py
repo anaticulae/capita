@@ -52,16 +52,27 @@ def work(
         headerfooterpath=footerheader,
         pages=pages,
     )
-    tocs = serializeraw.load_toc(tocpath)
+    tocs = load_toc(tocpath)
     # work
     result = extract_chapter(
         navigators=navigators,
         tocs=tocs,
     )
-
     # write result
     dumped = serializeraw.dump_likelihood(result)
     return dumped
+
+
+def load_toc(tocpath):
+    """Load table of content out of outlines.
+
+    Strip first outline wich is may the headline of the document.
+    """
+    toc = serializeraw.load_toc(tocpath)
+    if len(toc) == 1:
+        # maybe a headline
+        toc: iamraw.Toc = iamraw.Toc(children=toc[0].children)
+    return toc
 
 
 AFTER_HEADER = 0.05  # TODO: HOLY VALUE
