@@ -35,10 +35,15 @@ run_sections_failure = functools.partial(
 utilatest.register_marker('huge')
 
 
-def sections_from_dir(pdf: str, path, monkeypatch) -> iamraw.SectionList:
+def sections_from_dir(
+    pdf: str,
+    path,
+    monkeypatch,
+    pages: str = ':',
+) -> iamraw.SectionList:
     utilatest.fixture_requires(pdf)
     source = power.link(pdf)
-    cmd = f'--pdf={pdf} -i {source} -o {path} -j8'
+    cmd = f'--pdf={pdf} -i {source} -o {path} -j8 --pages={pages}'
     run_sections(cmd, monkeypatch=monkeypatch)
     result = serializeraw.load_sections(str(path))
     return result
