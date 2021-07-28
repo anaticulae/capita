@@ -44,6 +44,7 @@ MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75).value
 def work(  # pylint:disable=R0913,R0914,W0613
     abbreviation: str,
     abstract: str,
+    acknowledge: str,
     appendix: str,
     bibliography: str,
     chapter: str,
@@ -72,6 +73,7 @@ def work(  # pylint:disable=R0913,R0914,W0613
 class SectionsRequiredResources:
     abbreviation: iamraw.PageContentLikelihoods
     abstract: iamraw.PageContentLikelihoods
+    acknowledge: iamraw.PageContentLikelihoods
     appendix: iamraw.PageContentLikelihoods
     bibliography: iamraw.PageContentLikelihoods
     chapter: iamraw.PageContentLikelihoods
@@ -100,6 +102,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
     for pagenumber, content in utila.sync_pages([
             loaded.abbreviation,
             loaded.abstract,
+            loaded.acknowledge,
             loaded.appendix,
             loaded.bibliography,
             loaded.chapter,
@@ -176,19 +179,16 @@ def most_trusted_items(items: list) -> list:
         sorted list of accepted features, max trust stands on the top
     """
     items = list(items)
-
     items = sorted(
         items,
         key=lambda x: x.content.value if x and x.content else 0.0,
         reverse=True,
     )
-
     # remove features with to low trust
     items = [
         item for item in items
         if item and item.content and item.content.value >= MIN_FEATURE_TRUST
     ]
-
     # more than one feature on a page
     if len(items) > 1:
         multiple = [
@@ -248,6 +248,7 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
 BUILDER = [
     iamraw.sections.AbbreviationTable,
     iamraw.sections.Abstract,
+    iamraw.sections.Acknowledgments,
     iamraw.sections.Appendix,
     iamraw.sections.Bibliography,
     iamraw.sections.Chapter,
@@ -279,6 +280,10 @@ def multiplesection_next(multiple):
 MATCHING = {
     iamraw.sections.Abstract: [  # pylint:disable=E1101
         iamraw.sections.Introduction,
+    ],
+    iamraw.sections.Acknowledgments: [
+        iamraw.sections.Introduction,
+        iamraw.sections.Appendix,
     ],
     iamraw.sections.Appendix: iamraw.sections.Appendix,
     iamraw.MultipleSection: multiplesection_next,
@@ -357,6 +362,7 @@ def determine_document_section(
 def load_features(  # pylint:disable=R0913,R0914
     abbreviation: str,
     abstract: str,
+    acknowledge: str,
     appendix: str,
     bibliography: str,
     chapter: str,
@@ -374,6 +380,7 @@ def load_features(  # pylint:disable=R0913,R0914
     abbreviation = serializeraw.load_likelihood(abbreviation, pages=pages)
     abstract = serializeraw.load_likelihood(abstract, pages=pages)
     appendix = serializeraw.load_likelihood(appendix, pages=pages)
+    acknowledge = serializeraw.load_likelihood(acknowledge, pages=pages)
     bibliography = serializeraw.load_likelihood(bibliography, pages=pages)
     chapter = serializeraw.load_likelihood(chapter, pages=pages)
     figuretable = serializeraw.load_likelihood(figuretable, pages=pages)
@@ -389,6 +396,7 @@ def load_features(  # pylint:disable=R0913,R0914
     result = SectionsRequiredResources(
         abbreviation=abbreviation,
         abstract=abstract,
+        acknowledge=acknowledge,
         appendix=appendix,
         bibliography=bibliography,
         chapter=chapter,
@@ -423,6 +431,7 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
         sections.path.abbreviation(path),
         sections.path.abstract(path),
         sections.path.appendix(path),
+        sections.path.acknowledge(path),
         sections.path.bibliography(path),
         sections.path.chapter(path),
         sections.path.figuretable(path),

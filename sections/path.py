@@ -43,6 +43,15 @@ def abstract(path: str, prefix: str = '') -> str:
     )
 
 
+def acknowledge(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        sections.PROCESS,
+        'acknowledge_likelihood',
+        prefix,
+    )
+
+
 def appendix(path: str, prefix: str = '') -> str:
     return utila.pathconnector(
         path,

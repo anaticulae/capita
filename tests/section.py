@@ -12,6 +12,7 @@ import power
 
 import sections.feature.abbreviation
 import sections.feature.abstract
+import sections.feature.acknowledge
 import sections.feature.appendix
 import sections.feature.bibliography
 import sections.feature.chapter
@@ -112,6 +113,11 @@ def extract_sections_frompath(  # pylint:disable=R0914
         footers=footers,
         pages=pages,
     )
+    acknowledge = sections.feature.acknowledge.work(
+        text,
+        textposition,
+        pages=pages,
+    )
     paper = sections.feature.paper.work(
         pdf,
         pages=pages,
@@ -119,6 +125,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
     loaded = sections.feature.section.load_features(
         abbreviation,
         abstract,
+        acknowledge,
         appendix,
         bibliography,
         chapter,
