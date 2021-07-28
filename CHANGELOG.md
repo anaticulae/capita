@@ -2,6 +2,29 @@
 
 Every noteable change is logged here.
 
+## v1.5.0
+
+### Feature
+
+* disable top search restriction to detect more tables (e29141a5dfc9)
+* add valid table to tabletable detector (1b36b61aa937)
+* add option to disable top search (e44804f14ee0)
+* extend no headline list (8014fe277c64)
+* improve symbol headline detector (927e69b0199a)
+* add English list of figures pattern (495d091ca2e6)
+* add more valid headlines (8b18287396cb)
+* use more modern approach (54644019d430)
+* extend list of valid headlines (75d075e721b0)
+* extend list of valid headlines (a37c62df8f9c)
+* add another headline marker (6c22367ec943)
+* replace with content navigator (23fff92ae9ca)
+
+### Fix
+
+* strip first outline if necessary (bac329dd8f97)
+* increase headline word count (499981beda7c)
+* skip references as chapter (8948dbd50014)
+
 ## v1.4.0
 
 ### Feature
