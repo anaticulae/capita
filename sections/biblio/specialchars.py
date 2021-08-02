@@ -78,6 +78,7 @@ def analyse_page(
         german.years,
         german.pagenumbers,
         german.authors,
+        german.hyperlink,
     ]
     collected = collect_and_replace(raw, pattern)
     marker = len(collected)
