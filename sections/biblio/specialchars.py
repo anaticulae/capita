@@ -49,6 +49,7 @@ HEADLINES = [
     'Bibliografie',
     'Bibliographie',
     'Bibliography',
+    'Literatur und Quellenverzeichnis',
     'Literatur',
     'Literature',
     'Literaturverzeichnis',
