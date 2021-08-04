@@ -45,20 +45,20 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-HEADLINES = [
-    'Bibliografie',
-    'Bibliographie',
-    'Bibliography',
-    'Literatur und Quellenverzeichnis',
-    'Literatur',
-    'Literature',
-    'Literaturverzeichnis',
-    'Quellen',
-    'Quellenverzeichnis',
-    'Reference',
-    'References',
-    'Weiterführende Literatur',
-]
+HEADLINES = utila.splitlines("""
+BIBLIOGRAFIE
+BIBLIOGRAPHIE
+BIBLIOGRAPHY
+LITERATUR
+LITERATUR UND QUELLENVERZEICHNIS
+LITERATURE
+LITERATURVERZEICHNIS
+QUELLEN
+QUELLENVERZEICHNIS
+REFERENCE
+REFERENCES
+WEITERFÜHRENDE LITERATUR
+""")
 MARKER_MIN_COUNT = configo.HV_INT_PLUS(5).value
 
 
