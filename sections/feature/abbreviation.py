@@ -63,6 +63,7 @@ HEADLINES = [
     'Abbreviationtable',
     'Abkürzungen',
     'Abkürzungsverzeichnis',
+    'Acronyme',
 ]
 
 
