@@ -58,13 +58,13 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
     return dumped
 
 
-HEADLINES = [
-    'Abbreviations',
-    'Abbreviationtable',
-    'Abkürzungen',
-    'Abkürzungsverzeichnis',
-    'Acronyme',
-]
+HEADLINES = utila.splitlines("""
+ABBREVIATIONS
+ABBREVIATIONTABLE
+ABKÜRZUNGEN
+ABKÜRZUNGSVERZEICHNIS
+ACRONYME
+""")
 
 
 def analyse_page(content):
