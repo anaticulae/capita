@@ -74,7 +74,7 @@ def whitepages(document: str):
 
 
 @pytest.mark.parametrize('source, expected', [
-    pytest.param(power.DOCU27_PDF, RESTRUCT_EXPECTED, id='docu27'),
+    pytest.param(power.DOCU027_PDF, RESTRUCT_EXPECTED, id='docu27'),
     pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
 ])
 @utilatest.nightly

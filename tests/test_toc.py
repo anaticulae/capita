@@ -17,10 +17,10 @@ import utilatest
 import sections.feature.toc
 import sections.table.strategy
 
-DOCU27 = power.link(power.DOCU27_PDF)
+DOCU27 = power.link(power.DOCU027_PDF)
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_extract_toc_likelihood():
     navigator = serializeraw.create_pagetextnavigators_frompath(DOCU27)
     extracted = sections.table.strategy.extract_xxx_likelihood(
@@ -102,7 +102,7 @@ def extract_toc(
 # DISS266 VALIDATED!
 @pytest.mark.parametrize('source, expected', [
     pytest.param(power.DISS266_PDF, [4, 5, 6], id='diss266'),
-    pytest.param(power.ORDER109_PDF, [2], id='order107'),
+    pytest.param(power.ORDER107_PDF, [2], id='order107'),
     pytest.param(power.MASTER155_PDF, [1, 2], id='master155'),
     pytest.param(power.MASTER091A_PDF, [3, 4], id='master91a'),
 ])

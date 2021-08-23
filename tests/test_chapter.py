@@ -23,7 +23,7 @@ import sections.feature.chapter
 # BACHELOR51: [3, 4, 20, 28, 35, 40, 42],
 @pytest.mark.parametrize('source, expected', [
     pytest.param(
-        power.DOCU27_PDF,
+        power.DOCU027_PDF,
         [6, 8, 10, 12, 18, 20, 22, 24],
         id='restruct',
     ),
@@ -64,7 +64,7 @@ def test_chapter_extract(source, expected):
 
 
 def test_chapter_dump_and_load_detection():
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     result = extract_chapter(source)
     dumped = serializeraw.dump_likelihood(result)
     loaded = serializeraw.load_likelihood(dumped)

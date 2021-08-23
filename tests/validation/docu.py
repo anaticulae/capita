@@ -11,7 +11,7 @@ import iamraw.sections
 import power
 
 DOCU = {
-    power.DOCU35_PDF: [
+    power.DOCU035_PDF: [
         (
             iamraw.sections.Introduction,
             (0, 6),

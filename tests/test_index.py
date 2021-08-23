@@ -28,17 +28,17 @@ def test_extract_index_likelihood(restructured_text):
     assert last_page >= LAST_PAGE_INDEX_LIKELYHOOD, result
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_index_work():
-    text = iamraw.path.text(power.link(power.DOCU27_PDF), prefix='oneline')
+    text = iamraw.path.text(power.link(power.DOCU027_PDF), prefix='oneline')
     dumped = sections.feature.index.work(text)
     assert len(dumped) > 100
 
 
-@utilatest.requires(power.DOCU14_PDF)
+@utilatest.requires(power.DOCU014_PDF)
 def test_feature_index_extract_index_likelihood():
     """Reduce false detection of index-pages"""
-    path = iamraw.path.text(power.link(power.DOCU14_PDF))
+    path = iamraw.path.text(power.link(power.DOCU014_PDF))
     document = serializeraw.load_document(path)
 
     result = sections.feature.index.extract_index_likelihood(document)

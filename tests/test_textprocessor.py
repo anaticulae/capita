@@ -22,8 +22,8 @@ from sections.feature.title import font_positions_from_page
 
 
 def pyporting_pages(pagenumber: int):
-    utilatest.fixture_requires(power.DOCU09_PDF)
-    docu09 = power.link(power.DOCU09_PDF)
+    utilatest.fixture_requires(power.DOCU009_PDF)
+    docu09 = power.link(power.DOCU009_PDF)
     document = load_document(iamraw.path.text(docu09))
     current_page = document[pagenumber]
 

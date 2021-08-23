@@ -65,9 +65,9 @@ def master83(result):
     pytest.param(power.BACHELOR063_PDF, None, id='bachelor63'),
     pytest.param(power.BACHELOR111_PDF, None, id='bachelor111'),
     pytest.param(power.DISS266_PDF, diss266, id='diss266'),
-    pytest.param(power.DOCU07_PDF, None, id='howto'),
-    pytest.param(power.DOCU09_PDF, None, id='pyporting'),
-    pytest.param(power.DOCU27_PDF, None, id='restruct'),
+    pytest.param(power.DOCU007_PDF, None, id='howto'),
+    pytest.param(power.DOCU009_PDF, None, id='pyporting'),
+    pytest.param(power.DOCU027_PDF, None, id='restruct'),
     pytest.param(power.DISS170_PDF, diss170, id='diss170'),
     pytest.param(power.MASTER083_PDF, master83, id='master83'),
 ])
@@ -85,7 +85,7 @@ def test_run_sections(source, expected, testdir, monkeypatch):
 
 
 @pytest.mark.parametrize('command', [
-    ['-i', power.DOCU27_PDF, '-o', '.', '--all'],
+    ['-i', power.DOCU027_PDF, '-o', '.', '--all'],
 ])
 def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W0613
     """Run `sections` with bad input"""

@@ -34,8 +34,8 @@ MIN_TITLE_LIKELIHOOD = 0.70
 
 
 @pytest.mark.parametrize('source', [
-    pytest.param(power.DOCU27_PDF, id='restruct'),
-    pytest.param(power.DOCU07_PDF, id='pyporting'),
+    pytest.param(power.DOCU027_PDF, id='restruct'),
+    pytest.param(power.DOCU007_PDF, id='pyporting'),
 ])
 def test_extract_title_likelihood(source):
     utilatest.fixture_requires(source)
@@ -89,6 +89,6 @@ def test_extract_title_likelihood_master72():
 
 @utilatest.longrun
 def test_extract_title_likelihood_order107():
-    extracted = titlepage_likelihood(power.ORDER109_PDF)  # TODO: CHANGE 107
+    extracted = titlepage_likelihood(power.ORDER107_PDF)  # TODO: CHANGE 107
     # assert extracted[0] >= 0.95
     assert extracted[2] == 0.0

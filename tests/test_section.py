@@ -18,7 +18,6 @@ import utilatest
 import sections.creator
 import sections.feature.section
 import tests
-import tests.resources
 import tests.section
 
 
@@ -36,14 +35,14 @@ def test_validate_restructured(restructured_sections_manual):
     assert validated
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_extract_sections_restructured(
     testdir,
     monkeypatch,
     restructured_sections_manual,
 ):
     root = testdir.tmpdir
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     tests.run_sections(f'-i {source}', monkeypatch=monkeypatch)
 
     result = sections.feature.section.load_section_likelihood_frompath(root)
@@ -75,7 +74,7 @@ HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
 
 
 @pytest.mark.xfail(reason='require multiple page toc detector')
-@utilatest.requires(power.DOCU07_PDF)
+@utilatest.requires(power.DOCU007_PDF)
 def test_extract_sections_simple():
     result = tests.section.extract_sections_frompath(power.DOCU007_PDF)
     expected = [
@@ -97,10 +96,10 @@ def check_sections(result, expected):
         assert current == wanted, f'{current} != {wanted}'
 
 
-@utilatest.requires(power.DOCU07_PDF)
+@utilatest.requires(power.DOCU007_PDF)
 def test_sections_simple():
     """Check dumped result of section work method"""
-    simple_sections = tests.section.extract_sections_frompath(power.DOCU07_PDF)
+    simple_sections = tests.section.extract_sections_frompath(power.DOCU007_PDF)
     assert len(simple_sections) == 2, len(simple_sections)
     dumped = serializeraw.dump_sections(simple_sections)
     assert len(dumped) > 100, dumped
@@ -160,9 +159,9 @@ def test_sections_master116():
 
 
 @utilatest.nightly
-@utilatest.requires(power.DOCU35_PDF)
+@utilatest.requires(power.DOCU035_PDF)
 def test_sections_docu35():
-    result = tests.section.extract_sections_frompath(power.DOCU35_PDF)
+    result = tests.section.extract_sections_frompath(power.DOCU035_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,
@@ -205,11 +204,11 @@ def test_sections_master31():
 
 
 @utilatest.longrun
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_sections_docu27():
     """Regression test to ensure that no bib is detected on first page.
     Before fixing, there was a divided title/bib page."""
-    result = tests.section.extract_sections_frompath(power.DOCU27_PDF)
+    result = tests.section.extract_sections_frompath(power.DOCU027_PDF)
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
