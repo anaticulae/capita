@@ -2,6 +2,25 @@
 
 Every noteable change is logged here.
 
+## v1.6.0
+
+### Feature
+
+* skip potential headlines with very low char rate (5d8b38377710)
+* extend valid chapter headlines (d0c98dea2552)
+* add more valid headlines (237c55054750)
+* use hyperlink as another marker (f4c20e225dbf)
+* add acknowledge section detection step (a80690ae5fc7)
+
+### Fix
+
+* copy is not required here (5c16b7bf5bac)
+* do not create multiple section on CitePart (afbe13d5ee32)
+
+### Documentation
+
+* extend interface documentation (6a3c90ea2e47)
+
 ## v1.5.0
 
 ### Feature
