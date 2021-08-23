@@ -175,7 +175,6 @@ def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
     Returns:
         sorted list of accepted features, max trust stands on the top
     """
-    items = list(items)
     items = sorted(
         items,
         key=lambda x: x.content.value if x and x.content else 0.0,
