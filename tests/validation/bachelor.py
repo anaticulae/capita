@@ -79,28 +79,6 @@ BACHELOR = {
             [],
         ),
     ],
-    power.BACHELOR090_PDF: [
-        (
-            iamraw.sections.Unknown,
-            (0, 1),
-            [],
-        ),
-        (
-            iamraw.sections.Introduction,
-            (1, 12),
-            [],
-        ),
-        (
-            iamraw.sections.MainPart,
-            (12, 76),
-            [],
-        ),
-        (
-            iamraw.sections.Appendix,
-            (76, 90),
-            [],
-        ),
-    ],
     power.BACHELOR111_PDF: [
         (
             iamraw.sections.Introduction,
@@ -118,26 +96,4 @@ BACHELOR = {
             [],
         ),
     ],
-    power.BACHELOR090_PDF: [
-        (
-            iamraw.sections.Unknown,
-            (0, 1),
-            [],
-        ),
-        (
-            iamraw.sections.Introduction,
-            (1, 12),
-            [],
-        ),
-        (
-            iamraw.sections.MainPart,
-            (12, 76),
-            [],
-        ),
-        (
-            iamraw.sections.Appendix,
-            (76, 90),
-            [],
-        ),
-    ]
 }
