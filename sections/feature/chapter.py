@@ -30,6 +30,7 @@ QUESTIONS:
 
 import re
 
+import configo
 import iamraw
 import serializeraw
 import texmex
@@ -178,6 +179,11 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
                 if chapternumber > 13:  # TODO: HOLY VALYE
                     utila.debug(f'chapter number to hight: {line}')
                     continue
+                charrate = utila.char_rate(line)
+                charrate_min = HEADLINE_CHARRATE_MIN(len(line))
+                if charrate < charrate_min:
+                    utila.debug(f'char rate to low: {charrate} {line}')
+                    continue
                 return True
         return False
 
@@ -201,6 +207,13 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
     else:
         result -= 0.5
     return result
+
+
+HEADLINE_CHARRATE_MIN = configo.HolyTable(items=(
+    (0, 0.8),
+    (10, 0.75),
+    (100, 0.8),
+))
 
 
 def huge_match(line: str, part: str) -> bool:
