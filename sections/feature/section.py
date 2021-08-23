@@ -14,6 +14,7 @@ import typing
 
 import configo
 import iamraw
+import iamraw.likelihood
 import iamraw.sections
 import serializeraw
 import utila
@@ -187,6 +188,11 @@ def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
     ]
     # more than one feature on a page
     if len(items) > 1:
+        for item in items:
+            # do not return MultiplePart, use Paper instead
+            if item.content.name == 'paper':
+                return [item]
+        # filter multiple sections result
         multiple = [
             item for item in items if item and item.content and
             item.content.value >= MULTIPLE_FEATURE_TRUST
