@@ -134,6 +134,7 @@ NUMBER_PATTERN = re.compile(
 )
 
 HEADLINES_CHECK_FIRST_N_LINES = 4
+HEADLINE_LENGTH_MAX = 75
 
 
 def contain_chapter(content) -> float:  # pylint:disable=R1260
@@ -169,7 +170,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
             matched = re.match(NUMBER_PATTERN, line)
             if matched:
                 line = utila.extract_match(matched)
-                if len(line) > 75:  # TODO: HOLY VALUE
+                if len(line) > HEADLINE_LENGTH_MAX:
                     # TODO: REQUIRE A BETTER SELECTOR
                     # seam to be a content line.
                     continue
