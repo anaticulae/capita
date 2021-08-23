@@ -160,9 +160,10 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
     return grouped
 
 
-def most_trusted_items(items: list) -> list:
-    """Extract most trusted items on a page. There are multiple items
-    possible.
+def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
+    """Extract most trusted items on a page.
+
+    There are multiple items possible.
 
     Accepted features must have a higher trust than `MIN_FEATURE_TRUST`.
     Multiple features on a page require a much higher trust
