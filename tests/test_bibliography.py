@@ -40,7 +40,7 @@ def test_bibliography_work():
     )
     assert len(extracted) > 50, str(extracted)
     loaded = serializeraw.load_likelihood(extracted)
-
+    # validate result
     for page, value in expected:
         selected = utila.select_page(loaded, page=page)
         current = selected.content.value
@@ -51,7 +51,7 @@ def extract_bibliography(source, testdir, monkeypatch):
     source = power.link(source)
     utilatest.fixture_requires(source)
     tests.run_sections(f'-i {source} --bibliography', monkeypatch=monkeypatch)
-
+    # verify result
     path = sections.path.bibliography(testdir.tmpdir)
     likelihood = serializeraw.load_likelihood(path)
     pages = [item.page for item in likelihood if item.content.value > 0.0]
@@ -62,7 +62,6 @@ def extract_bibliography(source, testdir, monkeypatch):
 def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     non_zero = extract_bibliography(power.MASTER098_PDF, testdir, monkeypatch)
     diff = utila.diffs(non_zero)
-
     # ensure to have only one ascending group with holes
     assert utila.isascending(diff, strict=False)
     assert max(diff) == 1, diff
