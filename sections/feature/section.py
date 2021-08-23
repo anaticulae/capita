@@ -128,11 +128,6 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
             )
             continue
 
-        def create(start, end, trust, typ):
-            ctor = BUILDER[typ]
-            new = ctor(start=start, end=end, trust=trust)
-            return new
-
         if len(trusted) > 1:
             multiple = iamraw.MultipleSection(
                 start=pagenumber,
@@ -264,6 +259,12 @@ BUILDER = [
 ]
 assert BUILDER.index(iamraw.sections.TableOfContent) > BUILDER.index(
     iamraw.sections.TitlePage), 'do not sort BUILDER'
+
+
+def create(start, end, trust, typ):
+    ctor = BUILDER[typ]
+    new = ctor(start=start, end=end, trust=trust)
+    return new
 
 
 def multiplesection_next(multiple):
