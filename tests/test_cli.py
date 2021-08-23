@@ -85,7 +85,7 @@ def test_run_sections(source, expected, testdir, monkeypatch):
 
 
 @pytest.mark.parametrize('command', [
-    ['-i', power.DOCU027_PDF, '-o', '.', '--all'],
+    pytest.param(f'-i {power.DOCU027_PDF} -o . --all', id='docu27'),
 ])
 def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W0613
     """Run `sections` with bad input"""
