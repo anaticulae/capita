@@ -118,7 +118,6 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
             loaded.whitepage,
     ]):
         trusted = most_trusted_items(content)
-
         if not trusted:
             # if trust is to low, the feature is not charactaristical enough,
             # therefore the page is treated as a normal text page
@@ -128,7 +127,6 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
                 trust=1.0,
             )
             continue
-
         if len(trusted) > 1:
             multiple = iamraw.MultipleSection(
                 start=pagenumber,

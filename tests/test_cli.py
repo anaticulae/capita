@@ -24,11 +24,10 @@ def validate(current, expected):
 
 
 def diss266(result):
-    expected = [  # TODO: MAY CHANGE LATER
+    expected = [
         (iamraw.sections.Introduction, 0, 9),
         (iamraw.sections.MainPart, 9, 214),
-        (iamraw.sections.Appendix, 214, 253),
-        (iamraw.sections.MainPart, 253, 266),
+        (iamraw.sections.Appendix, 214, 266),
     ]
     validate(result, expected)
 

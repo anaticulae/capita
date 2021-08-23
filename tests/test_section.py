@@ -248,7 +248,6 @@ def test_sections_bachelor128():
     check_sections(result, expected)
 
 
-@pytest.mark.xfail(reason='toc detector changed?')
 @utilatest.requires(power.MASTER075_PDF)
 def test_sections_master075_appendix():
     result = tests.section.extract_sections_frompath(
