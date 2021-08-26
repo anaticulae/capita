@@ -328,7 +328,13 @@ FIRSTLEVEL_DOT_PATTERN = re.compile(r'^\d\.{0,1}\s+')
 
 
 def level_remove(toc):
-    flat = [FIRSTLEVEL_DOT_PATTERN.sub('', item.title) for item in toc]
+    flat = []
+    for item in toc:
+        if not item.title.strip():
+            # invalid outlines can break further processing
+            utila.debug('empty outline element')
+            continue
+        flat.append(FIRSTLEVEL_DOT_PATTERN.sub('', item.title))
     # remove roman level
     result = []
     for item in flat:
