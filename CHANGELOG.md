@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.6.1
+
+### Fix
+
+* convert path newlines (a1afc6176cae)
+* skip empty outline element (6df348c266f9)
+
 ## v1.6.0
 
 ### Feature
