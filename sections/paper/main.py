@@ -13,11 +13,11 @@
 []
 """
 
-import sections.paper.layout
+import layout.double
 
 
 def detect_paper(pdf: str, pages: tuple = None) -> tuple:
-    percents = sections.paper.layout.percentage(pdf, pages=pages)
+    percents = layout.double.percentage(pdf, pages=pages)
     grouped = group_percentage(percents)
     if not grouped:
         return None
