@@ -19,19 +19,6 @@ import iamraw.sections
 import serializeraw
 import utila
 
-import sections.feature.abbreviation
-import sections.feature.abstract
-import sections.feature.appendix
-import sections.feature.bibliography
-import sections.feature.chapter
-import sections.feature.figuretable
-import sections.feature.index
-import sections.feature.legal
-import sections.feature.symboltable
-import sections.feature.tabletable
-import sections.feature.title
-import sections.feature.toc
-import sections.feature.whitepage
 import sections.path
 
 # features with lower trust are not expected as detected feature
