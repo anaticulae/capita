@@ -23,7 +23,7 @@ def image_frompdf(pdf: str, page: int, tmpdir=None) -> str:
         tmpdir = utila.tmpdir(sections.ROOT)
     outpath = utila.forward_slash(
         os.path.join(tmpdir, f'image-{page}.png'),
-        newline=True,
+        newline=False,
     )
     config = '-q -sDEVICE=png16m -r300 -dBATCH -dNOPAUSE -SAFE'
     call = f'{GHOST} {config} -sPageList={page+1} -o {outpath} {pdf}'
