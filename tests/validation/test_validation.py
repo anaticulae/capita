@@ -41,7 +41,7 @@ SECTIONS.update(tests.validation.master.MASTER)
         pytest.param(
             key,
             value,
-            id=utila.make_relative(key, power.REPOSITORY).replace('/', '_'),
+            id=utilatest.simple(key, maxlength=15),
             marks=determine_mark(key),
         ) for key, value in SECTIONS.items()
     ],
