@@ -18,7 +18,6 @@ What is typical for a start of chapter?
 * There is a huge font
 * The title is listed in table of content
 
-
 1. Locate the distance between first line and header
 2. Check the second line
 
