@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.7.0
+
+### Feature
+
+* improve section merger (081ed17049e0)
+* extend valid headlines list (3d8d395b0f0d)
+
+### Documentation
+
+* fix logic error (45ebed986391)
+
 ## v1.6.1
 
 ### Fix
