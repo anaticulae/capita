@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import copy
 import dataclasses
 import functools
 import inspect
@@ -86,7 +87,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
     Returns:
         `Sections` definition for given pages
     """
-    result = {}
+    collected = {}
     for pagenumber, content in utila.sync_pages([
             loaded.abbreviation,
             loaded.abstract,
@@ -108,7 +109,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
         if not trusted:
             # if trust is to low, the feature is not charactaristical enough,
             # therefore the page is treated as a normal text page
-            result[pagenumber] = iamraw.sections.Text(
+            collected[pagenumber] = iamraw.sections.Text(
                 start=pagenumber,
                 end=pagenumber,
                 trust=1.0,
@@ -132,7 +133,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
                     typ=content.index(item),
                 )
                 multiple.content.append(new)  # pylint:disable=E1101
-            result[pagenumber] = multiple
+            collected[pagenumber] = multiple
         else:
             item = trusted[0]
             new = create(
@@ -141,9 +142,10 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
                 trust=item.content.value,
                 typ=content.index(item),
             )
-            result[pagenumber] = new
-    grouped = group_sections(result)
-    return grouped
+            collected[pagenumber] = new
+    grouped = group_sections(collected)
+    result = verify_sections(grouped)
+    return result
 
 
 def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
@@ -187,6 +189,52 @@ def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
         if multiple:
             items = multiple
     return items
+
+
+def verify_sections(sectionx: iamraw.Sections) -> iamraw.Sections:
+    """Merge sections to improve DocumentSection detection."""
+    result = iamraw.Sections()
+    # avoid side effects
+    todo = [copy.deepcopy(item) for item in sectionx.content]
+    if not todo:
+        return result
+    length = todo[-1].end
+    result.append(todo[0])
+    # STEP 1: MERGE INVALID SECTION TO SECTION BEFORE
+    for current in todo[1:]:
+        if valid_section(current, document_length=length):
+            result.append(current)
+            continue
+        # merge content to section before
+        before = result[-1]
+        before.end = current.end
+        before.content.extend(current.content)
+    # STEP 2: UNITE EQUAL SECTIONS
+    todo = list(result.content[1:])
+    result.content = [result.content[0]]
+    for current in todo:
+        before = result[-1]
+        if current.__class__ != before.__class__:
+            result.append(current)
+            continue
+        # merge equal classes to section before
+        before.end = current.end
+        before.content.extend(current.content)
+    return result
+
+
+def valid_section(
+    section: iamraw.DocumentSection,
+    document_length: int,
+) -> bool:
+    if document_length < 20:
+        # disable check for small documents
+        return True
+    if isinstance(section, iamraw.MainPart):
+        # TODO: IMPROVE THIS CHECK
+        if len(section) < 10:
+            return False
+    return True
 
 
 def is_new_area(current, next_):
