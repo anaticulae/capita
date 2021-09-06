@@ -29,6 +29,7 @@ WORKER = 6
 
 RESOURCES = [
     power.DISS266_PDF,
+    power.DISS205_PDF,
     power.DISS180_PDF,
     power.DISS170_PDF,
     power.MASTER155_PDF,
@@ -73,6 +74,8 @@ def extract(resources):
         destination=power.generated(),
         files=resources,
         groupme='--pagenumbers --footer --toc',
+        formulero=False,
+        tablero=False,
         worker=WORKER,
         pages=':',
     )
