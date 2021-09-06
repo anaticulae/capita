@@ -117,17 +117,17 @@ def collect_and_replace(raw: str, pattern: list) -> list:
     return collected
 
 
+SPECIAL_CHARS = ";,/:[]()&"
+
+
 def special_chars(raw: str) -> bool:
     # TODO: A LOT OF MISMATCHES AS A RESULT OF PROGRAM CODE IN DOCUMENT
     result = []
     for line in raw.splitlines():
         parsed = german.word_tokenize(line, validate_sentences=False)
         result.extend(parsed)
-    counted = raw.count(';') + raw.count(',') + raw.count('/') + raw.count(':')
-    counted += raw.count('[') + raw.count(']') + raw.count(')') + raw.count('(')
-    counted += raw.count('&')
-
     word_count = len(result)
+    counted = sum([raw.count(char) for char in SPECIAL_CHARS])
     classifier = counted / word_count if word_count else 0
     if word_count > 40 and classifier > 0.3:  # TODO HOLY VALUE
         return True
