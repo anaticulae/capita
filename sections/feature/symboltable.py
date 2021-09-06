@@ -33,10 +33,11 @@ def work(text_linewise: str, textpositions: str, pages=None) -> str:
 
 
 HEADLINES_SYMBOLTABLE = utila.splitlines("""
+ABKÜRZUNG UND NOMENKLATUR
 SYMBOL
+SYMBOLE
 SYMBOLS
 SYMBOLVERZEICHNIS
-ABKÜRZUNG UND NOMENKLATUR
 """)
 
 
