@@ -47,8 +47,8 @@ def work(  # pylint:disable=R0913,R0914,W0613
     whitepage: str,
     pages: tuple = None,
 ) -> str:
-    """Combine different featuretypes to determine the page type with more
-    confidence. Returns dumped `Section`."""
+    """Combine different featuretypes to determine the page type with
+    most confidence. Returns dumped `Section`."""
     loaded = load_features(**locals())
     # work
     extracted = extract_sections(loaded)
