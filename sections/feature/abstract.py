@@ -55,7 +55,11 @@ ZUSAMMENFASSUNG
 
 
 def analyse_page(content):
-    headlines = sections.utils.headline.headlines(content, topsearch=False)
+    headlines = sections.utils.headline.headlines(
+        content,
+        topsearch=False,
+        maxlevel=1,
+    )
     if not headlines:
         return sections.feature.NO_PAGE
     if utila.similar(
