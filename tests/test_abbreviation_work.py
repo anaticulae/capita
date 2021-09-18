@@ -52,6 +52,13 @@ def test_no_abbreviations_bachelor241_page75():
     assert all(item.content.value == 0 for item in extracted)
 
 
+def test_no_abbreviations_bachelor111page56():
+    """Code was parsed as double column which was detected as
+    abbreviation back page."""
+    extracted = abbreviations(power.BACHELOR111_PDF, pages=56)
+    assert not extracted[0].content.value
+
+
 def abbreviations(source, pages=None):
     utilatest.fixture_requires(source)
     source = power.link(source)
