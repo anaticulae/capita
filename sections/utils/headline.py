@@ -22,11 +22,11 @@ def headlines(
     min_word_count: int = 1,
     max_word_count: int = 5,
     topsearch: bool = False,
+    maxlevel: int = None,
 ):
     """\
     #topsearch: use upper area of page
     """
-
     navigator = navigator[0:6] if topsearch else navigator[:]
     navigator = [
         item for item in navigator if not elements.noheadline(
@@ -35,11 +35,9 @@ def headlines(
             wordcount_max=max_word_count,
         )
     ]
-
     styles = common_textstyle(navigator)
     if not styles:
         return None
-
     # remove clusters with more than two items cause ?first? level are raw
     # on a single page.
     styles = [item for item in styles if len(item) <= 2]
@@ -47,7 +45,6 @@ def headlines(
         return None
     # use hugest font size item
     maxsize = sorted(styles, key=lambda x: x.center.style.textsize())[-1]
-
     result = [item.text.strip() for item in maxsize]
     # remove to many spaces
     result = [
@@ -55,8 +52,7 @@ def headlines(
         if min_word_count <= len(item.split()) <= max_word_count
     ]
     result = [item.title() for item in result]
-    result = remove_numbered_pattern(result)
-
+    result = remove_numbered_pattern(result, maxlevel=maxlevel)
     if len(result) == 1:
         return result[0]
     return result
@@ -101,7 +97,7 @@ def parse_headline(line):
     return re.match(HEADLINE, line)
 
 
-def remove_numbered_pattern(items: list) -> list:
+def remove_numbered_pattern(items: list, maxlevel: int = None) -> list:
     """\
     >>> remove_numbered_pattern(['Anhang', '1.2.3 Content'])
     ['Anhang', 'Content']
@@ -110,6 +106,10 @@ def remove_numbered_pattern(items: list) -> list:
     for item in items:
         parsed = parse_headline(item)
         if parsed:
+            if maxlevel is not None:
+                level = elements.level_numbered(parsed['level'])
+                if level > maxlevel:
+                    continue
             result.append(parsed['text'])
         else:
             result.append(item)
