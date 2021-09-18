@@ -76,7 +76,7 @@ def load_toc(tocpath):
 
 
 AFTER_HEADER = 0.05  # TODO: HOLY VALUE
-FIRST_QUARTER = 0.35  # TODO: HOLY VALUE
+FIRST_QUARTER = 0.45  # TODO: HOLY VALUE
 
 
 def extract_chapter(

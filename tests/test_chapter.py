@@ -52,6 +52,11 @@ import sections.feature.chapter
         [6, 15],
         id='bachelor37',
     ),
+    pytest.param(
+        power.BACHELOR111_PDF,
+        [5, 8, 31, 40, 52, 66, 80, 83, 97],
+        id='bachelor111',
+    ),
 ])
 @utilatest.nightly
 def test_chapter_extract(source, expected):
