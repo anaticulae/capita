@@ -75,7 +75,7 @@ def extract_chapter(source):
     utilatest.fixture_requires(source)
     # load
     navigators = serializeraw.create_pagetextcontentnavigators_frompath(source)
-    tocs = serializeraw.load_toc(iamraw.path.text(source))
+    tocs = serializeraw.load_toc(iamraw.path.outlines(source))
     # run
     result = sections.feature.chapter.extract_chapter(
         navigators,
