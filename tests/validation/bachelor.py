@@ -79,21 +79,4 @@ BACHELOR = {
             [],
         ),
     ],
-    power.BACHELOR111_PDF: [
-        (
-            iamraw.sections.Introduction,
-            (0, 5),
-            [],
-        ),
-        (
-            iamraw.sections.MainPart,
-            (5, 84),
-            [],
-        ),
-        (
-            iamraw.sections.Appendix,
-            (84, 111),
-            [],
-        ),
-    ],
 }

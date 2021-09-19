@@ -59,10 +59,20 @@ def master83(result):
     validate(result, expected)
 
 
+def bachelor111(result):
+    # TODO: ADJUST AFTER DETECTING GLOSSAR AS APPENDIX
+    expected = [
+        (iamraw.sections.Introduction, 0, 5),
+        (iamraw.sections.MainPart, 5, 85),
+        (iamraw.sections.Appendix, 85, 111),
+    ]
+    validate(result, expected)
+
+
 @pytest.mark.parametrize('pdf, expected', [
     pytest.param(power.BACHELOR037_PDF, bachelor37, id='bachelor37'),
     pytest.param(power.BACHELOR063_PDF, None, id='bachelor63'),
-    pytest.param(power.BACHELOR111_PDF, None, id='bachelor111'),
+    pytest.param(power.BACHELOR111_PDF, bachelor111, id='bachelor111'),
     pytest.param(power.DISS266_PDF, diss266, id='diss266'),
     pytest.param(power.DOCU007_PDF, None, id='howto'),
     pytest.param(power.DOCU009_PDF, None, id='pyporting'),
