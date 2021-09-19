@@ -8,6 +8,7 @@
 # =============================================================================
 
 import power
+import utila
 import utilatest
 
 import sections.paper.main
@@ -19,3 +20,16 @@ def test_paper_main_diss148():
     detected = sections.paper.main.detect_paper(source)
     expected = [(46, 111)]
     assert detected == expected
+
+
+def test_paper_bachelor111():
+    """Do not detect end of bachelor111 as cited content.
+
+    There was a bug in layout-double detector which identifies end of
+    document as paper content."""
+    source = power.BACHELOR111_PDF
+    detected = sections.paper.main.detect_paper(
+        source,
+        pages=utila.ranged_tuple(100, 115),
+    )
+    assert not detected
