@@ -108,6 +108,8 @@ def invalid_column(data: list) -> bool:  # pylint:disable=R0911
         # assumption: the second column has max. 3 times more lines then
         # the left side.
         return True
+    if whitespaced(data[1]):
+        return True
     return False
 
 
@@ -134,6 +136,19 @@ def short_column(left) -> bool:
     if mean > 10.0:  # HOLY VALUE
         return False
     return True
+
+
+def whitespaced(right) -> bool:
+    valid, invalid = utila.partition(
+        key=lambda x: whitespace_rate(x.text) < 0.3,  # TODO: HOLY VALUE
+        items=right,
+    )
+    if not invalid:
+        return False
+    invalid_rate = len(invalid) / (len(invalid) + len(valid))
+    if invalid_rate > 0.2:  # TODO: HOLY VALUE
+        return True
+    return False
 
 
 def text(item):
