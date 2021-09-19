@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v1.8.0
+
+### Feature
+
+* add white space rate (8607fab04d67)
+* introduce max level to shrink headline extraction (fd1f2e2ba7ab)
+* adjust valid chapter area (f021db535edf)
+
+### Fix
+
+* skip white spaced abbr page (272f0b1732e0)
+* use maxlevel to reduce false positive extraction (e28f01c9c93e)
+
 ## v1.7.0
 
 ### Feature
