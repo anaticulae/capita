@@ -141,3 +141,16 @@ def text(item):
     with contextlib.suppress(AttributeError):
         return item.text
     return item
+
+
+def whitespace_rate(item) -> float:
+    """\
+    >>> whitespace_rate('A B')
+    0.33
+    """
+    # TODO: MOVE TO UTILA
+    if not item:
+        return 0
+    rate = item.count(' ') / len(item)
+    rate: float = utila.roundme(rate)
+    return rate
