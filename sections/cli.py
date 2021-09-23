@@ -176,6 +176,14 @@ WORKPLAN = [
         ],
         output=('result',),
     ),
+    step(
+        'docinfo',
+        inputs=[
+            ResultFile('sections', 'section_result'),
+            utila.Pattern('pdfinfo', 'yaml', optional=True),
+        ],
+        output=('docinfo',),
+    ),
 ]
 
 
