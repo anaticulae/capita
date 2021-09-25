@@ -180,7 +180,7 @@ WORKPLAN = [
         'docinfo',
         inputs=[
             ResultFile('sections', 'section_result'),
-            utila.Pattern('pdfinfo', 'yaml', optional=True),
+            utila.File(name='pdfinfo', optional=True),
         ],
         output=('docinfo',),
     ),
