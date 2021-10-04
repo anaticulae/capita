@@ -35,6 +35,8 @@ import serializeraw
 import texmex
 import utila
 
+import sections.biblio
+
 
 def work(
     document: str,
@@ -261,6 +263,7 @@ TABLE OF CONTENTS
 VORWORT
 ZUSAMMENFASSUNG
 """)
+NOHEADLINES |= sections.biblio.HEADLINES
 
 HEADLINES_CHAPTER = utila.splitlines("""
 AUSBLICK
