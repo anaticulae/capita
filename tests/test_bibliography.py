@@ -14,6 +14,7 @@ import serializeraw
 import utila
 import utilatest
 
+import sections.feature.bibliography
 import sections.path
 import tests
 
