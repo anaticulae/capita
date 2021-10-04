@@ -26,6 +26,7 @@ import german
 import texmex
 import utila
 
+import sections.biblio
 import sections.biblio.utils
 import sections.utils.headline
 import sections.utils.spa
@@ -45,20 +46,6 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-HEADLINES = utila.splitlines("""
-BIBLIOGRAFIE
-BIBLIOGRAPHIE
-BIBLIOGRAPHY
-LITERATUR
-LITERATUR UND QUELLENVERZEICHNIS
-LITERATURE
-LITERATURVERZEICHNIS
-QUELLEN
-QUELLENVERZEICHNIS
-REFERENCE
-REFERENCES
-WEITERFÜHRENDE LITERATUR
-""")
 MARKER_MIN_COUNT = configo.HV_INT_PLUS(5).value
 
 
@@ -67,7 +54,7 @@ def analyse_page(
 ) -> sections.feature.StatisticalResultItem:
     headlines = sections.utils.headline.headlines(navigator)
     if headlines and utila.similar(
-            expected=HEADLINES,
+            expected=sections.biblio.HEADLINES,
             current=headlines,
             maxdiff=0.95,
     ):
