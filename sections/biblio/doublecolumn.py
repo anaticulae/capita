@@ -15,22 +15,21 @@ import texmex
 import sections.biblio.utils
 import sections.utils.spa
 
-MIN_LIKELIHOOD = 0.5
-
-MIN_MARKER_COUNT = 50
+LIKELIHOOD_MIN = 0.5
+MARKER_COUNT_MIN = 50
 
 
 def extract(data: sections.utils.spa.Data) -> list:
+    # configure spa
     config = sections.utils.spa.Config(
         likelihood_name='bibliography_table',
         page_analysis=analyse_page,
     )
-
+    # run spa
     extracted = sections.utils.spa.work(data=data, config=config)
-
     # ignore to low valued bib pages
-    valid = [item for item in extracted if item.content.value > MIN_LIKELIHOOD]
-
+    valid = [item for item in extracted if item.content.value > LIKELIHOOD_MIN]
+    # determine hugest connected bib cluster
     hugest = sections.biblio.utils.cluster_bibpages(valid)
     return hugest
 
@@ -40,17 +39,16 @@ def analyse_page(
 ) -> sections.feature.StatisticalResultItem:
     parsed = geostrat.parse(navigator, column_count=2)
     if not parsed:
+        # no double column page
         return len(navigator), 0
-
     marker = 0
-
+    # count prenom construct for both data columns
     left, right = parsed
     for item in left + right:
         marker += len(prenom(item.text))
-
-    if marker <= MIN_MARKER_COUNT:
+    if marker <= MARKER_COUNT_MIN:
+        # too few matches
         return len(navigator), 0
-
     return len(navigator), marker
 
 
