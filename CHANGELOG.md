@@ -2,6 +2,23 @@
 
 Every noteable change is logged here.
 
+## v1.10.0
+
+### Feature
+
+* connect glossary step (1c3f7360b99b)
+* add glossary detector step (888d5dece9fd)
+* add more invalid bib chapter headlines (0e3209dd7332)
+
+### Fix
+
+* skip page with very low matching (8c7b2046b1c6)
+* its a single file not a pattern (ca3cb7ea0477)
+
+### Documentation
+
+* clarify code (90bbb53a4ca0)
+
 ## v1.9.0
 
 ### Feature
