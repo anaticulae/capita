@@ -181,6 +181,7 @@ WORKPLAN = [
             ResultFile('sections', 'title_likelihood'),
             ResultFile('sections', 'toc_likelihood'),
             ResultFile('sections', 'whitepage_likelihood'),
+            ResultFile('sections', 'glossary_likelihood'),
         ],
         output=('result',),
     ),

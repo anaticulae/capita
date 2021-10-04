@@ -17,6 +17,7 @@ import sections.feature.appendix
 import sections.feature.bibliography
 import sections.feature.chapter
 import sections.feature.figuretable
+import sections.feature.glossary
 import sections.feature.index
 import sections.feature.legal
 import sections.feature.paper
@@ -118,6 +119,11 @@ def extract_sections_frompath(  # pylint:disable=R0914
         textposition,
         pages=pages,
     )
+    glossary = sections.feature.glossary.work(
+        text,
+        textposition,
+        pages=pages,
+    )
     paper = sections.feature.paper.work(
         pdf,
         pages=pages,
@@ -138,6 +144,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
         title,
         toc,
         whitepage,
+        glossary=glossary,
         pages=pages,
     )
     # work

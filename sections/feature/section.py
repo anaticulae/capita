@@ -46,6 +46,7 @@ def work(  # pylint:disable=R0913,R0914,W0613
     title: str,
     toc: str,
     whitepage: str,
+    glossary: str,
     pages: tuple = None,
 ) -> str:
     """Combine different featuretypes to determine the page type with
@@ -75,6 +76,7 @@ class SectionsRequiredResources:
     title: iamraw.PageContentLikelihoods
     toc: iamraw.PageContentLikelihoods
     whitepage: typing.List[iamraw.sections.WhitePage]
+    glossary: iamraw.PageContentLikelihoods
 
 
 def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
@@ -104,6 +106,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
             loaded.title,
             loaded.toc,
             loaded.whitepage,
+            loaded.glossary,
     ]):
         trusted = most_trusted_items(content)
         if not trusted:
@@ -295,6 +298,7 @@ BUILDER = [
     iamraw.sections.TitlePage,
     iamraw.sections.TableOfContent,
     iamraw.sections.WhitePage,
+    iamraw.sections.Glossary,
 ]
 assert BUILDER.index(iamraw.sections.TableOfContent) > BUILDER.index(
     iamraw.sections.TitlePage), 'do not sort BUILDER'
@@ -351,6 +355,10 @@ MATCHING = {
         iamraw.sections.Introduction,
     ],
     iamraw.sections.TableTable: [
+        iamraw.sections.Appendix,
+        iamraw.sections.Introduction,
+    ],
+    iamraw.sections.Glossary: [
         iamraw.sections.Appendix,
         iamraw.sections.Introduction,
     ],
@@ -415,6 +423,7 @@ def load_features(  # pylint:disable=R0913,R0914
     title: str,
     toc: str,
     whitepage: str,
+    glossary: str,
     pages: tuple = None,
 ) -> SectionsRequiredResources:
     abbreviation = serializeraw.load_likelihood(abbreviation, pages=pages)
@@ -432,6 +441,7 @@ def load_features(  # pylint:disable=R0913,R0914
     title = serializeraw.load_likelihood(title, pages=pages)
     toc = serializeraw.load_likelihood(toc, pages=pages)
     white = serializeraw.load_whitepages(whitepage, pages=pages)
+    glossary = serializeraw.load_likelihood(glossary, pages=pages)
     # prepare result
     result = SectionsRequiredResources(
         abbreviation=abbreviation,
@@ -449,6 +459,7 @@ def load_features(  # pylint:disable=R0913,R0914
         title=title,
         toc=toc,
         whitepage=white,
+        glossary=glossary,
     )
     return result
 
@@ -483,7 +494,17 @@ def load_section_likelihood_frompath(path: str, pages: tuple = None):
         sections.path.title(path),
         sections.path.toc(path),
         sections.path.whitepage(path),
+        glossary_path(path),
         pages=pages,
     )
     result = extract_sections(loaded)
     return result
+
+
+def glossary_path(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        sections.PROCESS,
+        'glossary_likelihood',
+        prefix,
+    )
