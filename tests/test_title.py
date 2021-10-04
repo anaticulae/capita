@@ -12,6 +12,7 @@ import iamraw.path
 import power
 import pytest
 import serializeraw
+import utila
 import utilatest
 
 import sections.feature.title
@@ -91,4 +92,4 @@ def test_extract_title_likelihood_master72():
 def test_extract_title_likelihood_order107():
     extracted = titlepage_likelihood(power.ORDER107_PDF)  # TODO: CHANGE 107
     # assert extracted[0] >= 0.95
-    assert extracted[2] == 0.0
+    assert utila.iszero(extracted[2])

@@ -116,7 +116,6 @@ def determine_hugest_font(fonts, positions, page: iamraw.Page):  # pylint:disabl
     # TODO: USE OLD APPROACH?
     # max_font = max(fonts)
     # max_font_index = fonts.index(max_font)
-    #
     # text_length = [len(item) for item in texmex.split_page(page, positions)]
     # max_font_length = text_length[max_font_index]
     max_font, max_font_length = -utila.INF, -utila.INF

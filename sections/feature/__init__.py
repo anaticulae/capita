@@ -106,7 +106,7 @@ def multiform_result(items):
 
 
 def likelihood(elements, feature):
-    if feature == 0:
+    if not feature:
         return 0.0
     return elements / feature
 

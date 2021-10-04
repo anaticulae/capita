@@ -45,7 +45,7 @@ def group_percentage(  # pylint:disable=R1260,R0912
     bonus = 0
     grouped = []
     for page, percent in enumerate(percents):
-        if failure and bonus % 3 == 0:
+        if failure and bonus % 3 == 0:  # pylint:disable=C2001
             failure -= 1
             bonus = 0
         # close group if failure count is too high

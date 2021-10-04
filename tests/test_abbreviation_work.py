@@ -49,7 +49,7 @@ def test_no_abbreviations_bachelor241_page75():
     extracted = abbreviations(source, pages=page)
     selected = utila.select_page(extracted, page=page)
     assert not selected.content.value
-    assert all(item.content.value == 0 for item in extracted)
+    assert not sum(item.content.value for item in extracted)
 
 
 def test_no_abbreviations_bachelor111page56():
