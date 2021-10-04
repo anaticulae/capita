@@ -53,7 +53,7 @@ GLOSSARY
 STICHWORTVERZEICHNIS
 """)
 
-MIN_LIKELIHOOD = 0.3  # TODO: HOLY VALUE
+MIN_LIKELIHOOD = 0.5  # TODO: HOLY VALUE
 
 
 def extract(data: sections.utils.spa.Data) -> list:
@@ -84,9 +84,12 @@ def analyse_page(
     except geostrat.AlternateGeometryException:
         # no alternating page content
         return len(navigator), 0
-    marker = 0.0
+    marker = 0
     for firstline, *content in alternated:
         text = firstline.text.strip()
+        if len(text) < 3:
+            # skip index pages
+            continue
         if len(text.split()) >= 3:
             continue
         if utila.char_rate(text) < 0.9:
@@ -94,4 +97,7 @@ def analyse_page(
         if len(content) < 3:
             continue
         marker += 5
+    if marker < 8:  # TODO: HOLY VALUE
+        # min marker
+        marker = 0
     return len(navigator), marker
