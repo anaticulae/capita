@@ -29,6 +29,7 @@ Contents
 Inhalt
 Inhaltsverzeichnis
 Table of Content
+Table of Contents
 """)
 
 NOHEADLINES = utila.splitlines("""
