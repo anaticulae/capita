@@ -38,9 +38,7 @@ def headlines(
     styles = common_textstyle(navigator)
     if not styles:
         return None
-    # remove clusters with more than two items cause ?first? level are raw
-    # on a single page.
-    styles = [item for item in styles if len(item) <= 2]
+    styles = cleanup_styles(styles)
     if not styles:
         return None
     # use hugest font size item
@@ -55,6 +53,27 @@ def headlines(
     result = remove_numbered_pattern(result, maxlevel=maxlevel)
     if len(result) == 1:
         return result[0]
+    return result
+
+
+def cleanup_styles(styles):
+    """Remove clusters with more than two items cause ?first? level are
+
+    raw on a single page.
+    """
+    result = []
+    for cluster in styles:
+        fontsize = cluster.center.style.textsize()
+        if fontsize > 20:
+            result.append(cluster)
+            continue
+        if fontsize > 15:
+            result.append(cluster)
+            continue
+        if len(cluster) > 2:
+            # too many elements for small font size
+            continue
+        result.append(cluster)
     return result
 
 

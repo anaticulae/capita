@@ -35,3 +35,16 @@ def test_appendix_diss170():
     extracted = appendix(power.DISS170_PDF)
     page163 = utila.select_page(extracted, 163)
     assert page163.content.value == 1.0
+
+
+def test_appendix_diss143page121():
+    """\
+    Anhang A
+
+    Frequenz- und Phasenselektive
+    Messung sehr kleiner
+    Signalamplituden
+    """
+    extracted = appendix(power.DISS143_PDF, pages=(121))
+    page121 = utila.select_page(extracted, 121)
+    assert page121.content.value == 1.0
