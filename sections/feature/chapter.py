@@ -311,9 +311,21 @@ def contain_toc(content, toc) -> float:
     return -0.5
 
 
-def startswith(line, start):
+def startswith(line: str, start: str) -> bool:
+    """\
+    >>> startswith('Methode3', '2 Methode3')
+    True
+    """
+    percent = len(line) / len(start) if line else 0.0
     start = start[0:len(line)]
-    return line.startswith(start)
+    maxdiff = 0.9 if len(start) > 10 else 0.7  # TODO: HOLY VALUE
+    if percent < 0.5:
+        # matched part is to small
+        maxdiff = 0.9
+    # TODO: REPLACE WITH UTILA CODe
+    if utila.similar(start, line, maxdiff=maxdiff):
+        return True
+    return False
 
 
 def toc_shrink(items):
