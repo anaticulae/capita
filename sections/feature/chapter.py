@@ -321,6 +321,7 @@ def toc_shrink(items):
     result = []
     for item in items:
         if 'anhang' in item.lower():
+            # TODO: DANGEROUS! ANHANG CAN BE PART OF ANY OTHER HEADLINE
             break
         result.append(item)
     return result
