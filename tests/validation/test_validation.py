@@ -14,7 +14,6 @@ import utilatest
 
 import tests.section
 import tests.validation.bachelor
-import tests.validation.docu
 import tests.validation.master
 
 EXPECTED_FAILURE = {
@@ -31,7 +30,6 @@ def determine_mark(pdf):
 
 SECTIONS = {}
 SECTIONS.update(tests.validation.bachelor.BACHELOR)
-SECTIONS.update(tests.validation.docu.DOCU)
 SECTIONS.update(tests.validation.master.MASTER)
 
 

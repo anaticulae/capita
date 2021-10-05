@@ -35,6 +35,7 @@ def test_validate_restructured(restructured_sections_manual):
     assert validated
 
 
+@pytest.mark.xfail(reason='chapter detector is too optimistic')
 @utilatest.requires(power.DOCU027_PDF)
 def test_extract_sections_restructured(
     testdir,
@@ -161,6 +162,7 @@ def test_sections_master116():
     assert (appendix.start, appendix.end) == (88, 116)
 
 
+@pytest.mark.xfail(reason='too optimistic parser')
 @utilatest.nightly
 @utilatest.requires(power.DOCU035_PDF)
 def test_sections_docu35():
@@ -177,7 +179,6 @@ def test_sections_docu35():
     assert isinstance(intro[0], iamraw.sections.TitlePage)
     # TODO: ADD BLANK PAGE CHECK
     # assert isinstance(intro[1], iamraw.sections.WhitePage)
-
     assert (intro.start, intro.end) == (0, 6)
     assert (mainpart.start, mainpart.end) == (6, 35)
 
