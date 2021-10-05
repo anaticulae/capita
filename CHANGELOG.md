@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.11.1
+
+### Feature
+
+* change to appendix if glossary is detected (bd1879436fcb)
+
+### Fix
+
+* make headline skip size dependent (e7c700688e97)
+
 ## v1.11.0
 
 ### Feature
