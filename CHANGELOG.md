@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.11.0
+
+### Feature
+
+* add list of headlines (401ef4e91258)
+* improve starts with check (ee1cc025cc6e)
+* extend bib headlines (f3692565d4e0)
+
 ## v1.10.0
 
 ### Feature
