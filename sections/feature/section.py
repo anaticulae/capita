@@ -388,6 +388,7 @@ def determine_document_section(
         changer = (
             iamraw.sections.AbbreviationTable,
             iamraw.sections.FigureTable,
+            iamraw.sections.Glossary,
             iamraw.sections.SymbolTable,
             iamraw.sections.TableTable,
         )
