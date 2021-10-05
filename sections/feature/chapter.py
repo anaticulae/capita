@@ -36,6 +36,7 @@ import texmex
 import utila
 
 import sections.biblio
+import sections.headlines
 
 
 def work(
@@ -194,7 +195,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
             matched = re.match(NUMBER_PATTERN, line)
             if not matched:
                 continue
-            if any(huge_match(line, item) for item in HEADLINES_CHAPTER):
+            if huge_match(line, sections.headlines.CHAPTER):
                 return True
         return False
 
@@ -224,6 +225,8 @@ def huge_match(line: str, part: str) -> bool:
     False
     """
     line = line.lower()
+    if isinstance(part, utila.ITERABLE):
+        return any(huge_match(line, item) for item in part)
     if part not in line:
         return False
     percent = len(part) / len(line)
@@ -241,42 +244,7 @@ def contains_listof(content: str) -> bool:
     return result
 
 
-NOHEADLINES = utila.splitlines("""
-ABBILDUNGSVERZEICHNIS
-ABKÜRZUNGSVERZEICHNIS
-ABSTRACT
-ABSTRACT OF THE DISSERTATION
-ACKNOWLEDGMENTS
-ANHANG
-CURRICULUM VITAE
-DANKSAGUNG
-DEDICATION
-EIDESSTATTLICHE ERKLÄRUNG
-INHALTSVERZEICHNIS
-LIST OF FIGURES
-LIST OF TABLES
-PUBLICATIONS
-REFERENCES
-SYMBOLVERZEICHNIS
-TABELLENVERZEICHNIS
-TABLE OF CONTENTS
-VORWORT
-ZUSAMMENFASSUNG
-""")
-NOHEADLINES |= sections.biblio.HEADLINES
-
-HEADLINES_CHAPTER = utila.splitlines("""
-AUSBLICK
-DISKUSSION
-DISKUSSION UND AUSBLICK
-EINLEITUNG
-EINLEITUNG UND ZIELSETZUNG
-ERGEBNISSE
-GRUNDLAGEN
-INTRODUCTION
-SCHLUSSBETRACHTUNG
-STAND DES WISSENS
-""")
+NOHEADLINES = sections.headlines.ALL - sections.headlines.CHAPTER
 
 
 def contain_toc(content, toc) -> float:
