@@ -77,7 +77,7 @@ def cleanup_styles(styles):
     return result
 
 
-FONTSIZE_DIFF_MAX = configo.HV_PERCENT_PLUS(10).value
+FONTSIZE_DIFF_MAX = configo.HV_PERCENT_PLUS(default=10)
 
 
 def common_textstyle(items, min_elements=1):

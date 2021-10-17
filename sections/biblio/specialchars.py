@@ -46,7 +46,7 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-MARKER_COUNT_MIN = configo.HV_INT_PLUS(5).value
+MARKER_COUNT_MIN = configo.HV_INT_PLUS(5)
 
 
 def analyse_page(

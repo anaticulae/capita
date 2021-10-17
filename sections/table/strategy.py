@@ -17,8 +17,8 @@ import utila
 import sections.feature
 import sections.utils.headline
 
-HEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(0.85, limit=1.0)
-NOHEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(0.85, limit=1.0)
+HEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(default=0.85, limit=1.0)
+NOHEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(default=0.85, limit=1.0)
 
 
 def work(

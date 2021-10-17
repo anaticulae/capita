@@ -23,10 +23,10 @@ import utila
 import sections.path
 
 # features with lower trust are not expected as detected feature
-FEATURE_TRUST_MIN = configo.HV_PERCENT_PLUS(default=40).value
+FEATURE_TRUST_MIN = configo.HV_PERCENT_PLUS(default=40)
 
 # more than one feature have this trust, accept all of them
-MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75).value
+MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75)
 
 
 @utila.checkdatatype
