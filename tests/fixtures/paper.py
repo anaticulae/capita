@@ -10,10 +10,12 @@
 import power
 import pytest
 import serializeraw
+import utilatest
 
 
 @pytest.fixture
 def paper18():
+    utilatest.fixture_requires(power.PAPER18_PDF)
     source = power.link(power.PAPER18_PDF)
     navigator = serializeraw.create_pagetextnavigators_frompath(source)
     return navigator

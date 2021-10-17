@@ -17,6 +17,7 @@ import tests
 
 @utilatest.longrun
 def test_table_table_master98_page95(testdir, monkeypatch):
+    utilatest.fixture_requires(power.MASTER098_PDF)
     source = power.link(power.MASTER098_PDF)
     tests.run_sections(
         f'-i {source} --tabletable --pages=95',
