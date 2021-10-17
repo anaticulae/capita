@@ -31,7 +31,7 @@ import sections.biblio.utils
 import sections.utils.headline
 import sections.utils.spa
 
-MIN_LIKELIHOOD = 0.3  # TODO: HOLY VALUE
+LIKELIHOOD_MIN = 0.3  # TODO: HOLY VALUE
 
 
 def extract(data: sections.utils.spa.Data) -> list:
@@ -41,12 +41,12 @@ def extract(data: sections.utils.spa.Data) -> list:
     )
     extracted = sections.utils.spa.work(data=data, config=config)
     # ignore to low valued bib pages
-    valid = [item for item in extracted if item.content.value > MIN_LIKELIHOOD]
+    valid = [item for item in extracted if item.content.value > LIKELIHOOD_MIN]
     hugest = sections.biblio.utils.cluster_bibpages(valid)
     return hugest
 
 
-MARKER_MIN_COUNT = configo.HV_INT_PLUS(5).value
+MARKER_COUNT_MIN = configo.HV_INT_PLUS(5).value
 
 
 def analyse_page(
@@ -70,7 +70,7 @@ def analyse_page(
     ]
     collected = collect_and_replace(raw, pattern)
     marker = len(collected)
-    if marker < MARKER_MIN_COUNT:
+    if marker < MARKER_COUNT_MIN:
         utila.debug(f'too few marker: {marker}')
         marker = 0
 
@@ -85,7 +85,7 @@ def analyse_page(
     if marker and len(navigator) >= 1:
         likelihood = marker / len(navigator)
 
-    if likelihood < MIN_LIKELIHOOD:
+    if likelihood < LIKELIHOOD_MIN:
         # TODO: CHECK THIS
         # this can not be a bib table
         marker = 0

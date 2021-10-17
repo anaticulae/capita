@@ -77,7 +77,7 @@ def cleanup_styles(styles):
     return result
 
 
-MAX_FONTSIZE_DIFF = configo.HV_PERCENT_PLUS(10).value
+FONTSIZE_DIFF_MAX = configo.HV_PERCENT_PLUS(10).value
 
 
 def common_textstyle(items, min_elements=1):
@@ -85,7 +85,7 @@ def common_textstyle(items, min_elements=1):
     def equal_fontsize(candidat, clusteritem):
         cluster = clusteritem.style.textsize()
         candidat = candidat.style.textsize()
-        return utila.pnear(cluster, candidat, rel_tol=MAX_FONTSIZE_DIFF)
+        return utila.pnear(cluster, candidat, rel_tol=FONTSIZE_DIFF_MAX)
 
     def classifier(candidat, clusteritem) -> bool:
         if not equal_fontsize(candidat, clusteritem):

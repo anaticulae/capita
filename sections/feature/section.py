@@ -23,7 +23,7 @@ import utila
 import sections.path
 
 # features with lower trust are not expected as detected feature
-MIN_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=40).value
+FEATURE_TRUST_MIN = configo.HV_PERCENT_PLUS(default=40).value
 
 # more than one feature have this trust, accept all of them
 MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75).value
@@ -156,7 +156,7 @@ def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
 
     There are multiple items possible.
 
-    Accepted features must have a higher trust than `MIN_FEATURE_TRUST`.
+    Accepted features must have a higher trust than `FEATURE_TRUST_MIN `.
     Multiple features on a page require a much higher trust
     `MULTIPLE_FEATURE_TRUST`.
 
@@ -173,7 +173,7 @@ def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
     # remove features with to low trust
     items = [
         item for item in items
-        if item and item.content and item.content.value >= MIN_FEATURE_TRUST
+        if item and item.content and item.content.value >= FEATURE_TRUST_MIN
     ]
     # more than one feature on a page
     if len(items) > 1:

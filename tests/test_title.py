@@ -31,7 +31,7 @@ def test_load_font_lookup(restructured_fontstore):
 
 
 # qualitygate for further alogrithm improvements
-MIN_TITLE_LIKELIHOOD = 0.70
+TITLE_LIKELIHOOD_MIN = 0.70
 
 
 @pytest.mark.parametrize('source', [
@@ -52,7 +52,7 @@ def test_extract_title_likelihood(source):
         document,
         fontstore,
     )
-    assert result[0].content.value >= MIN_TITLE_LIKELIHOOD
+    assert result[0].content.value >= TITLE_LIKELIHOOD_MIN
     # as a result of rounding the sum of the likelihoods is not one, but thats
     # not a big problem, hitting the region one is enough.
     result = [item.content.value for item in result]

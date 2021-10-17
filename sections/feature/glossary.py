@@ -53,7 +53,7 @@ GLOSSARY
 STICHWORTVERZEICHNIS
 """)
 
-MIN_LIKELIHOOD = 0.5  # TODO: HOLY VALUE
+LIKELIHOOD_MIN = 0.5  # TODO: HOLY VALUE
 
 
 def extract(data: sections.utils.spa.Data) -> list:
@@ -63,7 +63,7 @@ def extract(data: sections.utils.spa.Data) -> list:
     )
     extracted = sections.utils.spa.work(data=data, config=config)
     # ignore to low valued bib pages
-    valid = [item for item in extracted if item.content.value > MIN_LIKELIHOOD]
+    valid = [item for item in extracted if item.content.value > LIKELIHOOD_MIN]
     hugest = sections.biblio.utils.cluster_bibpages(valid)
     return hugest
 

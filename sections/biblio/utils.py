@@ -11,7 +11,7 @@ import configo
 import iamraw
 import utila
 
-MAX_DIFF = configo.HolyTable(
+DIFF_MAX = configo.HolyTable(
     items=(
         (1, 0),
         (5, 0),
@@ -27,7 +27,7 @@ def cluster_bibpages(items):
     """Select hugest(max sum likelihood value) group."""
     if not items:
         return []
-    maxdiff = MAX_DIFF(len(items)) + 1
+    maxdiff = DIFF_MAX(len(items)) + 1
     grouped = utila.groupby_diff(
         items,
         maxdiff=maxdiff,

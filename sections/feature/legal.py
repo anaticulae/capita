@@ -64,7 +64,7 @@ import utila
 
 import sections.utils.spa
 
-MIN_FEATURE_POINT_COUNT = 5  # TODO: HOLY VALUE
+FEATURE_POINT_COUNT_MIN = 5  # TODO: HOLY VALUE
 
 
 def work(document: str, position: str, pages=None) -> str:
@@ -104,12 +104,12 @@ def analyse_page(
         trust += 0.5
 
     feature_point_count = len(located)
-    if feature_point_count >= MIN_FEATURE_POINT_COUNT:
+    if feature_point_count >= FEATURE_POINT_COUNT_MIN:
         trust += 0.25
     if feature_point_count > 8:
         trust += 0.5
 
-    if feature_point_count < MIN_FEATURE_POINT_COUNT:
+    if feature_point_count < FEATURE_POINT_COUNT_MIN:
         feature_point_count = 0
         trust = 0.0
     return len(located), trust
