@@ -31,7 +31,7 @@ import sections.biblio.utils
 import sections.utils.headline
 import sections.utils.spa
 
-LIKELIHOOD_MIN = 0.3  # TODO: HOLY VALUE
+LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=30.0)
 
 
 def extract(data: sections.utils.spa.Data) -> list:
@@ -121,6 +121,9 @@ def special_chars(raw: str) -> bool:
     return False
 
 
+SENTENCE_MEAN_TRUST_MIN = configo.HV_INT_PLUS(default=100)
+
+
 def content_page(raw: str) -> bool:
     """Verify that page contains a `normal` number of sentences."""
     sentences = german.sentence_tokenize(raw, normalize_spaces=True)
@@ -131,6 +134,6 @@ def content_page(raw: str) -> bool:
     # a lot of false postive results.
     sentences = utila.flatten([item.split(':') for item in sentences])
     length_mean = statistics.mean([len(sentence) for sentence in sentences])
-    if length_mean > 100:
+    if length_mean > SENTENCE_MEAN_TRUST_MIN:
         return True
     return False

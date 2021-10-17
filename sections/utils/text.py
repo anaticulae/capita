@@ -13,10 +13,13 @@ import functools
 import statistics
 import typing
 
+import configo
 import german
 import konrad
 import texmex
 import utila
+
+SENTENCE_LENGTH_MIN = configo.HV_INT_PLUS(default=20)
 
 
 @dataclasses.dataclass
@@ -89,10 +92,9 @@ def textonpage(page: texmex.PageTextNavigator) -> TextOnPage:
         text = chunk.text.strip()
         sentences = german.sentence_tokenize(text)
         for item in sentences:
-            if not german.is_sentence(item, min_length=20):  # TODO: HOLY VALUE
+            if not german.is_sentence(item, min_length=SENTENCE_LENGTH_MIN):
                 continue
             result.append_sentence(item)
-
         splitted = german.words_fromstr(text)
         for item in splitted:
             if isinstance(item, str):

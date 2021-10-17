@@ -17,6 +17,7 @@ NOTE: This approach is only for demo time.
 import contextlib
 import statistics
 
+import configo
 import geostrat
 import serializeraw
 import utila
@@ -27,7 +28,7 @@ import sections.utils.headline
 
 BACKUP_PAGE = (1, 0.5)
 
-ABBREVIATION_TRUST_MIN = 0.65  # TODO: HOLY VALUE
+ABBREVIATION_TRUST_MIN = configo.HV_PERCENT_PLUS(default=65)
 
 
 def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
