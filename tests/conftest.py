@@ -75,10 +75,6 @@ def extract(resources):
         destination=power.generated(),
         files=resources,
         groupme='--pagenumbers --footer --toc',
-        formulero=False,
-        tablero=False,
-        codero=False,
-        figureo=False,
         worker=WORKER,
         pages=':',
     )
