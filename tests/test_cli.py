@@ -60,11 +60,10 @@ def master83(result):
 
 
 def bachelor111(result):
-    # TODO: ADJUST AFTER DETECTING GLOSSAR AS APPENDIX
     expected = [
         (iamraw.sections.Introduction, 0, 5),
-        (iamraw.sections.MainPart, 5, 85),
-        (iamraw.sections.Appendix, 85, 111),
+        (iamraw.sections.MainPart, 5, 83),
+        (iamraw.sections.Appendix, 83, 111),
     ]
     validate(result, expected)
 
