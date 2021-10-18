@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.12.0
+
+### Feature
+
+* add modifiable holy values (69555779a2c9)
+* introduce configo holy values (8cb6c5e077b4)
+
+### Fix
+
+* adjust bug in feature detection (a542e1da1701)
+
 ## v1.11.1
 
 ### Feature
