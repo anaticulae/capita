@@ -28,7 +28,7 @@ def test_extract_toc_likelihood():
         'Contents',
     )
     extracted = [item.content.value for item in extracted]
-    assert sum(extracted) == pytest.approx(1.22)
+    assert sum(extracted) == pytest.approx(0.96)
 
 
 @utilatest.requires(power.BACHELOR063_PDF)

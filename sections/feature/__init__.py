@@ -61,7 +61,7 @@ def uniform_result(
     return result
 
 
-MULTIFORM_RESULT_LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=75)
+MULTIFORM_RESULT_LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=45)
 
 
 def multiform_result(items):
@@ -93,15 +93,18 @@ def multiform_result(items):
     half_max = 0.5 * per_page_max
     multi_max = [
         feature for elements, feature in values if feature >= half_max or
-        likelihood(elements, feature) > MULTIFORM_RESULT_LIKELIHOOD_MIN
+        likelihood(feature, elements) > MULTIFORM_RESULT_LIKELIHOOD_MIN
     ]
     if len(multi_max) < 2:
         # not enough multi form elements
         return None
     result = {}
-    for page, (lines, feature) in items.items():
-        if (feature > half_max or likelihood(lines, feature) > 0.75):
-            result[page] = likelihood(feature, lines)
+    for page, (elements, feature) in items.items():
+        matching = likelihood(feature, elements)
+        if feature >= half_max:
+            result[page] = matching
+        elif matching > MULTIFORM_RESULT_LIKELIHOOD_MIN:
+            result[page] = matching
         else:
             result[page] = 0.0
     # round to 2 digits
@@ -109,10 +112,15 @@ def multiform_result(items):
     return result
 
 
-def likelihood(elements, feature):
-    if not feature:
+def likelihood(feature, elements) -> float:
+    """Determine percent of feature in elements group.
+
+    Elements is higher than feature, because not every element is a
+    feature.
+    """
+    if not elements:
         return 0.0
-    return elements / feature
+    return feature / elements
 
 
 def pagebypage(
