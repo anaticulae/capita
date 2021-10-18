@@ -46,7 +46,9 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-MARKER_COUNT_MIN = configo.HV_INT_PLUS(5)
+MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=5)
+
+SPECIAL_CHAR_BONUS = configo.HV_PERCENT_PLUS(default=30)
 
 
 def analyse_page(
@@ -73,14 +75,11 @@ def analyse_page(
     if marker < MARKER_COUNT_MIN:
         utila.debug(f'too few marker: {marker}')
         marker = 0
-
     if special_chars(raw):
         # thirty percent bonus
-        marker *= 1.3  # TODO: HOLY VALUE
-
+        marker *= (1 + SPECIAL_CHAR_BONUS)
     if content_page(raw):
         marker = 0
-
     likelihood = 0.0
     if marker and len(navigator) >= 1:
         likelihood = marker / len(navigator)
