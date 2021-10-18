@@ -97,6 +97,7 @@ def check_sections(result, expected):
         assert current == wanted, f'{current} != {wanted}'
 
 
+@utilatest.longrun
 @utilatest.requires(power.DOCU007_PDF)
 def test_sections_simple():
     """Check dumped result of section work method"""
@@ -251,6 +252,7 @@ def test_sections_bachelor128():
     check_sections(result, expected)
 
 
+@utilatest.longrun
 @utilatest.requires(power.MASTER075_PDF)
 def test_sections_master075_appendix():
     result = tests.section.extract_sections_frompath(

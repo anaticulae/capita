@@ -22,6 +22,7 @@ def test_paper_main_diss148():
     assert detected == expected
 
 
+@utilatest.longrun
 def test_paper_bachelor111():
     """Do not detect end of bachelor111 as cited content.
 
