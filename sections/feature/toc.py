@@ -47,6 +47,7 @@ def work(
     headerfooters: str,
     pages=None,
 ) -> str:
+    # TODO: SHRINK PAGES BY VALID_TOC_PAGES?
     ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
         text=oneline_text,
         textpositions=oneline_textposition,
