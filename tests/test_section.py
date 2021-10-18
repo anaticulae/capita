@@ -135,15 +135,17 @@ def test_sections_master72():
 def test_sections_bachelor90():
     result = tests.section.extract_sections_frompath(power.BACHELOR090_PDF)
     expected = [
+        iamraw.sections.Unknown,
         iamraw.sections.Introduction,
         iamraw.MainPart,
         iamraw.sections.Appendix,
     ]
     check_sections(result, expected)
-    intro, mainpart, appendix = result
+    unknown, intro, mainpart, appendix = result
+    assert (unknown.start, unknown.end) == (0, 1)
     assert (intro.start, intro.end) == (1, 12)
     assert (mainpart.start, mainpart.end) == (12, 76)
-    assert (appendix.start, appendix.end) == (76, 89)
+    assert (appendix.start, appendix.end) == (76, 90)
 
 
 @utilatest.nightly
