@@ -14,15 +14,21 @@ import elements
 import texmex
 import utila
 
+HEADLINES_LENGTH_MIN = configo.HV_INT_PLUS(default=5)
+
+HEADLINES_WORD_COUNT_MIN = configo.HV_INT_PLUS(default=1)
+
+HEADLINES_WORD_COUNT_MAX = configo.HV_INT_PLUS(default=5)
+
 
 def headlines(
     navigator: texmex.PageTextNavigator,
-    min_length: int = 5,  # TODO: HOLY VALUE
-    # max_length: int = 50,  # TODO: HOLY VALUE
-    min_word_count: int = 1,
-    max_word_count: int = 5,
+    length_min: int = HEADLINES_LENGTH_MIN,
+    # max_length: int = 50,
+    word_count_min: int = HEADLINES_WORD_COUNT_MIN,
+    word_count_max: int = HEADLINES_WORD_COUNT_MAX,
     topsearch: bool = False,
-    maxlevel: int = None,
+    level_max: int = None,
 ):
     """\
     #topsearch: use upper area of page
@@ -31,8 +37,8 @@ def headlines(
     navigator = [
         item for item in navigator if not elements.noheadline(
             line=item.text,
-            length_min=min_length,
-            wordcount_max=max_word_count,
+            length_min=length_min,
+            wordcount_max=word_count_max,
         )
     ]
     styles = common_textstyle(navigator)
@@ -47,10 +53,10 @@ def headlines(
     # remove to many spaces
     result = [
         item for item in result
-        if min_word_count <= len(item.split()) <= max_word_count
+        if word_count_min <= len(item.split()) <= word_count_max
     ]
     result = [item.title() for item in result]
-    result = remove_numbered_pattern(result, maxlevel=maxlevel)
+    result = remove_numbered_pattern(result, level_max=level_max)
     if len(result) == 1:
         return result[0]
     return result
@@ -80,7 +86,7 @@ def cleanup_styles(styles):
 FONTSIZE_DIFF_MAX = configo.HV_PERCENT_PLUS(default=10)
 
 
-def common_textstyle(items, min_elements=1):
+def common_textstyle(items, elements_min=1):
 
     def equal_fontsize(candidat, clusteritem):
         cluster = clusteritem.style.textsize()
@@ -95,7 +101,7 @@ def common_textstyle(items, min_elements=1):
     return utila.classifier.base.determine_cluster(
         items,
         classifier=classifier,
-        min_elements=min_elements,
+        min_elements=elements_min,
     )
 
 
@@ -116,7 +122,7 @@ def parse_headline(line):
     return re.match(HEADLINE, line)
 
 
-def remove_numbered_pattern(items: list, maxlevel: int = None) -> list:
+def remove_numbered_pattern(items: list, level_max: int = None) -> list:
     """\
     >>> remove_numbered_pattern(['Anhang', '1.2.3 Content'])
     ['Anhang', 'Content']
@@ -125,9 +131,9 @@ def remove_numbered_pattern(items: list, maxlevel: int = None) -> list:
     for item in items:
         parsed = parse_headline(item)
         if parsed:
-            if maxlevel is not None:
+            if level_max is not None:
                 level = elements.level_numbered(parsed['level'])
-                if level > maxlevel:
+                if level > level_max:
                     continue
             result.append(parsed['text'])
         else:

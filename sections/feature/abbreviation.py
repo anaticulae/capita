@@ -46,7 +46,7 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
     result = sections.table.strategy.merge_second(
         result,
         result,
-        min_merge=0.49,
+        merge_min=0.49,
         replace=0.75,
     )
     for item in result:
@@ -130,24 +130,32 @@ def numbered_column(data: list) -> bool:
     return True
 
 
+SHORT_COLUMN_MEAN_MAX = configo.HV_FLOAT_PLUS(default=10.0)
+
+
 def short_column(left) -> bool:
     if not left:
         return False
     mean = statistics.mean([len(text(item)) for item in left])
-    if mean > 10.0:  # HOLY VALUE
+    if mean > SHORT_COLUMN_MEAN_MAX:
         return False
     return True
 
 
+WHITESPACED_VALID_MAX = configo.HV_PERCENT_PLUS(default=30.0)
+
+WHITESPACED_INVALID_RATE_MIN = configo.HV_PERCENT_PLUS(default=20.0)
+
+
 def whitespaced(right) -> bool:
     valid, invalid = utila.partition(
-        key=lambda x: whitespace_rate(x.text) < 0.3,  # TODO: HOLY VALUE
+        key=lambda x: whitespace_rate(x.text) < WHITESPACED_VALID_MAX,
         items=right,
     )
     if not invalid:
         return False
     invalid_rate = len(invalid) / (len(invalid) + len(valid))
-    if invalid_rate > 0.2:  # TODO: HOLY VALUE
+    if invalid_rate > WHITESPACED_INVALID_RATE_MIN:
         return True
     return False
 

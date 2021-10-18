@@ -105,6 +105,10 @@ def collect_and_replace(raw: str, pattern: list) -> list:
 
 SPECIAL_CHARS = ";,/:[]()&"
 
+SPECIAL_CHARS_CLASSIFIER_MIN = configo.HV_PERCENT_PLUS(default=30.0)
+
+SPECIAL_CHARS_WORDCOUNT_MIN = configo.HV_INT_PLUS(default=40)
+
 
 def special_chars(raw: str) -> bool:
     # TODO: A LOT OF MISMATCHES AS A RESULT OF PROGRAM CODE IN DOCUMENT
@@ -113,11 +117,13 @@ def special_chars(raw: str) -> bool:
         parsed = german.word_tokenize(line, validate_sentences=False)
         result.extend(parsed)
     word_count = len(result)
+    if word_count < SPECIAL_CHARS_WORDCOUNT_MIN:
+        return False
     counted = sum([raw.count(char) for char in SPECIAL_CHARS])
     classifier = counted / word_count if word_count else 0
-    if word_count > 40 and classifier > 0.3:  # TODO HOLY VALUE
-        return True
-    return False
+    if classifier < SPECIAL_CHARS_CLASSIFIER_MIN:
+        return False
+    return True
 
 
 SENTENCE_MEAN_TRUST_MIN = configo.HV_INT_PLUS(default=100)

@@ -78,8 +78,11 @@ def load_toc(tocpath):
     return toc
 
 
-AFTER_HEADER = 0.05  # TODO: HOLY VALUE
-FIRST_QUARTER = 0.45  # TODO: HOLY VALUE
+AFTER_HEADER = configo.HV_PERCENT_PLUS(default=5.0)
+
+FIRST_QUARTER = configo.HV_PERCENT_PLUS(default=45.0)
+
+TOCS_COUNT_MIN = configo.HV_INT_PLUS(default=3)
 
 
 def extract_chapter(
@@ -92,7 +95,7 @@ def extract_chapter(
             continue
         first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
         chapter_rate = contain_chapter(first_content)
-        if len(tocs) >= 3:  # TODO: HOLY VALUE
+        if len(tocs) >= TOCS_COUNT_MIN:
             chapter_rate += contain_toc(first_content, tocs)
         else:
             # disable feature if no toc is given
@@ -136,8 +139,13 @@ NUMBER_PATTERN = re.compile(
     re.VERBOSE,
 )
 
-HEADLINES_CHECK_FIRST_N_LINES = 4
-HEADLINE_LENGTH_MAX = 75
+HEADLINES_CHECK_FIRST_N_LINES = configo.HV_INT_PLUS(default=4)
+
+HEADLINE_LENGTH_MAX = configo.HV_INT_PLUS(default=75)
+
+NO_CHAPTER_PATTERN_LINE_LENGTH_MAX = configo.HV_INT_PLUS(default=15)
+
+FIRSTLEVEL_CHAPTER_MAX = configo.HV_INT_PLUS(default=13)
 
 
 def contain_chapter(content) -> float:  # pylint:disable=R1260
@@ -153,22 +161,24 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
     """
 
     def startwith_chapterpattern(raw: list) -> bool:
+        # TODO: REMOVE .value after UPGRADING CONFIGO
         raw = [
-            item.text.lower() for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]
+            item.text.lower()
+            for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]
         ]
         for line in raw:
             if re.match(CHAPTER_PATTERN, line):
                 # KAPITEL 1: EINLEITUNG
                 return True
             if 'kapitel' in line or 'chapter' in line:
-                if len(line) > 15:  # TODO: HOLY VALUE
+                if len(line) > NO_CHAPTER_PATTERN_LINE_LENGTH_MAX:
                     # skip sentences which contains Chapter or Kapitel
                     continue
                 return True
         return False
 
     def startwith_firstlevelheadline(raw: list) -> bool:
-        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
+        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]]
         for line in raw:
             matched = re.match(NUMBER_PATTERN, line)
             if matched:
@@ -178,7 +188,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
                     # seam to be a content line.
                     continue
                 chapternumber = int(matched['number'])
-                if chapternumber > 13:  # TODO: HOLY VALYE
+                if chapternumber > FIRSTLEVEL_CHAPTER_MAX:
                     utila.debug(f'chapter number to hight: {line}')
                     continue
                 charrate = utila.char_rate(line)
@@ -190,7 +200,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
         return False
 
     def startwith_whitelist(raw: list) -> bool:
-        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
+        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]]
         for line in raw:
             matched = re.match(NUMBER_PATTERN, line)
             if not matched:

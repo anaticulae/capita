@@ -25,6 +25,7 @@ Ausfallkriterium
     und damit als ausgefallen angesehen werden kann.
 """
 
+import configo
 import geostrat
 import serializeraw
 import texmex
@@ -53,7 +54,9 @@ GLOSSARY
 STICHWORTVERZEICHNIS
 """)
 
-LIKELIHOOD_MIN = 0.5  # TODO: HOLY VALUE
+LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=50)
+
+MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=8)
 
 
 def extract(data: sections.utils.spa.Data) -> list:
@@ -97,7 +100,7 @@ def analyse_page(
         if len(content) < 3:
             continue
         marker += 5
-    if marker < 8:  # TODO: HOLY VALUE
+    if marker < MARKER_COUNT_MIN:
         # min marker
         marker = 0
     return len(navigator), marker

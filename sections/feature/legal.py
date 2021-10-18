@@ -58,13 +58,14 @@ Requirements
 [Theisen]
 """
 
+import configo
 import serializeraw
 import texmex
 import utila
 
 import sections.utils.spa
 
-FEATURE_POINT_COUNT_MIN = 5  # TODO: HOLY VALUE
+FEATURE_POINT_COUNT_MIN = configo.HV_INT_PLUS(default=5)
 
 
 def work(document: str, position: str, pages=None) -> str:

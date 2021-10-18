@@ -10,6 +10,7 @@
 import re
 import typing
 
+import configo
 import iamraw
 import serializeraw
 
@@ -65,7 +66,7 @@ INDEX_ITEM_PATTERN = re.compile(
           [0-9]+$            # a pagenumber at the end
      """, re.X)
 
-MINIMAL_DETECTED_PATTERN_PERCENT = 0.4  # TODO: HOLY VALUE
+MINIMAL_DETECTED_PATTERN = configo.HV_PERCENT_PLUS(default=40)
 
 
 def analyse_page(page: iamraw.Page) -> typing.Tuple[int, int]:
@@ -99,7 +100,7 @@ def analyse_page(page: iamraw.Page) -> typing.Tuple[int, int]:
 
     percent = single_char_or_index_with_page / linecount if linecount else 0
 
-    if percent < MINIMAL_DETECTED_PATTERN_PERCENT:
+    if percent < MINIMAL_DETECTED_PATTERN:
         linecount = 0
         single_char_or_index_with_page = 0
 

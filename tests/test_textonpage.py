@@ -39,10 +39,10 @@ def test_textonpage_descriptor_operation():
     data.append_word('Hello')
     data.append_word('My')
     data.append_word('Friend')
-    mean = data.mean_words
+    mean = data.words_mean
     assert utila.roundme(mean) == 4.33, mean
-    assert data.max_words == 6
-    assert data.min_words == 2
+    assert data.words_max == 6
+    assert data.words_min == 2
 
 
 def test_textonpage_descriptor_key_error():

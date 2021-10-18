@@ -16,13 +16,17 @@ TODO:
 
 import re
 
+import configo
 import serializeraw
 import utila
 
 import sections.table.strategy
 
 # no possible toc later than page 20
-VALID_TOC_PAGES = utila.ranged_tuple(0, 20)  # HOLY VALUE
+
+VALID_TOC_PAGES_MIN = configo.HV_INT_PLUS(default=0)
+
+VALID_TOC_PAGES_MAX = configo.HV_INT_PLUS(default=20)
 
 HEADLINES = utila.splitlines("""
 Contents
@@ -60,7 +64,10 @@ def work(
         headline=HEADLINES,
         noheadlines=NOHEADLINES,
         shortcut='toc',
-        pages=VALID_TOC_PAGES,
+        pages=utila.ranged_tuple(
+            VALID_TOC_PAGES_MIN.value,
+            VALID_TOC_PAGES_MAX.value,
+        ),
         second=True,
         pattern=appendix_line,
     )

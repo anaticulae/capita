@@ -62,7 +62,7 @@ class TextOnPage:
         return len(self.dots_)
 
     def __getattr__(self, key: str) -> float:
-        action, variable = key.split('_', maxsplit=1)
+        variable, action = key.split('_', maxsplit=1)
         try:
             data = self.__dict__[f'{variable}_']
         except KeyError as error:

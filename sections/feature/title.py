@@ -10,6 +10,7 @@
 import statistics
 import typing
 
+import configo
 import iamraw
 import serializeraw
 import utila
@@ -49,8 +50,9 @@ def extract_title_likelihood(
     return result
 
 
-MINIMAL_TITLE_LENGTH = 10  # TODO: CONVERT TO HOLY VALUE
-MAXIMAL_TITLE_LENGTH = 200
+TITLE_LENGTH_MIN = configo.HV_INT_PLUS(default=10)
+
+TITLE_LENGTH_MAX = configo.HV_INT_PLUS(default=200)
 
 EMPTY_RESULT = (0, 0.0)
 
@@ -59,9 +61,9 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
     """Determine the likelihood that `page` is a title page
 
     A high title_indicator provides a high likelihood of beeing a title
-    page. Aditionally the max_font_length is provided.
+    page. Aditionally the font_length_max is provided.
 
-    Returns: (max_font_length, title_indicator):
+    Returns: (font_length_max, title_indicator):
     """
     pagenumber = page.page
     positions = font_positions_from_page(fontstore, pagenumber)
@@ -75,13 +77,13 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
         # skip potential table of content page
         return EMPTY_RESULT
 
-    max_font, max_font_length = determine_hugest_font(fonts, positions, page)
+    font_max, font_length_max = determine_hugest_font(fonts, positions, page)
     title_indicator = 0
     # the title must not be to short and it unlikeli that the title is very,
     # very long.
     # TODO: We need a concept for this "holy" values. Make them configurable
-    if MINIMAL_TITLE_LENGTH <= max_font_length < MAXIMAL_TITLE_LENGTH:
-        title_indicator = max_font_length * pow(max_font, 3)
+    if TITLE_LENGTH_MIN <= font_length_max < TITLE_LENGTH_MAX:
+        title_indicator = font_length_max * pow(font_max, 3)
     # Malus per page, reduce value 10% per page, the higher the page number
     # the lower the likelihood to be the title page.
     # TODO: investigate if this is a good idea
@@ -89,7 +91,7 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
     # For high pages title_indicator produces very small number 10^-45. To
     # stabilize further algorithms, we do not want this "precision".
     title_indicator = utila.roundme(title_indicator)  # pylint:disable=R0204
-    return max_font_length, title_indicator
+    return font_length_max, title_indicator
 
 
 def font_sizes_from_page(store: iamraw.FontStore, pagenumber: int):
@@ -114,22 +116,22 @@ def font_positions_from_page(store: iamraw.FontStore, pagenumber: int):
 def determine_hugest_font(fonts, positions, page: iamraw.Page):  # pylint:disable=W0613
     """Determine the biggest font size."""
     # TODO: USE OLD APPROACH?
-    # max_font = max(fonts)
-    # max_font_index = fonts.index(max_font)
+    # font_max = max(fonts)
+    # font_max_index = fonts.index(font_max)
     # text_length = [len(item) for item in texmex.split_page(page, positions)]
-    # max_font_length = text_length[max_font_index]
-    max_font, max_font_length = -utila.INF, -utila.INF
+    # font_length_max = text_length[font_max_index]
+    font_max, font_length_max = -utila.INF, -utila.INF
     for container in page:
         # TODO: MERGE EQUAL TEXT LINE TOGETHER?
         for line in container:
             fontsize = statistics.mean([char.size for char in line])
-            if fontsize > max_font:
-                max_font = fontsize
-                max_font_length = len(line)
-            if fontsize == max_font and len(line) > max_font_length:
-                max_font = fontsize
-                max_font_length = len(line)
-    return max_font, max_font_length
+            if fontsize > font_max:
+                font_max = fontsize
+                font_length_max = len(line)
+            if fontsize == font_max and len(line) > font_length_max:
+                font_max = fontsize
+                font_length_max = len(line)
+    return font_max, font_length_max
 
 
 def extract_titlelikelihood_frompath(

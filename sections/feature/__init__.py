@@ -10,6 +10,7 @@
 
 import typing
 
+import configo
 import iamraw
 import texmex
 import utila
@@ -45,19 +46,22 @@ def uniform_result(
     """
     assert isinstance(items, dict), type(items)
     values = items.values()
-    max_features = sum([feature for _, feature in values])
-    if max_features < common_feature_threshold:
-        max_features = 0
-    if not max_features:
+    features_max = sum([feature for _, feature in values])
+    if features_max < common_feature_threshold:
+        features_max = 0
+    if not features_max:
         # no potential feature in document
         return {page: 0.0 for page in items}
 
     result = {
-        page: (feature / max_features) for page, (_, feature) in items.items()
+        page: (feature / features_max) for page, (_, feature) in items.items()
     }
     # round to 2 digits
     result = {page: utila.roundme(item) for page, item in result.items()}
     return result
+
+
+MULTIFORM_RESULT_LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=75)
 
 
 def multiform_result(items):
@@ -80,23 +84,23 @@ def multiform_result(items):
     """
     assert isinstance(items, dict), type(items)
     values = items.values()
-    max_features = sum([feature for _, feature in values])
-    if not max_features:
+    features_max = sum([feature for _, feature in values])
+    if not features_max:
         # no potential feature in document
         return {page: 0.0 for page in items}
 
-    max_per_page = max([feature for _, feature in values])
-    max_half = 0.5 * max_per_page
+    per_page_max = max([feature for _, feature in values])
+    half_max = 0.5 * per_page_max
     multi_max = [
-        feature for elements, feature in values if feature >= max_half or
-        likelihood(elements, feature) > 0.75  # TODO: HOLY VALUE
+        feature for elements, feature in values if feature >= half_max or
+        likelihood(elements, feature) > MULTIFORM_RESULT_LIKELIHOOD_MIN
     ]
     if len(multi_max) < 2:
         # not enough multi form elements
         return None
     result = {}
     for page, (lines, feature) in items.items():
-        if (feature > max_half or likelihood(lines, feature) > 0.75):
+        if (feature > half_max or likelihood(lines, feature) > 0.75):
             result[page] = likelihood(feature, lines)
         else:
             result[page] = 0.0
