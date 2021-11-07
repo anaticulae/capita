@@ -59,6 +59,16 @@ def test_no_abbreviations_bachelor111page56():
     assert not extracted[0].content.value
 
 
+def test_abbreviations_diss167_four_pages():
+    extracted = abbreviations(
+        power.DISS167_PDF,
+        pages=utila.ranged_list(10, 20),
+    )
+    pages = [item.page for item in extracted if item.content.value]
+    expected = [11, 12, 13, 14, 15, 16]
+    assert pages == expected
+
+
 def abbreviations(source, pages=None):
     utilatest.fixture_requires(source)
     source = power.link(source)
