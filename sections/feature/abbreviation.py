@@ -116,6 +116,7 @@ def invalid_column(data: list) -> bool:  # pylint:disable=R0911
 
 def numbered_column(data: list) -> bool:
     right = data[1]
+    # item in right column in a row contain any number and may other stuff
     right_numbers = [
         item for item in right if item and utila.parse_numbers(text(item))
     ]
@@ -123,7 +124,7 @@ def numbered_column(data: list) -> bool:
         return False
     if not right_numbers:
         return False
-    rate = len(right) / len(right_numbers)
+    rate = len(right_numbers) / len(right)
     if rate <= 0.3:
         return False
     # right number column, maybe a table of content page
