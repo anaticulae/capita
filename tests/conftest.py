@@ -58,9 +58,10 @@ RESOURCES = [
     power.PAPER18_PDF,
     power.HOME018_PDF,
     (power.DISS143_PDF, '120:135'),
+    (power.DISS167_PDF, '10:20'),
     power.DOCU014_PDF,
-    power.DOCU007_PDF,
     power.DOCU009_PDF,
+    power.DOCU007_PDF,
 ]
 
 
