@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.12.1
+
+### Fix
+
+* remove magic value (ab51fc17cd5c)
+* adjust number rate computation (9a76ae706a79)
+
 ## v1.12.0
 
 ### Feature
