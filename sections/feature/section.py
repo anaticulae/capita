@@ -31,22 +31,22 @@ MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75)
 
 @utila.checkdatatype
 def work(  # pylint:disable=R0913,R0914,W0613
-    abbreviation: str,
-    abstract: str,
-    acknowledge: str,
-    appendix: str,
-    bibliography: str,
-    chapter: str,
-    figuretable: str,
-    index: str,
-    legal: str,
-    paper: str,
-    symboltable: str,
-    tabletable: str,
-    title: str,
-    toc: str,
-    whitepage: str,
-    glossary: str,
+    xabbreviation: str,
+    xabstract: str,
+    xacknowledge: str,
+    xappendix: str,
+    xbibliography: str,
+    xchapter: str,
+    xfiguretable: str,
+    xindex: str,
+    xlegal: str,
+    xpaper: str,
+    xsymboltable: str,
+    xtabletable: str,
+    xtitle: str,
+    xtoc: str,
+    xwhitepage: str,
+    xglossary: str,
     pages: tuple = None,
 ) -> str:
     """Combine different featuretypes to determine the page type with
@@ -409,40 +409,40 @@ def determine_document_section(
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_features(  # pylint:disable=R0913,R0914
-    abbreviation: str,
-    abstract: str,
-    acknowledge: str,
-    appendix: str,
-    bibliography: str,
-    chapter: str,
-    figuretable: str,
-    index: str,
-    legal: str,
-    paper: str,
-    symboltable: str,
-    tabletable: str,
-    title: str,
-    toc: str,
-    whitepage: str,
-    glossary: str,
+    xabbreviation: str,
+    xabstract: str,
+    xacknowledge: str,
+    xappendix: str,
+    xbibliography: str,
+    xchapter: str,
+    xfiguretable: str,
+    xindex: str,
+    xlegal: str,
+    xpaper: str,
+    xsymboltable: str,
+    xtabletable: str,
+    xtitle: str,
+    xtoc: str,
+    xwhitepage: str,
+    xglossary: str,
     pages: tuple = None,
 ) -> SectionsRequiredResources:
-    abbreviation = serializeraw.load_likelihood(abbreviation, pages=pages)
-    abstract = serializeraw.load_likelihood(abstract, pages=pages)
-    appendix = serializeraw.load_likelihood(appendix, pages=pages)
-    acknowledge = serializeraw.load_likelihood(acknowledge, pages=pages)
-    bibliography = serializeraw.load_likelihood(bibliography, pages=pages)
-    chapter = serializeraw.load_likelihood(chapter, pages=pages)
-    figuretable = serializeraw.load_likelihood(figuretable, pages=pages)
-    index = serializeraw.load_likelihood(index, pages=pages)
-    legal = serializeraw.load_likelihood(legal, pages=pages)
-    paper = serializeraw.load_likelihood(paper, pages=pages)
-    symboltable = serializeraw.load_likelihood(symboltable, pages=pages)
-    tabletable = serializeraw.load_likelihood(tabletable, pages=pages)
-    title = serializeraw.load_likelihood(title, pages=pages)
-    toc = serializeraw.load_likelihood(toc, pages=pages)
-    white = serializeraw.load_whitepages(whitepage, pages=pages)
-    glossary = serializeraw.load_likelihood(glossary, pages=pages)
+    abbreviation = serializeraw.load_likelihood(xabbreviation, pages=pages)
+    abstract = serializeraw.load_likelihood(xabstract, pages=pages)
+    appendix = serializeraw.load_likelihood(xappendix, pages=pages)
+    acknowledge = serializeraw.load_likelihood(xacknowledge, pages=pages)
+    bibliography = serializeraw.load_likelihood(xbibliography, pages=pages)
+    chapter = serializeraw.load_likelihood(xchapter, pages=pages)
+    figuretable = serializeraw.load_likelihood(xfiguretable, pages=pages)
+    index = serializeraw.load_likelihood(xindex, pages=pages)
+    legal = serializeraw.load_likelihood(xlegal, pages=pages)
+    paper = serializeraw.load_likelihood(xpaper, pages=pages)
+    symboltable = serializeraw.load_likelihood(xsymboltable, pages=pages)
+    tabletable = serializeraw.load_likelihood(xtabletable, pages=pages)
+    title = serializeraw.load_likelihood(xtitle, pages=pages)
+    toc = serializeraw.load_likelihood(xtoc, pages=pages)
+    white = serializeraw.load_whitepages(xwhitepage, pages=pages)
+    glossary = serializeraw.load_likelihood(xglossary, pages=pages)
     # prepare result
     result = SectionsRequiredResources(
         abbreviation=abbreviation,

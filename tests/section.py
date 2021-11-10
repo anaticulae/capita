@@ -144,7 +144,7 @@ def extract_sections_frompath(  # pylint:disable=R0914
         title,
         toc,
         whitepage,
-        glossary=glossary,
+        xglossary=glossary,
         pages=pages,
     )
     # work
