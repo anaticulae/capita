@@ -6,21 +6,3 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-
-import utila
-
-HEADLINES = utila.splitlines("""
-BIBLIOGRAFIE
-BIBLIOGRAPHIE
-BIBLIOGRAPHY
-LITERATUR
-LITERATUR UND QUELLENVERZEICHNIS
-LITERATURANGABEN
-LITERATURE
-LITERATURVERZEICHNIS
-QUELLEN
-QUELLENVERZEICHNIS
-REFERENCE
-REFERENCES
-WEITERFÜHRENDE LITERATUR
-""")

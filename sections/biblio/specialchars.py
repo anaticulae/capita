@@ -22,6 +22,7 @@ detected.
 import statistics
 
 import configo
+import elements.headline.lookup
 import german
 import texmex
 import utila
@@ -56,7 +57,7 @@ def analyse_page(
 ) -> sections.feature.StatisticalResultItem:
     headlines = sections.utils.headline.headlines(navigator)
     if headlines and utila.similar(
-            expected=sections.biblio.HEADLINES,
+            expected=elements.headline.lookup.BIBLIOGRAPHY,
             current=headlines,
             maxdiff=0.95,
     ):
