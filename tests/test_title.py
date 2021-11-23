@@ -19,8 +19,8 @@ import sections.feature.title
 import sections.utils
 
 
-def test_load_font_lookup(restructured_fontstore):
-    first_font = restructured_fontstore.font(
+def test_load_font_lookup(docu027_fontstore):
+    first_font = docu027_fontstore.font(
         number=0,
         container=0,
         line=2,
@@ -35,8 +35,8 @@ TITLE_LIKELIHOOD_MIN = 0.70
 
 
 @pytest.mark.parametrize('source', [
-    pytest.param(power.DOCU027_PDF, id='restruct'),
-    pytest.param(power.DOCU007_PDF, id='pyporting'),
+    pytest.param(power.DOCU027_PDF, id='docu027'),
+    pytest.param(power.DOCU007_PDF, id='docu007'),
 ])
 def test_extract_title_likelihood(source):
     utilatest.fixture_requires(source)
@@ -60,12 +60,12 @@ def test_extract_title_likelihood(source):
 
 
 def test_dump_and_load_likelhood(
-    restructured_text,
-    restructured_fontstore,
+    docu027_text,
+    docu027_fontstore,
 ):
     result = sections.feature.title.extract_title_likelihood(
-        restructured_text,
-        restructured_fontstore,
+        docu027_text,
+        docu027_fontstore,
     )
     dumped = serializeraw.dump_likelihood(result)
     loaded = serializeraw.load_likelihood(dumped)

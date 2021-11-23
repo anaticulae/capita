@@ -74,8 +74,8 @@ def bachelor111(result):
     pytest.param(power.BACHELOR111_PDF, bachelor111, id='bachelor111'),
     pytest.param(power.DISS266_PDF, diss266, id='diss266'),
     pytest.param(power.DOCU007_PDF, None, id='howto'),
-    pytest.param(power.DOCU009_PDF, None, id='pyporting'),
-    pytest.param(power.DOCU027_PDF, None, id='restruct'),
+    pytest.param(power.DOCU009_PDF, None, id='docu007'),
+    pytest.param(power.DOCU027_PDF, None, id='docu027'),
     pytest.param(power.DISS170_PDF, diss170, id='diss170'),
     pytest.param(power.MASTER083_PDF, master83, id='master83'),
 ])

@@ -25,7 +25,7 @@ import sections.feature.chapter
     pytest.param(
         power.DOCU027_PDF,
         [6, 8, 10, 12, 18, 20, 22, 24],
-        id='restruct',
+        id='docu027',
         marks=pytest.mark.xfail(reason='parser is too optimistic'),
     ),
     pytest.param(

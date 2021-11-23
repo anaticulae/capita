@@ -21,7 +21,7 @@ from texmex.iter import PageIter
 from sections.feature.title import font_positions_from_page
 
 
-def pyporting_pages(pagenumber: int):
+def docu007_pages(pagenumber: int):
     utilatest.fixture_requires(power.DOCU009_PDF)
     docu09 = power.link(power.DOCU009_PDF)
     document = load_document(iamraw.path.text(docu09))
@@ -38,8 +38,8 @@ def pyporting_pages(pagenumber: int):
     return pageiter, positions
 
 
-def test_textprocessor_example_pyporting_page_2():
-    pageiter, positions = pyporting_pages(2)
+def test_textprocessor_example_docu007_page_2():
+    pageiter, positions = docu007_pages(2)
     result = []
     for item in positions:
         extracted = pageiter.next_item(*item).strip()

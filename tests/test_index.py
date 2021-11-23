@@ -18,8 +18,8 @@ import sections.feature.index
 LAST_PAGE_INDEX_LIKELYHOOD = 0.45
 
 
-def test_extract_index_likelihood(restructured_text):
-    result = sections.feature.index.extract_index_likelihood(restructured_text)
+def test_extract_index_likelihood(docu027_text):
+    result = sections.feature.index.extract_index_likelihood(docu027_text)
     result = [item.content.value for item in result]
     assert 0.95 <= sum(result) <= 1.05
 

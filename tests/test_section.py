@@ -21,8 +21,8 @@ import tests
 import tests.section
 
 
-def test_dump_and_load_sections(restructured_sections_manual):
-    data = restructured_sections_manual
+def test_dump_and_load_sections(docu027_sections_manual):
+    data = docu027_sections_manual
     dumped = serializeraw.dump_sections(data)
     assert dumped
     loaded = serializeraw.load_sections(dumped)
@@ -30,17 +30,17 @@ def test_dump_and_load_sections(restructured_sections_manual):
     assert loaded == data
 
 
-def test_validate_restructured(restructured_sections_manual):
-    validated = sections.creator.validate(restructured_sections_manual)
+def test_validate_docu027(docu027_sections_manual):
+    validated = sections.creator.validate(docu027_sections_manual)
     assert validated
 
 
 @pytest.mark.xfail(reason='chapter detector is too optimistic')
 @utilatest.requires(power.DOCU027_PDF)
-def test_extract_sections_restructured(
+def test_extract_sections_docu027(
     testdir,
     monkeypatch,
-    restructured_sections_manual,
+    docu027_sections_manual,
 ):
     root = testdir.tmpdir
     source = power.link(power.DOCU027_PDF)
@@ -48,21 +48,21 @@ def test_extract_sections_restructured(
 
     result = sections.feature.section.load_section_likelihood_frompath(root)
     assert result
-    for index, (actual, expected) in enumerate(
-            zip(
-                result,
-                restructured_sections_manual,
-            )):
+    for index, (actual,
+                expected) in enumerate(zip(
+                    result,
+                    docu027_sections_manual,
+                )):
         # Compare only the first level
         assert actual.start == expected.start, 'on level: %d' % index
         assert actual.end == expected.end, 'on level: %d' % index
 
     # TODO: activate later, do not want to make this test so explicit
-    # assert result == restructured_sections
+    # assert result == docu027_sections
 
 
-def test_chapters(restructured_sections_manual):
-    result = sections.feature.section.chapters(restructured_sections_manual)
+def test_chapters(docu027_sections_manual):
+    result = sections.feature.section.chapters(docu027_sections_manual)
     # start is lower or equal than end page size
     # start = item[0]
     # end   = item[1]
