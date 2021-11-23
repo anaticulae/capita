@@ -10,6 +10,7 @@
 =================
 """
 
+import elements.headline.lookup
 import serializeraw
 import utila
 
@@ -44,16 +45,6 @@ def work(
     return dumped
 
 
-HEADLINES_ABSTRACT = utila.splitlines("""
-ABSTRACT
-ABSTRACT OF THE DISSERTATION
-ABSTRACT OF THE THESIS
-KURZFASSUNG
-KURZZUSAMMENFASSUNG
-ZUSAMMENFASSUNG
-""")
-
-
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(
         content,
@@ -63,7 +54,7 @@ def analyse_page(content):
     if not headlines:
         return sections.feature.NO_PAGE
     if utila.similar(
-            expected=HEADLINES_ABSTRACT,
+            expected=elements.headline.lookup.ABSTRACT,
             current=headlines,
             maxdiff=0.95,
     ):

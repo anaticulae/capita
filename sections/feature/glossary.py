@@ -26,6 +26,7 @@ Ausfallkriterium
 """
 
 import configo
+import elements
 import geostrat
 import serializeraw
 import texmex
@@ -47,12 +48,6 @@ def work(document: str, position: str, pages: tuple = None) -> str:
     dumped = serializeraw.dump_likelihood(hugest)
     return dumped
 
-
-HEADLINES = utila.splitlines("""
-GLOSSAR
-GLOSSARY
-STICHWORTVERZEICHNIS
-""")
 
 LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=50)
 
@@ -76,7 +71,7 @@ def analyse_page(
 ) -> sections.feature.StatisticalResultItem:
     headlines = sections.utils.headline.headlines(navigator)
     if headlines and utila.similar(
-            expected=HEADLINES,
+            expected=elements.headline.lookup.GLOSSAR,
             current=headlines,
             maxdiff=0.95,
     ):

@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import elements.headline.lookup
 import serializeraw
 import utila
 
@@ -30,19 +31,12 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
     return dumped
 
 
-HEADLINES_ACKNOWLEDGE = utila.splitlines("""
-Acknowledge
-Acknowledgement
-Danksagung
-""")
-
-
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
         return sections.feature.NO_PAGE
     if utila.similar(
-            expected=HEADLINES_ACKNOWLEDGE,
+            expected=elements.headline.lookup.ACKNOWLEDGE,
             current=headlines,
             maxdiff=0.95,
     ):

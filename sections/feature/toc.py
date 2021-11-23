@@ -17,6 +17,7 @@ TODO:
 import re
 
 import configo
+import elements.headline.lookup
 import serializeraw
 import utila
 
@@ -27,21 +28,6 @@ import sections.table.strategy
 VALID_TOC_PAGES_MIN = configo.HV_INT_PLUS(default=0)
 
 VALID_TOC_PAGES_MAX = configo.HV_INT_PLUS(default=20)
-
-HEADLINES = utila.splitlines("""
-Contents
-Inhalt
-Inhaltsverzeichnis
-Table of Content
-Table of Contents
-""")
-
-NOHEADLINES = utila.splitlines("""
-Abbildungen
-Abbildungsverzeichnis
-Tabellen
-Tabellenverzeichnis
-""")
 
 
 def work(
@@ -61,7 +47,7 @@ def work(
     )
     dumped = sections.table.strategy.work(
         ptcns,
-        headline=HEADLINES,
+        headline=elements.headline.lookup.TOC,
         noheadlines=NOHEADLINES,
         shortcut='toc',
         pages=utila.ranged_tuple(
@@ -73,6 +59,10 @@ def work(
     )
     return dumped
 
+
+NOHEADLINES = (elements.headline.lookup.TABLETABLE |
+               elements.headline.lookup.FIGURETABLE |
+               elements.headline.lookup.LISTINGS)
 
 APPENDIX = re.compile(
     r'(ANHANG|APPENDIX)[ ]{0,3}\d{1,2}[ ]{0,3}:{0,1}[ ]{0,5}.{0,50}\d{1,3}',

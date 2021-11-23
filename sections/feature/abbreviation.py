@@ -18,6 +18,7 @@ import contextlib
 import statistics
 
 import configo
+import elements.headline.lookup
 import geostrat
 import serializeraw
 import utila
@@ -59,15 +60,6 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
     return dumped
 
 
-HEADLINES = utila.splitlines("""
-ABBREVIATIONS
-ABBREVIATIONTABLE
-ABKÜRZUNGEN
-ABKÜRZUNGEN UND SYMBOLE
-ABKÜRZUNGSVERZEICHNIS
-ACRONYME
-""")
-
 # TODO: ADD CONTENT ANALYZER TO DISTINGUISH BETWEEN SYMBOLTABLE
 
 
@@ -80,7 +72,11 @@ def analyse_page(content):
         if not invalid_column(parsed):
             return BACKUP_PAGE
         return sections.feature.NO_PAGE
-    if utila.similar(expected=HEADLINES, current=headlines, maxdiff=0.95):
+    if utila.similar(
+            expected=elements.headline.lookup.ABBREVIATION,
+            current=headlines,
+            maxdiff=0.95,
+    ):
         return sections.feature.PERFECT
     return sections.feature.NO_PAGE
 

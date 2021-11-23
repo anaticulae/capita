@@ -12,8 +12,8 @@
 
 import re
 
+import elements.headline.lookup
 import serializeraw
-import utila
 
 import sections.table.strategy
 
@@ -34,8 +34,8 @@ def work(
     )
     dumped = sections.table.strategy.work(
         ptcns,
-        headline=HEADLINES_TABLETABLE,
-        noheadlines=NOHEADLINES_TABLETABLE,
+        headline=elements.headline.lookup.TABLETABLE,
+        noheadlines=NOHEADLINES,
         pattern=table,
         shortcut='tableoftable',
         topsearch=False,
@@ -43,18 +43,9 @@ def work(
     return dumped
 
 
-HEADLINES_TABLETABLE = utila.splitlines("""
-LIST OF TABLES
-TABELLEN
-TABELLENVERZEICHNIS
-""")
-
-NOHEADLINES_TABLETABLE = utila.splitlines("""
-ABBILDUNGEN
-ABBILDUNGSVERZEICHNIS
-INHALT
-INHALTSVERZEICHNIS
-""")
+NOHEADLINES = (elements.headline.lookup.TOC |
+               elements.headline.lookup.FIGURETABLE |
+               elements.headline.lookup.LISTINGS)
 
 TABLE = re.compile(
     r'(Tab\.{0,1}|Tabelle)[ ]{0,3}\d{1,2}[ ]{0,3}.{0,50}',

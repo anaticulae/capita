@@ -30,13 +30,11 @@ QUESTIONS:
 import re
 
 import configo
+import elements.headline.lookup
 import iamraw
 import serializeraw
 import texmex
 import utila
-
-import sections.biblio
-import sections.headlines
 
 
 def work(
@@ -205,7 +203,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
             matched = re.match(NUMBER_PATTERN, line)
             if not matched:
                 continue
-            if huge_match(line, sections.headlines.CHAPTER):
+            if huge_match(line, elements.headline.lookup.CHAPTER):
                 return True
         return False
 
@@ -254,7 +252,7 @@ def contains_listof(content: str) -> bool:
     return result
 
 
-NOHEADLINES = sections.headlines.ALL - sections.headlines.CHAPTER
+NOHEADLINES = elements.headline.lookup.HEADLINES - elements.headline.lookup.CHAPTER
 
 
 def contain_toc(content, toc) -> float:

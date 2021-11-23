@@ -10,6 +10,7 @@
 ===================
 """
 
+import elements
 import serializeraw
 import utila
 
@@ -32,21 +33,12 @@ def work(text_linewise: str, textpositions: str, pages=None) -> str:
     return dumped
 
 
-HEADLINES_SYMBOLTABLE = utila.splitlines("""
-ABKÜRZUNG UND NOMENKLATUR
-SYMBOL
-SYMBOLE
-SYMBOLS
-SYMBOLVERZEICHNIS
-""")
-
-
 def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
         return sections.feature.NO_PAGE
     if utila.similar(
-            expected=HEADLINES_SYMBOLTABLE,
+            expected=elements.headline.lookup.SYMBOLTABLE,
             current=headlines,
             maxdiff=0.95,
     ):
