@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.12.2
+
+### Feature
+
+* move headlines from elements (367ac63e8174)
+* add literature headline (129cc6113c35)
+
 ## v1.12.1
 
 ### Fix
