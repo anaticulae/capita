@@ -14,6 +14,7 @@ import re
 
 import elements.headline.lookup
 import serializeraw
+import utila
 
 import sections.table.strategy
 
@@ -48,10 +49,12 @@ FIGURE = re.compile(
     r'(Abb\.{0,1}|Abbildung)[ ]{0,3}\d{1,2}[ ]{0,3}.{0,50}',
     re.X | re.I,
 )
-FIGURE_ENG = re.compile(
-    r'FIGURE[ ]{0,3}\d{1,2}\-\d{1,2}\.[ ]{0,3}.{0,50}',
-    re.X | re.I,
-)
+FIGURE_ENG = utila.compiles(r"""
+    FIGURE[ ]{0,3}
+    \d{1,2}(\-\d{1,2}\.)?
+    [ ]{0,3}
+    .{0,50}
+""")
 
 
 def figure(line: str) -> bool:
@@ -59,6 +62,8 @@ def figure(line: str) -> bool:
     >>> figure('Abb. 7        Durchschnittliche Reaktionszeit (korrekte und')
     True
     >>> figure('Figure 5-5. Early WWW Architecture Diagram              81')
+    True
+    >>> figure('Figure 13   Architecture of a VAE. . . . . . . . . . . . . . . . 43 ')
     True
     """
     if FIGURE.match(line):
