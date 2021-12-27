@@ -92,24 +92,19 @@ def work(document: str, position: str, pages=None) -> str:
 def analyse_page(
     navigator: texmex.PageTextNavigator
 ) -> sections.feature.StatisticalResultItem:
-    # TODO: REPLACE AFTER UPGRADING TEXMEX
-    raw = utila.NEWLINE.join([item.text.strip() for item in navigator])
-
+    raw = navigator.debug
     lower = raw.lower()
     located = [item for item in FEATURE_POINTS if item in lower]
-
     trust = 0.0
     if 'Eidesstattliche Erklärung' in raw:
         trust += 0.5
     if 'Selbstständigkeitserklärung' in raw:
         trust += 0.5
-
     feature_point_count = len(located)
     if feature_point_count >= FEATURE_POINT_COUNT_MIN:
         trust += 0.25
     if feature_point_count > 8:
         trust += 0.5
-
     if feature_point_count < FEATURE_POINT_COUNT_MIN:
         feature_point_count = 0
         trust = 0.0
