@@ -234,7 +234,6 @@ def test_sections_master112():
         iamraw.sections.MainPart,
     ]
     check_sections(result, expected)
-
     # page 5
     expected_toc = result[0].content[5]
     assert isinstance(expected_toc, iamraw.sections.TableOfContent)
@@ -354,3 +353,23 @@ def test_sections_diss205(testdir, monkeypatch):
     assert (intro.start, intro.end) == (0, 16)
     assert (mainpart.start, mainpart.end) == (16, 176)
     assert (appendix.start, appendix.end) == (176, 205)
+
+
+@utilatest.nightly
+@utilatest.requires(power.DISS172_PDF)
+def test_sections_diss172(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.DISS172_PDF,
+        testdir,
+        monkeypatch,
+    )
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    ]
+    check_sections(result, expected)
+    intro, mainpart, appendix = result
+    assert (intro.start, intro.end) == (0, 16)
+    assert (mainpart.start, mainpart.end) == (16, 150)
+    assert (appendix.start, appendix.end) == (150, 172)
