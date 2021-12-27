@@ -53,7 +53,8 @@ def headlines(
     # remove to many spaces
     result = [
         item for item in result
-        if word_count_min <= len(item.split()) <= word_count_max
+        if word_count_min <= len(item.split()) <= word_count_max or
+        elements.headline.decide.singlechar(item)
     ]
     result = [item.title() for item in result]
     result = remove_numbered_pattern(result, level_max=level_max)
