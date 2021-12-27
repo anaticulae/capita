@@ -20,6 +20,8 @@ import sections.feature.section
 import tests
 import tests.section
 
+# TODO: MOVE TESTS FROM test_cli.py
+
 
 def test_dump_and_load_sections(docu027_sections_manual):
     data = docu027_sections_manual
