@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.12.3
+
+### Feature
+
+* extend figure table detector (6a94aa57cb72)
+
+### Fix
+
+* do not skip single char headlines (82d2606c7c17)
+
 ## v1.12.2
 
 ### Feature
