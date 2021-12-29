@@ -69,6 +69,16 @@ def test_abbreviations_diss167_four_pages():
     assert pages == expected
 
 
+def test_abbreviations_diss406():
+    extracted = abbreviations(
+        power.DISS406_PDF,
+        pages=utila.ranged_list(0, 30),
+    )
+    pages = [item.page for item in extracted if item.content.value]
+    expected = utila.ranged_list(13, 22)
+    assert pages == expected
+
+
 def abbreviations(source, pages=None):
     utilatest.fixture_requires(source)
     source = power.link(source)
