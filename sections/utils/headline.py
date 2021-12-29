@@ -43,9 +43,13 @@ def headlines(
     ]
     styles = common_textstyle(navigator)
     if not styles:
+        if backup := headline_lookup(navigator):
+            return backup
         return None
     styles = cleanup_styles(styles)
     if not styles:
+        if backup := headline_lookup(navigator):
+            return backup
         return None
     # use hugest font size item
     maxsize = sorted(styles, key=lambda x: x.center.style.textsize())[-1]
@@ -60,6 +64,16 @@ def headlines(
     result = remove_numbered_pattern(result, level_max=level_max)
     if len(result) == 1:
         return result[0]
+    return result
+
+
+def headline_lookup(ptn):
+    """Backup strategy."""
+    result = []
+    for line in ptn[0:4]:
+        if not elements.isheadline(line.text):
+            continue
+        result.append(line.text)
     return result
 
 
