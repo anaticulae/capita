@@ -64,13 +64,26 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
 
 
 def analyse_page(content):
+    if detected := byheadline(content):
+        return detected
+    # Use backup strategy to collect double column page which can follow
+    # headlined page
+    parsed = geostrat.parse(content, column_count=2)
+    if not invalid_column(parsed):
+        return BACKUP_PAGE
+    return sections.feature.NO_PAGE
+
+
+def byheadline(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
-        # Use backup strategy to collect double column page which can
-        # follow headlined page
-        parsed = geostrat.parse(content, column_count=2)
-        if not invalid_column(parsed):
-            return BACKUP_PAGE
+        return None
+    if utila.similar(
+            expected=NOABBR,
+            current=headlines,
+            maxdiff=0.95,
+    ):
+        # SKIP ABBR HEADLINE INSIDE TABLE OF CONTENT
         return sections.feature.NO_PAGE
     if utila.similar(
             expected=elements.headline.lookup.ABBREVIATION,
@@ -78,7 +91,10 @@ def analyse_page(content):
             maxdiff=0.95,
     ):
         return sections.feature.PERFECT
-    return sections.feature.NO_PAGE
+    return None
+
+
+NOABBR = elements.headline.lookup.TOC
 
 
 def invalid_column(data: list) -> bool:  # pylint:disable=R0911
