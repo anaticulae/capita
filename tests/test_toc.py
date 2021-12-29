@@ -106,6 +106,7 @@ def extract_toc(
     pytest.param(power.MASTER155_PDF, [1, 2], id='master155'),
     pytest.param(power.MASTER091A_PDF, [3, 4], id='master91a'),
     pytest.param(power.DISS172_PDF, [7, 8], id='diss172'),
+    pytest.param(power.DISS406_PDF, utila.ranged_list(3, 12), id='diss406'),
 ])
 @utilatest.longrun
 def test_toc_extract(source, expected):
