@@ -142,13 +142,20 @@ def analyse_page(content, pattern: callable = None) -> float:
 
 
 def valid_line(line: str) -> bool:
+    line = line.strip()
     if line.count('. .') > 3:
         return True
     if line.count('..') > 3:
         return True
     if elements.level_numbered(line):
         return True
+    if LINE_WITHPAGES.match(line):
+        return True
     return False
+
+
+# E. Abschließende Zusammenfassung      S. 85
+LINE_WITHPAGES = utila.compiles(r'^.+S\.[ ]{0,3}\d{1,4}$')
 
 
 def merge_second(extracted, without, merge_min=0.5, replace=None):
