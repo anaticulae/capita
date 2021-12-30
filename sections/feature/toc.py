@@ -37,7 +37,11 @@ def work(
     headerfooters: str,
     pages=None,
 ) -> str:
-    # TODO: SHRINK PAGES BY VALID_TOC_PAGES?
+    pages = pages_inside(
+        pages,
+        minn=VALID_TOC_PAGES_MIN,
+        maxx=VALID_TOC_PAGES_MAX,
+    )
     ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
         text=oneline_text,
         textpositions=oneline_textposition,
@@ -50,10 +54,6 @@ def work(
         headline=elements.headline.lookup.TOC,
         noheadlines=NOHEADLINES,
         shortcut='toc',
-        pages=utila.ranged_tuple(
-            VALID_TOC_PAGES_MIN.value,
-            VALID_TOC_PAGES_MAX.value,
-        ),
         second=True,
         pattern=appendix_line,
     )
