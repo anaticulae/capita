@@ -51,27 +51,23 @@ MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=5)
 
 SPECIAL_CHAR_BONUS = configo.HV_PERCENT_PLUS(default=30)
 
+PATTERN = (
+    german.dates,
+    german.years,
+    german.pagenumbers,
+    german.authors,
+    german.hyperlink,
+)
+
 
 def analyse_page(
     navigator: texmex.PageTextNavigator
 ) -> sections.feature.StatisticalResultItem:
-    headlines = sections.utils.headline.headlines(navigator)
-    if headlines and utila.similar(
-            expected=elements.headline.lookup.BIBLIOGRAPHY,
-            current=headlines,
-            maxdiff=0.95,
-    ):
+    if bib_headline(navigator):
         # Bibliography headline on page
         return len(navigator), len(navigator)
-    raw = ' '.join([line.text for line in navigator])
-    pattern = [
-        german.dates,
-        german.years,
-        german.pagenumbers,
-        german.authors,
-        german.hyperlink,
-    ]
-    collected = collect_and_replace(raw, pattern)
+    raw = navigator.debug
+    collected = collect_and_replace(raw, PATTERN)
     marker = len(collected)
     if marker < MARKER_COUNT_MIN:
         utila.debug(f'too few marker: {marker}')
@@ -90,6 +86,21 @@ def analyse_page(
         # this can not be a bib table
         marker = 0
     return len(navigator), marker
+
+
+def bib_headline(ptn: texmex.PageTextNavigator) -> bool:
+    """Determine if a BIB-HEADLINE is on current navigator."""
+    headlines = sections.utils.headline.headlines(ptn)
+    if not headlines:
+        return False
+    smilar = utila.similar(
+        expected=elements.headline.lookup.BIBLIOGRAPHY,
+        current=headlines,
+        maxdiff=0.95,
+    )
+    if not smilar:
+        return False
+    return True
 
 
 def collect_and_replace(raw: str, pattern: list) -> list:
