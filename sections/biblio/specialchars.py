@@ -51,14 +51,6 @@ MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=5)
 
 SPECIAL_CHAR_BONUS = configo.HV_PERCENT_PLUS(default=30)
 
-PATTERN = (
-    german.dates,
-    german.years,
-    german.pagenumbers,
-    german.authors,
-    german.hyperlink,
-)
-
 
 def analyse_page(
     navigator: texmex.PageTextNavigator
@@ -67,11 +59,7 @@ def analyse_page(
         # Bibliography headline on page
         return len(navigator), len(navigator)
     raw = navigator.debug
-    collected = collect_and_replace(raw, PATTERN)
-    marker = len(collected)
-    if marker < MARKER_COUNT_MIN:
-        utila.debug(f'too few marker: {marker}')
-        marker = 0
+    marker = special_pattern(raw)
     if special_chars(raw):
         # thirty percent bonus
         marker *= (1 + SPECIAL_CHAR_BONUS)
@@ -101,6 +89,24 @@ def bib_headline(ptn: texmex.PageTextNavigator) -> bool:
     if not smilar:
         return False
     return True
+
+
+PATTERN = (
+    german.dates,
+    german.years,
+    german.pagenumbers,
+    german.authors,
+    german.hyperlink,
+)
+
+
+def special_pattern(raw: str) -> int:
+    collected = collect_and_replace(raw, PATTERN)
+    marker = len(collected)
+    if marker < MARKER_COUNT_MIN:
+        utila.debug(f'too few marker: {marker}')
+        marker = 0
+    return marker
 
 
 def collect_and_replace(raw: str, pattern: list) -> list:
