@@ -101,11 +101,21 @@ PATTERN = (
 
 
 def special_pattern(raw: str) -> int:
+    """Search for bib page typical pattern like: authors, dates, years...
+
+    If too few pages occurs, disable pattern approach, because its may
+    not a bib may a toc or table table.
+    """
     collected = collect_and_replace(raw, PATTERN)
     marker = len(collected)
     if marker < MARKER_COUNT_MIN:
         utila.debug(f'too few marker: {marker}')
-        marker = 0
+        return 0
+    pages = collect_and_replace(raw, (german.pagenumbers,))
+    pagerate = len(pages) / marker
+    if pagerate > 0.8:
+        utila.debug(f'too many pages: {pagerate} {len(pages)} {marker}')
+        return 0
     return marker
 
 
