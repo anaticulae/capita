@@ -78,3 +78,19 @@ def appendix_line(line: str) -> bool:
     if APPENDIX.match(line):
         return True
     return False
+
+
+def pages_inside(pages: tuple, minn: int = 0, maxx=None) -> tuple:
+    """\
+    >>> pages_inside(None, 5, 10)
+    (5, 6, 7, 8, 9, 10)
+    >>> pages_inside((0, 1, 2, 3, 4, 5), 2, maxx=4)
+    (2, 3, 4)
+    """
+    # TODO: MOVE TO UTILA
+    if not pages:
+        if maxx is None:
+            return None
+        return utila.ranged_tuple(minn, maxx + 1)
+    pages = tuple(item for item in pages if minn <= item <= maxx)
+    return pages
