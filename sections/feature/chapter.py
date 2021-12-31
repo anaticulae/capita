@@ -136,18 +136,6 @@ def rate_fromtoc(tocs, pagestart: list) -> float:
 
 HEADLINES_BACKUP = elements.headline.lookup.CHAPTER
 
-CHAPTER_PATTERN = re.compile(
-    r"""^
-    (chapter|kapitel)
-    [ ]{0,3}
-    \d{1,2}
-    [ ]{0,3}
-    \:
-    .+
-""",
-    re.VERBOSE,
-)
-
 # We need only one number with dot, because we want only chapters, not
 # sections etc.
 NUMBER_PATTERN = re.compile(
@@ -178,23 +166,6 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
 
     A second option is to look for the headline-pattern: '1. Einleitung'.
     """
-
-    def startwith_chapterpattern(raw: list) -> bool:
-        # TODO: REMOVE .value after UPGRADING CONFIGO
-        raw = [
-            item.text.lower()
-            for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]
-        ]
-        for line in raw:
-            if re.match(CHAPTER_PATTERN, line):
-                # KAPITEL 1: EINLEITUNG
-                return True
-            if 'kapitel' in line or 'chapter' in line:
-                if len(line) > NO_CHAPTER_PATTERN_LINE_LENGTH_MAX:
-                    # skip sentences which contains Chapter or Kapitel
-                    continue
-                return True
-        return False
 
     def startwith_firstlevelheadline(raw: list) -> bool:
         raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]]
@@ -239,6 +210,35 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
         result -= 0.5
     return result
 
+
+def startwith_chapterpattern(raw: list) -> bool:
+    # TODO: REMOVE .value after UPGRADING CONFIGO
+    raw = [
+        item.text.lower() for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]
+    ]
+    for line in raw:
+        if re.match(CHAPTER_PATTERN, line):
+            # KAPITEL 1: EINLEITUNG
+            return True
+        if 'kapitel' in line or 'chapter' in line:
+            if len(line) > NO_CHAPTER_PATTERN_LINE_LENGTH_MAX:
+                # skip sentences which contains Chapter or Kapitel
+                continue
+            return True
+    return False
+
+
+CHAPTER_PATTERN = re.compile(
+    r"""^
+    (chapter|kapitel)
+    [ ]{0,3}
+    \d{1,2}
+    [ ]{0,3}
+    \:
+    .+
+""",
+    re.VERBOSE,
+)
 
 HEADLINE_CHARRATE_MIN = configo.HolyTable(items=(
     (0, 0.8),
