@@ -212,10 +212,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
 
 
 def startwith_chapterpattern(raw: list) -> bool:
-    # TODO: REMOVE .value after UPGRADING CONFIGO
-    raw = [
-        item.text.lower() for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]
-    ]
+    raw = [item.text.lower() for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
     for line in raw:
         # K a p i t e l 1
         nowhitespace = line.replace(' ', '')
