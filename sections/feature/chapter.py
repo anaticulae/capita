@@ -217,7 +217,9 @@ def startwith_chapterpattern(raw: list) -> bool:
         item.text.lower() for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]
     ]
     for line in raw:
-        if re.match(CHAPTER_PATTERN, line):
+        # K a p i t e l 1
+        nowhitespace = line.replace(' ', '')
+        if re.match(CHAPTER_PATTERN, nowhitespace):
             # KAPITEL 1: EINLEITUNG
             return True
         if 'kapitel' in line or 'chapter' in line:
@@ -232,10 +234,12 @@ CHAPTER_PATTERN = re.compile(
     r"""^
     (chapter|kapitel)
     [ ]{0,3}
-    \d{1,2}
-    [ ]{0,3}
-    \:
-    .+
+    (1?\d)      # 0-19
+    (
+        [ ]{0,3}
+        \:
+        .+
+    )?
 """,
     re.VERBOSE,
 )
