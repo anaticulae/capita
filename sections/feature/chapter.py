@@ -93,11 +93,7 @@ def extract_chapter(
             continue
         first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
         chapter_rate = contain_chapter(first_content)
-        if len(tocs) >= TOCS_COUNT_MIN:
-            chapter_rate += contain_toc(first_content, tocs)
-        else:
-            # disable feature if no toc is given
-            utila.info('chapter: no toc provided')
+        chapter_rate += rate_fromtoc(tocs, first_content)
         if contains_listof(first_content):
             # TODO: See todo below
             chapter_rate = 0
@@ -114,6 +110,31 @@ def extract_chapter(
         # result.append(0.0)
     return result
 
+
+def rate_fromtoc(tocs, pagestart: list) -> float:
+    """Try to find potential headline inside toc from outlines.
+
+    If no toc is given, use elements.headlines-list as backup strategy.
+    """
+    chapter_rate = 0.0
+    if len(tocs) >= TOCS_COUNT_MIN:
+        chapter_rate = contain_toc(pagestart, tocs)
+        return chapter_rate
+    # disable feature if no toc is given
+    utila.info('chapter: no toc provided')
+    # try backup
+    matched = any(
+        utila.similar(
+            expected=HEADLINES_BACKUP,
+            current=item.text,
+            maxdiff=0.9,
+        ) for item in pagestart)
+    if matched:
+        return 1.0
+    return 0.0
+
+
+HEADLINES_BACKUP = elements.headline.lookup.CHAPTER
 
 CHAPTER_PATTERN = re.compile(
     r"""^
