@@ -375,3 +375,25 @@ def test_sections_diss172(testdir, monkeypatch):
     assert (intro.start, intro.end) == (0, 16)
     assert (mainpart.start, mainpart.end) == (16, 150)
     assert (appendix.start, appendix.end) == (150, 172)
+
+
+@utilatest.nightly
+@utilatest.requires(power.DISS406_PDF)
+def test_sections_diss406pages50(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.DISS406_PDF,
+        testdir,
+        monkeypatch,
+        pages='0:50',
+    )
+    expected = [
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        # iamraw.sections.Appendix,
+    ]
+    check_sections(result, expected)
+    # intro, mainpart, appendix = result
+    intro, mainpart = result
+    assert (intro.start, intro.end) == (0, 22)
+    assert (mainpart.start, mainpart.end) == (22, 50)
+    # assert (appendix.start, appendix.end) == (150, 172)
