@@ -118,7 +118,7 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
                 trust=1.0,
             )
             continue
-        if len(trusted) > 1:
+        if morethan_one(trusted):
             multiple = iamraw.MultipleSection(
                 start=pagenumber,
                 end=pagenumber,
@@ -149,6 +149,12 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
     grouped = group_sections(collected)
     result = verify_sections(grouped)
     return result
+
+
+def morethan_one(trusted) -> bool:
+    if len(trusted) > 1:
+        return True
+    return False
 
 
 def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
