@@ -2,6 +2,29 @@
 
 Every noteable change is logged here.
 
+## v1.13.0
+
+### Feature
+
+* line count based min marker rate (12ab98b178c8)
+* skip potential chapter with too few text lines at start (5be931c89755)
+* add chapter support for line with a lot spaces (85fc93e7d9b2)
+* use headline list as backup strategy (ca2a967932af)
+* disable pattern approach on too many page detections (357d9ab6e98b)
+* shrink loaded ptn to possible toc ranges (c991eaa642c2)
+* add method to shrink pages (d61033a3ed1f)
+* add backup strategy to determine headlines (c4006655459c)
+* extend toc detector (9ba5f21803b2)
+
+### Fix
+
+* skip multiple sections for abbr and symbol table (eb345d48637e)
+* skip abbr headline inside table of content (816f190888e3)
+
+### Documentation
+
+* Happy New Year! (99be6920f93d)
+
 ## v1.12.3
 
 ### Feature
