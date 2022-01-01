@@ -28,6 +28,7 @@ QUESTIONS:
 """
 
 import re
+import statistics
 
 import configo
 import elements.headline.lookup
@@ -92,6 +93,8 @@ def extract_chapter(
         if rotated(page):
             continue
         first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
+        if no_textcontent(first_content):
+            continue
         chapter_rate = contain_chapter(first_content)
         chapter_rate += rate_fromtoc(tocs, first_content)
         if contains_listof(first_content):
@@ -109,6 +112,21 @@ def extract_chapter(
         # are together, support later
         # result.append(0.0)
     return result
+
+
+def no_textcontent(content) -> bool:
+    """A chapter start requires some text line at the start.
+
+    This is required to skip false positive chapter starts which are
+    just a table or so.
+    """
+    if len(content) < 5:
+        return False
+    avg = statistics.mean((len(item.text) for item in content))
+    if avg < 35:
+        # TODO: HOLY VALUE
+        return True
+    return False
 
 
 def rate_fromtoc(tocs, pagestart: list) -> float:
