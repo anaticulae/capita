@@ -153,6 +153,14 @@ def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
 
 def morethan_one(trusted) -> bool:
     if len(trusted) > 1:
+        if len(trusted) == 2:
+            names = [item.content.name for item in trusted]
+            # in the current state, we are not able to distinguish between
+            # symbol table and abbr table. This is not necessary for our
+            # job here.
+            if 'abbreviation_table' in names and 'symboltable' in names:
+                # TODO: REMOVE LATER
+                return False
         return True
     return False
 
