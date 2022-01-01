@@ -47,8 +47,6 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=5)
-
 SPECIAL_CHAR_BONUS = configo.HV_PERCENT_PLUS(default=30)
 
 
@@ -68,7 +66,6 @@ def analyse_page(
     likelihood = 0.0
     if marker and len(navigator) >= 1:
         likelihood = marker / len(navigator)
-
     if likelihood < LIKELIHOOD_MIN:
         # TODO: CHECK THIS
         # this can not be a bib table
@@ -108,8 +105,9 @@ def special_pattern(raw: str) -> int:
     """
     collected = collect_and_replace(raw, PATTERN)
     marker = len(collected)
-    if marker < MARKER_COUNT_MIN:
-        utila.debug(f'too few marker: {marker}')
+    marker_min = MARKER_COUNT_MIN(len(raw.splitlines()))
+    if marker < marker_min:
+        utila.debug(f'too few marker: {marker}/{marker_min}')
         return 0
     pages = collect_and_replace(raw, (german.pagenumbers,))
     pagerate = len(pages) / marker
@@ -117,6 +115,14 @@ def special_pattern(raw: str) -> int:
         utila.debug(f'too many pages: {pagerate} {len(pages)} {marker}')
         return 0
     return marker
+
+
+MARKER_COUNT_MIN = configo.HolyTable(items=(
+    (0, 5),
+    (5, 5),
+    (10, 10),
+    (15, 15),
+))
 
 
 def collect_and_replace(raw: str, pattern: list) -> list:
