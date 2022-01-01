@@ -21,6 +21,7 @@ import sections.feature.chapter
 # TODO: DISS266 - IMPROVE LATER
 # TODO: REMOVE MASTER91A PAGE 66 later
 # BACHELOR51: [3, 4, 20, 28, 35, 40, 42],
+# yapf:disable
 @pytest.mark.parametrize('source, expected', [
     pytest.param(
         power.DOCU027_PDF,
@@ -58,7 +59,15 @@ import sections.feature.chapter
         [5, 8, 31, 40, 52, 66, 80],
         id='bachelor111',
     ),
+    pytest.param(
+        power.DISS406_PDF,
+        # [22, 25, 40],
+        # too optimistic, but this is not a problem
+        [22, 26, 40, 48, 49],
+        id='diss406',
+    ),
 ])
+# yapf:enable
 @utilatest.nightly
 def test_chapter_extract(source, expected):
     source = power.link(source)
