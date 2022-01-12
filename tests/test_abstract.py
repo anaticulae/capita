@@ -43,6 +43,12 @@ def test_abtract_diss172():
     assert page3.content.value == 1.0
 
 
+def test_abstract_master049():
+    extracted = abstract(power.MASTER049_PDF, pages=(1,))
+    page1 = utila.select_page(extracted, 1)
+    assert page1.content.value == 1.0
+
+
 def test_noappendix_bachelor111page14():
     """\
     2.2.4 Zusammenfassung was detected as abstract page.
