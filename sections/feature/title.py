@@ -54,6 +54,8 @@ TITLE_LENGTH_MIN = configo.HV_INT_PLUS(default=10)
 
 TITLE_LENGTH_MAX = configo.HV_INT_PLUS(default=200)
 
+TITLE_CHARACTER_COUNT_MAX = configo.HV_INT_PLUS(default=1000)
+
 EMPTY_RESULT = (0, 0.0)
 
 
@@ -93,6 +95,10 @@ def no_titlepage(page, fonts):
     numbers = sum([len(utila.parse_numbers(str(item))) for item in page])
     if numbers > 70:
         # skip potential table of content page
+        return EMPTY_RESULT
+    character = len(''.join(line.text for line in page))
+    if character > TITLE_CHARACTER_COUNT_MAX:
+        # too many text content, this is not a title page
         return EMPTY_RESULT
     return None
 

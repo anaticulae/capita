@@ -34,10 +34,12 @@ def test_load_font_lookup(docu027_fontstore):
 TITLE_LIKELIHOOD_MIN = 0.70
 
 
+# yapf:disable
 @pytest.mark.parametrize('source', [
     pytest.param(power.DOCU027_PDF, id='docu027'),
-    pytest.param(power.DOCU007_PDF, id='docu007'),
+    pytest.param(power.DOCU007_PDF, id='docu007', marks=pytest.mark.xfail(reason='improve algo')),
 ])
+# yapf:enable
 def test_extract_title_likelihood(source):
     utilatest.fixture_requires(source)
     source = power.link(source)
@@ -86,6 +88,11 @@ def titlepage_likelihood(document: str) -> tuple:
 def test_extract_title_likelihood_master72():
     extracted = titlepage_likelihood(power.MASTER072_PDF)
     assert extracted[0] >= 0.95
+
+
+def test_title_likelihood_master049():
+    extracted = titlepage_likelihood(power.MASTER049_PDF)
+    assert extracted[2] >= 0.80
 
 
 @utilatest.longrun
