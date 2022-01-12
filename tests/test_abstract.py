@@ -31,13 +31,13 @@ def abstract(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     return loaded
 
 
-def test_appendix_diss180():
+def test_abstract_diss180():
     extracted = abstract(power.DISS180_PDF, pages=(16,))
     page16 = utila.select_page(extracted, 16)
     assert page16.content.value == 1.0
 
 
-def test_appendix_diss172():
+def test_abtract_diss172():
     extracted = abstract(power.DISS172_PDF, pages=(3,))
     page3 = utila.select_page(extracted, 3)
     assert page3.content.value == 1.0
