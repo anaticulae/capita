@@ -49,7 +49,7 @@ def test_abstract_master049():
     assert page1.content.value == 1.0
 
 
-def test_noappendix_bachelor111page14():
+def test_noabstract_bachelor111page14():
     """\
     2.2.4 Zusammenfassung was detected as abstract page.
     """
