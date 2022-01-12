@@ -18,7 +18,7 @@ HEADLINES_LENGTH_MIN = configo.HV_INT_PLUS(default=5)
 
 HEADLINES_WORD_COUNT_MIN = configo.HV_INT_PLUS(default=1)
 
-HEADLINES_WORD_COUNT_MAX = configo.HV_INT_PLUS(default=5)
+HEADLINES_WORD_COUNT_MAX = configo.HV_INT_PLUS(default=6)
 
 
 def headlines(
