@@ -130,6 +130,8 @@ def pagebypage(
     minpage: int = None,
     maxpage: int = None,
 ) -> list:
+    if not navigators:
+        return []
     minpage = 0 if minpage is None else minpage
     maxpage = navigators[-1].page if maxpage is None else maxpage
     # analze every page

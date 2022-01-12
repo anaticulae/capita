@@ -10,6 +10,7 @@
 =================
 """
 
+import configo
 import elements.headline.lookup
 import serializeraw
 import utila
@@ -17,7 +18,9 @@ import utila
 import sections.feature
 import sections.utils.headline
 
-VALID_PAGES = utila.ranged_tuple(0, 20)
+ABSTRACT_PAGE_MIN = configo.HV_INT_PLUS(default=0)
+
+ABSTRACT_PAGE_MAX = configo.HV_INT_PLUS(default=20)
 
 
 def work(
@@ -32,14 +35,16 @@ def work(
         textpositions=textpositions,
         sizeandborderpath=sizeandborder,
         headerfooterpath=headerfooters,
-        pages=pages,
+        pages=utila.pages_inside(
+            pages,
+            minn=ABSTRACT_PAGE_MIN,
+            maxx=ABSTRACT_PAGE_MAX,
+        ),
     )
     result = sections.feature.pagebypage(
         navigators,
         pageme=analyse_page,
         name='abstract',
-        minpage=0,
-        maxpage=20,
     )
     dumped = serializeraw.dump_likelihood(result)
     return dumped
