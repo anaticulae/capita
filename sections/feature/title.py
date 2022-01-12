@@ -68,15 +68,8 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
     pagenumber = page.page
     positions = font_positions_from_page(fontstore, pagenumber)
     fonts = font_sizes_from_page(fontstore, pagenumber)
-
-    if not fonts:  # empty page or page with images
-        return EMPTY_RESULT
-
-    numbers = sum([len(utila.parse_numbers(str(item))) for item in page])
-    if numbers > 70:
-        # skip potential table of content page
-        return EMPTY_RESULT
-
+    if returnvalue := no_titlepage(page, fonts):
+        return returnvalue
     font_max, font_length_max = determine_hugest_font(fonts, positions, page)
     title_indicator = 0
     # the title must not be to short and it unlikeli that the title is very,
@@ -92,6 +85,16 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
     # stabilize further algorithms, we do not want this "precision".
     title_indicator = utila.roundme(title_indicator)  # pylint:disable=R0204
     return font_length_max, title_indicator
+
+
+def no_titlepage(page, fonts):
+    if not fonts:  # empty page or page with images
+        return EMPTY_RESULT
+    numbers = sum([len(utila.parse_numbers(str(item))) for item in page])
+    if numbers > 70:
+        # skip potential table of content page
+        return EMPTY_RESULT
+    return None
 
 
 def font_sizes_from_page(store: iamraw.FontStore, pagenumber: int):
