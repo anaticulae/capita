@@ -189,6 +189,7 @@ WORKPLAN = [
         'docinfo',
         inputs=[
             ResultFile('sections', 'section_result'),
+            ResultFile('rawmaker', 'text_text'),
             utila.File(name='pdfinfo', optional=True),
         ],
         output=('docinfo',),
