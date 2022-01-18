@@ -51,7 +51,10 @@ def test_bibliography_work():
 def extract_bibliography(source, testdir, monkeypatch):
     source = power.link(source)
     utilatest.fixture_requires(source)
-    tests.run_sections(f'-i {source} --bibliography', monkeypatch=monkeypatch)
+    tests.run_sections(
+        f'-i {source} --bibliography -VVV',
+        monkeypatch=monkeypatch,
+    )
     # verify result
     path = sections.path.bibliography(testdir.tmpdir)
     likelihood = serializeraw.load_likelihood(path)

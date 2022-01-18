@@ -43,7 +43,7 @@ def sections_from_dir(
 ) -> iamraw.SectionList:
     utilatest.fixture_requires(pdf)
     source = power.link(pdf)
-    cmd = f'--pdf={pdf} -i {source} -o {path} -j8 --pages={pages}'
+    cmd = f'--pdf={pdf} -i {source} -o {path} -j8 --pages={pages} -VVV --profile'
     run_sections(cmd, monkeypatch=monkeypatch)
     result = serializeraw.load_sections(str(path))
     return result
