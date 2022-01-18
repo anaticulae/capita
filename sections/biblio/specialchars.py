@@ -121,9 +121,32 @@ def volume(text, verbose: bool = True):
     return result
 
 
+YEARS = utila.compiles(r'\b(((19|20)\d{2})[a-z]?)\b')
+
+
+def years(raw: str, min_=1950, max_=2025, verbose: bool = False):
+    """Extract sorted list of years out of `raw` text.
+
+    >>> years('1999, Helm was born in 1987. Mud exists since 1800. 2050 20000 2020')
+    [1987, 1999, 2020]
+    >>> years('Helm was born in 1987a.', verbose=True)
+    [(1987, '1987a')]
+    """
+    result = []
+    for item in re.finditer(YEARS, raw):
+        year = int(item.groups()[1])
+        if min_ <= year <= max_:
+            parsed = year
+            if verbose:
+                parsed = (year, item.groups()[0])
+            result.append(parsed)
+    result = sorted(result, key=lambda x: x[0] if verbose else x)
+    return result
+
+
 PATTERN = (
     german.dates,
-    german.years,
+    years,
     german.pagenumbers,
     german.authors,
     german.hyperlink,
@@ -168,10 +191,10 @@ def collect_and_replace(raw: str, pattern: list) -> list:
     collected = []
     for method in pattern:
         parsed = method(raw, verbose=True)
-        for item, itemraw in parsed:
+        for _, itemraw in parsed:
             # do not parse pattern twice
             raw = raw.replace(itemraw, ' **************** ')
-            collected.append(item)
+            collected.append(itemraw)
     return collected
 
 
