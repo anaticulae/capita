@@ -30,6 +30,7 @@ WORKER = 6
 RESOURCES = [
     power.DISS266_PDF,
     power.DISS205_PDF,
+    power.MASTER193_PDF,
     power.DISS180_PDF,
     power.DISS172_PDF,
     power.DISS170_PDF,
