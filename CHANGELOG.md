@@ -2,6 +2,24 @@
 
 Every noteable change is logged here.
 
+## v1.14.0
+
+### Feature
+
+* increase debugging information (0b92ede73b2d)
+* add volume pattern to detect more pattern (4dd356f8c4e0)
+* enable profiling (6e4d989b9d7f)
+* determine document language (08c9890b7dc6)
+* skip pages with too many content as title pages (473c48629ab7)
+* increase number of words inside a headline (e411004864cd)
+* shrink pages to given pages (a2a9fea25b8e)
+
+### Fix
+
+* make junk remover less strict (1f27d9d74fda)
+* remove duplication to reduce junk detection (254d95d7acc8)
+* do not split hyperlink as german sentences (3a17bba46e11)
+
 ## v1.13.0
 
 ### Feature
