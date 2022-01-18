@@ -100,11 +100,13 @@ NOABBR = elements.headline.lookup.TOC
 def invalid_column(data: list) -> bool:  # pylint:disable=R0911
     """\
     unbalanced columns, equal factor is not matching
-    >>> invalid_column((['sos'], ['This is just data']*10))
+    >>> invalid_column([['sos'], ['This is just data']*10])
     True
     """
+    # remove very small data or -/lists
     if not data:
         return True
+    data[0] = [item for item in data[0] if len(text(item).strip('-– ')) > 3]
     if not data[0]:
         return True
     if not data[1]:
