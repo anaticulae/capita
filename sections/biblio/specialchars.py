@@ -19,6 +19,7 @@ one. Without selecting the biggest cluster, more than one bib can be
 detected.
 """
 
+import re
 import statistics
 
 import configo
@@ -171,8 +172,25 @@ def content_page(raw: str) -> bool:
     # german does not split sentences at `:` but bib tables uses : often
     # for separating parts. If we do not split by double collon we archive
     # a lot of false postive results.
-    sentences = utila.flatten([item.split(':') for item in sentences])
+    sentences = utila.flatten([split_doublecolon(item) for item in sentences])
     length_mean = statistics.mean([len(sentence) for sentence in sentences])
     if length_mean > SENTENCE_MEAN_TRUST_MIN:
         return True
     return False
+
+
+DOUBLE_COLON = utila.compiles(r"""
+    (?!https?)
+    \:
+    (?!//)
+""")
+
+
+def split_doublecolon(text: str) -> list:
+    """\
+    >>> split_doublecolon('Ich glaube:"Heute is ein guter Tag"')
+    ['Ich glaube', '"Heute is ein guter Tag"']
+    >>> split_doublecolon('http://donotsplit.com https://donotsplit.com')
+    ['http://donotsplit.com https://donotsplit.com']
+    """
+    return re.split(DOUBLE_COLON, text)
