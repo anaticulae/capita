@@ -208,6 +208,7 @@ def main():
             name=PROCESS,
             pages=True,
             singleinput=False,  # require result folder, ignore single pdf file
+            profileflag=True,
             version=__version__,
         ),
     )
