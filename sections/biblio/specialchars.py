@@ -89,12 +89,45 @@ def bib_headline(ptn: texmex.PageTextNavigator) -> bool:
     return True
 
 
+VOLUME = utila.compiles(r"""
+(
+    (AUFLAGE|VOL\.)
+    [ ]{0,2}
+    (\d{1,2})
+    |
+    (\d)\.
+    [ ]{0,2}
+    (AUFLAGE)
+)
+""")
+
+
+def volume(text, verbose: bool = True):
+    """\
+    >>> volume('(The Formation of the Classical Islamic World). Vol. 36, S. 225-234.')
+    [(36, 'Vol. 36')]
+    >>> volume('Schriftsprache der Gegenwart. 5. Auflage.')
+    [(5, '5. Auflage')]
+    """
+    # TODO: MOVE TO GERMAN
+    result = []
+    for item in re.finditer(VOLUME, text):
+        group = item.groups()
+        value = group[3] if group[3] and group[3].isnumeric() else group[2]
+        if verbose:
+            result.append((int(value), item[0]))
+        else:
+            result.append(int(value))
+    return result
+
+
 PATTERN = (
     german.dates,
     german.years,
     german.pagenumbers,
     german.authors,
     german.hyperlink,
+    volume,
 )
 
 
