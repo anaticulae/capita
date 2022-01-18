@@ -48,11 +48,11 @@ def test_bibliography_work():
         assert current >= value, str(selected)
 
 
-def extract_bibliography(source, testdir, monkeypatch):
+def extract_bibliography(source, pages, testdir, monkeypatch):
     source = power.link(source)
     utilatest.fixture_requires(source)
     tests.run_sections(
-        f'-i {source} --bibliography -VVV',
+        f'-i {source} --bibliography --pages={pages} -VVV',
         monkeypatch=monkeypatch,
     )
     # verify result
@@ -64,7 +64,12 @@ def extract_bibliography(source, testdir, monkeypatch):
 
 @utilatest.longrun
 def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
-    non_zero = extract_bibliography(power.MASTER098_PDF, testdir, monkeypatch)
+    non_zero = extract_bibliography(
+        power.MASTER098_PDF,
+        ':',
+        testdir,
+        monkeypatch,
+    )
     diff = utila.diffs(non_zero)
     # ensure to have only one ascending group with holes
     assert utila.isascending(diff, strict=False)
@@ -87,5 +92,5 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
 # yapf:enable
 @utilatest.longrun
 def test_bibliography_x(source, expected, testdir, monkeypatch):
-    pages = extract_bibliography(source, testdir, monkeypatch)
+    pages = extract_bibliography(source, ':', testdir, monkeypatch)
     assert pages == expected
