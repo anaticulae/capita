@@ -38,6 +38,7 @@ def test_validate_docu027(docu027_sections_manual):
 
 
 @pytest.mark.xfail(reason='chapter detector is too optimistic')
+@utilatest.longrun
 @utilatest.requires(power.DOCU027_PDF)
 def test_extract_sections_docu027(
     testdir,
@@ -77,6 +78,7 @@ HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
 
 
 @pytest.mark.xfail(reason='require multiple page toc detector')
+@utilatest.longrun
 @utilatest.requires(power.DOCU007_PDF)
 def test_extract_sections_simple():
     result = tests.section.extract_sections_frompath(power.DOCU007_PDF)

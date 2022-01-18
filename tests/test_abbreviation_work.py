@@ -69,6 +69,7 @@ def test_abbreviations_diss167_four_pages():
     assert pages == expected
 
 
+@utilatest.longrun
 def test_abbreviations_diss406():
     extracted = abbreviations(
         power.DISS406_PDF,

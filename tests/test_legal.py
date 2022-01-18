@@ -39,6 +39,7 @@ def test_legal_work_master116():
     assert legal_page.content.value == 1.0, str(extracted)
 
 
+@utilatest.longrun
 def test_legal_work_bachelor63():
     source = power.link(power.BACHELOR063_PDF)
     extracted = legal(source)

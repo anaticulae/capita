@@ -114,6 +114,7 @@ def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     return loaded
 
 
+@utilatest.longrun
 def test_chapter_work_bachelor63():
     source = power.link(power.BACHELOR063_PDF)
     extracted = chapter(source)
@@ -140,6 +141,7 @@ def test_chapter_work_master98():
     assert pages == expected
 
 
+@utilatest.longrun
 def test_chapter_work_paper18():
     """Regression test to ensure that chapter start is detected."""
     source = power.link(power.PAPER18_PDF)
