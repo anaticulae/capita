@@ -105,17 +105,20 @@ def special_pattern(raw: str) -> int:
     not a bib may a toc or table table.
     """
     collected = collect_and_replace(raw, PATTERN)
+    # this patterns typically occurs mostly once's.
+    allmarker = len(collected)
+    collected: set = set(collected)
     marker = len(collected)
     marker_min = MARKER_COUNT_MIN(len(raw.splitlines()))
     if marker < marker_min:
         utila.debug(f'too few marker: {marker}/{marker_min}')
         return 0
     pages = collect_and_replace(raw, (german.pagenumbers,))
-    pagerate = len(pages) / marker
+    pagerate = len(pages) / allmarker
     if pagerate > 0.8:
-        utila.debug(f'too many pages: {pagerate} {len(pages)} {marker}')
+        utila.debug(f'too many pages: {pagerate} {len(pages)} {allmarker}')
         return 0
-    return marker
+    return allmarker
 
 
 MARKER_COUNT_MIN = configo.HolyTable(items=(
