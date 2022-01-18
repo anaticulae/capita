@@ -58,7 +58,7 @@ def analyse_page(
         # Bibliography headline on page
         return len(navigator), len(navigator)
     raw = navigator.debug
-    marker = special_pattern(raw)
+    marker = special_pattern(raw, page=navigator.page)
     if special_chars(raw):
         # thirty percent bonus
         marker *= (1 + SPECIAL_CHAR_BONUS)
@@ -131,7 +131,7 @@ PATTERN = (
 )
 
 
-def special_pattern(raw: str) -> int:
+def special_pattern(raw: str, page: int) -> int:
     """Search for bib page typical pattern like: authors, dates, years...
 
     If too few pages occurs, disable pattern approach, because its may
@@ -144,12 +144,13 @@ def special_pattern(raw: str) -> int:
     marker = len(collected)
     marker_min = MARKER_COUNT_MIN(len(raw.splitlines()))
     if marker < marker_min:
-        utila.debug(f'too few marker: {marker}/{marker_min}')
+        utila.debug(f'too few marker {page}: {marker}/{marker_min}')
         return 0
     pages = collect_and_replace(raw, (german.pagenumbers,))
     pagerate = len(pages) / allmarker
     if pagerate > 0.8:
-        utila.debug(f'too many pages: {pagerate} {len(pages)} {allmarker}')
+        msg = f'too many pages {page}: {pagerate} {len(pages)} {allmarker}'
+        utila.debug(msg)
         return 0
     return allmarker
 
