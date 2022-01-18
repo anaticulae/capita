@@ -94,3 +94,12 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
 def test_bibliography_x(source, expected, testdir, monkeypatch):
     pages = extract_bibliography(source, ':', testdir, monkeypatch)
     assert pages == expected
+
+
+@pytest.mark.parametrize('source, pages', [
+    pytest.param(power.MASTER193_PDF, '124:130', id='master193'),
+])
+def test_nobib_x(source, pages, testdir, monkeypatch):
+    detected = extract_bibliography(source, pages, testdir, monkeypatch)
+    print(detected)
+    assert not detected
