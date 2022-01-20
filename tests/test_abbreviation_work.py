@@ -59,6 +59,13 @@ def test_no_abbreviations_bachelor111page56():
     assert not extracted[0].content.value
 
 
+@utilatest.longrun
+def test_no_abbreviations_master193():
+    extracted = abbreviations(power.MASTER193_PDF)
+    pages = [item.content.value for item in extracted]
+    assert not any(pages)
+
+
 def test_abbreviations_diss167_four_pages():
     extracted = abbreviations(
         power.DISS167_PDF,
