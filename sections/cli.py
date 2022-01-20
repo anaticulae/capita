@@ -37,6 +37,7 @@ WORKPLAN = [
             ResultFile('rawmaker', 'oneline_text_positions'),
             ResultFile('rawmaker', 'border_pages'),
             ResultFile('groupme', 'footer_footerheader'),
+            utila.File(name='pdfinfo', optional=True),
         ],
         output=('likelihood',),
     ),

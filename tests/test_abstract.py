@@ -24,6 +24,7 @@ def abstract(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
         source,
         source,
         source,
+        source,
         pages=pages,
     )
     assert dumped, dumped
@@ -47,6 +48,14 @@ def test_abstract_master049():
     extracted = abstract(power.MASTER049_PDF, pages=(1,))
     page1 = utila.select_page(extracted, 1)
     assert page1.content.value == 1.0
+
+
+def test_abstract_master193():
+    extracted = abstract(power.MASTER193_PDF, pages=(191, 192))
+    page191 = utila.select_page(extracted, 191)
+    assert page191.content.value == 1.0
+    page192 = utila.select_page(extracted, 192)
+    assert page192.content.value == 1.0
 
 
 def test_noabstract_bachelor111page14():

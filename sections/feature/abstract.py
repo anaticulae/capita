@@ -20,6 +20,7 @@ import sections.utils.headline
 
 ABSTRACT_PAGE_MIN = configo.HV_INT_PLUS(default=0)
 
+# TODO: MAKE THIS DOCUMENT LENGTH DEPENDENT!
 ABSTRACT_PAGE_MAX = configo.HV_INT_PLUS(default=20)
 
 
@@ -28,18 +29,16 @@ def work(
     textpositions: str,
     sizeandborder: str,
     headerfooters: str,
+    pdfinfo: str = None,
     pages=None,
 ) -> str:
+    pages_max = serializeraw.load_pdfinfo(pdfinfo).pages if pdfinfo else None
     navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
         text=text_linewise,
         textpositions=textpositions,
         sizeandborderpath=sizeandborder,
         headerfooterpath=headerfooters,
-        pages=utila.pages_inside(
-            pages,
-            minn=ABSTRACT_PAGE_MIN,
-            maxx=ABSTRACT_PAGE_MAX,
-        ),
+        pages=pages_shrink(pages, pages_max=pages_max),
     )
     result = sections.feature.pagebypage(
         navigators,
@@ -48,6 +47,26 @@ def work(
     )
     dumped = serializeraw.dump_likelihood(result)
     return dumped
+
+
+def pages_shrink(pages: tuple, pages_max: int = None) -> tuple:
+    """Allow abstract at the start and at the end of the document."""
+    if not pages and not pages_max:
+        return None
+    pages = utila.pages_inside(
+        pages=pages,
+        minn=ABSTRACT_PAGE_MIN,
+        maxx=ABSTRACT_PAGE_MAX,
+    )
+    if pages_max is not None:
+        morepages = utila.pages_inside(
+            pages=pages,
+            minn=pages_max - ABSTRACT_PAGE_MAX,
+            maxx=pages_max,
+        )
+        pages = pages + morepages
+    pages = tuple(set(pages))
+    return pages
 
 
 def analyse_page(content):
