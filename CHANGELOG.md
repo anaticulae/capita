@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.14.1
+
+### Feature
+
+* allow abstract at the end of the document (3a5e5b9c90ca)
+
+### Fix
+
+* skip false detected empty tables (0aaf3208ea00)
+
 ## v1.14.0
 
 ### Feature
