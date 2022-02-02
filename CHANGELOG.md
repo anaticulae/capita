@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.14.2
+
+### Feature
+
+* add hint that merging does not work (3c0fe46bf641)
+* skip very short pages to improve extraction result (096935d25e18)
+
 ## v1.14.1
 
 ### Feature
