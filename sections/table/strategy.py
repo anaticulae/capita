@@ -135,6 +135,8 @@ def analyse_page(content, pattern: callable = None) -> float:
     Returns:
         (linecount, possible_table_lines)
     """
+    # remove lines which are too short
+    content = [line for line in content if len(line.text.strip()) >= 5]
     valid = valid_line if not pattern else lambda x: valid_line(x) or pattern(x)
     linecount = len(content)
     possible_toc_line = len([line for line in content if valid(line.text)])
