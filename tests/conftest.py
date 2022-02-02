@@ -32,6 +32,7 @@ RESOURCES = [
     power.DISS205_PDF,
     power.MASTER193_PDF,
     power.DISS180_PDF,
+    power.BOOK173_PDF,
     power.DISS172_PDF,
     power.DISS170_PDF,
     power.MASTER155_PDF,
