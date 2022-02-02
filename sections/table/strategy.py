@@ -172,6 +172,7 @@ def merge_second(extracted, without, merge_min=0.5, replace=None) -> list:
             start = index
             break
     if start == -1:
+        utila.error('could not find toc start; merge_second not possible')
         return extracted
     start += 1
     for index, item in enumerate(without[start:], start=start):
