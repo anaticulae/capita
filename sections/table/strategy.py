@@ -160,9 +160,11 @@ def valid_line(line: str) -> bool:
 LINE_WITHPAGES = utila.compiles(r'^.+S\.[ ]{0,3}\d{1,4}$')
 
 
-def merge_second(extracted, without, merge_min=0.5, replace=None):
-    """Merge following table pages which follows `extracted` first
-    table. Break merging after detecting first empty page."""
+def merge_second(extracted, without, merge_min=0.5, replace=None) -> list:
+    """Merge following table pages which follows `extracted` first table.
+
+    Break merging after detecting first empty page.
+    """
     # TODO: DIRTY
     start = -1
     for index, item in enumerate(extracted):
