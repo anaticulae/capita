@@ -49,6 +49,7 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
         result,
         merge_min=0.49,
         replace=0.75,
+        title='abbreviation',
     )
     for item in result:
         if item.content.value >= ABBREVIATION_TRUST_MIN:

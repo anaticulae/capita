@@ -160,7 +160,13 @@ def valid_line(line: str) -> bool:
 LINE_WITHPAGES = utila.compiles(r'^.+S\.[ ]{0,3}\d{1,4}$')
 
 
-def merge_second(extracted, without, merge_min=0.5, replace=None) -> list:
+def merge_second(
+    extracted,
+    without,
+    merge_min=0.5,
+    replace=None,
+    title: str = 'toc',
+) -> list:
     """Merge following table pages which follows `extracted` first table.
 
     Break merging after detecting first empty page.
@@ -172,7 +178,7 @@ def merge_second(extracted, without, merge_min=0.5, replace=None) -> list:
             start = index
             break
     if start == -1:
-        utila.error('could not find toc start; merge_second not possible')
+        utila.error(f'could not find {title} start; merge_second not possible')
         return extracted
     start += 1
     for index, item in enumerate(without[start:], start=start):
