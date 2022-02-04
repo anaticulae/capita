@@ -145,7 +145,7 @@ def extract_whitepages(  # pylint:disable=R0914
             result[pagenumber] = WhitePage.BLANK
             continue
         if not header and not footer:
-            if not currentpage.children and noimage:
+            if currentpage and not currentpage.children and noimage:
                 result[pagenumber] = WhitePage.BLANK
             else:
                 # Elements on the page, maybe title page, chapter page...
