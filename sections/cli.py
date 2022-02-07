@@ -86,7 +86,10 @@ WORKPLAN = [
     step(
         'index',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
+            ResultFile('rawmaker', 'text_text'),
+            ResultFile('rawmaker', 'text_positions'),
+            ResultFile('rawmaker', 'border_pages'),
+            ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),

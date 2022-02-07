@@ -7,101 +7,49 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import typing
-
-import configo
-import iamraw
 import serializeraw
 import utila
 
-import sections.feature
+import sections.table.strategy
 
 
-def work(linewise: str, pages: tuple = None) -> str:
-    """Load document and extract likelihood of beening an index page
-
-    Args:
-        linewise(str): path to document with high `char_margin`
-        pages(tuple): tuple of pages to work on
-    Returns:
-        yaml content with dumped result for every single page
-    """
-    document = serializeraw.load_document(linewise, pages=pages)
-    extracted = extract_index_likelihood(document)
-    dumped = serializeraw.dump_likelihood(extracted)
+def work(
+    text: str,
+    textpositions: str,
+    sizeandborder: str,
+    headerfooters: str,
+    pages: tuple = None,
+) -> str:
+    """Load document and extract likelihood of beening an index page."""
+    ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
+        text=text,
+        textpositions=textpositions,
+        sizeandborderpath=sizeandborder,
+        headerfooterpath=headerfooters,
+        pages=pages,
+    )
+    dumped = sections.table.strategy.work(
+        ptcns,
+        headline=HEADLINES,
+        noheadlines=None,
+        pattern=INDEX_ITEM_PATTERN.match,
+        shortcut='index',
+        topsearch=False,
+        second=True,
+    )
     return dumped
 
 
-def extract_index_likelihood(document: iamraw.Document) -> iamraw.PageContentLikelihoods:  # yapf:disable
-    """Extract likelihood of beeing an index page. Determine a likelihood for
-    every single page.
-
-    Args:
-        document(Document): document to iterate over single pages
-    Returns:
-        a normalized List[float] with the normalized likelihood of beeing an
-        index page
-    """
-    result = {page.page: analyse_page(page) for page in document}
-
-    uniformed = sections.feature.uniform_result(result)
-    assert len(uniformed) == len(document)
-
-    result = [
-        iamraw.PageContentLikelihood(
-            page=page,
-            content=iamraw.Likelihood(value, 'index'),
-        ) for page, value in uniformed.items()
-    ]
-    result = sorted(result, key=lambda x: x.page)
-    return result
-
+HEADLINES = utila.splitlines("""
+INDEX
+""")
 
 # INDEX, PAGENUMBER
 INDEX_ITEM_PATTERN = utila.compiles(r"""
     ^
-    ([A-Z]+\s?){1,3} # one till three words
-    [\s|,]?          # optional `,`
-    \s{0,5}          # between zero and five spaces
-    [0-9]+$          # a pagenumber at the end
+    ([A-Z]+\s?){1,3}                    # one till three words
+    [\s|,]?                             # optional `,`
+    \s{0,5}                             # between zero and five spaces
+    (\d{1,3}[ ]{0,3}\,[ ]{0,3}){0,3}    # more optional page numbers
+    [0-9]{1,4}$                         # a pagenumber at the end
 """)
-
-MINIMAL_DETECTED_PATTERN = configo.HV_PERCENT_PLUS(default=40)
-
-
-def analyse_page(page: iamraw.Page) -> typing.Tuple[int, int]:
-    """Extract potential features of an index page
-
-    This methods search for 2 features. The simpelst feature is a single
-    uppercased char. This char represents the index A-Z. The second
-    feature is a pattern out of index-name and index-page.
-
-    Args:
-        page(Page): page to search for index features
-    Returns:
-        (linecount, matched features):
-    """
-    content = page.text.splitlines()
-    # remove empty lines
-    content = [item for item in content if item]
-    linecount = len(content)
-
-    # search for single upper cased chars, which represents the index
-    single_char = [
-        item for item in content if len(item) == 1 and item.isupper()
-    ]
-    # TODO: ADD UNQIUE CHAR FACTOR APPROACH TO REDUCE MISS DETECTIONS
-    # len(set(single_char)) / len(single_char) for example
-
-    index_with_page = [
-        line for line in content if INDEX_ITEM_PATTERN.match(line)
-    ]
-    single_char_or_index_with_page = len(single_char) + len(index_with_page)
-
-    percent = single_char_or_index_with_page / linecount if linecount else 0
-
-    if percent < MINIMAL_DETECTED_PATTERN:
-        linecount = 0
-        single_char_or_index_with_page = 0
-
-    return linecount, single_char_or_index_with_page
