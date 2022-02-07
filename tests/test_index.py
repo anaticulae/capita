@@ -14,7 +14,7 @@ import utila
 import utilatest
 
 import sections.feature.index
-import sections.table.strategy
+import sections.strategy
 
 # manually set to secure index finder quality, TODO: investigate later
 LAST_PAGE_INDEX_LIKELYHOOD = 0.45

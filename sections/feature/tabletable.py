@@ -15,7 +15,8 @@ import re
 import elements.headline.lookup
 import serializeraw
 
-import sections.table.strategy
+import sections.strategy
+import sections.table
 
 
 def work(
@@ -32,7 +33,7 @@ def work(
         headerfooterpath=headerfooters,
         pages=pages,
     )
-    dumped = sections.table.strategy.work(
+    dumped = sections.strategy.work(
         ptcns,
         headline=elements.headline.lookup.TABLETABLE,
         noheadlines=NOHEADLINES,
@@ -67,5 +68,7 @@ def table(line: str) -> bool:
     if TABLE.match(line):
         return True
     if TABLE_ENG.match(line):
+        return True
+    if sections.table.valid_line(line):
         return True
     return False

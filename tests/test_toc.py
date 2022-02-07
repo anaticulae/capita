@@ -15,7 +15,8 @@ import utila
 import utilatest
 
 import sections.feature.toc
-import sections.table.strategy
+import sections.strategy
+import sections.table
 
 DOCU27 = power.link(power.DOCU027_PDF)
 
@@ -23,9 +24,10 @@ DOCU27 = power.link(power.DOCU027_PDF)
 @utilatest.requires(power.DOCU027_PDF)
 def test_extract_toc_likelihood():
     navigator = serializeraw.create_pagetextnavigators_frompath(DOCU27)
-    extracted = sections.table.strategy.extract_xxx_likelihood(
+    extracted = sections.strategy.extract_xxx_likelihood(
         navigator,
         'Contents',
+        pattern=sections.table.valid_line,
     )
     extracted = [item.content.value for item in extracted]
     assert sum(extracted) == pytest.approx(1.0)
@@ -38,9 +40,10 @@ def test_extract_toc_likelihood_bachelor63():
         pages=utila.ranged_tuple(0, 8),
         prefix='oneline',
     )
-    extracted = sections.table.strategy.extract_xxx_likelihood(
+    extracted = sections.strategy.extract_xxx_likelihood(
         text,
         headline='Inhaltsverzeichnis',
+        pattern=sections.table.valid_line,
     )
     extracted = [item.content.value for item in extracted]
     likelihood = sum(extracted)
@@ -59,15 +62,17 @@ def test_extract_toc_likelihood_master72():
         pages=utila.ranged_tuple(0, 8),
         prefix='oneline',
     )
-    extracted = sections.table.strategy.extract_xxx_likelihood(
+    extracted = sections.strategy.extract_xxx_likelihood(
         text,
         headline='Inhaltsverzeichnis',
+        pattern=sections.table.valid_line,
     )
-    without = sections.table.strategy.extract_xxx_likelihood(
+    without = sections.strategy.extract_xxx_likelihood(
         text,
         headline=None,
+        pattern=sections.table.valid_line,
     )
-    extracted = sections.table.strategy.merge_second(extracted, without)
+    extracted = sections.strategy.merge_second(extracted, without)
     extracted = [item.content.value for item in extracted]
 
     expected_result = [False, True, True, False, False, False, False, False]

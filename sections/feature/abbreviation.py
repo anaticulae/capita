@@ -24,7 +24,7 @@ import serializeraw
 import utila
 
 import sections.feature
-import sections.table.strategy
+import sections.strategy
 import sections.utils.headline
 
 BACKUP_PAGE = (1, 0.5)
@@ -44,7 +44,7 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
         name='abbreviation_table',
     )
     # TODO: A LITTLE HACKY BUT WORKS
-    result = sections.table.strategy.merge_second(
+    result = sections.strategy.merge_second(
         result,
         result,
         merge_min=0.49,

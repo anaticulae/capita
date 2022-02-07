@@ -21,7 +21,8 @@ import elements.headline.lookup
 import serializeraw
 import utila
 
-import sections.table.strategy
+import sections.strategy
+import sections.table
 
 # no possible toc later than page 20
 
@@ -49,7 +50,7 @@ def work(
         headerfooterpath=headerfooters,
         pages=pages,
     )
-    dumped = sections.table.strategy.work(
+    dumped = sections.strategy.work(
         ptcns,
         headline=elements.headline.lookup.TOC,
         noheadlines=NOHEADLINES,
@@ -76,6 +77,8 @@ def appendix_line(line: str) -> bool:
     True
     """
     if APPENDIX.match(line):
+        return True
+    if sections.table.valid_line(line):
         return True
     return False
 

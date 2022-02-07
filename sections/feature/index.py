@@ -10,7 +10,7 @@
 import serializeraw
 import utila
 
-import sections.table.strategy
+import sections.strategy
 
 
 def work(
@@ -28,7 +28,7 @@ def work(
         headerfooterpath=headerfooters,
         pages=pages,
     )
-    dumped = sections.table.strategy.work(
+    dumped = sections.strategy.work(
         ptcns,
         headline=HEADLINES,
         noheadlines=None,

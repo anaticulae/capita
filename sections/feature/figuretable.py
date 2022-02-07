@@ -16,7 +16,8 @@ import elements.headline.lookup
 import serializeraw
 import utila
 
-import sections.table.strategy
+import sections.strategy
+import sections.table
 
 NOHEADLINES = elements.headline.lookup.HEADLINES - elements.headline.lookup.FIGURETABLE
 
@@ -35,7 +36,7 @@ def work(
         headerfooterpath=headerfooters,
         pages=pages,
     )
-    dumped = sections.table.strategy.work(
+    dumped = sections.strategy.work(
         ptcns,
         headline=elements.headline.lookup.FIGURETABLE,
         noheadlines=NOHEADLINES,
@@ -69,5 +70,7 @@ def figure(line: str) -> bool:
     if FIGURE.match(line):
         return True
     if FIGURE_ENG.match(line):
+        return True
+    if sections.table.valid_line(line):
         return True
     return False

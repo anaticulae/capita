@@ -8,7 +8,6 @@
 # =============================================================================
 
 import configo
-import elements
 import iamraw
 import serializeraw
 import texmex
@@ -126,7 +125,7 @@ def matched(
     return False
 
 
-def analyse_page(content, pattern: callable = None) -> float:
+def analyse_page(content, pattern: callable) -> float:
     """Extract the number of lines which can contain any table-content
 
     Dots(. . .) are charactaristical for table lines.
@@ -138,27 +137,9 @@ def analyse_page(content, pattern: callable = None) -> float:
     """
     # remove lines which are too short
     content = [line for line in content if len(line.text.strip()) >= 5]
-    valid = valid_line if not pattern else lambda x: valid_line(x) or pattern(x)
     linecount = len(content)
-    possible_toc_line = len([line for line in content if valid(line.text)])
+    possible_toc_line = len([line for line in content if pattern(line.text)])
     return linecount, possible_toc_line
-
-
-def valid_line(line: str) -> bool:
-    line = line.strip()
-    if line.count('. .') > 3:
-        return True
-    if line.count('..') > 3:
-        return True
-    if elements.level_numbered(line):
-        return True
-    if LINE_WITHPAGES.match(line):
-        return True
-    return False
-
-
-# E. Abschließende Zusammenfassung      S. 85
-LINE_WITHPAGES = utila.compiles(r'^.+S\.[ ]{0,3}\d{1,4}$')
 
 
 def merge_second(
