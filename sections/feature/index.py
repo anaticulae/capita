@@ -7,12 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import re
 import typing
 
 import configo
 import iamraw
 import serializeraw
+import utila
 
 import sections.feature
 
@@ -59,12 +59,13 @@ def extract_index_likelihood(
 
 
 # INDEX, PAGENUMBER
-INDEX_ITEM_PATTERN = re.compile(
-    r"""^([a-zA-Z]+\s?){1,3} # one till three words
-          [\s|,]?            # optional `,`
-          \s{0,5}            # between zero and five spaces
-          [0-9]+$            # a pagenumber at the end
-     """, re.X)
+INDEX_ITEM_PATTERN = utila.compiles(r"""
+    ^
+    ([A-Z]+\s?){1,3} # one till three words
+    [\s|,]?          # optional `,`
+    \s{0,5}          # between zero and five spaces
+    [0-9]+$          # a pagenumber at the end
+""")
 
 MINIMAL_DETECTED_PATTERN = configo.HV_PERCENT_PLUS(default=40)
 
@@ -94,7 +95,7 @@ def analyse_page(page: iamraw.Page) -> typing.Tuple[int, int]:
     # len(set(single_char)) / len(single_char) for example
 
     index_with_page = [
-        line for line in content if re.match(INDEX_ITEM_PATTERN, line)
+        line for line in content if INDEX_ITEM_PATTERN.match(line)
     ]
     single_char_or_index_with_page = len(single_char) + len(index_with_page)
 
