@@ -82,7 +82,13 @@ def extract_sections_frompath(  # pylint:disable=R0914
         pages=pages,
     )
     legal = sections.feature.legal.work(text, textposition, pages=pages)
-    index = sections.feature.index.work(text, pages=pages)
+    index = sections.feature.index.work(
+        text,
+        textposition,
+        sizeandborder,
+        footers,
+        pages=pages,
+    )
     title = sections.feature.title.work(
         text,
         fontheader,
