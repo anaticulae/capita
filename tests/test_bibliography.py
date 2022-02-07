@@ -90,7 +90,7 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     pytest.param(power.MASTER193_PDF, [188,189,190], id='master193'),
 ])
 # yapf:enable
-@utilatest.longrun
+@utilatest.nightly
 def test_bibliography_x(source, expected, testdir, monkeypatch):
     pages = extract_bibliography(source, ':', testdir, monkeypatch)
     assert pages == expected
