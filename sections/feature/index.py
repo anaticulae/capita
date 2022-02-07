@@ -32,8 +32,7 @@ def work(linewise: str, pages: tuple = None) -> str:
     return dumped
 
 
-def extract_index_likelihood(
-    document: iamraw.Document,) -> iamraw.PageContentLikelihoods:
+def extract_index_likelihood(document: iamraw.Document) -> iamraw.PageContentLikelihoods:  # yapf:disable
     """Extract likelihood of beeing an index page. Determine a likelihood for
     every single page.
 
