@@ -54,9 +54,6 @@ SPECIAL_CHAR_BONUS = configo.HV_PERCENT_PLUS(default=30)
 def analyse_page(
     navigator: texmex.PageTextNavigator
 ) -> sections.feature.StatisticalResultItem:
-    if bib_headline(navigator):
-        # Bibliography headline on page
-        return len(navigator), len(navigator)
     raw = navigator.debug
     marker = special_pattern(raw, page=navigator.page)
     if special_chars(raw):
@@ -71,6 +68,11 @@ def analyse_page(
         # TODO: CHECK THIS
         # this can not be a bib table
         marker = 0
+    if marker >= 5:  # TODO: HOLY VALUE
+        # Bibliography headline on page
+        headline = bib_headline(navigator)
+        if headline:
+            return len(navigator), len(navigator)
     return len(navigator), marker
 
 

@@ -88,6 +88,7 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     pytest.param(power.DISS406_PDF, [], id='diss406'),
     # pytest.param(power.DISS406_PDF, utila.ranged_list(343, 406), id='diss406'),
     pytest.param(power.MASTER193_PDF, [188,189,190], id='master193'),
+    pytest.param(power.BOOK173_PDF, [], id='book173'),
 ])
 # yapf:enable
 @utilatest.nightly
