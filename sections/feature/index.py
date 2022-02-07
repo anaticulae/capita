@@ -17,16 +17,16 @@ import utila
 import sections.feature
 
 
-def work(text_linewise: str, pages: tuple = None) -> str:
+def work(linewise: str, pages: tuple = None) -> str:
     """Load document and extract likelihood of beening an index page
 
     Args:
-        text_linewise(str): path to document with high `char_margin`
+        linewise(str): path to document with high `char_margin`
         pages(tuple): tuple of pages to work on
     Returns:
         yaml content with dumped result for every single page
     """
-    document = serializeraw.load_document(text_linewise, pages=pages)
+    document = serializeraw.load_document(linewise, pages=pages)
     extracted = extract_index_likelihood(document)
     dumped = serializeraw.dump_likelihood(extracted)
     return dumped
