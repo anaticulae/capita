@@ -38,7 +38,7 @@ def test_index_work():
 
 
 @utilatest.requires(power.DOCU014_PDF)
-def test_feature_index_extract_index_likelihood():
+def test_regression_extract_index_likelihood():
     """Reduce false detection of index-pages"""
     result = index(power.DOCU014_PDF)
     # lower than five percent
@@ -47,7 +47,7 @@ def test_feature_index_extract_index_likelihood():
 
 
 @utilatest.requires(power.BOOK173_PDF)
-def test_index_work_book173():
+def test_index_book173():
     loaded = index(
         power.BOOK173_PDF,
         pages=utila.rtuple(150, 174),
