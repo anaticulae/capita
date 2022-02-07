@@ -6,6 +6,22 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""Index Page Detector
+===================
+
+Example
+-------
+
+    M
+    Main text checklist, 131
+    Masters degree, 4
+        converting to doctoral thesis, 4
+        examiners, 5
+        full-time research, 5
+        length, 5
+        time-frame, 46
+    Master version of text, 25
+"""
 
 import serializeraw
 import utila
