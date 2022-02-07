@@ -10,6 +10,7 @@
 import iamraw.path
 import power
 import serializeraw
+import utila
 import utilatest
 
 import sections.feature.index
@@ -46,3 +47,17 @@ def test_feature_index_extract_index_likelihood():
     # lower than five percent
     lower_than_five_percent = [item.content.value < 0.05 for item in result]
     assert all(lower_than_five_percent), lower_than_five_percent
+
+
+@utilatest.requires(power.BOOK173_PDF)
+def test_index_work_book173():
+    text = iamraw.path.text(power.link(power.BOOK173_PDF), prefix='oneline')
+    dumped = sections.feature.index.work(
+        text,
+        pages=utila.rtuple(150, 174),
+    )
+    assert len(dumped) > 100
+    loaded = serializeraw.load_likelihood(dumped)
+    expected = [164, 165, 166, 167, 168, 169, 170, 171, 172]
+    pages = [item.page for item in loaded if item.content.value > 0.4]
+    assert pages == expected
