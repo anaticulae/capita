@@ -17,13 +17,16 @@ import sections.paper.main
 def work(pdf: str, pages=None) -> str:
     if pdf is None:
         utila.error('skip paper, use --pdf to define pdf')
-        return '[]'
+        return NOPAPER
     utila.exists_assert(pdf)
     detected = sections.paper.main.detect_paper(pdf, pages=pages)
     if detected is None:
-        return '[]'
+        return NOPAPER
     dumped = dump_groups(detected)
     return dumped
+
+
+NOPAPER = '[]'
 
 
 def dump_groups(grouped) -> str:
