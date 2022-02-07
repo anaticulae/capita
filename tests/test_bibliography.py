@@ -62,7 +62,7 @@ def extract_bibliography(source, pages, testdir, monkeypatch):
     return pages
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     non_zero = extract_bibliography(
         power.MASTER098_PDF,

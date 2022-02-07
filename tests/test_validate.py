@@ -78,7 +78,7 @@ HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
 
 
 @pytest.mark.xfail(reason='require multiple page toc detector')
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.DOCU007_PDF)
 def test_extract_sections_simple():
     result = tests.section.extract_sections_frompath(power.DOCU007_PDF)
@@ -214,7 +214,7 @@ def test_sections_master31():
     check_sections(result, expected)
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.DOCU027_PDF)
 def test_sections_docu27():
     """Regression test to ensure that no bib is detected on first page.
