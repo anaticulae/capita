@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v1.15.0
+
+### Feature
+
+* use shortcut as error title (639d4bda950b)
+* use table strategy to detect index page (af731ff2dac4)
+
+### Fix
+
+* adjust debug message (e529bf713691)
+* ensure that empty page is skipped correctly (0929861e218d)
+
+### Documentation
+
+* add module documentation (798a1b98c2cb)
+
 ## v1.14.2
 
 ### Feature
