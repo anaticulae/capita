@@ -53,8 +53,11 @@ def work(
             pattern=pattern,
             topsearch=topsearch,
         )
-        extracted = merge_second(extracted, without)
-
+        extracted = merge_second(
+            extracted,
+            without,
+            title=shortcut,
+        )
     dumped = serializeraw.dump_likelihood(extracted)
     return dumped
 
