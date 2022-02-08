@@ -34,3 +34,14 @@ def test_paper_bachelor111():
         pages=utila.ranged_tuple(100, 115),
     )
     assert not detected
+
+
+@utilatest.longrun
+def test_paper_book173():
+    """Do not detect end of book173 as cited content."""
+    source = power.BOOK173_PDF
+    detected = sections.paper.main.detect_paper(
+        source,
+        pages=utila.rtuple(164, 172),
+    )
+    assert not detected
