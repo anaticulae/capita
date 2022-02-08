@@ -26,6 +26,9 @@ def detect_paper(pdf: str, pages: tuple = None) -> tuple:
     return result
 
 
+ROTATED = 'rotated'
+
+
 def group_percentage(  # pylint:disable=R1260,R0912
     percents,
     pages_min: int = 6,
@@ -63,13 +66,13 @@ def group_percentage(  # pylint:disable=R1260,R0912
             failure = 0
             bonus = 0
         # decide if merging roated page to valid content before
-        if percent == 'rotated':
+        if percent == ROTATED:
             if pagediff_error:
                 grouped.append([])
                 failure = 0
                 bonus = 0
             if grouped:
-                grouped[-1].append((page, 'rotated'))
+                grouped[-1].append((page, ROTATED))
             continue
         # double column rate is higher than requested rate
         success = percent is not None and percent > double_column_min
@@ -94,7 +97,7 @@ def count_start(items) -> int:
     """Ensure to have a valid, hight quality group start."""
     counted = 0
     for _, item in items:
-        if item != 'rotated':
+        if item != ROTATED:
             counted += 1
         else:
             break
