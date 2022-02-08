@@ -14,12 +14,15 @@
 """
 
 import layout.double
+import pdfinfo.pages
 import utila
 
 
 def detect_paper(pdf: str, pages: tuple = None) -> tuple:
     percents = layout.double.percentage(pdf, pages=pages)
-    grouped = group_percentage(percents)
+    pages_max = pdfinfo.pages.determine(pdf)
+    pages_gen = PageGenerator(pages=pages, pages_max=pages_max)
+    grouped = group_percentage(percents, pages_gen=pages_gen)
     if not grouped:
         return None
     result = [(group[0][0], group[-1][0]) for group in grouped]
@@ -36,6 +39,7 @@ def group_percentage(  # pylint:disable=R1260,R0912
     double_column_min: float = 0.4,
     failure_max: int = 5,
     page_diff_max: int = 5,
+    pages_gen: callable = None,
 ) -> list:
     """Determine connected group of pages.
 
@@ -45,10 +49,12 @@ def group_percentage(  # pylint:disable=R1260,R0912
 
     Return a list of valid groups with pairs of (page, percent)
     """
+    if not pages_gen:
+        pages_gen = PageGenerator()
     failure = 0
     bonus = 0
     grouped = []
-    for page, percent in enumerate(percents):
+    for page, percent in zip(pages_gen, percents):
         if failure and bonus % 3 == 0:  # pylint:disable=C2001
             failure -= 1
             bonus = 0
