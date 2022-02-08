@@ -14,6 +14,7 @@
 """
 
 import layout.double
+import utila
 
 
 def detect_paper(pdf: str, pages: tuple = None) -> tuple:
@@ -115,3 +116,26 @@ def merge_groups(items, maxdiff: int = 5):
         else:
             result.append(item)
     return result
+
+
+class PageGenerator:
+    """\
+    >>> morepages = PageGenerator(pages_max=10)
+    >>> (next(morepages), next(morepages), next(morepages))
+    (0, 1, 2)
+    >>> [next(morepages) for _ in range(5)]
+    [3, 4, 5, 6, 7]
+    """
+
+    def __init__(self, pages: tuple = None, pages_max: int = 256):
+        self.pages = [
+            page for page in utila.rlist(pages_max)
+            if not utila.should_skip(page, pages)
+        ]
+        self.pages = iter(self.pages)
+
+    def __iter__(self):
+        return self.pages
+
+    def __next__(self):
+        return next(self.pages)
