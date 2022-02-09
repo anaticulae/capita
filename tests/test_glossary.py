@@ -16,8 +16,13 @@ import sections.feature.glossary
 
 
 @utilatest.requires(power.DISS143_PDF)
-def test_gloassary_work():
-    source = power.link(power.DISS143_PDF)
+def test_glossary_work_diss143():
+    pages = glossary(power.DISS143_PDF)
+    assert pages == [127, 128, 129, 130]
+
+
+def glossary(source, pages: tuple = None):
+    source = power.link(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
     extracted = sections.feature.glossary.work(
@@ -25,8 +30,6 @@ def test_gloassary_work():
         textposition,
         pages=None,
     )
-    assert len(extracted) > 50, str(extracted)
     loaded = serializeraw.load_likelihood(extracted)
-    assert len(loaded) == 4
     pages = [item.page for item in loaded]
-    assert pages == [127, 128, 129, 130]
+    return pages
