@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.16.0
+
+### Feature
+
+* do not detect low dens double column as paper (d9ffe2c4b73a)
+* add global page numbers (606b91bd3a46)
+* add page generator (387693e85743)
+
+### Fix
+
+* do not always detect bib if bib headline is on page (85c1e94c4132)
+
 ## v1.15.0
 
 ### Feature
