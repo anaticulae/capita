@@ -126,6 +126,7 @@ def extract_sections(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
                 typ=content.index(item),
             )
             collected[pagenumber] = new
+    collected = clean_collection(collected)
     grouped = group_sections(collected)
     result = verify_sections(grouped)
     return result
@@ -218,6 +219,24 @@ def verify_sections(sectionx: iamraw.Sections) -> iamraw.Sections:
         before.end = current.end
         before.content.extend(current.content)
     return result
+
+
+def clean_collection(collected: dict) -> dict:
+    """Do not detect MainPart before Toc."""
+    tocrange = type_range(collected.items(), iamraw.sections.TableOfContent)
+    if not tocrange:
+        return collected
+    for page, content in collected.items():
+        if isinstance(content, iamraw.sections.Chapter):
+            if page < tocrange[0][0]:
+                # Chapter starts before TOC, ignore chapter detection to
+                # have MainPart after TOC.
+                collected[page] = iamraw.sections.Text(
+                    start=page,
+                    end=page,
+                    trust=1.0,
+                )
+    return collected
 
 
 def valid_section(

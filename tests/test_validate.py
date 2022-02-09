@@ -419,3 +419,23 @@ def test_sections_master193(testdir, monkeypatch):
     assert (intro.start, intro.end) == (0, 6)
     assert (mainpart.start, mainpart.end) == (6, 188)
     assert (appendix.start, appendix.end) == (188, 193)
+
+
+def test_sections_book173(testdir, monkeypatch):
+    """Do not detect MainPart before Toc."""
+    result = tests.sections_from_dir(
+        power.BOOK173_PDF,
+        testdir,
+        monkeypatch,
+        pages='0:30',
+    )
+    expected = [
+        iamraw.sections.Unknown,
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+    ]
+    check_sections(result, expected)
+    unknown, intro, mainpart = result
+    assert (unknown.start, unknown.end) == (0, 1)
+    assert (intro.start, intro.end) == (1, 13)
+    assert (mainpart.start, mainpart.end) == (13, 30)
