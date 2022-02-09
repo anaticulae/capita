@@ -70,13 +70,11 @@ def analyse_page(
     navigator: texmex.PageTextNavigator
 ) -> sections.feature.StatisticalResultItem:
     headlines = sections.utils.headline.headlines(navigator)
-    if headlines and utila.similar(
-            expected=elements.headline.lookup.GLOSSAR,
-            current=headlines,
-            maxdiff=0.95,
-    ):
-        # Gloassray headline on page
-        return len(navigator), len(navigator)
+    with_headline = headlines and utila.similar(
+        expected=elements.headline.lookup.GLOSSAR,
+        current=headlines,
+        maxdiff=0.95,
+    )
     try:
         alternated = geostrat.al_parse_page(navigator)
     except geostrat.AlternateGeometryException:
@@ -98,4 +96,7 @@ def analyse_page(
     if marker < MARKER_COUNT_MIN:
         # min marker
         marker = 0
+    if marker and with_headline:
+        # Glossary headline on page
+        return len(navigator), len(navigator)
     return len(navigator), marker
