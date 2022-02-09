@@ -144,7 +144,7 @@ def test_chapter_work_master98():
 @utilatest.longrun
 def test_chapter_work_paper18():
     """Regression test to ensure that chapter start is detected."""
-    source = power.link(power.PAPER18_PDF)
+    source = power.link(power.PAPER018_PDF)
     extracted = chapter(source)
 
     expected = [1]  # extend after upgrader chapter parser
