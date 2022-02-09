@@ -13,6 +13,8 @@
 []
 """
 
+import statistics
+
 import layout.double
 import pdfinfo.pages
 import utila
@@ -55,6 +57,9 @@ def group_percentage(  # pylint:disable=R1260,R0912
     bonus = 0
     grouped = []
     for page, percent in zip(pages_gen, percents):
+        density = []
+        if isinstance(percent, tuple):
+            percent, density = percent
         if failure and bonus % 3 == 0:  # pylint:disable=C2001
             failure -= 1
             bonus = 0
@@ -83,6 +88,11 @@ def group_percentage(  # pylint:disable=R1260,R0912
             continue
         # double column rate is higher than requested rate
         success = percent is not None and percent > double_column_min
+        density_mean = statistics.mean(density) if density else 0.0
+        if density_mean < layout.strategy.DOUBLE_COLUMN_HIGH_DENSITY:
+            # double page, but content is not dense enough. May an index
+            # page and not a paper.
+            success = False
         if not success:
             if grouped:
                 failure += 1
