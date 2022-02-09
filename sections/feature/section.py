@@ -523,3 +523,21 @@ def glossary_path(path: str, prefix: str = '') -> str:
         'glossary_likelihood',
         prefix,
     )
+
+
+def type_range(sectionx, typ):
+    pages = []
+    for section in sectionx:
+        if isinstance(section, typ):
+            pages.append(section.start)
+            pages.append(section.end)
+            continue
+        for page in section:
+            if isinstance(page, typ):
+                pages.append(page.start)
+    if not pages:
+        return None
+    pages = sorted(pages)
+    grouped = utila.groupby_diff(pages)
+    grouped = [(group[0], group[-1]) for group in grouped]
+    return grouped
