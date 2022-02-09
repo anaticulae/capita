@@ -59,27 +59,7 @@ def work(  # pylint:disable=R0913,R0914,W0613
     return dumped
 
 
-@dataclasses.dataclass
-class SectionsRequiredResources:
-    abbreviation: iamraw.PageContentLikelihoods
-    abstract: iamraw.PageContentLikelihoods
-    acknowledge: iamraw.PageContentLikelihoods
-    appendix: iamraw.PageContentLikelihoods
-    bibliography: iamraw.PageContentLikelihoods
-    chapter: iamraw.PageContentLikelihoods
-    figuretable: iamraw.PageContentLikelihoods
-    index: iamraw.PageContentLikelihoods
-    legal: iamraw.PageContentLikelihoods
-    paper: iamraw.PageContentLikelihoods
-    symboltable: iamraw.PageContentLikelihoods
-    tabletable: iamraw.PageContentLikelihoods
-    title: iamraw.PageContentLikelihoods
-    toc: iamraw.PageContentLikelihoods
-    whitepage: typing.List[iamraw.sections.WhitePage]
-    glossary: iamraw.PageContentLikelihoods
-
-
-def extract_sections(loaded: SectionsRequiredResources) -> iamraw.Sections:
+def extract_sections(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
     """Decide which `DocumentSection` is selected of the different
     feature extractor. If more than one feature suits very well, split
     page in different regions.
@@ -419,6 +399,26 @@ def determine_document_section(
             return iamraw.sections.Unknown
         return current
     return nextclass
+
+
+@dataclasses.dataclass
+class SectionsRequiredResources:
+    abbreviation: iamraw.PageContentLikelihoods
+    abstract: iamraw.PageContentLikelihoods
+    acknowledge: iamraw.PageContentLikelihoods
+    appendix: iamraw.PageContentLikelihoods
+    bibliography: iamraw.PageContentLikelihoods
+    chapter: iamraw.PageContentLikelihoods
+    figuretable: iamraw.PageContentLikelihoods
+    index: iamraw.PageContentLikelihoods
+    legal: iamraw.PageContentLikelihoods
+    paper: iamraw.PageContentLikelihoods
+    symboltable: iamraw.PageContentLikelihoods
+    tabletable: iamraw.PageContentLikelihoods
+    title: iamraw.PageContentLikelihoods
+    toc: iamraw.PageContentLikelihoods
+    whitepage: typing.List[iamraw.sections.WhitePage]
+    glossary: iamraw.PageContentLikelihoods
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
