@@ -94,6 +94,13 @@ def test_extract_sections_simple():
 
 
 def check_sections(result, expected):
+    utila.log('current')
+    for item in result:
+        utila.log(item)
+    utila.log()
+    utila.log('expected')
+    for item in expected:
+        utila.log(item)
     assert len(result) == len(expected)
     for current, wanted in zip(result, expected):
         current = current.__class__.__name__
