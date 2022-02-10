@@ -8,192 +8,185 @@
 #==============================================================================
 
 import utila
-from utila import ResultFile as RF
-from utila import create_step as step
-from utila import featurepack
 
-from sections import PROCESS
-from sections import ROOT
-from sections import __version__
+import sections
 
 DESCRIPTION = ('The sections tool analyses every single page of an pdf file '
                'and determines the likelihood to be an feature')
 
-ResultFile = lambda producer, name: RF(producer=producer, name=name)  # pylint:disable=C0103
-
 WORKPLAN = [
-    step(
+    utila.create_step(
         'abbreviation',
         inputs=[
-            ResultFile('rawmaker', 'text_text'),
-            ResultFile('rawmaker', 'text_positions'),
+            utila.ResultFile('rawmaker', 'text_text'),
+            utila.ResultFile('rawmaker', 'text_positions'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'abstract',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
-            ResultFile('rawmaker', 'oneline_text_positions'),
-            ResultFile('rawmaker', 'border_pages'),
-            ResultFile('groupme', 'footer_footerheader'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.ResultFile('rawmaker', 'border_pages'),
+            utila.ResultFile('groupme', 'footer_footerheader'),
             utila.File(name='pdfinfo', optional=True),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'acknowledge',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
-            ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'appendix',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
-            ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'bibliography',
         inputs=[
-            ResultFile('rawmaker', 'text_text'),
-            ResultFile('rawmaker', 'text_positions'),
+            utila.ResultFile('rawmaker', 'text_text'),
+            utila.ResultFile('rawmaker', 'text_positions'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'figuretable',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
-            ResultFile('rawmaker', 'oneline_text_positions'),
-            ResultFile('rawmaker', 'border_pages'),
-            ResultFile('groupme', 'footer_footerheader'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.ResultFile('rawmaker', 'border_pages'),
+            utila.ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'glossary',
         inputs=[
-            ResultFile('rawmaker', 'text_text'),
-            ResultFile('rawmaker', 'text_positions'),
+            utila.ResultFile('rawmaker', 'text_text'),
+            utila.ResultFile('rawmaker', 'text_positions'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'index',
         inputs=[
-            ResultFile('rawmaker', 'text_text'),
-            ResultFile('rawmaker', 'text_positions'),
-            ResultFile('rawmaker', 'border_pages'),
-            ResultFile('groupme', 'footer_footerheader'),
+            utila.ResultFile('rawmaker', 'text_text'),
+            utila.ResultFile('rawmaker', 'text_positions'),
+            utila.ResultFile('rawmaker', 'border_pages'),
+            utila.ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'legal',
         inputs=[
-            ResultFile('rawmaker', 'text_text'),
-            ResultFile('rawmaker', 'text_positions'),
+            utila.ResultFile('rawmaker', 'text_text'),
+            utila.ResultFile('rawmaker', 'text_positions'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'symboltable',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
-            ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'tabletable',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
-            ResultFile('rawmaker', 'oneline_text_positions'),
-            ResultFile('rawmaker', 'border_pages'),
-            ResultFile('groupme', 'footer_footerheader'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.ResultFile('rawmaker', 'border_pages'),
+            utila.ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'title',
         inputs=[
-            ResultFile('rawmaker', 'text_text'),
-            ResultFile('rawmaker', 'fonts_header'),
-            ResultFile('rawmaker', 'fonts_content'),
+            utila.ResultFile('rawmaker', 'text_text'),
+            utila.ResultFile('rawmaker', 'fonts_header'),
+            utila.ResultFile('rawmaker', 'fonts_content'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'toc',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
-            ResultFile('rawmaker', 'oneline_text_positions'),
-            ResultFile('rawmaker', 'border_pages'),
-            ResultFile('groupme', 'footer_footerheader'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.ResultFile('rawmaker', 'border_pages'),
+            utila.ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'whitepage',
         inputs=[
-            ResultFile('rawmaker', 'text_text'),
-            ResultFile('rawmaker', 'text_positions'),
-            ResultFile('groupme', 'footer_footerheader'),
+            utila.ResultFile('rawmaker', 'text_text'),
+            utila.ResultFile('rawmaker', 'text_positions'),
+            utila.ResultFile('groupme', 'footer_footerheader'),
             utila.Directory('rawmaker__images_images'),
             utila.Directory('rawmaker__figures_figures'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'chapter',
         inputs=[
-            ResultFile('rawmaker', 'oneline_text_text'),
-            ResultFile('rawmaker', 'oneline_text_positions'),
-            ResultFile('rawmaker', 'border_pages'),
-            ResultFile('groupme', 'footer_footerheader'),
-            ResultFile('rawmaker', 'outlines_outlines'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.ResultFile('rawmaker', 'border_pages'),
+            utila.ResultFile('groupme', 'footer_footerheader'),
+            utila.ResultFile('rawmaker', 'outlines_outlines'),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'paper',
         inputs=[
             utila.Value('pdf', typ=None, defaultvar=None),
         ],
         output=('likelihood',),
     ),
-    step(
+    utila.create_step(
         'section',
         inputs=[
-            ResultFile('sections', 'abbreviation_likelihood'),
-            ResultFile('sections', 'abstract_likelihood'),
-            ResultFile('sections', 'acknowledge_likelihood'),
-            ResultFile('sections', 'appendix_likelihood'),
-            ResultFile('sections', 'bibliography_likelihood'),
-            ResultFile('sections', 'chapter_likelihood'),
-            ResultFile('sections', 'figuretable_likelihood'),
-            ResultFile('sections', 'index_likelihood'),
-            ResultFile('sections', 'legal_likelihood'),
-            ResultFile('sections', 'paper_likelihood'),
-            ResultFile('sections', 'symboltable_likelihood'),
-            ResultFile('sections', 'tabletable_likelihood'),
-            ResultFile('sections', 'title_likelihood'),
-            ResultFile('sections', 'toc_likelihood'),
-            ResultFile('sections', 'whitepage_likelihood'),
-            ResultFile('sections', 'glossary_likelihood'),
+            utila.ResultFile('sections', 'abbreviation_likelihood'),
+            utila.ResultFile('sections', 'abstract_likelihood'),
+            utila.ResultFile('sections', 'acknowledge_likelihood'),
+            utila.ResultFile('sections', 'appendix_likelihood'),
+            utila.ResultFile('sections', 'bibliography_likelihood'),
+            utila.ResultFile('sections', 'chapter_likelihood'),
+            utila.ResultFile('sections', 'figuretable_likelihood'),
+            utila.ResultFile('sections', 'index_likelihood'),
+            utila.ResultFile('sections', 'legal_likelihood'),
+            utila.ResultFile('sections', 'paper_likelihood'),
+            utila.ResultFile('sections', 'symboltable_likelihood'),
+            utila.ResultFile('sections', 'tabletable_likelihood'),
+            utila.ResultFile('sections', 'title_likelihood'),
+            utila.ResultFile('sections', 'toc_likelihood'),
+            utila.ResultFile('sections', 'whitepage_likelihood'),
+            utila.ResultFile('sections', 'glossary_likelihood'),
         ],
         output=('result',),
     ),
-    step(
+    utila.create_step(
         'docinfo',
         inputs=[
-            ResultFile('sections', 'section_result'),
-            ResultFile('rawmaker', 'text_text'),
+            utila.ResultFile('sections', 'section_result'),
+            utila.ResultFile('rawmaker', 'text_text'),
             utila.File(name='pdfinfo', optional=True),
         ],
         output=('docinfo',),
@@ -202,17 +195,17 @@ WORKPLAN = [
 
 
 def main():
-    featurepack(
+    utila.featurepack(
         workplan=WORKPLAN,
-        root=ROOT,
+        root=sections.ROOT,
         featurepackage='sections.feature',
         config=utila.FeaturePackConfig(
             description=DESCRIPTION,
             multiprocessed=True,
-            name=PROCESS,
+            name=sections.PROCESS,
             pages=True,
             singleinput=False,  # require result folder, ignore single pdf file
             profileflag=True,
-            version=__version__,
+            version=sections.__version__,
         ),
     )
