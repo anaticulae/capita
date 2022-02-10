@@ -2,6 +2,25 @@
 
 Every noteable change is logged here.
 
+## v1.17.0
+
+### Feature
+
+* reduce amount of required patterns (9902d57b0cfb)
+* increase debugging information (f3ab4a78fd5d)
+* extend pattern list (0febca416f05)
+* add method to determine range of section (b364e1a5272d)
+
+### Fix
+
+* ensure that pdfinfo is optional (3bd83de00009)
+* do not detect MainPart before toc (1fc6a75c70b0)
+* the headline is not enough (4b6a43df8328)
+
+### Documentation
+
+* adjust modules path (e96692b38966)
+
 ## v1.16.0
 
 ### Feature
