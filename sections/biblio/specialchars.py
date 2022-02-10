@@ -123,6 +123,28 @@ def volume(text, verbose: bool = True):
     return result
 
 
+BIBS = utila.compiles(r"""
+(
+    Hrsg\.|
+    Aufl\.
+)
+""")
+
+
+def bibtext(text, verbose: bool = True):
+    """\
+    >>> bibtext(' Adler und Jung. 2. Aufl. Zürich 1996.')
+    [('Aufl.', 'Aufl.')]
+    """
+    result = []
+    for item in re.finditer(BIBS, text):
+        if verbose:
+            result.append((item[0], item[0]))
+        else:
+            result.append(item[0])
+    return result
+
+
 YEARS = utila.compiles(r'\b(((19|20)\d{2})[a-z]?)\b')
 
 
@@ -153,6 +175,7 @@ PATTERN = (
     german.authors,
     german.hyperlink,
     volume,
+    bibtext,
 )
 
 
