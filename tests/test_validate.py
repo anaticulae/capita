@@ -428,6 +428,7 @@ def test_sections_master193(testdir, monkeypatch):
     assert (appendix.start, appendix.end) == (188, 193)
 
 
+@utilatest.longrun
 def test_sections_book173(testdir, monkeypatch):
     """Do not detect MainPart before Toc."""
     result = tests.sections_from_dir(
