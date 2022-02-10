@@ -190,9 +190,10 @@ def special_pattern(raw: str, page: int) -> int:
     allmarker = len(collected)
     collected: set = set(collected)
     marker = len(collected)
-    marker_min = MARKER_COUNT_MIN(len(raw.splitlines()))
+    lines = len(raw.splitlines())
+    marker_min = MARKER_COUNT_MIN(lines)
     if marker < marker_min:
-        utila.debug(f'too few marker {page}: {marker}/{marker_min}')
+        utila.debug(f'too few marker p{page}/{lines}l: {marker}/{marker_min}')
         return 0
     pages = collect_and_replace(raw, (german.pagenumbers,))
     pagerate = len(pages) / allmarker
