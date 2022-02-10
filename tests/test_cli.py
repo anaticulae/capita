@@ -116,7 +116,7 @@ def test_run_sections_multicore(testdir, monkeypatch):
     # this step is required, cause the test generator already generates
     # this required items.
     # Copy yaml files which starts with rawmaker or groupme.
-    pattern = '(rawmaker|groupme)__*.yaml'
+    pattern = '(rawmaker|groupme|pdfinfo)*.yaml'
     utila.copy_content(source, testdir.tmpdir, pattern=pattern)
     jobs = 5
     cmd = f'-j{jobs} -i {testdir.tmpdir} -o {testdir.tmpdir} --pages=0:5 --all'
