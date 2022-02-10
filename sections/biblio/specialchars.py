@@ -207,8 +207,8 @@ def special_pattern(raw: str, page: int) -> int:
 MARKER_COUNT_MIN = configo.HolyTable(items=(
     (0, 5),
     (5, 5),
-    (10, 10),
-    (15, 15),
+    (10, 9),
+    (15, 13),
 ))
 
 
