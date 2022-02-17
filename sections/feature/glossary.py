@@ -71,7 +71,7 @@ def analyse_page(
 ) -> sections.feature.StatisticalResultItem:
     headlines = sections.utils.headline.headlines(navigator)
     with_headline = headlines and utila.similar(
-        expected=elements.headline.lookup.GLOSSAR,
+        expected=elements.GLOSSARY,
         current=headlines,
         maxdiff=0.95,
     )
