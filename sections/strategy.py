@@ -160,7 +160,7 @@ def merge_second(
             start = index
             break
     if start == -1:
-        utila.error(f'could not find {title} start; merge_second not possible')
+        utila.debug(f'could not find {title} start; merge_second not possible')
         return extracted
     start += 1
     for index, item in enumerate(without[start:], start=start):
