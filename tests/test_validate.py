@@ -153,46 +153,72 @@ def test_sections_master72(testdir, monkeypatch):
     assert chapternumbers == expected
 
 
-@utilatest.nightly
-@utilatest.requires(power.BACHELOR090_PDF)
-def test_sections_bachelor90(testdir, monkeypatch):
-    result = tests.sections_from_dir(
-        power.BACHELOR090_PDF,
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
-    )
-    expected = [
-        iamraw.sections.Unknown,
+# TODO: DOCU027_PDF:iamraw.sections.Table: REPLACE WITH APPENDIX?
+SECTIONS_X = [
+    (power.DOCU027_PDF, (
         iamraw.sections.Introduction,
-        iamraw.MainPart,
+        iamraw.sections.MainPart,
+        iamraw.sections.Table,
+    )),
+    (power.BACHELOR090_PDF, (
+        (iamraw.sections.Unknown, 0, 1),
+        (iamraw.sections.Introduction, 1, 12),
+        (iamraw.MainPart, 12, 76),
+        (iamraw.sections.Appendix, 76, 90),
+    )),
+    (power.BACHELOR128_PDF, (
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
         iamraw.sections.Appendix,
-    ]
-    check_sections(result, expected)
-    unknown, intro, mainpart, appendix = result
-    assert (unknown.start, unknown.end) == (0, 1)
-    assert (intro.start, intro.end) == (1, 12)
-    assert (mainpart.start, mainpart.end) == (12, 76)
-    assert (appendix.start, appendix.end) == (76, 90)
+    )),
+    (power.MASTER031_PDF, (
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    )),
+    (power.MASTER116_PDF, (
+        (iamraw.sections.Introduction, 0, 8),
+        (iamraw.MainPart, 8, 88),
+        (iamraw.sections.Appendix, 88, 116),
+    )),
+    (power.DISS264_PDF, (
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    )),
+]
+SECTIONS_X = [
+    pytest.param(
+        source,
+        pages,
+        id=utila.file_name(source),
+    ) for source, pages in SECTIONS_X
+]
 
 
 @utilatest.nightly
-@utilatest.requires(power.MASTER116_PDF)
-def test_sections_master116(testdir, monkeypatch):
+@pytest.mark.parametrize('source, expected', SECTIONS_X)
+def test_sections_x(source, expected, testdir, monkeypatch):
+    """\
+    DOCU:027 Regression test to ensure that no bib is detected on first
+             page. Before fixing, there was a divided title/bib page.
+    """
+    utilatest.fixture_requires(source)
     result = tests.sections_from_dir(
-        power.MASTER116_PDF,
+        source,
         path=testdir.tmpdir,
         monkeypatch=monkeypatch,
     )
-    expected = [
-        iamraw.sections.Introduction,
-        iamraw.MainPart,
-        iamraw.sections.Appendix,
-    ]
-    check_sections(result, expected)
-    intro, mainpart, appendix = result
-    assert (intro.start, intro.end) == (0, 8)
-    assert (mainpart.start, mainpart.end) == (8, 88)
-    assert (appendix.start, appendix.end) == (88, 116)
+    pages = isinstance(expected[0], tuple)
+    expected_sections = [item[0] for item in expected] if pages else expected
+    check_sections(result, expected_sections)
+    if not pages:
+        # no expected pages given
+        return
+    # pages
+    expected_pages = [(item[1], item[2]) for item in expected]
+    current_pages = [(item.start, item.end) for item in result]
+    assert current_pages == expected_pages
 
 
 @pytest.mark.xfail(reason='too optimistic parser')
@@ -221,56 +247,6 @@ def test_sections_docu35(testdir, monkeypatch):
 
 
 @utilatest.nightly
-@utilatest.requires(power.DISS264_PDF)
-def test_sections_diss264(testdir, monkeypatch):
-    result = tests.sections_from_dir(
-        power.DISS264_PDF,
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
-    )
-    expected = [
-        iamraw.sections.Introduction,
-        iamraw.MainPart,
-        iamraw.sections.Appendix,
-    ]
-    check_sections(result, expected)
-
-
-@utilatest.nightly
-@utilatest.requires(power.MASTER031_PDF)
-def test_sections_master31(testdir, monkeypatch):
-    result = tests.sections_from_dir(
-        power.MASTER031_PDF,
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
-    )
-    expected = [
-        iamraw.sections.Introduction,
-        iamraw.sections.MainPart,
-        iamraw.sections.Appendix,
-    ]
-    check_sections(result, expected)
-
-
-@utilatest.nightly
-@utilatest.requires(power.DOCU027_PDF)
-def test_sections_docu27(testdir, monkeypatch):
-    """Regression test to ensure that no bib is detected on first page.
-    Before fixing, there was a divided title/bib page."""
-    result = tests.sections_from_dir(
-        power.DOCU027_PDF,
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
-    )
-    expected = [
-        iamraw.sections.Introduction,
-        iamraw.sections.MainPart,
-        iamraw.sections.Table,  # TODO: REPLACE WITH APPENDIX?
-    ]
-    check_sections(result, expected)
-
-
-@utilatest.nightly
 @utilatest.requires(power.MASTER112_PDF)
 def test_sections_master112(testdir, monkeypatch):
     """Add test to ensure, that toc is not parsed as bib."""
@@ -287,22 +263,6 @@ def test_sections_master112(testdir, monkeypatch):
     # page 5
     expected_toc = result[0].content[5]
     assert isinstance(expected_toc, iamraw.sections.TableOfContent)
-
-
-@utilatest.nightly
-@utilatest.requires(power.BACHELOR128_PDF)
-def test_sections_bachelor128(testdir, monkeypatch):
-    result = tests.sections_from_dir(
-        power.BACHELOR128_PDF,
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
-    )
-    expected = [
-        iamraw.sections.Introduction,
-        iamraw.sections.MainPart,
-        iamraw.sections.Appendix,
-    ]
-    check_sections(result, expected)
 
 
 @utilatest.nightly
