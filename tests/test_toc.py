@@ -37,7 +37,7 @@ def test_extract_toc_likelihood():
 def test_extract_toc_likelihood_bachelor63():
     text = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.BACHELOR063_PDF),
-        pages=utila.ranged_tuple(0, 8),
+        pages=utila.rtuple(8),
         prefix='oneline',
     )
     extracted = sections.strategy.extract_xxx_likelihood(
@@ -59,7 +59,7 @@ def test_extract_toc_likelihood_master72():
     complete table of content."""
     text = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.MASTER072_PDF),
-        pages=utila.ranged_tuple(0, 8),
+        pages=utila.rtuple(8),
         prefix='oneline',
     )
     extracted = sections.strategy.extract_xxx_likelihood(
@@ -111,7 +111,7 @@ def extract_toc(
     pytest.param(power.MASTER155_PDF, [1, 2], id='master155'),
     pytest.param(power.MASTER091A_PDF, [3, 4], id='master91a'),
     pytest.param(power.DISS172_PDF, [7, 8], id='diss172'),
-    pytest.param(power.DISS406_PDF, utila.ranged_list(3, 12), id='diss406'),
+    pytest.param(power.DISS406_PDF, utila.rlist(3, 12), id='diss406'),
     pytest.param(power.BOOK173_PDF, [9, 10, 11, 12], id='book173'),
 ])
 @utilatest.longrun
@@ -120,7 +120,7 @@ def test_toc_extract(source, expected):
     # run
     result = extract_toc(
         source=source,
-        pages=utila.ranged_tuple(0, 15),
+        pages=utila.rtuple(15),
     )
     # verify result
     pages = [item.page for item in result if item.content.value]

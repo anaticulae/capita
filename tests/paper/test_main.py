@@ -31,7 +31,7 @@ def test_paper_bachelor111():
     source = power.BACHELOR111_PDF
     detected = sections.paper.main.detect_paper(
         source,
-        pages=utila.ranged_tuple(100, 115),
+        pages=utila.rtuple(100, 115),
     )
     assert not detected
 

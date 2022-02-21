@@ -55,7 +55,7 @@ def fill_empty(items: list) -> list:
     start, end = result[0].page, result[-1].page
     done = {item.page for item in result}
     avg = result[0].content.value
-    for page in utila.ranged_list(start, end):
+    for page in utila.rlist(start, end):
         if page in done:
             continue
         result.append(

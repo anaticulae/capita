@@ -69,7 +69,7 @@ def test_no_abbreviations_master193():
 def test_abbreviations_diss167_four_pages():
     extracted = abbreviations(
         power.DISS167_PDF,
-        pages=utila.ranged_list(10, 20),
+        pages=utila.rlist(10, 20),
     )
     pages = [item.page for item in extracted if item.content.value]
     expected = [11, 12, 13, 14, 15, 16]
@@ -80,10 +80,10 @@ def test_abbreviations_diss167_four_pages():
 def test_abbreviations_diss406():
     extracted = abbreviations(
         power.DISS406_PDF,
-        pages=utila.ranged_list(0, 30),
+        pages=utila.rlist(30),
     )
     pages = [item.page for item in extracted if item.content.value]
-    expected = utila.ranged_list(13, 22)
+    expected = utila.rlist(13, 22)
     assert pages == expected
 
 

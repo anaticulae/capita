@@ -26,7 +26,7 @@ RESTRUCT_EXPECTED = (
     [3, 5, 7, 11, 19, 21, 23, 25],
 )
 # CONTENT, BLANK, WHITE
-MASTER155_EXPECTED = (utila.ranged_list(0, 155), [], [])
+MASTER155_EXPECTED = (utila.rlist(155), [], [])
 
 
 def current(items):
