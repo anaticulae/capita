@@ -17,7 +17,6 @@ import dataclasses
 
 import iamraw
 import serializeraw
-import texmex
 
 import sections.feature
 
@@ -40,23 +39,18 @@ class Data:
 
 def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
     assert config.page_analysis
-
     page_analysis = config.page_analysis
-
     pages = tuple(data.pages) if data.pages else None
-    text = serializeraw.load_document(data.document, pages=pages)
-    textposition = serializeraw.load_textpositions(data.position, pages=pages)
-    navigators = texmex.create_pagetextnavigators(
-        text=text,
-        text_positions=textposition,
+    navigators = serializeraw.ptn_fromfile(
+        text=data.document,
+        textpositions=data.position,
         fill_empty=False,
+        pages=pages,
     )
     result = {page.page: page_analysis(page) for page in navigators}
-
     uniformed = sections.feature.multiform_result(result)
     if uniformed is None:
         uniformed = sections.feature.uniform_result(result)
-
     likelihood = [
         iamraw.PageContentLikelihood(
             page=page,
