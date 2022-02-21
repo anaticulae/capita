@@ -102,5 +102,4 @@ def test_bibliography_x(source, expected, testdir, monkeypatch):
 ])
 def test_nobib_x(source, pages, testdir, monkeypatch):
     detected = extract_bibliography(source, pages, testdir, monkeypatch)
-    print(detected)
     assert not detected
