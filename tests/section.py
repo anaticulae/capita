@@ -7,8 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import functools
+
 import iamraw
 import power
+import utila
 
 import sections.feature.abbreviation
 import sections.feature.abstract
@@ -43,97 +46,113 @@ def extract_sections_frompath(  # pylint:disable=R0914
     fontcontent = iamraw.path.fontcontent(path, prefix=prefix)
     sizeandborder = iamraw.path.sizeandborder(path, prefix=prefix)
     footers = iamraw.path.headerfooters(path, prefix=prefix)
-
-    abstract = sections.feature.abstract.work(
-        text,
-        textposition,
-        sizeandborder,
-        footers,
-        pages=pages,
-    )
-    chapter = sections.feature.chapter.work(
-        text,
-        textposition,
-        sizeandborder,
-        footers,
-        toc,
-        pages=pages,
-    )
-    abbreviation = sections.feature.abbreviation.work(
-        text,
-        textposition,
-        pages=pages,
-    )
-    appendix = sections.feature.appendix.work(
-        text,
-        textposition,
-        pages=pages,
-    )
-    figuretable = sections.feature.figuretable.work(
-        text,
-        textposition,
-        sizeandborder,
-        footers,
-        pages=pages,
-    )
-    bibliography = sections.feature.bibliography.work(
-        text,
-        textposition,
-        pages=pages,
-    )
-    legal = sections.feature.legal.work(text, textposition, pages=pages)
-    index = sections.feature.index.work(
-        text,
-        textposition,
-        sizeandborder,
-        footers,
-        pages=pages,
-    )
-    title = sections.feature.title.work(
-        text,
-        fontheader,
-        fontcontent,
-        pages=pages,
-    )
-    symboltable = sections.feature.symboltable.work(
-        text,
-        textposition,
-        pages=pages,
-    )
-    tabletable = sections.feature.tabletable.work(
-        text,
-        textposition,
-        sizeandborder,
-        footers,
-        pages=pages,
-    )
-    toc = sections.feature.toc.work(
-        text,
-        textposition,
-        sizeandborder,
-        footers,
-        pages=pages,
-    )
-    whitepage = sections.feature.whitepage.work(
-        text,
-        textposition,
-        footers=footers,
-        pages=pages,
-    )
-    acknowledge = sections.feature.acknowledge.work(
-        text,
-        textposition,
-        pages=pages,
-    )
-    glossary = sections.feature.glossary.work(
-        text,
-        textposition,
-        pages=pages,
-    )
-    paper = sections.feature.paper.work(
-        pdf,
-        pages=pages,
-    )
+    profile = functools.partial(utila.profile, always=True)
+    with profile('abstract'):
+        abstract = sections.feature.abstract.work(
+            text,
+            textposition,
+            sizeandborder,
+            footers,
+            pages=pages,
+        )
+    with profile('chapter'):
+        chapter = sections.feature.chapter.work(
+            text,
+            textposition,
+            sizeandborder,
+            footers,
+            toc,
+            pages=pages,
+        )
+    with profile('abbreviation'):
+        abbreviation = sections.feature.abbreviation.work(
+            text,
+            textposition,
+            pages=pages,
+        )
+    with profile('appendix'):
+        appendix = sections.feature.appendix.work(
+            text,
+            textposition,
+            pages=pages,
+        )
+    with profile('figuretable'):
+        figuretable = sections.feature.figuretable.work(
+            text,
+            textposition,
+            sizeandborder,
+            footers,
+            pages=pages,
+        )
+    with profile('bibliography'):
+        bibliography = sections.feature.bibliography.work(
+            text,
+            textposition,
+            pages=pages,
+        )
+    with profile('legal'):
+        legal = sections.feature.legal.work(text, textposition, pages=pages)
+    with profile('index'):
+        index = sections.feature.index.work(
+            text,
+            textposition,
+            sizeandborder,
+            footers,
+            pages=pages,
+        )
+    with profile('title'):
+        title = sections.feature.title.work(
+            text,
+            fontheader,
+            fontcontent,
+            pages=pages,
+        )
+    with profile('symboltable'):
+        symboltable = sections.feature.symboltable.work(
+            text,
+            textposition,
+            pages=pages,
+        )
+    with profile('tabletable'):
+        tabletable = sections.feature.tabletable.work(
+            text,
+            textposition,
+            sizeandborder,
+            footers,
+            pages=pages,
+        )
+    with profile('toc'):
+        toc = sections.feature.toc.work(
+            text,
+            textposition,
+            sizeandborder,
+            footers,
+            pages=pages,
+        )
+    with profile('whitepage'):
+        whitepage = sections.feature.whitepage.work(
+            text,
+            textposition,
+            footers=footers,
+            pages=pages,
+        )
+    with profile('acknowledge'):
+        acknowledge = sections.feature.acknowledge.work(
+            text,
+            textposition,
+            pages=pages,
+        )
+    with profile('glossary'):
+        glossary = sections.feature.glossary.work(
+            text,
+            textposition,
+            pages=pages,
+        )
+    with profile('paper'):
+        paper = sections.feature.paper.work(
+            pdf,
+            pages=pages,
+        )
     loaded = sections.feature.section.load_features(
         abbreviation,
         abstract,
