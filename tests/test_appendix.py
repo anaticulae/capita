@@ -30,7 +30,7 @@ def appendix(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     return loaded
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_appendix_diss170():
     extracted = appendix(power.DISS170_PDF)
     page163 = utila.select_page(extracted, 163)

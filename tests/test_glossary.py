@@ -21,7 +21,7 @@ def test_glossary_work_diss143():
     assert pages == [127, 128, 129, 130]
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.BOOK173_PDF)
 def test_glossary_work_book173():
     """Do not detect page 142 as glossary. It's just a page about glossaries."""

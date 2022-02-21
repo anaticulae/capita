@@ -38,7 +38,7 @@ def test_validate_docu027(docu027_sections_manual):
 
 
 @pytest.mark.xfail(reason='chapter detector is too optimistic')
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.DOCU027_PDF)
 def test_extract_sections_docu027(
     testdir,
@@ -108,7 +108,7 @@ def check_sections(result, expected):
         assert current == wanted, f'{current} != {wanted}'
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.DOCU007_PDF)
 def test_sections_simple():
     """Check dumped result of section work method"""
@@ -262,7 +262,7 @@ def test_sections_bachelor128():
     check_sections(result, expected)
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.MASTER075_PDF)
 def test_sections_master075_appendix():
     result = tests.section.extract_sections_frompath(
@@ -428,7 +428,7 @@ def test_sections_master193(testdir, monkeypatch):
     assert (appendix.start, appendix.end) == (188, 193)
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_sections_book173(testdir, monkeypatch):
     """Do not detect MainPart before Toc."""
     result = tests.sections_from_dir(

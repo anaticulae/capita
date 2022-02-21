@@ -59,7 +59,7 @@ def test_no_abbreviations_bachelor111page56():
     assert not extracted[0].content.value
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_no_abbreviations_master193():
     extracted = abbreviations(power.MASTER193_PDF)
     pages = [item.content.value for item in extracted]
