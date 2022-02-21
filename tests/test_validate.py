@@ -18,7 +18,6 @@ import utilatest
 import sections.creator
 import sections.feature.section
 import tests
-import tests.section
 
 # TODO: MOVE TESTS FROM test_cli.py
 
@@ -80,8 +79,12 @@ HOWTO_PYPORTING_CHAPTER_PAGE_COUNT = 2
 @pytest.mark.xfail(reason='require multiple page toc detector')
 @utilatest.nightly
 @utilatest.requires(power.DOCU007_PDF)
-def test_extract_sections_simple():
-    result = tests.section.extract_sections_frompath(power.DOCU007_PDF)
+def test_extract_sections_simple(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.DOCU007_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.MultipleSection,
         iamraw.MainPart,
@@ -110,9 +113,13 @@ def check_sections(result, expected):
 
 @utilatest.nightly
 @utilatest.requires(power.DOCU007_PDF)
-def test_sections_simple():
+def test_sections_simple(testdir, monkeypatch):
     """Check dumped result of section work method"""
-    simple_sections = tests.section.extract_sections_frompath(power.DOCU007_PDF)
+    simple_sections = tests.sections_from_dir(
+        power.DOCU007_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     assert len(simple_sections) == 2, len(simple_sections)
     dumped = serializeraw.dump_sections(simple_sections)
     assert len(dumped) > 100, dumped
@@ -122,12 +129,16 @@ def test_sections_simple():
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER072_PDF)
-def test_sections_master72():
+def test_sections_master72(testdir, monkeypatch):
     """Ensure that BUILDER in section is sorted correctly. There is a
     problem if we sort TOC and Title alphabetically. To avoid this
     problem this test ensure that sorting due the developer is done
     correctly."""
-    result = tests.section.extract_sections_frompath(power.MASTER072_PDF)
+    result = tests.sections_from_dir(
+        power.MASTER072_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     # page 0 is title page
     assert isinstance(result[0], iamraw.sections.Introduction), type(result[0])
     # page 1 and 2 is introduction
@@ -144,8 +155,12 @@ def test_sections_master72():
 
 @utilatest.nightly
 @utilatest.requires(power.BACHELOR090_PDF)
-def test_sections_bachelor90():
-    result = tests.section.extract_sections_frompath(power.BACHELOR090_PDF)
+def test_sections_bachelor90(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.BACHELOR090_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Unknown,
         iamraw.sections.Introduction,
@@ -162,8 +177,12 @@ def test_sections_bachelor90():
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER116_PDF)
-def test_sections_master116():
-    result = tests.section.extract_sections_frompath(power.MASTER116_PDF)
+def test_sections_master116(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.MASTER116_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,
@@ -179,8 +198,12 @@ def test_sections_master116():
 @pytest.mark.xfail(reason='too optimistic parser')
 @utilatest.nightly
 @utilatest.requires(power.DOCU035_PDF)
-def test_sections_docu35():
-    result = tests.section.extract_sections_frompath(power.DOCU035_PDF)
+def test_sections_docu35(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.DOCU035_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,
@@ -199,8 +222,12 @@ def test_sections_docu35():
 
 @utilatest.nightly
 @utilatest.requires(power.DISS264_PDF)
-def test_sections_diss264():
-    result = tests.section.extract_sections_frompath(power.DISS264_PDF)
+def test_sections_diss264(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.DISS264_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.MainPart,
@@ -211,8 +238,12 @@ def test_sections_diss264():
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER031_PDF)
-def test_sections_master31():
-    result = tests.section.extract_sections_frompath(power.MASTER031_PDF)
+def test_sections_master31(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.MASTER031_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -223,10 +254,14 @@ def test_sections_master31():
 
 @utilatest.nightly
 @utilatest.requires(power.DOCU027_PDF)
-def test_sections_docu27():
+def test_sections_docu27(testdir, monkeypatch):
     """Regression test to ensure that no bib is detected on first page.
     Before fixing, there was a divided title/bib page."""
-    result = tests.section.extract_sections_frompath(power.DOCU027_PDF)
+    result = tests.sections_from_dir(
+        power.DOCU027_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -237,9 +272,13 @@ def test_sections_docu27():
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER112_PDF)
-def test_sections_master112():
+def test_sections_master112(testdir, monkeypatch):
     """Add test to ensure, that toc is not parsed as bib."""
-    result = tests.section.extract_sections_frompath(power.MASTER112_PDF)
+    result = tests.sections_from_dir(
+        power.MASTER112_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -252,8 +291,12 @@ def test_sections_master112():
 
 @utilatest.nightly
 @utilatest.requires(power.BACHELOR128_PDF)
-def test_sections_bachelor128():
-    result = tests.section.extract_sections_frompath(power.BACHELOR128_PDF)
+def test_sections_bachelor128(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.BACHELOR128_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -264,10 +307,12 @@ def test_sections_bachelor128():
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER075_PDF)
-def test_sections_master075_appendix():
-    result = tests.section.extract_sections_frompath(
+def test_sections_master075_appendix(testdir, monkeypatch):
+    result = tests.sections_from_dir(
         power.MASTER075_PDF,
-        pages=(70, 71, 72, 73, 74),
+        pages='70,71,72,73,74',
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
     )
     result = result[0]
     assert isinstance(result, iamraw.sections.Appendix)
@@ -292,8 +337,12 @@ def test_sections_master075_appendix():
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER091A_PDF)
-def test_sections_master91a():
-    result = tests.section.extract_sections_frompath(power.MASTER091A_PDF)
+def test_sections_master91a(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.MASTER091A_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
@@ -308,8 +357,12 @@ def test_sections_master91a():
 
 @utilatest.nightly
 @utilatest.requires(power.DISS148_PDF)
-def test_sections_diss148():
-    result = tests.section.extract_sections_frompath(power.DISS148_PDF)
+def test_sections_diss148(testdir, monkeypatch):
+    result = tests.sections_from_dir(
+        power.DISS148_PDF,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     expected = [
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,

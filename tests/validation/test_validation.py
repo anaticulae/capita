@@ -12,7 +12,6 @@ import pytest
 import utila
 import utilatest
 
-import tests.section
 import tests.validation.bachelor
 import tests.validation.master
 
@@ -45,10 +44,14 @@ SECTIONS.update(tests.validation.master.MASTER)
     ],
 )
 @utilatest.nightly
-def test_run_validation(source, expected):
+def test_run_validation(source, expected, testdir, monkeypatch):
     utilatest.fixture_requires(source)
     # run extractor
-    extracted = tests.section.extract_sections_frompath(source)
+    extracted = tests.sections_from_dir(
+        pdf=source,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
     # validate
     content = [item.__class__ for item in extracted]
     sectiontype = [item[0] for item in expected]
