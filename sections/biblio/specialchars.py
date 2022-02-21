@@ -169,13 +169,13 @@ def years(raw: str, min_=1950, max_=2025, verbose: bool = False):
 
 
 PATTERN = (
-    german.dates,
-    years,
-    german.pagenumbers,
-    german.authors,
     german.hyperlink,
+    german.authors,
     volume,
     bibtext,
+    german.dates,
+    german.pagenumbers,
+    years,
 )
 
 
