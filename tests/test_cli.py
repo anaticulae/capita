@@ -7,98 +7,20 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import iamraw.sections
 import power
 import pytest
-import serializeraw
 import utila
 import utilatest
 
-import sections
 import tests
 
 
-def validate(current, expected):
-    current = [(type(item), item.start, item.end) for item in current]
-    assert current == expected
-
-
-def diss266(result):
-    expected = [
-        (iamraw.sections.Introduction, 0, 9),
-        (iamraw.sections.MainPart, 9, 214),
-        (iamraw.sections.Appendix, 214, 266),
-    ]
-    validate(result, expected)
-
-
-def bachelor37(result):
-    expected = [
-        (iamraw.sections.Introduction, 0, 6),
-        (iamraw.sections.MainPart, 6, 33),
-        (iamraw.sections.Appendix, 33, 37),
-    ]
-    validate(result, expected)
-
-
-def diss170(result):
-    expected = [
-        (iamraw.sections.Introduction, 0, 6),
-        (iamraw.sections.MainPart, 6, 141),
-        (iamraw.sections.Appendix, 141, 170),
-    ]
-    validate(result, expected)
-
-
-def master83(result):
-    expected = [
-        (iamraw.sections.Introduction, 0, 4),
-        (iamraw.sections.MainPart, 4, 75),
-        (iamraw.sections.Appendix, 75, 83),
-    ]
-    validate(result, expected)
-
-
-def bachelor111(result):
-    expected = [
-        (iamraw.sections.Introduction, 0, 5),
-        (iamraw.sections.MainPart, 5, 83),
-        (iamraw.sections.Appendix, 83, 111),
-    ]
-    validate(result, expected)
-
-
-@pytest.mark.parametrize('pdf, expected', [
-    pytest.param(power.BACHELOR037_PDF, bachelor37, id='bachelor37'),
-    pytest.param(power.BACHELOR063_PDF, None, id='bachelor63'),
-    pytest.param(power.BACHELOR111_PDF, bachelor111, id='bachelor111'),
-    pytest.param(power.DISS266_PDF, diss266, id='diss266'),
-    pytest.param(power.DOCU007_PDF, None, id='howto'),
-    pytest.param(power.DOCU009_PDF, None, id='docu007'),
-    pytest.param(power.DOCU027_PDF, None, id='docu027'),
-    pytest.param(power.DISS170_PDF, diss170, id='diss170'),
-    pytest.param(power.MASTER083_PDF, master83, id='master83'),
-])
-@utilatest.nightly
-def test_run_sections(pdf, expected, testdir, monkeypatch):
-    utilatest.fixture_requires(pdf)
-    source = power.link(pdf)
-    command = f'-i {source} --pdf={pdf}'
-    # run sections
-    tests.run_sections(command, monkeypatch=monkeypatch)
-    # validate result
-    loaded = serializeraw.load_sections(sections.path.sections_(testdir.tmpdir))
-    if not expected:
-        return
-    expected(loaded)
-
-
-@pytest.mark.parametrize('command', [
+@pytest.mark.parametrize('cmd', [
     pytest.param(f'-i {power.DOCU027_PDF} -o . --all', id='docu27'),
 ])
-def test_run_sections_failed(command, testdir, monkeypatch):  #pylint: disable=W0613
+def test_run_sections_failed(cmd, testdir, monkeypatch):  #pylint: disable=W0613
     """Run `sections` with bad input"""
-    tests.run_sections_failure(command, monkeypatch=monkeypatch)
+    tests.run_sections_failure(cmd, monkeypatch=monkeypatch)
 
 
 @utilatest.nightly

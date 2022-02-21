@@ -20,7 +20,7 @@ def test_docinfo_lang(testdir, monkeypatch):
     pdf = power.DISS406_PDF
     utilatest.fixture_requires(pdf)
     source = power.link(pdf)
-    command = f'-i {source} -o {testdir.tmpdir} --pages=0:10'
-    tests.run_sections(command, monkeypatch=monkeypatch)
+    cmd = f'-i {source} -o {testdir.tmpdir} --pages=0:10'
+    tests.run_sections(cmd, monkeypatch=monkeypatch)
     docinfo = serializeraw.load_docinfo(testdir.tmpdir)
     assert docinfo.lang == iamraw.Language.GERMAN

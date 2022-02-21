@@ -23,16 +23,41 @@ import tests
 
 # TODO: DOCU027_PDF:iamraw.sections.Table: REPLACE WITH APPENDIX?
 SECTIONS_X = [
+    (power.DOCU007_PDF, (
+        iamraw.sections.Unknown,
+        iamraw.sections.MainPart,
+    )),
+    (power.DOCU009_PDF, (
+        iamraw.sections.Unknown,
+        iamraw.sections.MainPart,
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+    )),
     (power.DOCU027_PDF, (
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
         iamraw.sections.Table,
+    )),
+    (power.BACHELOR037_PDF, (
+        (iamraw.sections.Introduction, 0, 6),
+        (iamraw.sections.MainPart, 6, 33),
+        (iamraw.sections.Appendix, 33, 37),
+    )),
+    (power.BACHELOR063_PDF, (
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
     )),
     (power.BACHELOR090_PDF, (
         (iamraw.sections.Unknown, 0, 1),
         (iamraw.sections.Introduction, 1, 12),
         (iamraw.MainPart, 12, 76),
         (iamraw.sections.Appendix, 76, 90),
+    )),
+    (power.BACHELOR111_PDF, (
+        (iamraw.sections.Introduction, 0, 5),
+        (iamraw.sections.MainPart, 5, 83),
+        (iamraw.sections.Appendix, 83, 111),
     )),
     (power.BACHELOR128_PDF, (
         iamraw.sections.Introduction,
@@ -44,15 +69,30 @@ SECTIONS_X = [
         iamraw.sections.MainPart,
         iamraw.sections.Appendix,
     )),
+    (power.MASTER083_PDF, (
+        (iamraw.sections.Introduction, 0, 4),
+        (iamraw.sections.MainPart, 4, 75),
+        (iamraw.sections.Appendix, 75, 83),
+    )),
     (power.MASTER116_PDF, (
         (iamraw.sections.Introduction, 0, 8),
         (iamraw.MainPart, 8, 88),
         (iamraw.sections.Appendix, 88, 116),
     )),
+    (power.DISS170_PDF, (
+        (iamraw.sections.Introduction, 0, 6),
+        (iamraw.sections.MainPart, 6, 141),
+        (iamraw.sections.Appendix, 141, 170),
+    )),
     (power.DISS264_PDF, (
         iamraw.sections.Introduction,
         iamraw.sections.MainPart,
         iamraw.sections.Appendix,
+    )),
+    (power.DISS266_PDF, (
+        (iamraw.sections.Introduction, 0, 9),
+        (iamraw.sections.MainPart, 9, 214),
+        (iamraw.sections.Appendix, 214, 266),
     )),
 ]
 SECTIONS_X = [
