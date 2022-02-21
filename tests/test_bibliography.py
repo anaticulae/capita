@@ -76,21 +76,19 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     assert max(diff) == 1, diff
 
 
-# yapf:disable
+# pytest.param(power.DISS406_PDF, utila.rlist(343, 406), id='diss406'),
 @pytest.mark.parametrize('source, expected', [
-    pytest.param(power.BACHELOR037_PDF, [33, 34, 35, 36], id='bachelor37'),
-    pytest.param(power.BACHELOR128_PDF, [96, 97, 98, 99, 100, 101, 102, 103], id='bachelor128'),
-    pytest.param(power.HOME018_PDF, [17], id='home18'),
-    pytest.param(power.PAPER018_PDF, [15, 16, 17], id='paper018'),
-    pytest.param(power.MASTER110_PDF, [104, 105, 106, 107, 108], id='master110'),
-    pytest.param(power.BACHELOR090_PDF, [84, 85, 86, 87, 88], id='bachelor90'),
+    pytest.param(power.BACHELOR037_PDF, [33, 34, 35, 36], id='bachelor037'),
+    pytest.param(power.BACHELOR090_PDF, [84, 85, 86, 87, 88], id='bachelor090'),
+    pytest.param(power.BACHELOR128_PDF, utila.rlist(96, 104), id='bachelor128'),
+    pytest.param(power.BOOK173_PDF, [], id='book173'),
     pytest.param(power.DISS266_PDF, utila.rlist(214, 246), id='diss266'),
     pytest.param(power.DISS406_PDF, [], id='diss406'),
-    # pytest.param(power.DISS406_PDF, utila.rlist(343, 406), id='diss406'),
-    pytest.param(power.MASTER193_PDF, [188,189,190], id='master193'),
-    pytest.param(power.BOOK173_PDF, [], id='book173'),
+    pytest.param(power.HOME018_PDF, [17], id='home018'),
+    pytest.param(power.MASTER110_PDF, utila.rlist(104, 109), id='master110'),
+    pytest.param(power.MASTER193_PDF, [188, 189, 190], id='master193'),
+    pytest.param(power.PAPER018_PDF, [15, 16, 17], id='paper018'),
 ])
-# yapf:enable
 @utilatest.nightly
 def test_bibliography_x(source, expected, testdir, monkeypatch):
     pages = extract_bibliography(source, ':', testdir, monkeypatch)
