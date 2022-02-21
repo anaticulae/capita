@@ -81,12 +81,12 @@ def bib_headline(ptn: texmex.PageTextNavigator) -> bool:
     headlines = sections.utils.headline.headlines(ptn)
     if not headlines:
         return False
-    smilar = utila.similar(
+    similar = utila.similar(
         expected=elements.headline.lookup.BIBLIOGRAPHY,
         current=headlines,
         maxdiff=0.95,
     )
-    if not smilar:
+    if not similar:
         return False
     return True
 
