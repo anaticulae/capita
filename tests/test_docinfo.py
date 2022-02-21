@@ -15,7 +15,7 @@ import utilatest
 import tests
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_docinfo_lang(testdir, monkeypatch):
     pdf = power.DISS406_PDF
     utilatest.fixture_requires(pdf)

@@ -19,7 +19,7 @@ import sections.path
 import tests
 
 
-@utilatest.longrun
+@utilatest.nightly
 @utilatest.requires(power.MASTER072_PDF)
 def test_bibliography_work():
     source = power.link(power.MASTER072_PDF)
@@ -95,6 +95,7 @@ def test_bibliography_x(source, expected, testdir, monkeypatch):
     assert pages == expected
 
 
+@utilatest.longrun
 @pytest.mark.parametrize('source, pages', [
     pytest.param(power.MASTER193_PDF, '124:130', id='master193'),
 ])

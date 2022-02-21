@@ -27,6 +27,7 @@ def example(pages: tuple = None):
     return loaded
 
 
+@utilatest.longrun
 def test_textonpage_page1():
     page1 = example((1,))
     result = sections.utils.text.textonpage(page1)

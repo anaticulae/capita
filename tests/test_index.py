@@ -20,6 +20,7 @@ import sections.strategy
 LAST_PAGE_INDEX_LIKELYHOOD = 0.45
 
 
+@utilatest.longrun
 @utilatest.requires(power.DOCU027_PDF)
 def test_extract_index_likelihood():
     result = index(power.DOCU027_PDF)
@@ -30,6 +31,7 @@ def test_extract_index_likelihood():
     assert last_page >= LAST_PAGE_INDEX_LIKELYHOOD, result
 
 
+@utilatest.longrun
 @utilatest.requires(power.DOCU027_PDF)
 def test_index_work():
     result = index(power.DOCU027_PDF)
@@ -37,6 +39,7 @@ def test_index_work():
     assert len(dumped) > 100
 
 
+@utilatest.longrun
 @utilatest.requires(power.DOCU014_PDF)
 def test_regression_extract_index_likelihood():
     """Reduce false detection of index-pages"""
@@ -46,6 +49,7 @@ def test_regression_extract_index_likelihood():
     assert all(lower_than_five_percent), lower_than_five_percent
 
 
+@utilatest.longrun
 @utilatest.requires(power.BOOK173_PDF)
 def test_index_book173():
     loaded = index(

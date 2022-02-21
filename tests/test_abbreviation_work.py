@@ -66,6 +66,7 @@ def test_no_abbreviations_master193():
     assert not any(pages)
 
 
+@utilatest.longrun
 def test_abbreviations_diss167_four_pages():
     extracted = abbreviations(
         power.DISS167_PDF,

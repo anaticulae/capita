@@ -15,6 +15,7 @@ import utilatest
 import sections.feature.glossary
 
 
+@utilatest.longrun
 @utilatest.requires(power.DISS143_PDF)
 def test_glossary_work_diss143():
     pages = glossary(power.DISS143_PDF)

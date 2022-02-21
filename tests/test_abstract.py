@@ -50,6 +50,7 @@ def test_abstract_master049():
     assert page1.content.value == 1.0
 
 
+@utilatest.longrun
 def test_abstract_master193():
     extracted = abstract(power.MASTER193_PDF, pages=(191, 192))
     page191 = utila.select_page(extracted, 191)
@@ -58,6 +59,7 @@ def test_abstract_master193():
     assert page192.content.value == 1.0
 
 
+@utilatest.longrun
 def test_noabstract_bachelor111page14():
     """\
     2.2.4 Zusammenfassung was detected as abstract page.
