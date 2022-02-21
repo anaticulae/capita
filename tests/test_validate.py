@@ -21,6 +21,73 @@ import tests
 
 # TODO: MOVE TESTS FROM test_cli.py
 
+# TODO: DOCU027_PDF:iamraw.sections.Table: REPLACE WITH APPENDIX?
+SECTIONS_X = [
+    (power.DOCU027_PDF, (
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Table,
+    )),
+    (power.BACHELOR090_PDF, (
+        (iamraw.sections.Unknown, 0, 1),
+        (iamraw.sections.Introduction, 1, 12),
+        (iamraw.MainPart, 12, 76),
+        (iamraw.sections.Appendix, 76, 90),
+    )),
+    (power.BACHELOR128_PDF, (
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    )),
+    (power.MASTER031_PDF, (
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    )),
+    (power.MASTER116_PDF, (
+        (iamraw.sections.Introduction, 0, 8),
+        (iamraw.MainPart, 8, 88),
+        (iamraw.sections.Appendix, 88, 116),
+    )),
+    (power.DISS264_PDF, (
+        iamraw.sections.Introduction,
+        iamraw.sections.MainPart,
+        iamraw.sections.Appendix,
+    )),
+]
+SECTIONS_X = [
+    pytest.param(
+        source,
+        pages,
+        id=utila.file_name(source),
+    ) for source, pages in SECTIONS_X
+]
+
+
+@utilatest.nightly
+@pytest.mark.parametrize('source, expected', SECTIONS_X)
+def test_sections_x(source, expected, testdir, monkeypatch):
+    """\
+    DOCU:027 Regression test to ensure that no bib is detected on first
+             page. Before fixing, there was a divided title/bib page.
+    """
+    utilatest.fixture_requires(source)
+    result = tests.sections_from_dir(
+        source,
+        path=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    )
+    pages = isinstance(expected[0], tuple)
+    expected_sections = [item[0] for item in expected] if pages else expected
+    check_sections(result, expected_sections)
+    if not pages:
+        # no expected pages given
+        return
+    # pages
+    expected_pages = [(item[1], item[2]) for item in expected]
+    current_pages = [(item.start, item.end) for item in result]
+    assert current_pages == expected_pages
+
 
 def test_dump_and_load_sections(docu027_sections_manual):
     data = docu027_sections_manual
@@ -151,74 +218,6 @@ def test_sections_master72(testdir, monkeypatch):
     ]
     expected = [3, 6, 22, 45, 63]
     assert chapternumbers == expected
-
-
-# TODO: DOCU027_PDF:iamraw.sections.Table: REPLACE WITH APPENDIX?
-SECTIONS_X = [
-    (power.DOCU027_PDF, (
-        iamraw.sections.Introduction,
-        iamraw.sections.MainPart,
-        iamraw.sections.Table,
-    )),
-    (power.BACHELOR090_PDF, (
-        (iamraw.sections.Unknown, 0, 1),
-        (iamraw.sections.Introduction, 1, 12),
-        (iamraw.MainPart, 12, 76),
-        (iamraw.sections.Appendix, 76, 90),
-    )),
-    (power.BACHELOR128_PDF, (
-        iamraw.sections.Introduction,
-        iamraw.sections.MainPart,
-        iamraw.sections.Appendix,
-    )),
-    (power.MASTER031_PDF, (
-        iamraw.sections.Introduction,
-        iamraw.sections.MainPart,
-        iamraw.sections.Appendix,
-    )),
-    (power.MASTER116_PDF, (
-        (iamraw.sections.Introduction, 0, 8),
-        (iamraw.MainPart, 8, 88),
-        (iamraw.sections.Appendix, 88, 116),
-    )),
-    (power.DISS264_PDF, (
-        iamraw.sections.Introduction,
-        iamraw.sections.MainPart,
-        iamraw.sections.Appendix,
-    )),
-]
-SECTIONS_X = [
-    pytest.param(
-        source,
-        pages,
-        id=utila.file_name(source),
-    ) for source, pages in SECTIONS_X
-]
-
-
-@utilatest.nightly
-@pytest.mark.parametrize('source, expected', SECTIONS_X)
-def test_sections_x(source, expected, testdir, monkeypatch):
-    """\
-    DOCU:027 Regression test to ensure that no bib is detected on first
-             page. Before fixing, there was a divided title/bib page.
-    """
-    utilatest.fixture_requires(source)
-    result = tests.sections_from_dir(
-        source,
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
-    )
-    pages = isinstance(expected[0], tuple)
-    expected_sections = [item[0] for item in expected] if pages else expected
-    check_sections(result, expected_sections)
-    if not pages:
-        # no expected pages given
-        return
-    # pages
-    expected_pages = [(item[1], item[2]) for item in expected]
-    current_pages = [(item.start, item.end) for item in result]
-    assert current_pages == expected_pages
 
 
 @pytest.mark.xfail(reason='too optimistic parser')
