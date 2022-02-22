@@ -126,7 +126,8 @@ def volume(text, verbose: bool = True):
 BIBS = utila.compiles(r"""
 (
     Hrsg\.|
-    Aufl\.
+    Aufl\.|
+    Verlag
 )
 """)
 
