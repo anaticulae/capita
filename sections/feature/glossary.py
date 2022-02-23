@@ -128,6 +128,8 @@ def analyse_page(
     if marker and with_headline:
         # Glossary headline on page
         return len(navigator), len(navigator)
+    # limit marker without headline to avoid glossaries inside document
+    marker = min((len(navigator) * 0.75), marker)
     return len(navigator), marker
 
 
