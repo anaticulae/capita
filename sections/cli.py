@@ -73,6 +73,7 @@ WORKPLAN = [
         inputs=[
             utila.ResultFile('rawmaker', 'text_text'),
             utila.ResultFile('rawmaker', 'text_positions'),
+            utila.File(name='pdfinfo', optional=True),
         ],
         output=('likelihood',),
     ),

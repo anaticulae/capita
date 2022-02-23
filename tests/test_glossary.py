@@ -40,9 +40,11 @@ def glossary(source, pages: tuple = None):
     source = power.link(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
+    pdfinfo = iamraw.path.pdfinfo(source)
     extracted = sections.feature.glossary.work(
         text,
         textposition,
+        pdfinfo=pdfinfo,
         pages=pages,
     )
     loaded = serializeraw.load_likelihood(extracted)

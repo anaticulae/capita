@@ -38,18 +38,37 @@ import sections.utils.headline
 import sections.utils.spa
 
 
-def work(document: str, position: str, pages: tuple = None) -> str:
+def work(
+    document: str,
+    position: str,
+    pdfinfo: str,
+    pages: tuple = None,
+) -> str:
+    page_count = 256
+    if utila.exists(pdfinfo):
+        page_count = serializeraw.load_pdfinfo(pdfinfo).pages
     data = sections.utils.spa.Data(
         document=document,
         position=position,
         pages=pages,
+        page_count=page_count,
     )
     hugest = extract(data)
     dumped = serializeraw.dump_likelihood(hugest)
     return dumped
 
 
-LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=50)
+LIKELIHOOD_MIN = configo.HolyTable(
+    items=[
+        (0.0, 0.5),
+        (0.2, 0.5),
+        (0.25, 0.9),
+        (0.65, 0.9),
+        (0.75, 0.5),
+        (1.0, 0.5),
+    ],
+    strategy=utila.Strategy.LINEARISE,
+)
 
 MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=8)
 
@@ -60,8 +79,11 @@ def extract(data: sections.utils.spa.Data) -> list:
         page_analysis=analyse_page,
     )
     extracted = sections.utils.spa.work(data=data, config=config)
-    # ignore to low valued bib pages
-    valid = [item for item in extracted if item.content.value > LIKELIHOOD_MIN]
+    # ignore to low valued glossary pages
+    valid = [
+        item for item in extracted
+        if item.content.value > LIKELIHOOD_MIN(item.page / data.page_count)
+    ]
     hugest = sections.biblio.utils.cluster_bibpages(valid)
     return hugest
 

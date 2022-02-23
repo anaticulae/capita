@@ -35,6 +35,7 @@ class Data:
     document: str
     position: str
     pages: tuple = None
+    page_count: int = None
 
 
 def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
