@@ -100,7 +100,8 @@ LINES_PER_PAGE_MAX = configo.HV_INT_PLUS(default=45)
 
 
 def analyse_page(
-    navigator: texmex.PageTextNavigator
+    navigator: texmex.PageTextNavigator,
+    page_count: int,
 ) -> sections.feature.StatisticalResultItem:
     if len(navigator) > LINES_PER_PAGE_MAX:
         # too many lines, may a table, figure or something page
@@ -129,7 +130,10 @@ def analyse_page(
         # Glossary headline on page
         return len(navigator), len(navigator)
     # limit marker without headline to avoid glossaries inside document
-    marker = min((len(navigator) * 0.75), marker)
+    rate_required = LIKELIHOOD_MIN(navigator.page / page_count)
+    rate = marker / len(navigator)
+    if rate < rate_required:
+        return len(navigator), 0
     return len(navigator), marker
 
 
