@@ -11,6 +11,7 @@ import iamraw.path
 import power
 import pytest
 import serializeraw
+import utila
 import utilatest
 
 import sections.feature.glossary
@@ -26,7 +27,7 @@ def test_glossary_work_diss143():
 @utilatest.nightly
 @pytest.mark.parametrize('source, pages', [
     pytest.param(power.power.BOOK173_PDF, None, id='book173'),
-    pytest.param(power.power.DISS173_PDF, '0:50', id='diss173'),
+    pytest.param(power.power.DISS173_PDF, utila.rtuple(50), id='diss173'),
 ])
 def test_no_glossary_regression_x(source, pages):
     """Do not detect page 142 as glossary. It's just a page about glossaries."""
@@ -42,7 +43,7 @@ def glossary(source, pages: tuple = None):
     extracted = sections.feature.glossary.work(
         text,
         textposition,
-        pages=None,
+        pages=pages,
     )
     loaded = serializeraw.load_likelihood(extracted)
     pages = [item.page for item in loaded]
