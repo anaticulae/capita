@@ -17,6 +17,7 @@ import dataclasses
 
 import iamraw
 import serializeraw
+import utila
 
 import sections.feature
 
@@ -48,7 +49,10 @@ def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
         fill_empty=False,
         pages=pages,
     )
-    result = {page.page: page_analysis(page) for page in navigators}
+    result = {
+        page.page: pages_ifrequired(page_analysis, page, data.page_count)
+        for page in navigators
+    }
     uniformed = sections.feature.multiform_result(result)
     if uniformed is None:
         uniformed = sections.feature.uniform_result(result)
@@ -59,3 +63,9 @@ def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
         ) for page, value in uniformed.items()
     ]
     return likelihood
+
+
+def pages_ifrequired(analysis, page, page_count):
+    if 'page_count' in utila.attributes(analysis):
+        return analysis(page, page_count=page_count)
+    return analysis(page)
