@@ -88,15 +88,7 @@ def analyse_page(
         return len(navigator), 0
     marker = 0
     for firstline, *content in alternated:
-        text = firstline.text.strip()
-        if len(text) < 3:
-            # skip index pages
-            continue
-        if len(text.split()) >= 3:
-            continue
-        if utila.char_rate(text) < 0.9:
-            continue
-        if len(content) < 3:
+        if no_glossary(firstline, content):
             continue
         marker += 5
     if marker < MARKER_COUNT_MIN:
@@ -106,3 +98,17 @@ def analyse_page(
         # Glossary headline on page
         return len(navigator), len(navigator)
     return len(navigator), marker
+
+
+def no_glossary(left, content) -> bool:
+    text = left.text.strip()
+    if len(text) < 3:
+        # skip index pages
+        return True
+    if len(text.split()) >= 3:
+        return True
+    if utila.char_rate(text) < 0.9:
+        return True
+    if len(content) < 3:
+        return True
+    return False
