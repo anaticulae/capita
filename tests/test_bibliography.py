@@ -95,7 +95,7 @@ def test_bibliography_x(source, expected, testdir, monkeypatch):
     assert pages == expected
 
 
-@utilatest.longrun
+@utilatest.nightly
 @pytest.mark.parametrize('source, pages', [
     pytest.param(power.MASTER193_PDF, '124:130', id='master193'),
 ])
