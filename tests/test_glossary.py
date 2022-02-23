@@ -26,6 +26,7 @@ def test_glossary_work_diss143():
 @utilatest.nightly
 @pytest.mark.parametrize('source, pages', [
     pytest.param(power.power.BOOK173_PDF, None, id='book173'),
+    pytest.param(power.power.DISS173_PDF, '0:50', id='diss173'),
 ])
 def test_no_glossary_regression_x(source, pages):
     """Do not detect page 142 as glossary. It's just a page about glossaries."""
