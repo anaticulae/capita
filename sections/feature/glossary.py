@@ -66,9 +66,15 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
+LINES_PER_PAGE_MAX = configo.HV_INT_PLUS(default=45)
+
+
 def analyse_page(
     navigator: texmex.PageTextNavigator
 ) -> sections.feature.StatisticalResultItem:
+    if len(navigator) > LINES_PER_PAGE_MAX:
+        # too many lines, may a table, figure or something page
+        return len(navigator), 0
     headlines = sections.utils.headline.headlines(navigator)
     with_headline = headlines and utila.similar(
         expected=elements.GLOSSARY,
