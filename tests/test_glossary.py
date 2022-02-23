@@ -9,6 +9,7 @@
 
 import iamraw.path
 import power
+import pytest
 import serializeraw
 import utilatest
 
@@ -23,11 +24,14 @@ def test_glossary_work_diss143():
 
 
 @utilatest.nightly
-@utilatest.requires(power.BOOK173_PDF)
-def test_glossary_work_book173():
+@pytest.mark.parametrize('source, pages', [
+    pytest.param(power.power.BOOK173_PDF, None, id='book173'),
+])
+def test_no_glossary_regression_x(source, pages):
     """Do not detect page 142 as glossary. It's just a page about glossaries."""
-    pages = glossary(power.power.BOOK173_PDF)
-    assert not pages
+    utilatest.fixture_requires(source)
+    extracted = glossary(source, pages)
+    assert not extracted
 
 
 def glossary(source, pages: tuple = None):
