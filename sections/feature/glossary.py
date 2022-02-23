@@ -70,7 +70,15 @@ LIKELIHOOD_MIN = configo.HolyTable(
     strategy=utila.Strategy.LINEARISE,
 )
 
-MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=8)
+MARKER_COUNT_MIN = configo.HolyTable(items=[
+    (0, 5),
+    (6, 5),
+    (10, 8),
+    (15, 12),
+    (20, 14),
+    (30, 22),
+    (35, 23),
+])
 
 
 def extract(data: sections.utils.spa.Data) -> list:
@@ -112,8 +120,9 @@ def analyse_page(
     for firstline, *content in alternated:
         if no_glossary(firstline, content):
             continue
-        marker += 5
-    if marker < MARKER_COUNT_MIN:
+        marker += 1 + len(content)
+    marker_count_min = MARKER_COUNT_MIN(len(navigator))
+    if marker < marker_count_min:
         # min marker
         marker = 0
     if marker and with_headline:
