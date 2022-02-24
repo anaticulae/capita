@@ -2,6 +2,23 @@
 
 Every noteable change is logged here.
 
+## v1.18.0
+
+### Feature
+
+* disable glossary if rate is too low (21d7570ca579)
+* pass page count if required (e1b7e259c82f)
+* limit glossary rate without headlines (28b017a87ca1)
+* make glossary detector line length dependent (0e1c1a8bd3da)
+* make glossary rate page number dependent (447ef3bc0e86)
+* skip page with too many lines as glossary (1f340a9b9b48)
+* increase special words (4d0bcdf5c730)
+* increase logging (a946aa93bc48)
+
+### Fix
+
+* reduce verbosity (b94a432704dc)
+
 ## v1.17.0
 
 ### Feature
