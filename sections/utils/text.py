@@ -105,8 +105,9 @@ def textonpage(page: texmex.PageTextNavigator) -> TextOnPage:
                 continue
             if item == konrad.Mark.FULLSTOP:
                 result.append_dot(item)
+                continue
             if isinstance(item, konrad.Mark):
                 result.append_sign(item)
                 continue
-            assert f'supported item {item}'
+            assert 0, f'unsupported item {item}'
     return result
