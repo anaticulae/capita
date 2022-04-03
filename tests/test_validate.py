@@ -68,10 +68,15 @@ class Evaluate(utilatest.BaseLiner):
 
     def raw(self, value) -> str:
         result = []
-        for item in value:
-            start = str(item.start).zfill(3)
-            end = str(item.end).zfill(3)
-            line = f'{start} {end} {item.__class__.__name__}'
+        for section in value:
+            line = rawline(section)
             result.append(line)
         raw = utila.NEWLINE.join(result)
         return raw
+
+
+def rawline(item) -> str:
+    start = str(item.start).zfill(3)
+    end = str(item.end).zfill(3)
+    line = f'{start} {end} {item.__class__.__name__}'
+    return line
