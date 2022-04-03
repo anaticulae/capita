@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.18.1
+
+### Fix
+
+* adjust text on page converter (e28547257cf2)
+
 ## v1.18.0
 
 ### Feature
