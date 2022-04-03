@@ -71,6 +71,9 @@ class Evaluate(utilatest.BaseLiner):
         for section in value:
             line = rawline(section)
             result.append(line)
+            for item in section:
+                line = rawline(item)
+                result.append('    ' + line)
         raw = utila.NEWLINE.join(result)
         return raw
 

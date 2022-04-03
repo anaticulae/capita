@@ -1,4 +1,13 @@
 000 001 Unknown
+    000 000 Text
 001 003 MainPart
+    001 001 Chapter
+    002 002 Chapter
 003 004 Introduction
+    003 003 TitlePageSection
 004 009 MainPart
+    004 004 Chapter
+    005 005 Text
+    006 006 Text
+    007 007 Chapter
+    008 008 Chapter
