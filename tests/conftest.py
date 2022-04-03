@@ -25,7 +25,7 @@ power.setup(sections.ROOT)
 
 PACKAGE = sections.PACKAGE
 
-WORKER = 6
+WORKER = 4
 
 RESOURCES = [
     power.DISS287_PDF,
