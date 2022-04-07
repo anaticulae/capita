@@ -112,31 +112,40 @@ def analyse_page(
 
 
 FEATURE_POINTS = utila.splitlines("""\
-Arbeit
-Datum
-Eidesstattliche Erklärung
-Hilfsmittel
-Ort
-Prüfungsleistung
-Quellen
-Selbstständigkeitserklärung
-Studienleistung
-Unterschrift
-angefertigt
-aufgeführten Quellen und Hilfsmittel
-ausschließlich
-diese Arbeit
-eigenhändig
-entnommen
-erkläre ich
-fremden Quellen wörtlich
-gleicher oder ähnlicher Form
-hiermit erkläre ich
-selbstständig
-sinngemäß
-sinngemäß entnommen
-versichere ich
-vorliegende Arbeit
-wörtlich
-ähnlicher Form
+ANGEFERTIGT
+ARBEIT
+AUFGEFÜHRTEN QUELLEN UND HILFSMITTEL
+AUSSCHLIESSLICH
+BERICHTE
+BÜCHER
+DATUM
+DIESE ARBEIT
+EIDES STATT
+EIDESSTATTLICHE ERKLÄRUNG
+EIGENHÄNDIG
+ENTNOMMEN
+ERKLÄRE ICH
+FREMDEN QUELLEN WÖRTLICH
+GLEICHER ODER ÄHNLICHER FORM
+HIERMIT ERKLÄRE ICH
+HILFSMITTEL
+INTERNETSEITEN
+KEINER ANDEREN PRÜFUNGSKOMMISSION VORGELEGT
+KENNTLICH GEMACHT
+NICHT VERÖFFENTLICHT
+ORT
+PRÜFUNGSLEISTUNG
+QUELLEN
+SELBSTSTÄNDIG
+SELBSTSTÄNDIGKEITSERKLÄRUNG
+SINNGEMÄSS
+SINNGEMÄSS ENTNOMMEN
+STUDIENLEISTUNG
+UNTERSCHRIFT
+VERFASST WORDEN IST
+VERSICHERE ICH
+VORLIEGENDE ARBEIT
+WÖRTLICH
+ZITATE AUS FREMDEN ARBEITEN
+ÄHNLICHER FORM
 """)
