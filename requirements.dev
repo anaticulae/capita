@@ -10,13 +10,13 @@
 utilatest==0.12.3
 
 # reference to test data
-power==2.6.0
+power==2.7.0
 
 # ensure that test data is generated with the right version of rawmaker
 rawmaker==2.33.1
-groupme==0.26.0
+groupme==0.29.1
 
 detector==0.35.0
 
 genex==0.24.5
-hardcore==0.5.0
+hardcore==0.5.1
