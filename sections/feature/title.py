@@ -62,8 +62,8 @@ EMPTY_RESULT = (0, 0.0)
 def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
     """Determine the likelihood that `page` is a title page
 
-    A high title_indicator provides a high likelihood of beeing a title
-    page. Aditionally the font_length_max is provided.
+    A high title_indicator provides a high likelihood of being a title
+    page. Additionally the font_length_max is provided.
 
     Returns: (font_length_max, title_indicator):
     """
