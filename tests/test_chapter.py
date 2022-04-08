@@ -60,6 +60,11 @@ import sections.feature.chapter
         id='bachelor111',
     ),
     pytest.param(
+        power.DISS172_PDF,
+        [16, 89, 148, 150],
+        id='diss172',
+    ),
+    pytest.param(
         power.DISS406_PDF,
         # [22, 25, 40],
         # too optimistic, but this is not a problem
