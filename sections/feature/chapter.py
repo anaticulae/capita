@@ -91,13 +91,16 @@ def extract_chapter(
     result = []
     for page in navigators:
         if rotated(page):
+            utila.debug(f'no chapter {page.page}: rotated')
             continue
         first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
         if no_textcontent(first_content):
+            utila.debug(f'no chapter {page.page}: no textcontent')
             continue
         chapter_rate = contain_chapter(first_content)
         chapter_rate += rate_fromtoc(tocs, first_content)
         if contains_listof(first_content):
+            utila.debug(f'no chapter {page.page}: list of dots')
             # TODO: See todo below
             chapter_rate = 0
         if chapter_rate <= 0.0:
