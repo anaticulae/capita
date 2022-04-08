@@ -313,6 +313,9 @@ def contain_toc(content, toc) -> float:
     flat_toc = [item for item in flat_toc if item.lower() not in NOHEADLINES]
     for line in content:
         line = utila.normalize_whitespaces(line.text.strip())
+        if utila.issinglechar(line):
+            # I N T R O D U C T I O N 1
+            line = line.replace(' ', '')
         # remove numbered headline pattern and potential white spaces
         without_number = FIRSTLEVEL_DOT_PATTERN.sub('', line)
         for headline in flat_toc:
