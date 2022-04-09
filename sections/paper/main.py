@@ -16,8 +16,9 @@
 import statistics
 
 import layout.double
-import pdfinfo.pages
 import utila
+
+import pdfinfo.pages
 
 
 def detect_paper(pdf: str, pages: tuple = None) -> tuple:

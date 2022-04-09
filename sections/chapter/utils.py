@@ -26,3 +26,20 @@ def huge_match(line: str, part: str) -> bool:
         # matched part is to small
         return False
     return True
+
+
+def startswith(line: str, start: str) -> bool:
+    """\
+    >>> startswith('Methode3', '2 Methode3')
+    True
+    """
+    percent = len(line) / len(start) if line else 0.0
+    start = start[0:len(line)]
+    maxdiff = 0.9 if len(start) > 10 else 0.7  # TODO: HOLY VALUE
+    if percent < 0.5:
+        # matched part is to small
+        maxdiff = 0.9
+    # TODO: REPLACE WITH UTILA CODe
+    if utila.similar(start, line, maxdiff=maxdiff):
+        return True
+    return False

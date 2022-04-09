@@ -38,7 +38,7 @@ def work(
     position: str,
     sizeandborder: str,
     footerheader: str,
-    tocpath: str,
+    outlines: str,
     pages: tuple = None,
 ) -> str:
     """Determine likelihood of beeing a chapter startpage."""
@@ -49,18 +49,18 @@ def work(
         headerfooterpath=footerheader,
         pages=pages,
     )
-    tocs = load_toc(tocpath)
+    outlines = load_outlines(outlines)
     # work
     result = sections.chapter.extract_chapter(
         navigators=navigators,
-        tocs=tocs,
+        outlines=outlines,
     )
     # write result
     dumped = serializeraw.dump_likelihood(result)
     return dumped
 
 
-def load_toc(tocpath):
+def load_outlines(tocpath):
     """Load table of content out of outlines.
 
     Strip first outline wich is may the headline of the document.

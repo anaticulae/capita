@@ -14,6 +14,7 @@ import serializeraw
 import utila
 import utilatest
 
+import sections.chapter.run
 import sections.feature.chapter
 
 
@@ -96,11 +97,11 @@ def extract_chapter(source):
     utilatest.fixture_requires(source)
     # load
     navigators = serializeraw.ptcn_frompath(source)
-    tocs = serializeraw.load_toc(iamraw.path.outlines(source))
+    outlines = serializeraw.load_toc(iamraw.path.outlines(source))
     # run
-    result = sections.feature.chapter.extract_chapter(
+    result = sections.chapter.run.extract_chapter(
         navigators,
-        tocs,
+        outlines,
     )
     return result
 
@@ -112,7 +113,7 @@ def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
         position=source,
         sizeandborder=source,
         footerheader=source,
-        tocpath=source,
+        outlines=source,
         pages=pages,
     )
     assert dumped, dumped
