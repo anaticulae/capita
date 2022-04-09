@@ -120,7 +120,7 @@ def extract_chapter(
     return result
 
 
-def no_textcontent(content) -> bool:
+def no_textcontent(content: list) -> bool:
     """A chapter start requires some text line at the start.
 
     This is required to skip false positive chapter starts which are
