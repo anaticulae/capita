@@ -33,16 +33,16 @@ def extract_chapter(
         # prepare content
         pagestart = page.between(AFTER_HEADER, FIRST_QUARTER)
         # run strategies
-        chapter_rate = sections.chapter.starter.contain_chapter(pagestart)
-        chapter_rate += sections.chapter.outlines.rate_from_outlines(
+        rate = sections.chapter.starter.contain_chapter(pagestart)
+        rate += sections.chapter.outlines.rate_from_outlines(
             outlines,
             pagestart,
         )
-        if chapter_rate <= 0.0:
-            utila.verbose(f'no chapter {page.page}: chaptrate {chapter_rate}')
+        if rate <= 0.0:
+            utila.verbose(f'no chapter {page.page}: chaptrate {rate}')
             continue
         # convert result to percents
-        rate_in_percent = chaptervalue_to_percent(chapter_rate, outlines)
+        rate_in_percent = chaptervalue_to_percent(rate, outlines)
         result.append(
             iamraw.PageContentLikelihood(
                 page=page.page,
