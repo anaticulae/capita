@@ -30,7 +30,7 @@ QUESTIONS:
 import iamraw
 import serializeraw
 
-import sections.chapter
+import sections.chapter.run
 
 
 def work(
@@ -51,7 +51,7 @@ def work(
     )
     outlines = load_outlines(outlines)
     # work
-    result = sections.chapter.extract_chapter(
+    result = sections.chapter.run.extract_chapter(
         navigators=navigators,
         outlines=outlines,
     )
