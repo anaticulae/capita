@@ -190,44 +190,13 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
     A second option is to look for the headline-pattern: '1. Einleitung'.
     """
 
-    def startwith_firstlevelheadline(raw: list) -> bool:
-        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
-        for line in raw:
-            matched = re.match(NUMBER_PATTERN, line)
-            if matched:
-                line = utila.extract_match(matched)
-                if len(line) > HEADLINE_LENGTH_MAX:
-                    # TODO: REQUIRE A BETTER SELECTOR
-                    # seam to be a content line.
-                    continue
-                chapternumber = int(matched['number'])
-                if chapternumber > FIRSTLEVEL_CHAPTER_MAX:
-                    utila.debug(f'chapter number to hight: {line}')
-                    continue
-                charrate = utila.char_rate(line)
-                charrate_min = HEADLINE_CHARRATE_MIN(len(line))
-                if charrate < charrate_min:
-                    utila.debug(f'char rate to low: {charrate} {line}')
-                    continue
-                return True
-        return False
-
-    def startwith_whitelist(raw: list) -> bool:
-        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
-        for line in raw:
-            matched = re.match(NUMBER_PATTERN, line)
-            if not matched:
-                continue
-            if huge_match(line, elements.headline.lookup.CHAPTER):
-                return True
-        return False
-
+    raw = [item.text for item in content[0:HEADLINES_CHECK_FIRST_N_LINES]]
     result = 0.0
-    if startwith_chapterpattern(content):
+    if startwith_chapterpattern(raw):
         result += 1.0
-    if startwith_whitelist(content):
+    if startwith_whitelist(raw):
         result += 1.0
-    elif startwith_firstlevelheadline(content):
+    elif startwith_firstlevelheadline(raw):
         result += 0.5
     else:
         result -= 0.5
@@ -235,7 +204,6 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
 
 
 def startwith_chapterpattern(raw: list) -> bool:
-    raw = [item.text.lower() for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
     for line in raw:
         # K a p i t e l 1
         nowhitespace = line.replace(' ', '')
@@ -245,6 +213,38 @@ def startwith_chapterpattern(raw: list) -> bool:
         if 'kapitel' in line or 'chapter' in line:
             if len(line) > NO_CHAPTER_PATTERN_LINE_LENGTH_MAX:
                 # skip sentences which contains Chapter or Kapitel
+                continue
+            return True
+    return False
+
+
+def startwith_whitelist(raw: list) -> bool:
+    for line in raw:
+        matched = NUMBER_PATTERN.match(line)
+        if not matched:
+            continue
+        if huge_match(line, elements.headline.lookup.CHAPTER):
+            return True
+    return False
+
+
+def startwith_firstlevelheadline(raw: list) -> bool:
+    for line in raw:
+        matched = NUMBER_PATTERN.match(line)
+        if matched:
+            line = utila.extract_match(matched)
+            if len(line) > HEADLINE_LENGTH_MAX:
+                # TODO: REQUIRE A BETTER SELECTOR
+                # seam to be a content line.
+                continue
+            chapternumber = int(matched['number'])
+            if chapternumber > FIRSTLEVEL_CHAPTER_MAX:
+                utila.debug(f'chapter number to hight: {line}')
+                continue
+            charrate = utila.char_rate(line)
+            charrate_min = HEADLINE_CHARRATE_MIN(len(line))
+            if charrate < charrate_min:
+                utila.debug(f'char rate to low: {charrate} {line}')
                 continue
             return True
     return False
