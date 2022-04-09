@@ -90,7 +90,10 @@ def extract_chapter(
 ) -> iamraw.PageContentLikelihoods:
     result = []
     for page in navigators:
-        if rotated(page):
+        if not page:
+            # empty page
+            continue
+        if page.rotated:
             utila.debug(f'no chapter {page.page}: rotated')
             continue
         first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
@@ -411,10 +414,3 @@ def rawcontent(content) -> str:
     raw = utila.NEWLINE.join([item.text for item in content])
     raw = raw.lower()
     return raw
-
-
-def rotated(navigator) -> bool:
-    if not navigator:
-        # empty page
-        return False
-    return navigator.width > navigator.height
