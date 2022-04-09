@@ -18,7 +18,7 @@ import sections.utils.headline
 
 
 def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
-    navigators = serializeraw.create_pagetextnavigators_fromfile(
+    navigators = serializeraw.ptn_fromfile(
         text_linewise,
         textpositions,
         pages=pages,

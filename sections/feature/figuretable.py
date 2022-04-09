@@ -29,7 +29,7 @@ def work(
     headerfooters: str,
     pages=None,
 ) -> str:
-    ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
+    ptcns = serializeraw.ptcn_fromfile(
         text=text_linewise,
         textpositions=textpositions,
         sizeandborderpath=sizeandborder,

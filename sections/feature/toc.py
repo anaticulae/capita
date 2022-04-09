@@ -43,7 +43,7 @@ def work(
         minn=VALID_TOC_PAGES_MIN,
         maxx=VALID_TOC_PAGES_MAX,
     )
-    ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
+    ptcns = serializeraw.ptcn_fromfile(
         text=oneline_text,
         textpositions=oneline_textposition,
         sizeandborderpath=sizeandborder,

@@ -23,7 +23,7 @@ DOCU27 = power.link(power.DOCU027_PDF)
 
 @utilatest.requires(power.DOCU027_PDF)
 def test_extract_toc_likelihood():
-    navigator = serializeraw.create_pagetextnavigators_frompath(DOCU27)
+    navigator = serializeraw.ptn_frompath(DOCU27)
     extracted = sections.strategy.extract_xxx_likelihood(
         navigator,
         'Contents',
@@ -35,7 +35,7 @@ def test_extract_toc_likelihood():
 
 @utilatest.requires(power.BACHELOR063_PDF)
 def test_extract_toc_likelihood_bachelor63():
-    text = serializeraw.create_pagetextnavigators_frompath(
+    text = serializeraw.ptn_frompath(
         power.link(power.BACHELOR063_PDF),
         pages=utila.rtuple(8),
         prefix='oneline',
@@ -57,7 +57,7 @@ def test_extract_toc_likelihood_master72():
     """Check that only second and third page are detected as toc.
     Repeating the strategy due `without` is required to discover
     complete table of content."""
-    text = serializeraw.create_pagetextnavigators_frompath(
+    text = serializeraw.ptn_frompath(
         power.link(power.MASTER072_PDF),
         pages=utila.rtuple(8),
         prefix='oneline',

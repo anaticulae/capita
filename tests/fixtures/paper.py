@@ -17,5 +17,5 @@ import utilatest
 def paper18():
     utilatest.fixture_requires(power.PAPER018_PDF)
     source = power.link(power.PAPER018_PDF)
-    navigator = serializeraw.create_pagetextnavigators_frompath(source)
+    navigator = serializeraw.ptn_frompath(source)
     return navigator

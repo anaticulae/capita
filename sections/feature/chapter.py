@@ -47,7 +47,7 @@ def work(
     pages: tuple = None,
 ) -> str:
     """Determine likelihood of beeing a chapter startpage."""
-    navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
+    navigators = serializeraw.ptcn_fromfile(
         text=document,
         textpositions=position,
         sizeandborderpath=sizeandborder,

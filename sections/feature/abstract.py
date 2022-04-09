@@ -35,7 +35,7 @@ def work(
     pages_max = None
     if utila.exists(pdfinfo):
         pages_max = serializeraw.load_pdfinfo(pdfinfo).pages
-    navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
+    navigators = serializeraw.ptcn_fromfile(
         text=text_linewise,
         textpositions=textpositions,
         sizeandborderpath=sizeandborder,

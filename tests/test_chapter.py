@@ -95,7 +95,7 @@ def test_chapter_dump_and_load_detection():
 def extract_chapter(source):
     utilatest.fixture_requires(source)
     # load
-    navigators = serializeraw.create_pagetextcontentnavigators_frompath(source)
+    navigators = serializeraw.ptcn_frompath(source)
     tocs = serializeraw.load_toc(iamraw.path.outlines(source))
     # run
     result = sections.feature.chapter.extract_chapter(

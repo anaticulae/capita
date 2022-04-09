@@ -24,7 +24,7 @@ BACHELOR90 = power.link(power.BACHELOR090_PDF)
     pytest.param(BACHELOR90, 4, 'Inhaltsverzeichnis', id='toc'),
 ])
 def test_detect_page_headlines(source, page, expected):
-    navigator = serializeraw.create_pagetextnavigators_frompath(
+    navigator = serializeraw.ptn_frompath(
         source,
         pages=(page,),
     )

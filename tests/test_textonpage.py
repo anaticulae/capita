@@ -18,7 +18,7 @@ import sections.utils.text
 
 def example(pages: tuple = None):
     utilatest.fixture_requires(power.BACHELOR037_PDF)
-    loaded = serializeraw.create_pagetextnavigators_frompath(
+    loaded = serializeraw.ptn_frompath(
         power.link(power.BACHELOR037_PDF),
         pages=pages,
     )

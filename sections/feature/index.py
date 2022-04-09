@@ -37,7 +37,7 @@ def work(
     pages: tuple = None,
 ) -> str:
     """Load document and extract likelihood of beening an index page."""
-    ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
+    ptcns = serializeraw.ptcn_fromfile(
         text=text,
         textpositions=textpositions,
         sizeandborderpath=sizeandborder,

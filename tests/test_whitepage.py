@@ -45,7 +45,7 @@ def current(items):
 
 def whitepages(document: str):
     source = power.link(document)
-    navigators = serializeraw.create_pagetextnavigators_frompath(source)
+    navigators = serializeraw.ptn_frompath(source)
     document = serializeraw.load_document(iamraw.path.text(source))
 
     headerfooters = iamraw.path.headerfooters(source)
