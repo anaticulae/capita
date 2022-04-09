@@ -66,10 +66,11 @@ def nochapter(page) -> bool:
         utila.verbose(f'no chapter {page.page}: no textcontent')
         return True
     if contains_listof(pagestart):
-        utila.verbose(f'no chapter {page.page}: list of dots')
-        # TODO: See todo below XXX???
-        # chapter_rate = 0
-        return True
+        if not sections.chapter.starter.startwith_hugenumber(pagestart):
+            utila.verbose(f'no chapter {page.page}: list of dots')
+            # TODO: See todo below XXX???
+            # chapter_rate = 0
+            return True
     return False
 
 
