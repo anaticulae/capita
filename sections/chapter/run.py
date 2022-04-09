@@ -39,6 +39,7 @@ def extract_chapter(
             pagestart,
         )
         if chapter_rate <= 0.0:
+            utila.verbose(f'no chapter {page.page}: chaptrate {chapter_rate}')
             continue
         # convert result to percents
         rate_in_percent = chaptervalue_to_percent(chapter_rate, outlines)
@@ -58,14 +59,14 @@ def nochapter(page) -> bool:
         # empty page
         return True
     if page.rotated:
-        utila.debug(f'no chapter {page.page}: rotated')
+        utila.verbose(f'no chapter {page.page}: rotated')
         return True
     pagestart = page.between(AFTER_HEADER, FIRST_QUARTER)
     if no_textcontent(pagestart):
-        utila.debug(f'no chapter {page.page}: no textcontent')
+        utila.verbose(f'no chapter {page.page}: no textcontent')
         return True
     if contains_listof(pagestart):
-        utila.debug(f'no chapter {page.page}: list of dots')
+        utila.verbose(f'no chapter {page.page}: list of dots')
         # TODO: See todo below XXX???
         # chapter_rate = 0
         return True
