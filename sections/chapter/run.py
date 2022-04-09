@@ -39,7 +39,8 @@ def extract_chapter(
             pagestart,
         )
         if rate <= 0.0:
-            utila.verbose(f'no chapter {page.page}: chaptrate {rate}')
+            # TODO: VERY VERBOSE, CHECK LATER
+            utila.verbose(f'    no chapter {page.page}: chapterate {rate}')
             continue
         # convert result to percents
         rate_in_percent = chaptervalue_to_percent(rate, outlines)
