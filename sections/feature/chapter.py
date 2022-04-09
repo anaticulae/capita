@@ -162,13 +162,12 @@ HEADLINES_BACKUP = elements.headline.lookup.CHAPTER
 
 # We need only one number with dot, because we want only chapters, not
 # sections etc.
-NUMBER_PATTERN = re.compile(
-    r'^'  # page start
-    r'(?P<number>[0-9]{1,2})[\.]{0,1}'  # chapter number with dot
-    r'[ ]{1,4}'
-    r'[^0-9\n]{5,}',  # non numeric element
-    re.VERBOSE,
-)
+NUMBER_PATTERN = utila.compiles(r"""
+    ^  # page start
+    (?P<number>[0-9]{1,2})[\.]{0,1}  # chapter number with dot
+    [ ]{1,4}
+    [^0-9\n]{5,}  # non numeric element
+""")
 
 HEADLINES_CHECK_FIRST_N_LINES = configo.HV_INT_PLUS(default=4)
 
