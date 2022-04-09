@@ -16,6 +16,8 @@ import iamraw
 import texmex
 import utila
 
+import sections.chapter.starter
+
 AFTER_HEADER = configo.HV_PERCENT_PLUS(default=5.0)
 
 FIRST_QUARTER = configo.HV_PERCENT_PLUS(default=45.0)
@@ -39,7 +41,7 @@ def extract_chapter(
         if no_textcontent(first_content):
             utila.debug(f'no chapter {page.page}: no textcontent')
             continue
-        chapter_rate = contain_chapter(first_content)
+        chapter_rate = sections.chapter.starter.contain_chapter(first_content)
         chapter_rate += rate_fromtoc(tocs, first_content)
         if contains_listof(first_content):
             utila.debug(f'no chapter {page.page}: list of dots')
@@ -98,133 +100,6 @@ def rate_fromtoc(tocs, pagestart: list) -> float:
 
 
 HEADLINES_BACKUP = elements.headline.lookup.CHAPTER
-
-# We need only one number with dot, because we want only chapters, not
-# sections etc.
-NUMBER_PATTERN = utila.compiles(r"""
-    ^  # page start
-    (?P<number>[0-9]{1,2})[\.]{0,1}  # chapter number with dot
-    [ ]{1,4}
-    [^0-9\n]{5,}  # non numeric element
-""")
-
-HEADLINES_CHECK_FIRST_N_LINES = configo.HV_INT_PLUS(default=4)
-
-HEADLINE_LENGTH_MAX = configo.HV_INT_PLUS(default=75)
-
-NO_CHAPTER_PATTERN_LINE_LENGTH_MAX = configo.HV_INT_PLUS(default=15)
-
-FIRSTLEVEL_CHAPTER_MAX = configo.HV_INT_PLUS(default=13)
-
-
-def contain_chapter(content) -> float:  # pylint:disable=R1260
-    """Check if `content` contains elements which are hints that this
-    content is part of the start of the chapter.
-
-    A big hint is that the word `Kapitel` occurs on the start of the
-    text. We have to keep in mind, that the sentence: 'Wie in Kapitel ..
-    beschrieben' can occurs everywhere, therefore only searching the
-    word is not a good approach. Only some documents use this pattern.
-
-    A second option is to look for the headline-pattern: '1. Einleitung'.
-    """
-    raw = [item.text for item in content[0:HEADLINES_CHECK_FIRST_N_LINES]]
-    result = 0.0
-    if startwith_chapterpattern(raw):
-        result += 1.0
-    if startwith_whitelist(raw):
-        result += 1.0
-    elif startwith_firstlevelheadline(raw):
-        result += 0.5
-    else:
-        result -= 0.5
-    return result
-
-
-def startwith_chapterpattern(raw: list) -> bool:
-    for line in raw:
-        # K a p i t e l 1
-        nowhitespace = line.replace(' ', '')
-        if re.match(CHAPTER_PATTERN, nowhitespace):
-            # KAPITEL 1: EINLEITUNG
-            return True
-        if 'kapitel' in line or 'chapter' in line:
-            if len(line) > NO_CHAPTER_PATTERN_LINE_LENGTH_MAX:
-                # skip sentences which contains Chapter or Kapitel
-                continue
-            return True
-    return False
-
-
-def startwith_whitelist(raw: list) -> bool:
-    for line in raw:
-        matched = NUMBER_PATTERN.match(line)
-        if not matched:
-            continue
-        if huge_match(line, elements.headline.lookup.CHAPTER):
-            return True
-    return False
-
-
-def startwith_firstlevelheadline(raw: list) -> bool:
-    for line in raw:
-        matched = NUMBER_PATTERN.match(line)
-        if matched:
-            line = utila.extract_match(matched)
-            if len(line) > HEADLINE_LENGTH_MAX:
-                # TODO: REQUIRE A BETTER SELECTOR
-                # seam to be a content line.
-                continue
-            chapternumber = int(matched['number'])
-            if chapternumber > FIRSTLEVEL_CHAPTER_MAX:
-                utila.debug(f'chapter number to hight: {line}')
-                continue
-            charrate = utila.char_rate(line)
-            charrate_min = HEADLINE_CHARRATE_MIN(len(line))
-            if charrate < charrate_min:
-                utila.debug(f'char rate to low: {charrate} {line}')
-                continue
-            return True
-    return False
-
-
-CHAPTER_PATTERN = re.compile(
-    r"""^
-    (chapter|kapitel)
-    [ ]{0,3}
-    (1?\d)      # 0-19
-    (
-        [ ]{0,3}
-        \:
-        .+
-    )?
-""",
-    re.VERBOSE,
-)
-
-HEADLINE_CHARRATE_MIN = configo.HolyTable(items=(
-    (0, 0.8),
-    (10, 0.75),
-    (100, 0.8),
-))
-
-
-def huge_match(line: str, part: str) -> bool:
-    """Ensure that matched `part` is long enough in detected line.
-
-    >>> huge_match('20 Bilanz und Ausblick einer Wissenschaft', 'Ausblick')
-    False
-    """
-    line = line.lower()
-    if isinstance(part, utila.ITERABLE):
-        return any(huge_match(line, item) for item in part)
-    if part not in line:
-        return False
-    percent = len(part) / len(line)
-    if percent < 0.5:
-        # matched part is to small
-        return False
-    return True
 
 
 def contains_listof(content: str) -> bool:
