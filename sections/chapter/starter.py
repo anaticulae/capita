@@ -127,3 +127,52 @@ def startwith_firstlevelheadline(raw: list) -> bool:
                 continue
             return True
     return False
+
+
+HUGENUMBER_MIN = configo.HV_INT_PLUS(default=25)
+
+
+def startwith_hugenumber(raw: list) -> bool:
+    """There is a chapter start which contain a very large number, the
+    headline, and a small toc.
+
+    Example
+    -------
+
+    C H A L L E N G E S A N D O V E R V I E W                <huge>3</huge>
+
+    Contents
+    3.1 Anomaly detection challenges in distributed software systems .... 28
+    3.2 Conceptual overview . . . . . . . . . . . . . . . . . . . . . . . 35
+
+    This chapter describes the main challenges, problems addressed, and as...
+    """
+    huge = huge_numbers(raw, size_min=HUGENUMBER_MIN)
+    if not huge:
+        return False
+    single = [item for item in raw if utila.issinglechar(item.text)]
+    if not single:
+        return False
+    toc = [
+        item for item in raw if utila.verysimilar(
+            current=item.text,
+            expected=elements.headline.lookup.TOC,
+        )
+    ]
+    if not toc:
+        return False
+    return True
+
+
+def huge_numbers(items, size_min: int = 25):
+    # TODO: MOVE TO TEXMEX
+    result = []
+    for item in items:
+        for style in item.style:
+            if style.size < size_min:
+                continue
+            text = item.text[style.start:style.end]
+            if not utila.isint(text):
+                continue
+            result.append(int(text))
+    return result
