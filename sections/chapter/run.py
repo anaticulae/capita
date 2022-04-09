@@ -28,27 +28,19 @@ def extract_chapter(
 ) -> iamraw.PageContentLikelihoods:
     result = []
     for page in navigators:
-        if not page:
-            # empty page
+        if nochapter(page):
             continue
-        if page.rotated:
-            utila.debug(f'no chapter {page.page}: rotated')
-            continue
-        first_content = page.between(AFTER_HEADER, FIRST_QUARTER)
-        if no_textcontent(first_content):
-            utila.debug(f'no chapter {page.page}: no textcontent')
-            continue
-        chapter_rate = sections.chapter.starter.contain_chapter(first_content)
+        # prepare content
+        pagestart = page.between(AFTER_HEADER, FIRST_QUARTER)
+        # run strategies
+        chapter_rate = sections.chapter.starter.contain_chapter(pagestart)
         chapter_rate += sections.chapter.outlines.rate_from_outlines(
             outlines,
-            first_content,
+            pagestart,
         )
-        if contains_listof(first_content):
-            utila.debug(f'no chapter {page.page}: list of dots')
-            # TODO: See todo below
-            chapter_rate = 0
         if chapter_rate <= 0.0:
             continue
+        # convert result to percents
         rate_in_percent = chaptervalue_to_percent(chapter_rate, outlines)
         result.append(
             iamraw.PageContentLikelihood(
@@ -59,6 +51,25 @@ def extract_chapter(
         # are together, support later
         # result.append(0.0)
     return result
+
+
+def nochapter(page) -> bool:
+    if not page:
+        # empty page
+        return True
+    if page.rotated:
+        utila.debug(f'no chapter {page.page}: rotated')
+        return True
+    pagestart = page.between(AFTER_HEADER, FIRST_QUARTER)
+    if no_textcontent(pagestart):
+        utila.debug(f'no chapter {page.page}: no textcontent')
+        return True
+    if contains_listof(pagestart):
+        utila.debug(f'no chapter {page.page}: list of dots')
+        # TODO: See todo below XXX???
+        # chapter_rate = 0
+        return True
+    return False
 
 
 def no_textcontent(content: list) -> bool:
@@ -97,7 +108,7 @@ def chaptervalue_to_percent(chaptervalue: float, hastoc: bool) -> float:
     return 0.0
 
 
-def contains_listof(content: str) -> bool:
+def contains_listof(content: list) -> bool:
     raw = rawcontent(content)
     dots_with_spaces = raw.count('. . . .')
     connected_dots = raw.count('....')
