@@ -192,7 +192,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
     """
 
     def startwith_firstlevelheadline(raw: list) -> bool:
-        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]]
+        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
         for line in raw:
             matched = re.match(NUMBER_PATTERN, line)
             if matched:
@@ -214,7 +214,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
         return False
 
     def startwith_whitelist(raw: list) -> bool:
-        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES.value]]
+        raw = [item.text for item in raw[0:HEADLINES_CHECK_FIRST_N_LINES]]
         for line in raw:
             matched = re.match(NUMBER_PATTERN, line)
             if not matched:
