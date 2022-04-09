@@ -2,6 +2,25 @@
 
 Every noteable change is logged here.
 
+## v1.19.0
+
+### Feature
+
+* indent to increase readability (0a06d724e662)
+* add huge number chapter start detector (9ab7a3528059)
+* add debugging information (666e88349dbd)
+* increase legal feature points (94d242e1454f)
+
+### Fix
+
+* do not detect huge number with short toc as dotted list (a310b2ea7c9f)
+* adjust logger message (4037d7e08ca4)
+* match single chars with toc correctly (1df121c91183)
+
+### Documentation
+
+* extend interface information (766aba3b5893)
+
 ## v1.18.1
 
 ### Fix
