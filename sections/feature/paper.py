@@ -7,11 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
 import iamraw
 import serializeraw
 import utila
 
+import pdfinfo.pages
 import sections.paper.main
+
+PAGES_MIN = configo.HV_INT_PLUS(default=120)
 
 
 def work(pdf: str, pages=None) -> str:
@@ -19,11 +23,23 @@ def work(pdf: str, pages=None) -> str:
         utila.error('skip paper, use --pdf to define pdf')
         return NOPAPER
     utila.exists_assert(pdf)
+    if skip_strategy(pdf):
+        return NOPAPER
+
     detected = sections.paper.main.detect_paper(pdf, pages=pages)
     if detected is None:
         return NOPAPER
     dumped = dump_groups(detected)
     return dumped
+
+
+def skip_strategy(pdf: str) -> bool:
+    # TODO: USE DOCTYPE ALSO
+    pages_max = pdfinfo.pages.determine(pdf)
+    if pages_max < PAGES_MIN:
+        utila.debug(f'do not search papers, document too short: {pages_max}')
+        return True
+    return False
 
 
 NOPAPER = '[]'
