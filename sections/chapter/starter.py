@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import re
-
 import configo
 import elements.headline.lookup
 import utila
@@ -58,7 +56,7 @@ def startwith_chapterpattern(raw: list) -> bool:
     for line in raw:
         # K a p i t e l 1
         nowhitespace = line.replace(' ', '')
-        if re.match(CHAPTER_PATTERN, nowhitespace):
+        if CHAPTER_PATTERN.match(nowhitespace):
             # KAPITEL 1: EINLEITUNG
             return True
         if 'kapitel' in line or 'chapter' in line:
@@ -69,8 +67,8 @@ def startwith_chapterpattern(raw: list) -> bool:
     return False
 
 
-CHAPTER_PATTERN = re.compile(
-    r"""^
+CHAPTER_PATTERN = utila.compiles(r"""
+    ^
     (chapter|kapitel)
     [ ]{0,3}
     (1?\d)      # 0-19
@@ -79,9 +77,7 @@ CHAPTER_PATTERN = re.compile(
         \:
         .+
     )?
-""",
-    re.VERBOSE,
-)
+""")
 
 
 def startwith_whitelist(raw: list) -> bool:
