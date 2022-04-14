@@ -164,3 +164,9 @@ def test_chapter_diss180_introduction():
     source = power.link(power.DISS180_PDF)
     extracted = chapter(source, pages=(18,))
     assert extracted[0].content.value >= 0.5
+
+
+def test_chapter_diss266():
+    source = power.link(power.DISS266_PDF)
+    extracted = chapter(source, pages=(9,))
+    assert extracted[0].content.value >= 0.5
