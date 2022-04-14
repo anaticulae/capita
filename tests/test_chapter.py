@@ -109,8 +109,8 @@ def extract_chapter(source):
 def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     utilatest.fixture_requires(source)
     dumped = sections.feature.chapter.work(
-        document=source,  # use default path
-        position=source,
+        document=iamraw.path.text(source, prefix='oneline'),  # use default path
+        position=iamraw.path.textposition(source, prefix='oneline'),
         sizeandborder=source,
         footerheader=source,
         outlines=source,
