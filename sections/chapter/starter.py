@@ -42,12 +42,12 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
     raw = [item.text for item in content[0:HEADLINES_CHECK_FIRST_N_LINES]]
     result = 0.0
     if startwith_chapterpattern(raw):
-        result += 1.0
-    elif startwith_whitelist(raw):
-        result += 1.0
-    elif startwith_firstlevelheadline(raw):
         result += 0.5
-    else:
+    if startwith_whitelist(raw):
+        result += 1.0
+    if startwith_firstlevelheadline(raw):
+        result += 0.5
+    if not result:
         result -= 0.5
     return result
 
