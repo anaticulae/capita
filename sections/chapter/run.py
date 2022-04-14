@@ -17,8 +17,6 @@ import utila
 import sections.chapter.outlines
 import sections.chapter.starter
 
-AFTER_HEADER = configo.HV_PERCENT_PLUS(default=5.0)
-
 FIRST_QUARTER = configo.HV_PERCENT_PLUS(default=45.0)
 
 
@@ -31,7 +29,7 @@ def extract_chapter(
         if nochapter(page):
             continue
         # prepare content
-        pagestart = page.between(AFTER_HEADER, FIRST_QUARTER)
+        pagestart = page.before(FIRST_QUARTER)
         # run strategies
         rate = sections.chapter.starter.contain_chapter(pagestart)
         rate += sections.chapter.outlines.rate_from_outlines(
@@ -62,7 +60,7 @@ def nochapter(page) -> bool:
     if page.rotated:
         utila.verbose(f'no chapter {page.page}: rotated')
         return True
-    pagestart = page.between(AFTER_HEADER, FIRST_QUARTER)
+    pagestart = page.before(FIRST_QUARTER)
     if no_textcontent(pagestart):
         utila.verbose(f'no chapter {page.page}: no textcontent')
         return True
