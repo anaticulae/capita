@@ -24,12 +24,13 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
 
 
 @pytest.mark.parametrize('source, pages, expected', [
+    step(power.DISS266_PDF),
     step(power.DOCU009_PDF),
-    step(power.HC_DISS193),
-    step(power.HC_DISS171),
-    step(power.HC_DISS166),
-    step(power.HC_DISS148),
     step(power.HC_DISS128),
+    step(power.HC_DISS148),
+    step(power.HC_DISS166),
+    step(power.HC_DISS171),
+    step(power.HC_DISS193),
 ])
 @utilatest.nightly
 def test_sections_validate(source, pages, expected, testdir, monkeypatch):
