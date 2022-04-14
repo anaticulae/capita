@@ -43,7 +43,7 @@ def contain_chapter(content) -> float:  # pylint:disable=R1260
     result = 0.0
     if startwith_chapterpattern(raw):
         result += 1.0
-    if startwith_whitelist(raw):
+    elif startwith_whitelist(raw):
         result += 1.0
     elif startwith_firstlevelheadline(raw):
         result += 0.5
