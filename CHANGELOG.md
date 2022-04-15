@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v1.19.1
+
+### Feature
+
+* do not detect paper inside documents for just a few pages (abd889e52991)
+
+### Fix
+
+* adjust chapter detector (1f7ba188646e)
+* ensure that first match does not reduce value (bce955ebba7b)
+* make pattern case insensitive (0b56c58cf5e1)
+* we already use ptcn (3d1d5daef664)
+
 ## v1.19.0
 
 ### Feature
