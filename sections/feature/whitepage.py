@@ -71,21 +71,18 @@ def work(
     """
     # convert to make pages serializeable
     pages = tuple(pages) if pages else None
-
     # load
     document = serializeraw.load_document(document, pages=pages)
     position = serializeraw.load_textpositions(position, pages=pages)
-
     headerfooters = serializeraw.load_headerfooter(
         footers,
         pages=pages,
     )
     navigators = texmex.create_pagetextnavigators(
         text=document,
-        text_positions=position,
+        textpositions=position,
     )
     images, figures = load_imagesfigures(images, figures, pages)
-
     # work
     extracted = extract_whitepages(
         document,
