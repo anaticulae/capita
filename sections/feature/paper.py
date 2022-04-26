@@ -9,10 +9,10 @@
 
 import configo
 import iamraw
+import pdfinfo.pages
 import serializeraw
 import utila
 
-import pdfinfo.pages
 import sections.paper.main
 
 PAGES_MIN = configo.HV_INT_PLUS(default=120)
