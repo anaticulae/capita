@@ -103,6 +103,9 @@ def analyse_page(
     navigator: texmex.PageTextNavigator,
     page_count: int,
 ) -> sections.feature.StatisticalResultItem:
+    if not navigator:
+        # empty page
+        return 0, 0
     if len(navigator) > LINES_PER_PAGE_MAX:
         # too many lines, may a table, figure or something page
         return len(navigator), 0
