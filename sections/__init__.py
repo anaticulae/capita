@@ -71,7 +71,7 @@ import os
 import sections.__patch__
 import sections.path
 
-__version__ = '1.19.1'
+__version__ = '1.19.2'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 

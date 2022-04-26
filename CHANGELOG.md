@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.19.2
+
+### Fix
+
+* skip empty page (acfd7092bd2f)
+
 ## v1.19.1
 
 ### Feature
