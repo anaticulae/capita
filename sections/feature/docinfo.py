@@ -38,11 +38,7 @@ LANG_TRUST_MIN = configo.HV_PERCENT_PLUS(default=70)
 
 
 def determine_lang(text: iamraw.Document) -> iamraw.Language:
-    pages = utila.choose_random(text, count=LANG_PAGES, seed=0.5)
-    text = [
-        [item.text for item in page if len(item.text) > 20] for page in pages
-    ]
-    text = utila.flatten(text)
+    text = text_flat(text)
     lang = german.lang(text)
     if lang.probability < LANG_TRUST_MIN:
         return iamraw.Language.UNKNOWN
@@ -53,3 +49,12 @@ def determine_lang(text: iamraw.Document) -> iamraw.Language:
     if detected == 'english':
         return iamraw.Language.ENGLISH
     return iamraw.Language.UNKNOWN
+
+
+def text_flat(text: iamraw.Document) -> list:
+    pages = utila.choose_random(text, count=LANG_PAGES, seed=0.5)
+    text = [
+        [item.text for item in page if len(item.text) > 20] for page in pages
+    ]
+    text = utila.flatten(text)
+    return text
