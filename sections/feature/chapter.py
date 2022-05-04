@@ -45,8 +45,8 @@ def work(
     navigators = serializeraw.ptcn_fromfile(
         text=document,
         textpositions=position,
-        sizeandborderpath=sizeandborder,
-        headerfooterpath=footerheader,
+        sizeandborder=sizeandborder,
+        headerfooter=footerheader,
         pages=pages,
     )
     outlines = load_outlines(outlines)

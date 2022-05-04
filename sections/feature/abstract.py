@@ -38,8 +38,8 @@ def work(
     navigators = serializeraw.ptcn_fromfile(
         text=text_linewise,
         textpositions=textpositions,
-        sizeandborderpath=sizeandborder,
-        headerfooterpath=headerfooters,
+        sizeandborder=sizeandborder,
+        headerfooter=headerfooters,
         pages=pages_shrink(pages, pages_max=pages_max),
     )
     result = sections.feature.pagebypage(

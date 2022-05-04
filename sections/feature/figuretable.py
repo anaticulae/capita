@@ -32,8 +32,8 @@ def work(
     ptcns = serializeraw.ptcn_fromfile(
         text=text_linewise,
         textpositions=textpositions,
-        sizeandborderpath=sizeandborder,
-        headerfooterpath=headerfooters,
+        sizeandborder=sizeandborder,
+        headerfooter=headerfooters,
         pages=pages,
     )
     dumped = sections.strategy.work(
