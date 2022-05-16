@@ -13,7 +13,6 @@ import utila
 import utilatest
 
 import tests.validation.bachelor
-import tests.validation.master
 
 EXPECTED_FAILURE = {
     power.BACHELOR056_PDF,
@@ -29,7 +28,6 @@ def determine_mark(pdf):
 
 SECTIONS = {}
 SECTIONS.update(tests.validation.bachelor.BACHELOR)
-SECTIONS.update(tests.validation.master.MASTER)
 
 
 @pytest.mark.parametrize('source, expected', [
