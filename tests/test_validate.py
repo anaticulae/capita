@@ -17,34 +17,25 @@ import utilatest
 
 import sections
 import tests
+import tests.conftest
 
 ARCHIVE = utila.join(sections.ROOT, 'tests/expected', exist=True)
 
-step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
+TODO = [
+    item[0] if isinstance(item, tuple) else item
+    for item in tests.conftest.RESOURCES
+]
+TODO = [pytest.param(item, id=utila.file_name(item)) for item in TODO]
 
 
-@pytest.mark.parametrize('source, pages, expected', [
-    step(power.BACHELOR037_PDF),
-    step(power.BACHELOR056_PDF),
-    step(power.BACHELOR063_PDF),
-    step(power.DISS266_PDF),
-    step(power.DOCU009_PDF),
-    step(power.HC_DISS128),
-    step(power.HC_DISS148),
-    step(power.HC_DISS166),
-    step(power.HC_DISS171),
-    step(power.HC_DISS193),
-    step(power.MASTER072_PDF),
-    step(power.MASTER116_PDF),
-    step(power.MASTER148_PDF),
-])
 @utilatest.nightly
-def test_sections_validate(source, pages, expected, testdir, monkeypatch):
+@pytest.mark.parametrize('source', TODO)
+def test_sections_validate(source, testdir, monkeypatch):
     utilatest.fixture_requires(source)
     Evaluate(
         source=source,
-        pages=pages,
-        expected=expected,
+        pages=':',
+        expected=utila.file_name(source),
         workdir=testdir.tmpdir,
         monkeypatch=monkeypatch,
     ).evaluate()
