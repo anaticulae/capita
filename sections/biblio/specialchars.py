@@ -25,6 +25,7 @@ import statistics
 import configo
 import elements.headline.lookup
 import german
+import german.pattern.author
 import texmex
 import utila
 
@@ -169,6 +170,32 @@ def years(raw: str, min_=1950, max_=2025, verbose: bool = False):
     return result
 
 
+AUTHORS = utila.compiles(r"""
+    (
+        \w{4,}[ ]{1,4}\w\.|
+        \w\.[ ]{1,4}\w{4,}
+    )
+""")
+
+
+def authors(text, verbose: bool = True):
+    """\
+    >>> authors('HUG T. und POSCHESCHNIK G. ( **************** ): Empirisch Forschen.')
+    [('POSCHESCHNIK G.', 'POSCHESCHNIK G.')]
+    """
+    # TODO: REPLACE WITH GERMAN CODE
+    result = []
+    for item in re.finditer(AUTHORS, text):
+        valid = german.pattern.author.simple(item[0])
+        if not valid:
+            continue
+        if verbose:
+            result.append((item[0], item[0]))
+        else:
+            result.append(item[0])
+    return result
+
+
 PATTERN = (
     german.hyperlink,
     german.authors,
@@ -177,6 +204,7 @@ PATTERN = (
     german.dates,
     german.pagenumbers,
     years,
+    authors,
 )
 
 
