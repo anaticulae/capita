@@ -88,7 +88,8 @@ def extract(resources):
         base=power.REPOSITORY,
         destination=power.generated(),
         files=resources,
-        groupme='--pagenumbers --footer --toc',
+        groupme='--pagenumbers --footer',
+        reftable='--toc',
         worker=WORKER,
         pages=':',
     )
