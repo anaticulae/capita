@@ -30,7 +30,7 @@ TODO = [pytest.param(item, id=utila.file_name(item)) for item in TODO]
 
 @utilatest.nightly
 @pytest.mark.parametrize('source', TODO)
-def test_sections_validate(source, testdir, monkeypatch):
+def test_validate(source, testdir, monkeypatch):
     utilatest.fixture_requires(source)
     Evaluate(
         source=source,
