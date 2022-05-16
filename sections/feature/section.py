@@ -408,7 +408,10 @@ def determine_document_section(
         # dynamic next section determiner
         nextclass = nextclass(after)
         return nextclass
-    if isinstance(current, iamraw.sections.MainPart):
+    if isinstance(current, (
+            iamraw.sections.MainPart,
+            iamraw.sections.Unknown,
+    )):
         changer = (
             iamraw.sections.AbbreviationTable,
             iamraw.sections.Appendix,
