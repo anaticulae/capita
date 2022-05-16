@@ -342,7 +342,9 @@ MATCHING = {
         iamraw.sections.Introduction,
         iamraw.sections.Appendix,
     ],
-    iamraw.sections.Appendix: iamraw.sections.Appendix,
+    iamraw.sections.Appendix: [
+        iamraw.sections.Appendix,
+    ],
     iamraw.MultipleSection: multiplesection_next,
     iamraw.sections.AbbreviationTable: [
         iamraw.sections.Appendix,
@@ -391,12 +393,14 @@ def determine_document_section(
     """It is not always required to change the `current`
     DocumentSection. We require only few DocumentSection, therefore in
     some cases more than one possible parent is defined."""
+    if isinstance(current, iamraw.sections.Appendix):
+        if isinstance(after, iamraw.MultipleSection):
+            return current
     nextclass = MATCHING[type(after)]
     if inspect.isfunction(nextclass):
         # dynamic next section determiner
         nextclass = nextclass(after)
         return nextclass
-
     if isinstance(current, iamraw.sections.MainPart):
         changer = (
             iamraw.sections.AbbreviationTable,
@@ -408,11 +412,9 @@ def determine_document_section(
         if isinstance(after, changer):
             # TODO: HACK?
             return iamraw.sections.Appendix
-
     new_section = nextclass == iamraw.sections.DocumentSection
     use_current = (isinstance(nextclass, list) and
                    not any(item == current for item in nextclass))
-
     if new_section or use_current:
         if not current:
             return iamraw.sections.Unknown
