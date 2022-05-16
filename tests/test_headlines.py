@@ -20,6 +20,7 @@ import sections.utils.headline
     pytest.param(power.BACHELOR090_PDF, 2, 'Eidesstattliche Erklärung', id='eides'),
     pytest.param(power.BACHELOR090_PDF, 3, ['Kurzfassung', 'Abstract'], id='abstract'),
     pytest.param(power.BACHELOR090_PDF, 4, 'Inhaltsverzeichnis', id='toc'),
+    pytest.param(power.MASTER148_PDF, 109, 'Literaturverzeichnis', id='bib'),
 ])
 # yapf:enable
 def test_detect_page_headlines(source, page, expected):

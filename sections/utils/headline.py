@@ -61,6 +61,8 @@ def headlines(
         elements.headline.decide.singlechar(item)
     ]
     result = [item.title() for item in result]
+    # remove end chars
+    result = [item.rstrip(':!?.') for item in result]
     result = remove_numbered_pattern(result, level_max=level_max)
     if len(result) == 1:
         return result[0]
