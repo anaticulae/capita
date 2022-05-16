@@ -86,6 +86,7 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     pytest.param(power.DISS406_PDF, [], id='diss406'),
     pytest.param(power.HOME018_PDF, [17], id='home018'),
     pytest.param(power.MASTER110_PDF, utila.rlist(104, 109), id='master110'),
+    pytest.param(power.MASTER148_PDF, [109, 110, 111, 112], id='master148'),
     pytest.param(power.MASTER193_PDF, [188, 189, 190], id='master193'),
     pytest.param(power.PAPER018_PDF, [15, 16, 17], id='paper018'),
 ])
