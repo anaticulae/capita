@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.20.0
+
+### Feature
+
+* add better author detector (9fb500d3b304)
+* remove headline end char to improve detection (8c08a8d77e30)
+
 ## v1.19.2
 
 ### Fix
