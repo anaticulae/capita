@@ -1,11 +1,10 @@
 000 002 Unknown
     000 000 Text
     001 001 Abstract
-002 005 Introduction
+002 007 Introduction
     002 002 TitlePageSection
     003 003 Text
     004 004 TableOfContent
-005 007 MultipleSection
     005 005 MultipleSection
     006 006 FigureTable
 007 044 MainPart

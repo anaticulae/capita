@@ -326,6 +326,8 @@ def create(start, end, trust, typ):
 def multiplesection_next(multiple):
     if utila.select_type(multiple.content, iamraw.sections.Bibliography):
         return iamraw.sections.Appendix
+    if utila.select_type(multiple.content, iamraw.sections.Appendix):
+        return iamraw.sections.Appendix
     return iamraw.MultipleSection
 
 
@@ -395,7 +397,10 @@ def determine_document_section(
     We require only few DocumentSection, therefore in some cases more
     than one possible parent is defined.
     """
-    if isinstance(current, iamraw.sections.Appendix):
+    if isinstance(current, (
+            iamraw.sections.Appendix,
+            iamraw.sections.Introduction,
+    )):
         if isinstance(after, iamraw.MultipleSection):
             return current
     nextclass = MATCHING[type(after)]
@@ -406,6 +411,7 @@ def determine_document_section(
     if isinstance(current, iamraw.sections.MainPart):
         changer = (
             iamraw.sections.AbbreviationTable,
+            iamraw.sections.Appendix,
             iamraw.sections.FigureTable,
             iamraw.sections.Glossary,
             iamraw.sections.SymbolTable,
