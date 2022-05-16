@@ -32,17 +32,14 @@ SECTIONS.update(tests.validation.bachelor.BACHELOR)
 SECTIONS.update(tests.validation.master.MASTER)
 
 
-@pytest.mark.parametrize(
-    'source, expected',
-    [
-        pytest.param(
-            key,
-            value,
-            id=utilatest.simple(key, maxlength=15),
-            marks=determine_mark(key),
-        ) for key, value in SECTIONS.items()
-    ],
-)
+@pytest.mark.parametrize('source, expected', [
+    pytest.param(
+        key,
+        value,
+        id=utila.file_name(key),
+        marks=determine_mark(key),
+    ) for key, value in SECTIONS.items()
+])
 @utilatest.nightly
 def test_run_validation(source, expected, testdir, monkeypatch):
     utilatest.fixture_requires(source)
@@ -58,7 +55,6 @@ def test_run_validation(source, expected, testdir, monkeypatch):
     utila.log(f'expected: {sectiontype}')
     utila.log(f'current: {content}')
     assert content == sectiontype, str(content)
-
     pagestartend = [item[1] for item in expected]
     current = [(item.start, item.end) for item in extracted]
     assert current == pagestartend
