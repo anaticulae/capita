@@ -390,9 +390,11 @@ def determine_document_section(
     current: iamraw.sections.DocumentSection,
     after: iamraw.sections.AreaItem,
 ):
-    """It is not always required to change the `current`
-    DocumentSection. We require only few DocumentSection, therefore in
-    some cases more than one possible parent is defined."""
+    """It is not always required to change the `current` DocumentSection.
+
+    We require only few DocumentSection, therefore in some cases more
+    than one possible parent is defined.
+    """
     if isinstance(current, iamraw.sections.Appendix):
         if isinstance(after, iamraw.MultipleSection):
             return current
