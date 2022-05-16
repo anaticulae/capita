@@ -24,6 +24,9 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
 
 
 @pytest.mark.parametrize('source, pages, expected', [
+    step(power.BACHELOR037_PDF),
+    step(power.BACHELOR056_PDF),
+    step(power.BACHELOR063_PDF),
     step(power.DISS266_PDF),
     step(power.DOCU009_PDF),
     step(power.HC_DISS128),

@@ -1,0 +1,41 @@
+000 002 Introduction
+    000 000 TitlePageSection
+    001 001 AbbreviationTable
+002 006 MultipleSection
+    002 002 MultipleSection
+    003 003 TableOfContent
+    004 004 TableOfContent
+    005 005 Abstract
+006 033 MainPart
+    006 006 Chapter
+    007 007 Text
+    008 008 Text
+    009 009 Text
+    010 010 Text
+    011 011 Text
+    012 012 Text
+    013 013 Text
+    014 014 Text
+    015 015 Chapter
+    016 016 Text
+    017 017 Text
+    018 018 Text
+    019 019 Text
+    020 020 Text
+    021 021 Text
+    022 022 Text
+    023 023 Text
+    024 024 Text
+    025 025 Text
+    026 026 Text
+    027 027 Chapter
+    028 028 Text
+    029 029 Text
+    030 030 Text
+    031 031 Text
+    032 032 Text
+033 037 Appendix
+    033 033 Bibliography
+    034 034 Bibliography
+    035 035 Bibliography
+    036 036 Bibliography
