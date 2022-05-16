@@ -18,10 +18,10 @@
     015 015 Text
     016 016 TableTable
     017 017 Text
-    018 018 Text
-    019 019 Text
+    018 018 SymbolTable
+    019 019 SymbolTable
     020 020 AbbreviationTable
-    021 021 Text
+    021 021 SymbolTable
 022 162 MainPart
     022 022 Chapter
     023 023 Text
