@@ -27,8 +27,10 @@ MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75)
 
 def extract_sections(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
     """Decide which `DocumentSection` is selected of the different
-    feature extractor. If more than one feature suits very well, split
-    page in different regions.
+    feature extractor.
+
+    If more than one feature suits very well, split page in different
+    regions.
 
     Args:
         loaded: result of different `sections` steps
@@ -212,9 +214,10 @@ AreaItems = typing.List[iamraw.sections.AreaItem]
 
 
 def group_sections(items: AreaItems) -> iamraw.Sections:
-    """Extend ranges of `AreaItems` to avoid empty regions between
-    `AreaItems`. A empty region can be created if you have the titlepage
-    and after this a blank page before continuing with table of content.
+    """Extend ranges of `AreaItems` to avoid empty regions between `AreaItems`.
+
+    A empty region can be created if you have the titlepage and after
+    this a blank page before continuing with table of content.
     """
     result = iamraw.Sections()
     current = None
