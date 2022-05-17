@@ -10,8 +10,8 @@
 import serializeraw
 import utila
 
-import sections.section
 import sections.section.load
+import sections.section.run
 
 
 @utila.checkdatatype
@@ -41,7 +41,7 @@ def work(  # pylint:disable=R0913,R0914,W0613
     """
     loaded = sections.section.load.load_features(**locals())
     # work
-    extracted = sections.section.extract_sections(loaded)
+    extracted = sections.section.run.run(loaded)
     # save
     dumped = serializeraw.dump_sections(extracted)
     return dumped
