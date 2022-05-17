@@ -8,19 +8,13 @@
 # =============================================================================
 
 import copy
-import dataclasses
-import functools
-import inspect
 import typing
 
 import configo
 import iamraw
-import iamraw.likelihood
 import iamraw.sections
-import serializeraw
 import utila
 
-import sections.path
 import sections.section.after
 import sections.section.ctor
 
