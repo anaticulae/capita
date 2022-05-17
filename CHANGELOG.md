@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.21.0
+
+### Feature
+
+* do not change Appendix on MultipleSection (eaf7547ad409)
+
+### Fix
+
+* change from unknown to appendix if required (39eab97ace8c)
+* do not intro on multiple section (abac448e226e)
+
 ## v1.20.0
 
 ### Feature
