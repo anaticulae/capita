@@ -117,6 +117,7 @@ def valid_section(
     section: iamraw.DocumentSection,
     document_length: int,
 ) -> bool:
+    # TODO: HOLY VALUE
     if document_length < 20:
         # disable check for small documents
         return True
