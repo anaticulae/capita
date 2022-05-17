@@ -49,6 +49,7 @@ if __name__ == "__main__":
             'sections.chapter',
             'sections.feature',
             'sections.paper',
+            'sections.section',
             'sections.utils',
         ],
         entry_points={
