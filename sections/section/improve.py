@@ -42,38 +42,6 @@ def clean_collection(collected: dict) -> dict:
     return collected
 
 
-def verify_sections(sectionx: iamraw.Sections) -> iamraw.Sections:
-    """Merge sections to improve DocumentSection detection."""
-    result = iamraw.Sections()
-    # avoid side effects
-    todo = [copy.deepcopy(item) for item in sectionx.content]
-    if not todo:
-        return result
-    length = todo[-1].end
-    result.append(todo[0])
-    # STEP 1: MERGE INVALID SECTION TO SECTION BEFORE
-    for current in todo[1:]:
-        if valid_section(current, document_length=length):
-            result.append(current)
-            continue
-        # merge content to section before
-        before = result[-1]
-        before.end = current.end
-        before.content.extend(current.content)
-    # STEP 2: UNITE EQUAL SECTIONS
-    todo = list(result.content[1:])
-    result.content = [result.content[0]]
-    for current in todo:
-        before = result[-1]
-        if current.__class__ != before.__class__:
-            result.append(current)
-            continue
-        # merge equal classes to section before
-        before.end = current.end
-        before.content.extend(current.content)
-    return result
-
-
 AreaItems = typing.List[iamraw.sections.AreaItem]
 
 
@@ -110,6 +78,38 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
             item.number = chapter
             chapter += 1
         current.content.append(item)
+    return result
+
+
+def verify_sections(sectionx: iamraw.Sections) -> iamraw.Sections:
+    """Merge sections to improve DocumentSection detection."""
+    result = iamraw.Sections()
+    # avoid side effects
+    todo = [copy.deepcopy(item) for item in sectionx.content]
+    if not todo:
+        return result
+    length = todo[-1].end
+    result.append(todo[0])
+    # STEP 1: MERGE INVALID SECTION TO SECTION BEFORE
+    for current in todo[1:]:
+        if valid_section(current, document_length=length):
+            result.append(current)
+            continue
+        # merge content to section before
+        before = result[-1]
+        before.end = current.end
+        before.content.extend(current.content)
+    # STEP 2: UNITE EQUAL SECTIONS
+    todo = list(result.content[1:])
+    result.content = [result.content[0]]
+    for current in todo:
+        before = result[-1]
+        if current.__class__ != before.__class__:
+            result.append(current)
+            continue
+        # merge equal classes to section before
+        before.end = current.end
+        before.content.extend(current.content)
     return result
 
 
