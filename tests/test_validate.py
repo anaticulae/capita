@@ -21,15 +21,18 @@ import tests.conftest
 
 ARCHIVE = utila.join(sections.ROOT, 'tests/expected', exist=True)
 
-TODO = [
-    item[0] if isinstance(item, tuple) else item
-    for item in tests.conftest.RESOURCES
-]
-TODO = [pytest.param(item, id=utila.file_name(item)) for item in TODO]
+
+def todo():
+    files = [
+        item[0] if isinstance(item, tuple) else item
+        for item in tests.conftest.RESOURCES
+    ]
+    files = [pytest.param(item, id=utila.file_name(item)) for item in files]
+    return files
 
 
 @utilatest.nightly
-@pytest.mark.parametrize('source', TODO)
+@pytest.mark.parametrize('source', todo())
 def test_validate(source, testdir, monkeypatch):
     utilatest.fixture_requires(source)
     Evaluate(
