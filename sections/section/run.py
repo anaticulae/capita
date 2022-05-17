@@ -62,41 +62,6 @@ def run(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
     return result
 
 
-def morethan_one(trusted) -> bool:
-    if not trusted or len(trusted) == 1:
-        return False
-    if len(trusted) == 2:
-        names = [item.content.name for item in trusted]
-        # in the current state, we are not able to distinguish between
-        # symbol table and abbr table. This is not necessary for our job
-        # here.
-        if 'abbreviation_table' in names and 'symboltable' in names:
-            # TODO: REMOVE LATER
-            return False
-    return True
-
-
-def create_multisection(trusted, pagenumber, content):
-    multiple = iamraw.MultipleSection(
-        start=pagenumber,
-        end=pagenumber,
-        trust=1.0,
-    )
-    for index, item in enumerate(trusted):
-        # TODO: Preseve order on page
-        start = pagenumber + index * 1 / len(trusted)
-        end = pagenumber + (index + 1) * 1 / len(trusted)
-        start, end = utila.roundme(start, end)
-        new = sections.section.ctor.create(
-            start=start,
-            end=end,
-            trust=item.content.value,
-            typ=content.index(item),
-        )
-        multiple.content.append(new)  # pylint:disable=E1101
-    return multiple
-
-
 def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
     """Extract most trusted items on a page.
 
@@ -139,3 +104,38 @@ def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
             items = multiple
             # TODO: WHAT IF NOTHING IS LEFT IN MULTIPLE?
     return items
+
+
+def morethan_one(trusted) -> bool:
+    if not trusted or len(trusted) == 1:
+        return False
+    if len(trusted) == 2:
+        names = [item.content.name for item in trusted]
+        # in the current state, we are not able to distinguish between
+        # symbol table and abbr table. This is not necessary for our job
+        # here.
+        if 'abbreviation_table' in names and 'symboltable' in names:
+            # TODO: REMOVE LATER
+            return False
+    return True
+
+
+def create_multisection(trusted, pagenumber, content):
+    multiple = iamraw.MultipleSection(
+        start=pagenumber,
+        end=pagenumber,
+        trust=1.0,
+    )
+    for index, item in enumerate(trusted):
+        # TODO: Preseve order on page
+        start = pagenumber + index * 1 / len(trusted)
+        end = pagenumber + (index + 1) * 1 / len(trusted)
+        start, end = utila.roundme(start, end)
+        new = sections.section.ctor.create(
+            start=start,
+            end=end,
+            trust=item.content.value,
+            typ=content.index(item),
+        )
+        multiple.content.append(new)  # pylint:disable=E1101
+    return multiple
