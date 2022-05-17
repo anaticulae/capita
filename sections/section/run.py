@@ -38,8 +38,8 @@ def run(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
     for pagenumber, content in loaded.sync():
         trusted = most_trusted_items(content)
         if not trusted:
-            # if trust is to low, the feature is not charactaristical enough,
-            # therefore the page is treated as a normal text page
+            # if trust is too low, the feature is not characteristic
+            # enough, therefore the page is treated as a normal text page
             collected[pagenumber] = iamraw.sections.Text(
                 start=pagenumber,
                 end=pagenumber,
