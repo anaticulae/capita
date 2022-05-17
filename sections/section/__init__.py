@@ -50,23 +50,7 @@ def extract_sections(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
             )
             continue
         if morethan_one(trusted):
-            multiple = iamraw.MultipleSection(
-                start=pagenumber,
-                end=pagenumber,
-                trust=1.0,
-            )
-            for index, item in enumerate(trusted):
-                # TODO: Preseve order on page
-                start = pagenumber + index * 1 / len(trusted)
-                end = pagenumber + (index + 1) * 1 / len(trusted)
-                start, end = utila.roundme(start, end)
-                new = sections.section.ctor.create(
-                    start=start,
-                    end=end,
-                    trust=item.content.value,
-                    typ=content.index(item),
-                )
-                multiple.content.append(new)  # pylint:disable=E1101
+            multiple = create_multisection(trusted, pagenumber, content)
             collected[pagenumber] = multiple
         else:
             item = trusted[0]
@@ -95,6 +79,27 @@ def morethan_one(trusted) -> bool:
             # TODO: REMOVE LATER
             return False
     return True
+
+
+def create_multisection(trusted, pagenumber, content):
+    multiple = iamraw.MultipleSection(
+        start=pagenumber,
+        end=pagenumber,
+        trust=1.0,
+    )
+    for index, item in enumerate(trusted):
+        # TODO: Preseve order on page
+        start = pagenumber + index * 1 / len(trusted)
+        end = pagenumber + (index + 1) * 1 / len(trusted)
+        start, end = utila.roundme(start, end)
+        new = sections.section.ctor.create(
+            start=start,
+            end=end,
+            trust=item.content.value,
+            typ=content.index(item),
+        )
+        multiple.content.append(new)  # pylint:disable=E1101
+    return multiple
 
 
 def most_trusted_items(items: iamraw.PageContentLikelihoods) -> list:
