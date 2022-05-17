@@ -37,16 +37,6 @@ def test_validate_docu027(docu027_sections_manual):
     assert validated
 
 
-def test_chapters(docu027_sections_manual):
-    result = sections.feature.section.chapters(docu027_sections_manual)
-    # start is lower or equal than end page size
-    # start = item[0]
-    # end   = item[1]
-    ascending_page_order = all(item[0] <= item[1] for item in result)
-    assert ascending_page_order, str([result])
-    assert len(result) == 8, str(result)
-
-
 @utilatest.nightly
 @utilatest.requires(power.DOCU007_PDF)
 def test_sections_simple(testdir, monkeypatch):

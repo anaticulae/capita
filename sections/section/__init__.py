@@ -21,6 +21,8 @@ import serializeraw
 import utila
 
 import sections.path
+import sections.section.after
+import sections.section.ctor
 
 # features with lower trust are not expected as detected feature
 FEATURE_TRUST_MIN = configo.HV_PERCENT_PLUS(default=40)
@@ -62,7 +64,7 @@ def extract_sections(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
                 start = pagenumber + index * 1 / len(trusted)
                 end = pagenumber + (index + 1) * 1 / len(trusted)
                 start, end = utila.roundme(start, end)
-                new = create(
+                new = sections.section.ctor.create(
                     start=start,
                     end=end,
                     trust=item.content.value,
@@ -72,7 +74,7 @@ def extract_sections(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
             collected[pagenumber] = multiple
         else:
             item = trusted[0]
-            new = create(
+            new = sections.section.ctor.create(
                 start=pagenumber,
                 end=pagenumber,
                 trust=item.content.value,
@@ -224,7 +226,10 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
     current = None
     chapter = 1
     for page, item in items.items():
-        next_ = determine_document_section(current, item)
+        next_ = sections.section.after.determine_document_section(
+            current,
+            item,
+        )
         if not current and isinstance(item, iamraw.MultipleSection):
             # Multiple section on the start of the document
             # TODO: HOW TO HANDLE MULTIPLE SECTION IN THE MIDDLE OF THE DOCUMENT?
@@ -244,157 +249,6 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
             item.number = chapter
             chapter += 1
         current.content.append(item)
-    return result
-
-
-# THE ORDER IS IMPORTANT!
-BUILDER = [
-    iamraw.sections.AbbreviationTable,
-    iamraw.sections.Abstract,
-    iamraw.sections.Acknowledgments,
-    iamraw.sections.Appendix,
-    iamraw.sections.Bibliography,
-    iamraw.sections.Chapter,
-    iamraw.sections.FigureTable,
-    iamraw.sections.Index,
-    iamraw.sections.LegalInformation,
-    iamraw.sections.CiteContent,
-    iamraw.sections.SymbolTable,
-    iamraw.sections.TableTable,
-    iamraw.sections.TitlePage,
-    iamraw.sections.TableOfContent,
-    iamraw.sections.WhitePage,
-    iamraw.sections.Glossary,
-]
-assert BUILDER.index(iamraw.sections.TableOfContent) > BUILDER.index(
-    iamraw.sections.TitlePage), 'do not sort BUILDER'
-
-
-def create(start, end, trust, typ):
-    ctor = BUILDER[typ]
-    new = ctor(start=start, end=end, trust=trust)
-    return new
-
-
-def multiplesection_next(multiple):
-    if utila.select_type(multiple.content, iamraw.sections.Bibliography):
-        return iamraw.sections.Appendix
-    if utila.select_type(multiple.content, iamraw.sections.Appendix):
-        return iamraw.sections.Appendix
-    return iamraw.MultipleSection
-
-
-# do not change DocumentSection
-# iamraw.sections.DocumentSection
-#       iamraw.sections.Text
-#       iamraw.sections.WhitePage:
-# yapf:disable
-MATCHING = {
-    iamraw.sections.Abstract: [  # pylint:disable=E1101
-        iamraw.sections.Introduction,
-    ],
-    iamraw.sections.Acknowledgments: [
-        iamraw.sections.Introduction,
-        iamraw.sections.Appendix,
-    ],
-    iamraw.sections.Appendix: [
-        iamraw.sections.Appendix,
-    ],
-    iamraw.MultipleSection: multiplesection_next,
-    iamraw.sections.AbbreviationTable: [
-        iamraw.sections.Appendix,
-        iamraw.sections.Introduction,
-    ],
-    iamraw.sections.Bibliography: iamraw.sections.Appendix,
-    iamraw.sections.Chapter: iamraw.MainPart,
-    iamraw.sections.FigureTable: [
-        iamraw.sections.Appendix,
-        iamraw.sections.Introduction,
-    ],
-    iamraw.sections.Index: iamraw.sections.Table,
-    iamraw.sections.LegalInformation: [
-        iamraw.sections.Appendix,
-        iamraw.sections.Introduction,
-    ],
-    iamraw.sections.TableOfContent: [
-        iamraw.sections.Introduction,
-        iamraw.sections.Table,
-    ],
-    iamraw.sections.SymbolTable: [
-        iamraw.sections.Appendix,
-        iamraw.sections.Introduction,
-    ],
-    iamraw.sections.TableTable: [
-        iamraw.sections.Appendix,
-        iamraw.sections.Introduction,
-    ],
-    iamraw.sections.Glossary: [
-        iamraw.sections.Appendix,
-        iamraw.sections.Introduction,
-    ],
-    iamraw.sections.CiteContent: iamraw.sections.CitePart,
-    iamraw.sections.CitePart: iamraw.sections.CitePart,
-    iamraw.sections.Text: iamraw.sections.DocumentSection,
-    iamraw.sections.TitlePage: iamraw.sections.Introduction,
-    iamraw.sections.WhitePage: iamraw.sections.DocumentSection,
-}
-# yapf:enable
-
-
-def determine_document_section(
-    current: iamraw.sections.DocumentSection,
-    after: iamraw.sections.AreaItem,
-):
-    """It is not always required to change the `current` DocumentSection.
-
-    We require only few DocumentSection, therefore in some cases more
-    than one possible parent is defined.
-    """
-    if isinstance(current, (
-            iamraw.sections.Appendix,
-            iamraw.sections.Introduction,
-    )):
-        if isinstance(after, iamraw.MultipleSection):
-            return current
-    nextclass = MATCHING[type(after)]
-    if inspect.isfunction(nextclass):
-        # dynamic next section determiner
-        nextclass = nextclass(after)
-        return nextclass
-    if isinstance(current, (
-            iamraw.sections.MainPart,
-            iamraw.sections.Unknown,
-    )):
-        changer = (
-            iamraw.sections.AbbreviationTable,
-            iamraw.sections.Appendix,
-            iamraw.sections.FigureTable,
-            iamraw.sections.Glossary,
-            iamraw.sections.SymbolTable,
-            iamraw.sections.TableTable,
-        )
-        if isinstance(after, changer):
-            # TODO: HACK?
-            return iamraw.sections.Appendix
-    new_section = nextclass == iamraw.sections.DocumentSection
-    use_current = (isinstance(nextclass, list) and
-                   not any(item == current for item in nextclass))
-    if new_section or use_current:
-        if not current:
-            return iamraw.sections.Unknown
-        return current
-    return nextclass
-
-
-def chapters(root: iamraw.Sections):
-    content = [item for item in root if isinstance(item, iamraw.MainPart)]
-    if not content:
-        # no content in document
-        return []
-    result = []
-    for area in content:
-        for chapter in area:
-            result.append((chapter.start, chapter.end))
     return result
 
 
