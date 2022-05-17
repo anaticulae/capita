@@ -14,6 +14,7 @@ import typing
 import configo
 import iamraw
 import serializeraw
+import utila
 
 
 @dataclasses.dataclass
@@ -34,6 +35,11 @@ class SectionsRequiredResources:
     toc: iamraw.PageContentLikelihoods
     whitepage: typing.List[iamraw.sections.WhitePage]
     glossary: iamraw.PageContentLikelihoods
+
+    def sync(self):
+        data = list(vars(self).values())
+        for pagenumber, content in utila.sync_pages(iterators=data):
+            yield pagenumber, content
 
 
 @functools.lru_cache(configo.CACHE_SMALL)

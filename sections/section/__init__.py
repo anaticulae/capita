@@ -40,24 +40,7 @@ def extract_sections(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
         `Sections` definition for given pages
     """
     collected = {}
-    for pagenumber, content in utila.sync_pages([
-            loaded.abbreviation,
-            loaded.abstract,
-            loaded.acknowledge,
-            loaded.appendix,
-            loaded.bibliography,
-            loaded.chapter,
-            loaded.figuretable,
-            loaded.index,
-            loaded.legal,
-            loaded.paper,
-            loaded.symboltable,
-            loaded.tabletable,
-            loaded.title,
-            loaded.toc,
-            loaded.whitepage,
-            loaded.glossary,
-    ]):
+    for pagenumber, content in loaded.sync():
         trusted = most_trusted_items(content)
         if not trusted:
             # if trust is to low, the feature is not charactaristical enough,
