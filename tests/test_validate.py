@@ -34,13 +34,10 @@ def todo():
 @utilatest.nightly
 @pytest.mark.parametrize('source', todo())
 def test_validate(source, testdir, monkeypatch):
-    hc = 'hc' if source in power.HC_ALL else ''  # pylint:disable=C0103
-    expected = f'{utila.file_name(source)}{hc}'
     utilatest.fixture_requires(source)
     Evaluate(
         source=source,
         pages=':',
-        expected=expected,
         workdir=testdir.tmpdir,
         monkeypatch=monkeypatch,
     ).evaluate()
@@ -48,7 +45,7 @@ def test_validate(source, testdir, monkeypatch):
 
 class Evaluate(utilatest.BaseLiner):
 
-    def __init__(self, source, pages, expected, workdir, monkeypatch):
+    def __init__(self, source, pages, workdir, monkeypatch):
         super().__init__(
             # step=f'pdf {source}',
             step='',
@@ -62,7 +59,6 @@ class Evaluate(utilatest.BaseLiner):
             archive=ARCHIVE,
             loader=self.load_sections,
             convert_source=False,
-            index=expected,
         )
 
     def load_sections(self, _):  # pylint:disable=W0613

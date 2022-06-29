@@ -113,7 +113,7 @@ def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
         position=iamraw.path.textposition(source, prefix='oneline'),
         sizeandborder=source,
         footerheader=source,
-        outlines=source,
+        outlines=iamraw.path.outlines(source),
         pages=pages,
     )
     assert dumped, dumped

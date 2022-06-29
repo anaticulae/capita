@@ -92,7 +92,7 @@ def textonpage(page: texmex.PageTextNavigator) -> TextOnPage:
         text = chunk.text.strip()
         sentences = german.sentence_tokenize(text)
         for item in sentences:
-            if not german.is_sentence(item, min_length=SENTENCE_LENGTH_MIN):
+            if not german.is_sentence(item, length_min=SENTENCE_LENGTH_MIN):
                 continue
             result.append_sentence(item)
         splitted = german.words_fromstr(text)
