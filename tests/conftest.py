@@ -87,9 +87,7 @@ def pytest_sessionstart():
 def extract(resources):
     genex.extract(
         base=power.REPOSITORY,
-        destination=power.generated(),
         files=resources,
         groupme='--pagenumbers --footer',
         worker=WORKER,
-        pages=':',
     )
