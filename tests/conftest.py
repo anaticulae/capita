@@ -90,7 +90,6 @@ def extract(resources):
         destination=power.generated(),
         files=resources,
         groupme='--pagenumbers --footer',
-        reftable='--toc',
         worker=WORKER,
         pages=':',
     )
