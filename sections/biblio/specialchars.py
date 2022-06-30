@@ -214,6 +214,8 @@ def special_pattern(raw: str, page: int) -> int:
     If too few pages occurs, disable pattern approach, because its may
     not a bib may a toc or table table.
     """
+    if nobib(raw, page=page):
+        return 0
     collected = collect_and_replace(raw, PATTERN)
     # this patterns typically occurs mostly once's.
     allmarker = len(collected)
@@ -310,3 +312,39 @@ def split_doublecolon(text: str) -> list:
     ['http://donotsplit.com https://donotsplit.com']
     """
     return re.split(DOUBLE_COLON, text)
+
+
+NOBIB_COUNT_MIN = configo.HV_INT_PLUS(default=35)
+
+NOBIB = utila.compiles(r"""
+    \s
+    (
+        [a-h]{1,2}[ ]{0,2}[\.\)][ ]{0,3}\w|
+        \d{1,2}[ ]{0,2}\.[ ]{0,3}\w|
+        S\.[ ]{0,3}\d{1,3}
+    )
+""")
+
+
+def nobib(
+    raw: str,
+    nobib_count_min: int = NOBIB_COUNT_MIN,
+    page: int = None,
+) -> bool:
+    """\
+    >>> nobib(' a) Fall 1: Kosovo             S. 184', nobib_count_min=2)
+    True
+
+    A. Einführung                                                       S. 178
+    B. Selbstbestimmungsrecht und Demokratie                            S. 180
+        I. Das Selbstbestimmungsrecht                                   S. 180
+            1. Das Selbstbestimmungsrecht im Völkerrecht                S. 180
+            2. Selbstbestimmungsrecht und Staatenzerfall                S. 182
+            3. Die Beziehung zwischen dem Selbstbestimmungsrecht und    S. 183
+                a) Fall 1: Kosovo                                       S. 184
+    """
+    tocs = list(NOBIB.finditer(raw))
+    if len(tocs) >= nobib_count_min:
+        utila.debug(f'too many toc pattern inside bib: {len(tocs)}; p{page}')
+        return True
+    return False
