@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.21.1
+
+### Feature
+
+* add pattern to overwrite special pattern (2bd14e6e8a17)
+* skip pages with too many footnotes (8e795e09ba13)
+* use footnote to improve bib extraction (b5f468be9736)
+
 ## v1.21.0
 
 ### Feature
