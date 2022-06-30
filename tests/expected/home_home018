@@ -2,14 +2,13 @@
     000 000 TitlePageSection
     001 001 Text
     002 002 TableOfContent
-003 007 MainPart
+003 017 MainPart
     003 003 Chapter
     004 004 Chapter
     005 005 Text
     006 006 Text
-007 017 Appendix
-    007 007 Bibliography
-    008 008 Bibliography
+    007 007 Text
+    008 008 Text
     009 009 Text
     010 010 Text
     011 011 Text
@@ -18,5 +17,5 @@
     014 014 Text
     015 015 Text
     016 016 Text
-017 018 MainPart
-    017 017 Chapter
+017 018 Appendix
+    017 017 Bibliography
