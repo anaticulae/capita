@@ -37,22 +37,24 @@ import sections.feature.chapter
     ),
     pytest.param(
         power.MASTER091A_PDF,
-        [13, 16, 18, 37, 47, 58, 66, 72, 82],
+        [13, 16, 18, 33, 37, 47, 58, 66, 72, 82],
         id='master91a',
     ),
     pytest.param(
         power.DISS266_PDF,
-        [4, 5, 9, 23, 81, 103, 197, 203, 205],
+        [9, 23, 30, 81, 103, 197, 203],
+        # [4, 5, 9, 23, 81, 103, 197, 203, 205],
         id='diss266',
     ),
     pytest.param(
         power.BACHELOR051_PDF,
-        [3, 4, 28, 42],
+        [3, 4, 28, 35, 42],
         id='bachelor51',
     ),
     pytest.param(
         power.BACHELOR037_PDF,
-        [6, 15, 27],
+        # [6, 15, 27],
+        [6, 15],
         id='bachelor37',
     ),
     pytest.param(
@@ -62,7 +64,8 @@ import sections.feature.chapter
     ),
     pytest.param(
         power.DISS172_PDF,
-        [16, 89, 148, 150],
+        [16, 24, 43, 54, 75, 89, 112, 132, 148, 150],
+        # [16, 89, 148, 150],
         id='diss172',
     ),
     pytest.param(
@@ -142,7 +145,7 @@ def test_chapter_work_master98():
     source = power.link(power.MASTER098_PDF)
     extracted = chapter(source)
 
-    expected = [2, 6, 26, 42, 67, 85, 88]
+    expected = [2, 6, 26, 42, 67, 85, 88, 96]
     pages = [item.page for item in extracted]
 
     assert pages == expected
