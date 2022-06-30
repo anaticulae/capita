@@ -25,6 +25,7 @@ def test_bibliography_work():
     source = power.link(power.MASTER072_PDF)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
+    footer = iamraw.path.groupme_headerfooters(source)
     expected = (
         (65, 0.5),
         (66, 0.5),
@@ -37,6 +38,7 @@ def test_bibliography_work():
     extracted = sections.feature.bibliography.work(
         text,
         textposition,
+        footer=footer,
         pages=pages,
     )
     assert len(extracted) > 50, str(extracted)

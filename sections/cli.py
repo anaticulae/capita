@@ -55,6 +55,7 @@ WORKPLAN = [
         inputs=[
             utila.ResultFile('rawmaker', 'text_text'),
             utila.ResultFile('rawmaker', 'text_positions'),
+            utila.ResultFile('groupme', 'footer_footerheader'),
         ],
         output=('likelihood',),
     ),

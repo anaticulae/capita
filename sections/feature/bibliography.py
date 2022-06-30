@@ -13,7 +13,14 @@ import sections.biblio.strategy
 import sections.utils.spa
 
 
-def work(document: str, position: str, pages: tuple = None) -> str:
+def work(document: str, position: str, footer: str, pages: tuple = None) -> str:
+    if pages:
+        # TODO: REMOVE LATER AFTER UPGRADINING SERIALIZERAW
+        pages = tuple(pages)
+    footer = serializeraw.load_footnotes(
+        footer,
+        pages,
+    )
     data = sections.utils.spa.Data(
         document=document,
         position=position,
