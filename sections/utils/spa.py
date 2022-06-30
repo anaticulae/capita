@@ -37,6 +37,7 @@ class Data:
     position: str
     pages: tuple = None
     page_count: int = None
+    skips: set = None
 
 
 def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
@@ -49,6 +50,11 @@ def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
         fill_empty=False,
         pages=pages,
     )
+    if data.skips:
+        for navigator in navigators:
+            # remove content
+            if navigator.page in data.skips:
+                navigator.clear()
     result = {
         page.page: pages_ifrequired(page_analysis, page, data.page_count)
         for page in navigators

@@ -21,10 +21,12 @@ def work(document: str, position: str, footer: str, pages: tuple = None) -> str:
         footer,
         pages,
     )
+    nobib = set(item.page for item in footer if len(item.content) >= 2)
     data = sections.utils.spa.Data(
         document=document,
         position=position,
         pages=pages,
+        skips=nobib,
     )
     hugest = sections.biblio.strategy.extract(data)
     dumped = serializeraw.dump_likelihood(hugest)
