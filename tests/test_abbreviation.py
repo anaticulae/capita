@@ -17,7 +17,7 @@ import sections.feature.abbreviation
 
 
 @utilatest.longrun
-def test_abbreviations_bachelor37_work():
+def test_abbrev_bachelor37_work():
     pages = (0, 1, 2, 5, 6)
     source = power.BACHELOR037_PDF
     extracted = abbreviations(source, pages)
@@ -26,7 +26,7 @@ def test_abbreviations_bachelor37_work():
 
 
 @utilatest.longrun
-def test_abbreviations_diss170_work():
+def test_abbrev_diss170_work():
     pages = (141, 142)
     source = power.DISS170_PDF
     extracted = abbreviations(source, pages)
@@ -67,7 +67,7 @@ def test_no_abbreviations_master193():
 
 
 @utilatest.longrun
-def test_abbreviations_diss167_four_pages():
+def test_abbrev_diss167_four_pages():
     extracted = abbreviations(
         power.DISS167_PDF,
         pages=utila.rlist(10, 20),
@@ -78,7 +78,7 @@ def test_abbreviations_diss167_four_pages():
 
 
 @utilatest.longrun
-def test_abbreviations_diss406():
+def test_abbrev_diss406():
     extracted = abbreviations(
         power.DISS406_PDF,
         pages=utila.rlist(30),
