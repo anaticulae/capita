@@ -70,6 +70,9 @@ def analyse_page(content):
     # Use backup strategy to collect double column page which can follow
     # headlined page
     parsed = geostrat.parse(content, column_count=2)
+    if not parsed:
+        # no double column layout detected
+        return sections.feature.NO_PAGE
     if not invalid_column(parsed):
         return BACKUP_PAGE
     return sections.feature.NO_PAGE
@@ -105,14 +108,12 @@ def invalid_column(data: list) -> bool:  # pylint:disable=R0911
     True
     """
     # remove very small data or -/lists
-    if not data:
+    if not data or len(data) == 2:
+        # we require two columns
         return True
     data[0] = [item for item in data[0] if len(text(item).strip('-– ')) > 3]
-    if not data[0]:
-        return True
-    if not data[1]:
-        return True
-    if len(data) != 2:
+    if not data[0] or not data[1]:
+        # both columns must have data
         return True
     if numbered_column(data):
         return True
