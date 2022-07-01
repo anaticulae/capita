@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.21.2
+
+### Feature
+
+* return failure earlier (6cff81450114)
+
+### Fix
+
+* adjust abbrev column detector (1da955a0b1ce)
+
 ## v1.21.1
 
 ### Feature
