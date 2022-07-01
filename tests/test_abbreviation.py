@@ -88,6 +88,13 @@ def test_abbrev_diss406():
     assert pages == expected
 
 
+def test_abbrev_bachelor090():
+    extracted = abbreviations(power.BACHELOR090_PDF)
+    pages = [item.page for item in extracted if item.content.value]
+    expected = [10, 11]
+    assert pages == expected
+
+
 def abbreviations(source, pages=None):
     utilatest.fixture_requires(source)
     source = power.link(source)
