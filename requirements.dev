@@ -14,7 +14,7 @@ power==2.9.0
 
 # ensure that test data is generated with the right version of rawmaker
 rawmaker==2.37.2
-groupme==0.34.1
+groupme==0.34.3
 
 detector==0.38.0
 
