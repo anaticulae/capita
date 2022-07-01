@@ -73,7 +73,7 @@ def analyse_page(content):
     if not parsed:
         # no double column layout detected
         return sections.feature.NO_PAGE
-    if not invalid_column(parsed):
+    if not invalid_column(parsed[0], parsed[1]):
         return BACKUP_PAGE
     return sections.feature.NO_PAGE
 
@@ -101,46 +101,44 @@ def byheadline(content):
 NOABBR = elements.headline.lookup.TOC
 
 
-def invalid_column(data: list) -> bool:  # pylint:disable=R0911
+def invalid_column(left, right) -> bool:  # pylint:disable=R0911
     """\
     unbalanced columns, equal factor is not matching
-    >>> invalid_column([['sos'], ['This is just data']*10])
+    >>> invalid_column(*(['sos'], ['This is just data']*10))
     True
     """
     # remove very small data or -/lists
-    if not data or len(data) == 2:
-        # we require two columns
-        return True
-    data[0] = [item for item in data[0] if len(text(item).strip('-– ')) > 3]
-    if not data[0] or not data[1]:
+    left = [text(item).strip('-– ') for item in left]
+    right = [text(item).strip('-– ') for item in right]
+    left = [item for item in left if len(item) >= 2]
+    if not left or not right:
         # both columns must have data
         return True
-    if numbered_column(data):
+    if numbered_column(right):
         return True
-    if not short_column(data[0]):
+    if not short_column(left):
         return True
-    equal_factor = len(data[0]) / len(data[1])
+    equal_factor = len(left) / len(right)
     if equal_factor < 0.3:
         # CHECK THAT LEFT AND RIGHT COLUMN ARE NEARLY EQUAL
         # assumption: the second column has max. 3 times more lines then
         # the left side.
         return True
-    if whitespaced(data[1]):
+    if whitespaced(right):
         return True
     return False
 
 
-def numbered_column(data: list) -> bool:
-    right = data[1]
+def numbered_column(column) -> bool:
     # item in right column in a row contain any number and may other stuff
     right_numbers = [
-        item for item in right if item and utila.parse_numbers(text(item))
+        item for item in column if item and utila.parse_numbers(text(item))
     ]
-    if len(right) < 6:
+    if len(column) < 6:
         return False
     if not right_numbers:
         return False
-    rate = len(right_numbers) / len(right)
+    rate = len(right_numbers) / len(column)
     if rate <= 0.3:
         return False
     # right number column, maybe a table of content page
@@ -153,7 +151,7 @@ SHORT_COLUMN_MEAN_MAX = configo.HV_FLOAT_PLUS(default=10.0)
 def short_column(left) -> bool:
     if not left:
         return False
-    mean = statistics.mean([len(text(item)) for item in left])
+    mean = statistics.mean([len(item) for item in left])
     if mean > SHORT_COLUMN_MEAN_MAX:
         return False
     return True
@@ -166,7 +164,7 @@ WHITESPACED_INVALID_RATE_MIN = configo.HV_PERCENT_PLUS(default=20.0)
 
 def whitespaced(right) -> bool:
     valid, invalid = utila.partition(
-        key=lambda x: whitespace_rate(x.text) < WHITESPACED_VALID_MAX,
+        key=lambda x: whitespace_rate(x) < WHITESPACED_VALID_MAX,
         items=right,
     )
     if not invalid:
