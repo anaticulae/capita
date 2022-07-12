@@ -17,6 +17,9 @@ import utilatest
 import sections.feature.bibliography
 import sections.path
 import tests
+import tests.test_validate
+
+ARCHIVE = utila.join(sections.ROOT, 'tests/expected/bibliography', exist=True)
 
 
 @utilatest.nightly
@@ -107,3 +110,45 @@ def test_bibliography_x(source, expected, testdir, monkeypatch):
 def test_nobib_x(source, pages, testdir, monkeypatch):
     detected = extract_bibliography(source, pages, testdir, monkeypatch)
     assert not detected
+
+
+@utilatest.nightly
+@pytest.mark.parametrize(
+    'source',
+    utilatest.test_resources(tests.conftest.RESOURCES),
+)
+def test_validate_bibliography(source, testdir, monkeypatch):
+    BibliographyValidate(
+        source=source,
+        workdir=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    ).evaluate()
+
+
+class BibliographyValidate(tests.test_validate.Evaluate):
+
+    def __init__(self, source, workdir, monkeypatch):
+        super().__init__(
+            step='bibliography',
+            pages=':',
+            source=source,
+            monkeypatch=monkeypatch,
+            workdir=workdir,
+        )
+        self.archive = ARCHIVE
+
+    def load_sections(self, _):  # pylint:disable=W0613
+        path = utila.join(
+            self.workdir,
+            'sections__bibliography_likelihood.yaml',
+        )
+        loaded = serializeraw.load_likelihood(path)
+        return loaded
+
+    def raw(self, value) -> str:
+        pages = []
+        for line in value:
+            raw = f'{line.page}'.zfill(3) + ' ' + str(line.content.value)
+            pages.append(raw)
+        result = utila.NEWLINE.join(pages)
+        return result
