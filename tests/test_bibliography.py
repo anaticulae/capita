@@ -53,27 +53,27 @@ def test_bibliography_work():
         assert current >= value, str(selected)
 
 
-def extract_bibliography(source, pages, testdir, monkeypatch):
+def extract_bibliography(source, pages, td, mp):
     source = power.link(source)
     utilatest.fixture_requires(source)
     tests.run_sections(
         f'-i {source} --bibliography --pages={pages} -VVV',
-        monkeypatch=monkeypatch,
+        mp=mp,
     )
     # verify result
-    path = sections.path.bibliography(testdir.tmpdir)
+    path = sections.path.bibliography(td.tmpdir)
     likelihood = serializeraw.load_likelihood(path)
     pages = [item.page for item in likelihood if item.content.value > 0.0]
     return pages
 
 
 @utilatest.nightly
-def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
+def test_bibliography_ensure_connected_pages(td, mp):
     non_zero = extract_bibliography(
         power.MASTER098_PDF,
         ':',
-        testdir,
-        monkeypatch,
+        td,
+        mp,
     )
     diff = utila.diffs(non_zero)
     # ensure to have only one ascending group with holes
@@ -98,8 +98,8 @@ def test_bibliography_ensure_connected_pages(testdir, monkeypatch):
     pytest.param(power.PAPER018_PDF, [15, 16, 17], id='paper018'),
 ])
 @utilatest.nightly
-def test_bibliography_x(source, expected, testdir, monkeypatch):
-    pages = extract_bibliography(source, ':', testdir, monkeypatch)
+def test_bibliography_x(source, expected, td, mp):
+    pages = extract_bibliography(source, ':', td, mp)
     assert pages == expected
 
 
@@ -107,8 +107,8 @@ def test_bibliography_x(source, expected, testdir, monkeypatch):
 @pytest.mark.parametrize('source, pages', [
     pytest.param(power.MASTER193_PDF, '124:130', id='master193'),
 ])
-def test_nobib_x(source, pages, testdir, monkeypatch):
-    detected = extract_bibliography(source, pages, testdir, monkeypatch)
+def test_nobib_x(source, pages, td, mp):
+    detected = extract_bibliography(source, pages, td, mp)
     assert not detected
 
 
@@ -117,22 +117,22 @@ def test_nobib_x(source, pages, testdir, monkeypatch):
     'source',
     utilatest.test_resources(tests.conftest.RESOURCES),
 )
-def test_validate_bibliography(source, testdir, monkeypatch):
+def test_validate_bibliography(source, td, mp):
     BibliographyValidate(
         source=source,
-        workdir=testdir.tmpdir,
-        monkeypatch=monkeypatch,
+        workdir=td.tmpdir,
+        mp=mp,
     ).evaluate()
 
 
 class BibliographyValidate(tests.test_validate.Evaluate):
 
-    def __init__(self, source, workdir, monkeypatch):
+    def __init__(self, source, workdir, mp):
         super().__init__(
             step='bibliography',
             pages=':',
             source=source,
-            monkeypatch=monkeypatch,
+            mp=mp,
             workdir=workdir,
         )
         self.archive = ARCHIVE

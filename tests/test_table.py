@@ -16,14 +16,14 @@ import tests
 
 
 @utilatest.longrun
-def test_table_table_master98_page95(testdir, monkeypatch):
+def test_table_table_master98_page95(td, mp):
     utilatest.fixture_requires(power.MASTER098_PDF)
     source = power.link(power.MASTER098_PDF)
     tests.run_sections(
         f'-i {source} --tabletable --pages=95',
-        monkeypatch=monkeypatch,
+        mp=mp,
     )
-    path = sections.path.tabletable(testdir.tmpdir)
+    path = sections.path.tabletable(td.tmpdir)
     likelihood = serializeraw.load_likelihood(path)
 
     non_zero = [item.page for item in likelihood if item.content.value > 0.0]

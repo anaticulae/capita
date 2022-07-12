@@ -27,26 +27,26 @@ ARCHIVE = utila.join(sections.ROOT, 'tests/expected/result', exist=True)
     'source',
     utilatest.test_resources(tests.conftest.RESOURCES),
 )
-def test_validate(source, testdir, monkeypatch):
+def test_validate(source, td, mp):
     utilatest.fixture_requires(source)
     Evaluate(
         step='',
         source=source,
         pages=':',
-        workdir=testdir.tmpdir,
-        monkeypatch=monkeypatch,
+        workdir=td.tmpdir,
+        mp=mp,
     ).evaluate()
 
 
 class Evaluate(utilatest.BaseLiner):
 
-    def __init__(self, step, source, pages, workdir, monkeypatch):
+    def __init__(self, step, source, pages, workdir, mp):
         super().__init__(
             # step=f'pdf {source}',
             step=step,
             program=functools.partial(
                 tests.run_sections,
-                monkeypatch=monkeypatch,
+                mp=mp,
             ),
             pages=pages,
             source=power.link(source),

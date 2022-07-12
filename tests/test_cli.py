@@ -18,14 +18,14 @@ import tests
 @pytest.mark.parametrize('cmd', [
     pytest.param(f'-i {power.DOCU027_PDF} -o . --all', id='docu27'),
 ])
-def test_run_sections_failed(cmd, testdir, monkeypatch):  #pylint: disable=W0613
+def test_run_sections_failed(cmd, td, mp):  #pylint: disable=W0613
     """Run `sections` with bad input"""
-    tests.run_sections_failure(cmd, monkeypatch=monkeypatch)
+    tests.run_sections_failure(cmd, mp=mp)
 
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER072_PDF)
-def test_run_sections_multicore(testdir, monkeypatch):
+def test_run_sections_multicore(td, mp):
     """Regression test to ensure the correct order of the different
     steps in multicore behavior.
 
@@ -39,7 +39,7 @@ def test_run_sections_multicore(testdir, monkeypatch):
     # this required items.
     # Copy yaml files which starts with rawmaker or groupme.
     pattern = '(rawmaker|groupme|pdfinfo)*.yaml'
-    utila.copy_content(source, testdir.tmpdir, pattern=pattern)
+    utila.copy_content(source, td.tmpdir, pattern=pattern)
     jobs = 5
-    cmd = f'-j{jobs} -i {testdir.tmpdir} -o {testdir.tmpdir} --pages=0:5 --all'
-    tests.run_sections(cmd, monkeypatch=monkeypatch)
+    cmd = f'-j{jobs} -i {td.tmpdir} -o {td.tmpdir} --pages=0:5 --all'
+    tests.run_sections(cmd, mp=mp)

@@ -16,11 +16,11 @@ import tests
 
 
 @utilatest.nightly
-def test_docinfo_lang(testdir, monkeypatch):
+def test_docinfo_lang(td, mp):
     pdf = power.DISS406_PDF
     utilatest.fixture_requires(pdf)
     source = power.link(pdf)
-    cmd = f'-i {source} -o {testdir.tmpdir} --pages=0:10'
-    tests.run_sections(cmd, monkeypatch=monkeypatch)
-    docinfo = serializeraw.load_docinfo(testdir.tmpdir)
+    cmd = f'-i {source} -o {td.tmpdir} --pages=0:10'
+    tests.run_sections(cmd, mp=mp)
+    docinfo = serializeraw.load_docinfo(td.tmpdir)
     assert docinfo.lang == iamraw.Language.GERMAN

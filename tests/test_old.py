@@ -39,12 +39,12 @@ def test_validate_docu027(docu027_sections_manual):
 
 @utilatest.nightly
 @utilatest.requires(power.DOCU007_PDF)
-def test_sections_simple(testdir, monkeypatch):
+def test_sections_simple(td, mp):
     """Check dumped result of section work method"""
     simple_sections = tests.sections_from_dir(
         power.DOCU007_PDF,
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
+        path=td.tmpdir,
+        mp=mp,
     )
     assert len(simple_sections) == 2, len(simple_sections)
     dumped = serializeraw.dump_sections(simple_sections)
@@ -55,7 +55,7 @@ def test_sections_simple(testdir, monkeypatch):
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER072_PDF)
-def test_sections_master72(testdir, monkeypatch):
+def test_sections_master72(td, mp):
     """Ensure that BUILDER in section is sorted correctly.
 
     There is a problem if we sort TOC and Title alphabetically. To avoid
@@ -64,8 +64,8 @@ def test_sections_master72(testdir, monkeypatch):
     """
     result = tests.sections_from_dir(
         power.MASTER072_PDF,
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
+        path=td.tmpdir,
+        mp=mp,
     )
     # page 0 is title page
     assert isinstance(result[0], iamraw.sections.Introduction), type(result[0])
@@ -83,12 +83,12 @@ def test_sections_master72(testdir, monkeypatch):
 
 @utilatest.nightly
 @utilatest.requires(power.MASTER075_PDF)
-def test_sections_master075_appendix(testdir, monkeypatch):
+def test_sections_master075_appendix(td, mp):
     result = tests.sections_from_dir(
         power.MASTER075_PDF,
         pages='70,71,72,73,74',
-        path=testdir.tmpdir,
-        monkeypatch=monkeypatch,
+        path=td.tmpdir,
+        mp=mp,
     )
     result = result[0]
     assert isinstance(result, iamraw.sections.Appendix)

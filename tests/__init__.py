@@ -19,14 +19,14 @@ import sections.cli
 
 #pylint:disable=C0103
 run_sections = functools.partial(
-    utilatest.run_command,
+    utilatest.run_cov,
     main=sections.cli.main,
     process=sections.PROCESS,
     success=True,
 )
 
 run_sections_failure = functools.partial(
-    utilatest.run_command,
+    utilatest.run_cov,
     main=sections.cli.main,
     process=sections.PROCESS,
     success=False,
@@ -38,12 +38,12 @@ utilatest.register_marker('huge')
 def sections_from_dir(
     pdf: str,
     path,
-    monkeypatch,
+    mp,
     pages: str = ':',
 ) -> iamraw.SectionList:
     utilatest.fixture_requires(pdf)
     source = power.link(pdf)
     cmd = f'--pdf={pdf} -i {source} -o {path} -j8 --pages={pages} -VVV --profile'
-    run_sections(cmd, monkeypatch=monkeypatch)
+    run_sections(cmd, mp=mp)
     result = serializeraw.load_sections(str(path))
     return result
