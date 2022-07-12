@@ -30,6 +30,7 @@ ARCHIVE = utila.join(sections.ROOT, 'tests/expected/result', exist=True)
 def test_validate(source, testdir, monkeypatch):
     utilatest.fixture_requires(source)
     Evaluate(
+        step='',
         source=source,
         pages=':',
         workdir=testdir.tmpdir,
@@ -39,10 +40,10 @@ def test_validate(source, testdir, monkeypatch):
 
 class Evaluate(utilatest.BaseLiner):
 
-    def __init__(self, source, pages, workdir, monkeypatch):
+    def __init__(self, step, source, pages, workdir, monkeypatch):
         super().__init__(
             # step=f'pdf {source}',
-            step='',
+            step=step,
             program=functools.partial(
                 tests.run_sections,
                 monkeypatch=monkeypatch,
