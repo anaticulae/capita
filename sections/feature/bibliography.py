@@ -14,9 +14,6 @@ import sections.utils.spa
 
 
 def work(document: str, position: str, footer: str, pages: tuple = None) -> str:
-    if pages:
-        # TODO: REMOVE LATER AFTER UPGRADINING SERIALIZERAW
-        pages = tuple(pages)
     nobib = skip_bibliography(
         footer,
         pages=pages,
