@@ -19,7 +19,7 @@ import sections
 import tests
 import tests.conftest
 
-ARCHIVE = utila.join(sections.ROOT, 'tests/expected', exist=True)
+ARCHIVE = utila.join(sections.ROOT, 'tests/expected/result', exist=True)
 
 
 def todo():
