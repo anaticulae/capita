@@ -17,11 +17,10 @@ def work(document: str, position: str, footer: str, pages: tuple = None) -> str:
     if pages:
         # TODO: REMOVE LATER AFTER UPGRADINING SERIALIZERAW
         pages = tuple(pages)
-    footer = serializeraw.load_footnotes(
+    nobib = skip_bibliography(
         footer,
-        pages,
+        pages=pages,
     )
-    nobib = set(item.page for item in footer if len(item.content) >= 2)
     data = sections.utils.spa.Data(
         document=document,
         position=position,
@@ -31,3 +30,16 @@ def work(document: str, position: str, footer: str, pages: tuple = None) -> str:
     hugest = sections.biblio.strategy.extract(data)
     dumped = serializeraw.dump_likelihood(hugest)
     return dumped
+
+
+def skip_bibliography(
+    footer: str,
+    pages: tuple = None,
+) -> set:
+    """Determine pages where bib detection is not possbile."""
+    footer = serializeraw.load_footnotes(
+        footer,
+        pages,
+    )
+    nobib = set(item.page for item in footer if len(item.content) >= 2)
+    return nobib
