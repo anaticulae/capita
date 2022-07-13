@@ -90,7 +90,7 @@ def contains_outline(content, toc) -> float:
 
 NOHEADLINES = elements.headline.lookup.HEADLINES - elements.headline.lookup.CHAPTER
 
-FIRSTLEVEL_DOT_PATTERN = re.compile(r'^\d\.{0,1}\s+')
+FIRSTLEVEL_DOT_PATTERN = re.compile(r'^\d{1,2}\.{0,1}\s+')
 
 
 def level_remove(toc):
