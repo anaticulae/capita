@@ -19,7 +19,6 @@ one. Without selecting the biggest cluster, more than one bib can be
 detected.
 """
 
-import re
 import statistics
 
 import configo
@@ -114,7 +113,7 @@ def volume(text, verbose: bool = True):
     """
     # TODO: MOVE TO GERMAN
     result = []
-    for item in re.finditer(VOLUME, text):
+    for item in VOLUME.finditer(text):
         group = item.groups()
         value = group[3] if group[3] and group[3].isnumeric() else group[2]
         if verbose:
@@ -139,7 +138,7 @@ def bibtext(text, verbose: bool = True):
     [('Aufl.', 'Aufl.')]
     """
     result = []
-    for item in re.finditer(BIBS, text):
+    for item in BIBS.finditer(text):
         if verbose:
             result.append((item[0], item[0]))
         else:
@@ -159,7 +158,7 @@ def years(raw: str, min_=1950, max_=2025, verbose: bool = False):
     [(1987, '1987a')]
     """
     result = []
-    for item in re.finditer(YEARS, raw):
+    for item in YEARS.finditer(raw):
         year = int(item.groups()[1])
         if min_ <= year <= max_:
             parsed = year
@@ -185,7 +184,7 @@ def authors(text, verbose: bool = True):
     """
     # TODO: REPLACE WITH GERMAN CODE
     result = []
-    for item in re.finditer(AUTHORS, text):
+    for item in AUTHORS.finditer(text):
         valid = german.pattern.author.simple(item[0])
         if not valid:
             continue
@@ -311,7 +310,7 @@ def split_doublecolon(text: str) -> list:
     >>> split_doublecolon('http://donotsplit.com https://donotsplit.com')
     ['http://donotsplit.com https://donotsplit.com']
     """
-    return re.split(DOUBLE_COLON, text)
+    return DOUBLE_COLON.split(text)
 
 
 NOBIB_COUNT_MIN = configo.HV_INT_PLUS(default=35)
