@@ -10,6 +10,7 @@
 import genex
 import power
 import pytest
+import utilatest
 from utilatest import mp  # pylint:disable=W0611
 from utilatest import td  # pylint:disable=W0611
 
@@ -27,7 +28,7 @@ power.setup(sections.ROOT)
 
 PACKAGE = sections.PACKAGE
 
-WORKER = 4
+WORKER = utilatest.worker_count(4, onci=22)
 
 RESOURCES = [
     (power.BACHELOR056_PDF, '0:55'),
