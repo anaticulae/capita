@@ -2,6 +2,23 @@
 
 Every noteable change is logged here.
 
+## v1.21.3 (2022-09-28)
+
+### Fix
+
+* extend level outline collector (a0db0740381f)
+
+### Chore
+
+* use more worker if running in CI (d01104127ba2)
+* adjust to current generator (172eb81f536f)
+* add missing dev requirement (a5b6e5cb3834)
+* add separate generation step (92c9fe5bb484)
+* add Jenkinsfile (1add9a26b475)
+* upgrade requirements.txt (2acc79466c67)
+* upgrade requirements.txt (30aa5aa79460)
+* upgrade requirements.txt (186552514625)
+
 ## v1.21.2
 
 ### Feature
