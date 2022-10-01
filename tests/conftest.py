@@ -28,8 +28,6 @@ power.setup(sections.ROOT)
 
 PACKAGE = sections.PACKAGE
 
-WORKER = utilatest.worker_count(4, onci=22)
-
 RESOURCES = [
     (power.BACHELOR056_PDF, '0:55'),
     (power.BACHELOR090_PDF, '0:20,75:90'),
@@ -81,6 +79,7 @@ RESOURCES = [
     power.ORDER107_PDF,
     power.PAPER018_PDF,
 ]
+WORKER = utilatest.worker_count(4, onci=len(RESOURCES))
 
 
 @pytest.mark.usefixtures('session')
