@@ -20,6 +20,7 @@ detector==0.38.0
 
 pagenumber==0.2.1
 footnote==0.2.2
+headnote==0.3.1
 
 genex==0.35.0
 hardcore==0.7.0
