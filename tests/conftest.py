@@ -94,5 +94,6 @@ def extract(resources):
         pagenumber=True,
         footnote=True,
         headnote=True,
+        cleanup=True,
         worker=WORKER,
     )
