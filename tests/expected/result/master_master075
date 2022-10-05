@@ -4,7 +4,7 @@
     002 002 TableOfContent
     003 003 TableOfContent
     004 004 Abstract
-    005 005 WhitePage
+    005 005 Text
 006 070 MainPart
     006 006 Chapter
     007 007 Text
@@ -19,7 +19,7 @@
     016 016 Text
     017 017 Text
     018 018 Text
-    019 019 WhitePage
+    019 019 Text
     020 020 Chapter
     021 021 Text
     022 022 Text
@@ -47,7 +47,7 @@
     044 044 Text
     045 045 Text
     046 046 Text
-    047 047 WhitePage
+    047 047 Text
     048 048 Chapter
     049 049 Text
     050 050 Text
@@ -67,12 +67,12 @@
     064 064 Text
     065 065 Text
     066 066 Text
-    067 067 WhitePage
+    067 067 Text
     068 068 Chapter
     069 069 Text
 070 075 Appendix
     070 070 Bibliography
     071 071 FigureTable
     072 072 TableTable
-    073 073 WhitePage
+    073 073 Text
     074 074 LegalInformation

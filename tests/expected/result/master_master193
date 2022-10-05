@@ -1,10 +1,11 @@
-000 013 Introduction
+000 006 Introduction
     000 000 TitlePageSection
     001 001 Text
     002 002 Text
     003 003 TableOfContent
     004 004 TableOfContent
     005 005 TableOfContent
+006 188 MainPart
     006 006 Chapter
     007 007 Text
     008 008 Text
@@ -12,17 +13,15 @@
     010 010 Text
     011 011 Text
     012 012 Chapter
-013 022 Appendix
-    013 013 Bibliography
-    014 014 Bibliography
-    015 015 Bibliography
-    016 016 Bibliography
-    017 017 Bibliography
-    018 018 Bibliography
+    013 013 Text
+    014 014 Text
+    015 015 Text
+    016 016 Text
+    017 017 Text
+    018 018 Text
     019 019 Text
     020 020 Text
     021 021 Text
-022 193 MainPart
     022 022 Chapter
     023 023 Text
     024 024 Text
@@ -189,8 +188,9 @@
     185 185 Chapter
     186 186 Text
     187 187 Text
-    188 188 Text
-    189 189 Text
-    190 190 Text
+188 193 Appendix
+    188 188 Bibliography
+    189 189 Bibliography
+    190 190 Bibliography
     191 191 Text
     192 192 Text

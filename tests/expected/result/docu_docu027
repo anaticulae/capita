@@ -2,16 +2,16 @@
     000 000 TitlePageSection
     001 001 Text
     002 002 TableOfContent
-    003 003 WhitePage
+    003 003 Text
 004 026 MainPart
     004 004 Chapter
-    005 005 WhitePage
+    005 005 Text
     006 006 Chapter
-    007 007 WhitePage
+    007 007 Text
     008 008 Chapter
     009 009 Text
     010 010 Chapter
-    011 011 WhitePage
+    011 011 Text
     012 012 Chapter
     013 013 Text
     014 014 Text
@@ -19,12 +19,12 @@
     016 016 Text
     017 017 Text
     018 018 Chapter
-    019 019 WhitePage
+    019 019 Text
     020 020 Chapter
-    021 021 WhitePage
+    021 021 Text
     022 022 Chapter
-    023 023 WhitePage
+    023 023 Text
     024 024 Chapter
-    025 025 WhitePage
+    025 025 Text
 026 027 Table
     026 026 Index

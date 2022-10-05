@@ -8,15 +8,15 @@
     006 006 TableOfContent
     007 007 TableOfContent
     008 008 AbbreviationTable
-    009 009 SymbolTable
-    010 010 SymbolTable
+    009 009 AbbreviationTable
+    010 010 Text
     011 011 Abstract
     012 012 Text
     013 013 Abstract
     014 014 Text
-    015 015 WhitePage
-    016 016 WhitePage
-    017 017 WhitePage
+    015 015 Text
+    016 016 Text
+    017 017 Text
 018 137 MainPart
     018 018 Chapter
     019 019 Text
@@ -42,7 +42,7 @@
     039 039 Text
     040 040 Text
     041 041 Text
-    042 042 WhitePage
+    042 042 Text
     043 043 Chapter
     044 044 Text
     045 045 Chapter
@@ -52,7 +52,7 @@
     049 049 Text
     050 050 Text
     051 051 Text
-    052 052 Text
+    052 052 Acknowledgments
     053 053 Text
     054 054 Text
     055 055 Text
@@ -136,7 +136,7 @@
     133 133 Text
     134 134 Text
     135 135 Text
-    136 136 WhitePage
+    136 136 Text
 137 148 Appendix
     137 137 Bibliography
     138 138 Bibliography

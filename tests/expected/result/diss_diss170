@@ -1,10 +1,10 @@
 000 006 Introduction
     000 000 TitlePageSection
     001 001 Abstract
-    002 002 Text
-    003 003 Text
-    004 004 Text
-    005 005 Text
+    002 002 TableOfContent
+    003 003 TableOfContent
+    004 004 TableOfContent
+    005 005 TableOfContent
 006 141 MainPart
     006 006 Chapter
     007 007 Text
@@ -163,7 +163,7 @@
     159 159 Bibliography
     160 160 Bibliography
     161 161 Bibliography
-    162 162 Text
+    162 162 Bibliography
     163 163 Appendix
     164 164 Text
     165 165 Text

@@ -10,6 +10,7 @@
 import iamraw
 import iamraw.sections
 import power
+import pytest
 import serializeraw
 import utila
 import utilatest
@@ -81,6 +82,7 @@ def test_sections_master72(td, mp):
     assert chapternumbers == expected
 
 
+@pytest.mark.xfail(reason='software integration')
 @utilatest.nightly
 @utilatest.requires(power.MASTER075_PDF)
 def test_sections_master075_appendix(td, mp):

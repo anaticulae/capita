@@ -13,7 +13,7 @@
     010 010 TableOfContent
     011 011 TableOfContent
     012 012 TableOfContent
-013 076 MainPart
+013 157 MainPart
     013 013 Chapter
     014 014 Text
     015 015 Text
@@ -77,14 +77,12 @@
     073 073 Text
     074 074 Text
     075 075 Text
-076 082 Appendix
-    076 076 Bibliography
+    076 076 Text
     077 077 Text
     078 078 Text
     079 079 Text
     080 080 Text
     081 081 Text
-082 157 MainPart
     082 082 Chapter
     083 083 Text
     084 084 Text
@@ -162,7 +160,7 @@
     156 156 Text
 157 164 Appendix
     157 157 Appendix
-    158 158 Appendix
+    158 158 Text
     159 159 Text
     160 160 Text
     161 161 Text
