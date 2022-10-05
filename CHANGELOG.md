@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v1.22.0 (2022-10-05)
+
+### Chore
+
+* publish generated data if nightly fails (50d3cdec1d03)
+* do not run in privileged mode (0816919bbf11)
+* run cleanup (efd362a10ad7)
+* add cleanup (8ba56efcf1ca)
+* upgrade requirements.txt (b3788ea4b34f)
+* upgrade baw (9dacb377c208)
+* increase number of executor in nightly (425c712a2f55)
+* adjust worker on ci (9e974ddd3519)
+* run headnote extractor (41b5789ed6ba)
+* add headnote (32f8e2ce6e71)
+
 ## v1.21.3 (2022-09-28)
 
 ### Fix
