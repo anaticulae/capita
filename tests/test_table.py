@@ -19,7 +19,7 @@ import tests
 def test_table_table_master98_page95(td, mp):
     utilatest.fixture_requires(power.MASTER098_PDF)
     source = power.link(power.MASTER098_PDF)
-    tests.run_sections(
+    tests.run(
         f'-i {source} --tabletable --pages=95',
         mp=mp,
     )

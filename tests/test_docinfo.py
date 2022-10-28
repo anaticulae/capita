@@ -21,6 +21,6 @@ def test_docinfo_lang(td, mp):
     utilatest.fixture_requires(pdf)
     source = power.link(pdf)
     cmd = f'-i {source} -o {td.tmpdir} --pages=0:10'
-    tests.run_sections(cmd, mp=mp)
+    tests.run(cmd, mp=mp)
     docinfo = serializeraw.load_docinfo(td.tmpdir)
     assert docinfo.lang == iamraw.Language.GERMAN

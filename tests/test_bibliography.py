@@ -56,7 +56,7 @@ def test_bibliography_work():
 def extract_bibliography(source, pages, td, mp):
     source = power.link(source)
     utilatest.fixture_requires(source)
-    tests.run_sections(
+    tests.run(
         f'-i {source} --bibliography --pages={pages} -VVV',
         mp=mp,
     )

@@ -45,7 +45,7 @@ class Evaluate(utilatest.BaseLiner):
             # step=f'pdf {source}',
             step=step,
             program=functools.partial(
-                tests.run_sections,
+                tests.run,
                 mp=mp,
             ),
             pages=pages,

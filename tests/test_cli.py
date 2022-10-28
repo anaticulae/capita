@@ -20,7 +20,7 @@ import tests
 ])
 def test_run_sections_failed(cmd, td, mp):  #pylint: disable=W0613
     """Run `sections` with bad input"""
-    tests.run_sections_failure(cmd, mp=mp)
+    tests.fail(cmd, mp=mp)
 
 
 @utilatest.nightly
@@ -42,4 +42,4 @@ def test_run_sections_multicore(td, mp):
     utila.copy_content(source, td.tmpdir, pattern=pattern)
     jobs = 5
     cmd = f'-j{jobs} -i {td.tmpdir} -o {td.tmpdir} --pages=0:5 --all'
-    tests.run_sections(cmd, mp=mp)
+    tests.run(cmd, mp=mp)
