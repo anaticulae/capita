@@ -8,7 +8,6 @@
 # =============================================================================
 
 import copy
-import typing
 
 import iamraw
 import iamraw.sections
@@ -42,7 +41,7 @@ def clean_collection(collected: dict) -> dict:
     return collected
 
 
-AreaItems = typing.List[iamraw.sections.AreaItem]
+AreaItems = list[iamraw.sections.AreaItem]
 
 
 def group_sections(items: AreaItems) -> iamraw.Sections:

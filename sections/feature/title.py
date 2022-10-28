@@ -8,7 +8,6 @@
 # =============================================================================
 
 import statistics
-import typing
 
 import configo
 import iamraw
@@ -92,7 +91,7 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
 def no_titlepage(page, fonts):
     if not fonts:  # empty page or page with images
         return EMPTY_RESULT
-    numbers = sum([len(utila.parse_numbers(str(item))) for item in page])
+    numbers = sum((len(utila.parse_numbers(str(item))) for item in page))
     if numbers > 70:
         # skip potential table of content page
         return EMPTY_RESULT
@@ -146,7 +145,7 @@ def determine_hugest_font(fonts, positions, page: iamraw.Page):  # pylint:disabl
 def extract_titlelikelihood_frompath(
     path: str,
     pages: tuple = None,
-) -> typing.List[float]:
+) -> list[float]:
     document = serializeraw.load_document(iamraw.path.text(path), pages=pages)
     fontstore = serializeraw.create_fontstore(
         iamraw.path.fontheader(path),

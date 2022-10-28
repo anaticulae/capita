@@ -8,8 +8,6 @@
 # =============================================================================
 # TODO: MOVE TO UTILA
 
-import typing
-
 import configo
 import iamraw
 import texmex
@@ -17,8 +15,8 @@ import utila
 
 Count = int
 Page = int
-StatisticalResultItem = typing.Tuple[texmex.Occurrence, Count]  # number
-StatisticalResult = typing.Dict[Page, StatisticalResultItem]
+StatisticalResultItem = tuple[texmex.Occurrence, Count]  # number
+StatisticalResult = dict[Page, StatisticalResultItem]
 
 NO_PAGE = (0, 0)
 PERFECT = (1, 1)
@@ -46,7 +44,7 @@ def uniform_result(
     """
     assert isinstance(items, dict), type(items)
     values = items.values()
-    features_max = sum([feature for _, feature in values])
+    features_max = sum((feature for _, feature in values))
     if features_max < common_feature_threshold:
         features_max = 0
     if not features_max:
@@ -84,12 +82,11 @@ def multiform_result(items):
     """
     assert isinstance(items, dict), type(items)
     values = items.values()
-    features_max = sum([feature for _, feature in values])
+    features_max = sum((feature for _, feature in values))
     if not features_max:
         # no potential feature in document
         return {page: 0.0 for page in items}
-
-    per_page_max = max([feature for _, feature in values])
+    per_page_max = max((feature for _, feature in values))
     half_max = 0.5 * per_page_max
     multi_max = [
         feature for elements, feature in values if feature >= half_max or

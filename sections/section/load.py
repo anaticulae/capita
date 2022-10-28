@@ -9,7 +9,6 @@
 
 import dataclasses
 import functools
-import typing
 
 import configo
 import iamraw
@@ -33,7 +32,7 @@ class SectionsRequiredResources:
     tabletable: iamraw.PageContentLikelihoods
     title: iamraw.PageContentLikelihoods
     toc: iamraw.PageContentLikelihoods
-    whitepage: typing.List[iamraw.sections.WhitePage]
+    whitepage: list[iamraw.sections.WhitePage]
     glossary: iamraw.PageContentLikelihoods
 
     def sync(self):

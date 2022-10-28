@@ -40,7 +40,7 @@ def cluster_bibpages(items):
         key=lambda x: sum(item.content.value for item in x),
     )
     hugest = hugest[-1]
-    avg = sum([item.content.value for item in hugest]) / len(hugest)
+    avg = sum((item.content.value for item in hugest)) / len(hugest)
     avg = utila.roundme(avg)
     for item in hugest:
         # every item of the group should have the same likelihood

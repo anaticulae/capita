@@ -27,7 +27,6 @@ required resources:
 
 import collections
 import enum
-import typing
 
 import iamraw
 import serializeraw
@@ -117,7 +116,7 @@ def load_imagesfigures(images, figures, pages):
 
 def extract_whitepages(  # pylint:disable=R0914
     document: iamraw.Document,
-    navigators: typing.List[texmex.PageTextNavigator],
+    navigators: list[texmex.PageTextNavigator],
     headerfooters,
     images: list = None,
     figures: list = None,

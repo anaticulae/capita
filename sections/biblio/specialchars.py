@@ -271,7 +271,7 @@ def special_chars(raw: str) -> bool:
     word_count = len(result)
     if word_count < SPECIAL_CHARS_WORDCOUNT_MIN:
         return False
-    counted = sum([raw.count(char) for char in SPECIAL_CHARS])
+    counted = sum((raw.count(char) for char in SPECIAL_CHARS))
     classifier = counted / word_count if word_count else 0
     if classifier < SPECIAL_CHARS_CLASSIFIER_MIN:
         return False

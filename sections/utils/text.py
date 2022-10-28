@@ -11,7 +11,6 @@ import contextlib
 import dataclasses
 import functools
 import statistics
-import typing
 
 import configo
 import german
@@ -24,8 +23,8 @@ SENTENCE_LENGTH_MIN = configo.HV_INT_PLUS(default=20)
 
 @dataclasses.dataclass
 class TextOnPage:
-    words_: typing.List[str] = dataclasses.field(default_factory=list)
-    sentences_: typing.List[str] = dataclasses.field(default_factory=list)
+    words_: list[str] = dataclasses.field(default_factory=list)
+    sentences_: list[str] = dataclasses.field(default_factory=list)
     paragraphs_: int = None
     headlines_: int = None
     # signs included in sentences
