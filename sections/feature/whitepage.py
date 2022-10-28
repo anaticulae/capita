@@ -116,7 +116,7 @@ def load_imagesfigures(images, figures, pages):
 
 def extract_whitepages(  # pylint:disable=R0914
     document: iamraw.Document,
-    navigators: list[texmex.PageTextNavigator],
+    navigators: texmex.PTNs,
     headerfooters,
     images: list = None,
     figures: list = None,

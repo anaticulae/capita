@@ -85,7 +85,7 @@ class TextOnPage:
         raise ValueError(f'unsupported operation {action} {variable}')
 
 
-def textonpage(page: texmex.PageTextNavigator) -> TextOnPage:
+def textonpage(page: texmex.PTN) -> TextOnPage:
     result = TextOnPage()
     for chunk in page:
         text = chunk.text.strip()

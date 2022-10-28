@@ -22,7 +22,7 @@ HEADLINES_WORD_COUNT_MAX = configo.HV_INT_PLUS(default=6)
 
 
 def headlines(
-    navigator: texmex.PageTextNavigator,
+    navigator: texmex.PTN,
     length_min: int = HEADLINES_LENGTH_MIN,
     # max_length: int = 50,
     word_count_min: int = HEADLINES_WORD_COUNT_MIN,

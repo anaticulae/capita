@@ -89,10 +89,8 @@ def work(document: str, position: str, pages=None) -> str:
     return dumped
 
 
-def analyse_page(
-    navigator: texmex.PageTextNavigator
-) -> sections.feature.StatisticalResultItem:
-    raw = navigator.debug
+def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
+    raw = ptn.debug
     lower = raw.lower()
     located = [item for item in FEATURE_POINTS if item in lower]
     trust = 0.0

@@ -100,7 +100,7 @@ LINES_PER_PAGE_MAX = configo.HV_INT_PLUS(default=45)
 
 
 def analyse_page(
-    navigator: texmex.PageTextNavigator,
+    navigator: texmex.PTN,
     page_count: int,
 ) -> sections.feature.StatisticalResultItem:
     if not navigator:

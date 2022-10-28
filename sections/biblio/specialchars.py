@@ -51,32 +51,30 @@ def extract(data: sections.utils.spa.Data) -> list:
 SPECIAL_CHAR_BONUS = configo.HV_PERCENT_PLUS(default=30)
 
 
-def analyse_page(
-    navigator: texmex.PageTextNavigator
-) -> sections.feature.StatisticalResultItem:
-    raw = navigator.debug
-    marker = special_pattern(raw, page=navigator.page)
+def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
+    raw = ptn.debug
+    marker = special_pattern(raw, page=ptn.page)
     if special_chars(raw):
         # thirty percent bonus
         marker *= (1 + SPECIAL_CHAR_BONUS)
     if content_page(raw):
         marker = 0
     likelihood = 0.0
-    if marker and len(navigator) >= 1:
-        likelihood = marker / len(navigator)
+    if marker and len(ptn) >= 1:
+        likelihood = marker / len(ptn)
     if likelihood < LIKELIHOOD_MIN:
         # TODO: CHECK THIS
         # this can not be a bib table
         marker = 0
     if marker >= 5:  # TODO: HOLY VALUE
         # Bibliography headline on page
-        headline = bib_headline(navigator)
+        headline = bib_headline(ptn)
         if headline:
-            return len(navigator), len(navigator)
-    return len(navigator), marker
+            return len(ptn), len(ptn)
+    return len(ptn), marker
 
 
-def bib_headline(ptn: texmex.PageTextNavigator) -> bool:
+def bib_headline(ptn: texmex.PTN) -> bool:
     """Determine if a BIB-HEADLINE is on current navigator."""
     headlines = sections.utils.headline.headlines(ptn)
     if not headlines:
@@ -289,7 +287,7 @@ def content_page(raw: str) -> bool:
     # german does not split sentences at `:` but bib tables uses : often
     # for separating parts. If we do not split by double collon we archive
     # a lot of false postive results.
-    sentences = utila.flatten([split_doublecolon(item) for item in sentences])
+    sentences = utila.flat([split_doublecolon(item) for item in sentences])
     length_mean = statistics.mean([len(sentence) for sentence in sentences])
     if length_mean > SENTENCE_MEAN_TRUST_MIN:
         return True

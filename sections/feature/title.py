@@ -91,7 +91,7 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
 def no_titlepage(page, fonts):
     if not fonts:  # empty page or page with images
         return EMPTY_RESULT
-    numbers = sum((len(utila.parse_numbers(str(item))) for item in page))
+    numbers = sum((len(utila.parse_ints(str(item))) for item in page))
     if numbers > 70:
         # skip potential table of content page
         return EMPTY_RESULT

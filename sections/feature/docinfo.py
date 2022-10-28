@@ -56,5 +56,5 @@ def text_flat(text: iamraw.Document) -> list:
     text = [
         [item.text for item in page if len(item.text) > 20] for page in pages
     ]
-    text = utila.flatten(text)
+    text = utila.flat(text)
     return text

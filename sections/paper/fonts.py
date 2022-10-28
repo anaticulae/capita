@@ -12,7 +12,7 @@ import collections
 import texmex
 
 
-def bypage(navigators: texmex.PageTextNavigators):
+def bypage(navigators: texmex.PTNs):
     result = []
     for page in navigators:
         parsed = parse_page(page)
@@ -20,7 +20,7 @@ def bypage(navigators: texmex.PageTextNavigators):
     return result
 
 
-def parse_page(navigator: texmex.PageTextNavigator):
+def parse_page(navigator: texmex.PTN):
     fontsize = collections.defaultdict(int)
     fontface = collections.defaultdict(int)
     for line in navigator:

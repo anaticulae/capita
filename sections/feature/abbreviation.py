@@ -132,7 +132,7 @@ def invalid_column(left, right) -> bool:  # pylint:disable=R0911
 def numbered_column(column) -> bool:
     # item in right column in a row contain any number and may other stuff
     right_numbers = [
-        item for item in column if item and utila.parse_numbers(text(item))
+        item for item in column if item and utila.parse_ints(text(item))
     ]
     if len(column) < 6:
         return False

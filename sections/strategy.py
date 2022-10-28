@@ -21,7 +21,7 @@ NOHEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(default=0.85, limit=1.0)
 
 
 def work(
-    navigators: texmex.PageTextContentNavigators,
+    navigators: texmex.PTCNs,
     headline: str,
     shortcut: str,
     pages: tuple = None,
@@ -62,7 +62,7 @@ def work(
 
 
 def extract_xxx_likelihood(
-    document: texmex.PageTextContentNavigators,
+    document: texmex.PTCNs,
     headline: str = None,
     shortcut: str = 'xxx',
     pages: tuple = None,

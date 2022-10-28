@@ -21,7 +21,7 @@ FIRST_QUARTER = configo.HV_PERCENT_PLUS(default=45.0)
 
 
 def extract_chapter(
-    navigators: texmex.PageTextNavigators,
+    navigators: texmex.PTNs,
     outlines,
 ) -> iamraw.PageContentLikelihoods:
     result = []

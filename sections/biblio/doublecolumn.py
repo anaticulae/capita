@@ -34,13 +34,11 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-def analyse_page(
-    navigator: texmex.PageTextNavigator
-) -> sections.feature.StatisticalResultItem:
-    parsed = geostrat.parse(navigator, column_count=2)
+def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
+    parsed = geostrat.parse(ptn, column_count=2)
     if not parsed:
         # no double column page
-        return len(navigator), 0
+        return len(ptn), 0
     marker = 0
     # count prenom construct for both data columns
     left, right = parsed
@@ -48,8 +46,8 @@ def analyse_page(
         marker += len(prenom(item.text))
     if marker <= MARKER_COUNT_MIN:
         # too few matches
-        return len(navigator), 0
-    return len(navigator), marker
+        return len(ptn), 0
+    return len(ptn), marker
 
 
 def prenom(raw: str) -> list:
