@@ -109,7 +109,8 @@ def matched(
     topsearch: bool = True,
 ) -> bool:
     """Collect headlines from `navigator` and check if given `headline`
-    is found and colected headline is not `noheadlines`."""
+    is found and collected headline is not `noheadlines`.
+    """
     detected = sections.utils.headline.headlines(navigator, topsearch=topsearch)
     if noheadlines and detected:
         if utila.similar(noheadlines, detected, maxdiff=HEADLINE_COLLECT_MIN):
