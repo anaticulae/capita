@@ -68,8 +68,7 @@ def work(
     Returns:
         dumped `yaml` result of extracted whitepages
     """
-    # convert to make pages serializeable
-    pages = tuple(pages) if pages else None
+    pages = utila.ensure_tuple(pages)
     # load
     document = serializeraw.load_document(document, pages=pages)
     position = serializeraw.load_textpositions(position, pages=pages)
