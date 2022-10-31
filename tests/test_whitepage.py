@@ -7,13 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-
 import iamraw.path
 import power
 import pytest
 import serializeraw
-import serializeraw.images
 import utila
 import utilatest
 
@@ -51,17 +48,11 @@ def whitepages(document: str):
     headerfooters = iamraw.path.headerfooters(source)
     headerfooters = serializeraw.load_headerfooter(headerfooters)
 
-    images = serializeraw.images.load_image_informations_frompath(
-        os.path.join(
-            source,
-            'rawmaker__images_images',
-        ))
-    figures = serializeraw.images.load_image_informations_frompath(
-        os.path.join(
-            source,
-            'rawmaker__figures_figures',
-        ))
-
+    images, figures = sections.feature.whitepage.load_imagesfigures(
+        images=utila.join(source, 'rawmaker__images_images'),
+        figures=utila.join(source, 'rawmaker__figures_figures'),
+        pages=None,
+    )
     # work
     result = sections.feature.whitepage.extract_whitepages(
         document,
