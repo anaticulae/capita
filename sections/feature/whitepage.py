@@ -79,6 +79,7 @@ def work(
     navigators = texmex.create_pagetextnavigators(
         text=document,
         textpositions=position,
+        state=texmex.TextState.ALL,
     )
     images, figures = load_imagesfigures(images, figures, pages)
     # work
@@ -94,17 +95,19 @@ def work(
 
 
 def load_imagesfigures(images, figures, pages):
-    if images and utila.exists(images[0]):
+    images = images if isinstance(images, str) else images[0]
+    figures = figures if isinstance(images, str) else figures[0]
+    if images and utila.exists(images):
         images = serializeraw.images.load_image_informations_frompath(
-            images[0],
+            images,
             pages=pages,
         )
     else:
         utila.debug(f'no images: {images}')
         images = None
-    if figures and utila.exists(figures[0]):
+    if figures and utila.exists(figures):
         figures = serializeraw.images.load_image_informations_frompath(
-            figures[0],
+            figures,
             pages=pages,
         )
     else:

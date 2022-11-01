@@ -8,3 +8,5 @@ backlog
 * run validation on 20 documents
 
 * derivate validation strategy for other applications
+
+* verify whitespace data loader

@@ -11,6 +11,7 @@ import iamraw.path
 import power
 import pytest
 import serializeraw
+import texmex
 import utila
 import utilatest
 
@@ -42,10 +43,13 @@ def current(items):
 
 def whitepages(document: str):
     source = power.link(document)
-    navigators = serializeraw.ptn_frompath(source)
+    navigators = serializeraw.ptn_frompath(
+        source,
+        state=texmex.TextState.ALL,
+    )
     document = serializeraw.load_document(iamraw.path.text(source))
 
-    headerfooters = iamraw.path.headerfooters(source)
+    headerfooters = utila.join(source, 'headnote__result_result.yaml')
     headerfooters = serializeraw.load_headerfooter(headerfooters)
 
     images, figures = sections.feature.whitepage.load_imagesfigures(
@@ -65,10 +69,7 @@ def whitepages(document: str):
 
 
 @pytest.mark.parametrize('source, expected', [
-    pytest.param(power.DOCU027_PDF,
-                 RESTRUCT_EXPECTED,
-                 id='docu27',
-                 marks=pytest.mark.xfail(reason='software integration')),
+    pytest.param(power.DOCU027_PDF, RESTRUCT_EXPECTED, id='docu27'),
     pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
 ])
 @utilatest.nightly
