@@ -78,3 +78,22 @@ def test_whitepages_extract_x(source, expected):
     result = whitepages(source)
     result = current(result)
     assert result == expected
+
+
+BACHELOR090_EXPECTED = (
+    [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 75,
+        76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88
+    ],
+    [0, 89],
+    [],
+)
+
+
+@utilatest.requires(power.BACHELOR090_PDF)
+def test_document_whith_gaps():
+    source = power.BACHELOR090_PDF
+    result = whitepages(source)
+    result = current(result)
+    # adjust test after changing page numbers
+    assert result == BACHELOR090_EXPECTED
