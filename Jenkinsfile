@@ -16,6 +16,7 @@ pipeline {
     stages{
         stage('sync'){
             steps{
+                sh 'pip install "baw>=1.15.1"'
                 sh 'baw sync all'
                 sh 'baw sh "pip install ."'
             }
