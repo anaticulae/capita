@@ -80,6 +80,7 @@ def work(
         text=document,
         textpositions=position,
         state=texmex.TextState.ALL,
+        fill_empty=False,
     )
     images, figures = load_imagesfigures(images, figures, pages)
     # work

@@ -46,6 +46,7 @@ def whitepages(document: str):
     navigators = serializeraw.ptn_frompath(
         source,
         state=texmex.TextState.ALL,
+        fill_empty=False,
     )
     document = serializeraw.load_document(iamraw.path.text(source))
 
