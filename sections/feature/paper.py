@@ -25,7 +25,6 @@ def work(pdf: str, pages=None) -> str:
     utila.exists_assert(pdf)
     if skip_strategy(pdf):
         return NOPAPER
-
     detected = sections.paper.main.detect_paper(pdf, pages=pages)
     if detected is None:
         return NOPAPER
