@@ -76,6 +76,7 @@ def load_features(  # pylint:disable=R0913,R0914
     title = serializeraw.load_likelihood(xtitle, pages=pages)
     toc = serializeraw.load_likelihood(xtoc, pages=pages)
     white = serializeraw.load_whitepages(xwhitepage, pages=pages)
+    white = whitepage_to_likelihood(white)
     glossary = serializeraw.load_likelihood(xglossary, pages=pages)
     # prepare result
     result = SectionsRequiredResources(
@@ -96,4 +97,20 @@ def load_features(  # pylint:disable=R0913,R0914
         whitepage=white,
         glossary=glossary,
     )
+    return result
+
+
+def whitepage_to_likelihood(whitepages) -> iamraw.PageContentLikelihoods:
+    result = []
+    for whitepage in whitepages:
+        if whitepage.content.name == 'CONTENT':
+            continue
+        result.append(
+            iamraw.PageContentLikelihood(
+                page=whitepage.page,
+                content=iamraw.Likelihood(
+                    value=1.0,
+                    name=whitepage.content.name,
+                ),
+            ))
     return result
