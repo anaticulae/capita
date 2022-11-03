@@ -10,5 +10,3 @@
 [project]
 short = sections
 name = i need some trust
-
-fail_on_finding = True
