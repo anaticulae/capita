@@ -1,6 +1,6 @@
 000 020 Introduction
     000 000 TitlePageSection
-    001 001 Text
+    001 001 WhitePage
     002 002 Acknowledgments
     003 003 Text
     004 004 LegalInformation
@@ -18,7 +18,7 @@
     016 016 TableTable
     017 017 Text
     018 018 Text
-    019 019 Text
+    019 019 WhitePage
 020 232 MainPart
     020 020 Chapter
     021 021 Text
