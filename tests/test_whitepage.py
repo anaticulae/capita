@@ -27,18 +27,35 @@ RESTRUCT_EXPECTED = (
 MASTER155_EXPECTED = (utila.rlist(155), [], [])
 
 
-def current(items):
-    content, blank, white = [], [], []
-    for item in items:
-        if item.content == sections.feature.whitepage.WhitePage.CONTENT:
-            content.append(item.page)
-        elif item.content == sections.feature.whitepage.WhitePage.BLANK:
-            blank.append(item.page)
-        elif item.content == sections.feature.whitepage.WhitePage.WHITE:
-            white.append(item.page)
-        else:
-            raise ValueError(f'should not happen: {item}')
-    return content, blank, white
+@pytest.mark.parametrize('source, expected', [
+    pytest.param(power.DOCU027_PDF, RESTRUCT_EXPECTED, id='docu27'),
+    pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
+])
+@utilatest.nightly
+def test_whitepages_extract_x(source, expected):
+    utilatest.fixture_requires(source)
+    result = whitepages(source)
+    result = current(result)
+    assert result == expected
+
+
+BACHELOR090_EXPECTED = (
+    [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 75,
+        76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88
+    ],
+    [0, 89],
+    [],
+)
+
+
+@utilatest.requires(power.BACHELOR090_PDF)
+def test_document_whith_gaps():
+    source = power.BACHELOR090_PDF
+    result = whitepages(source)
+    result = current(result)
+    # adjust test after changing page numbers
+    assert result == BACHELOR090_EXPECTED
 
 
 def whitepages(document: str):
@@ -69,32 +86,15 @@ def whitepages(document: str):
     return result
 
 
-@pytest.mark.parametrize('source, expected', [
-    pytest.param(power.DOCU027_PDF, RESTRUCT_EXPECTED, id='docu27'),
-    pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
-])
-@utilatest.nightly
-def test_whitepages_extract_x(source, expected):
-    utilatest.fixture_requires(source)
-    result = whitepages(source)
-    result = current(result)
-    assert result == expected
-
-
-BACHELOR090_EXPECTED = (
-    [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 75,
-        76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88
-    ],
-    [0, 89],
-    [],
-)
-
-
-@utilatest.requires(power.BACHELOR090_PDF)
-def test_document_whith_gaps():
-    source = power.BACHELOR090_PDF
-    result = whitepages(source)
-    result = current(result)
-    # adjust test after changing page numbers
-    assert result == BACHELOR090_EXPECTED
+def current(items):
+    content, blank, white = [], [], []
+    for item in items:
+        if item.content == sections.feature.whitepage.WhitePage.CONTENT:
+            content.append(item.page)
+        elif item.content == sections.feature.whitepage.WhitePage.BLANK:
+            blank.append(item.page)
+        elif item.content == sections.feature.whitepage.WhitePage.WHITE:
+            white.append(item.page)
+        else:
+            raise ValueError(f'should not happen: {item}')
+    return content, blank, white
