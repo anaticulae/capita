@@ -8,14 +8,12 @@
 # =============================================================================
 
 import power
-import pytest
 import utila
 import utilatest
 
 import sections.paper.main
 
 
-@pytest.mark.xfail(reason='software integration')
 @utilatest.nightly
 def test_paper_main_diss148():
     source = power.DISS148_PDF
