@@ -2,6 +2,26 @@
 
 Every noteable change is logged here.
 
+## v1.22.1 (2022-11-06)
+
+### Fix
+
+* load white page likelihood correctly (80bd15716d33)
+* do not fill gaps inside document (f520b632b956)
+* adjust data loader (2de61eda3691)
+
+### Chore
+
+* add missing ghost (f7c2769d15ac)
+* remove default config (1ea4351855e3)
+* upgrade requirements.txt (8a4b2f48e817)
+* upgrade baw (1689e6a847c7)
+* upgrade requirements.txt (9af25fd3c293)
+* upgrade pipe library (23be05d5a1b4)
+* convert nightly to all (9ac00abe2548)
+* upgrade environment (485fbd0c5769)
+* upgrade requirements.txt (865d38657aba)
+
 ## v1.22.0 (2022-10-05)
 
 ### Chore
