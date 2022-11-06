@@ -25,11 +25,18 @@ RESTRUCT_EXPECTED = (
 )
 # CONTENT, BLANK, WHITE
 MASTER155_EXPECTED = (utila.rlist(155), [], [])
+# CONTENT, BLANK, WHITE
+# TODO IMPROVE AFTER FIXING WHITEPAGE EXTRACTOR
+HC_DISS166_EXPECTED = ()
 
 
 @pytest.mark.parametrize('source, expected', [
     pytest.param(power.DOCU027_PDF, RESTRUCT_EXPECTED, id='docu27'),
     pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
+    pytest.param(power.HC_DISS166,
+                 HC_DISS166_EXPECTED,
+                 id='diss166hc',
+                 marks=pytest.mark.xfail(reason='improve paper detector')),
 ])
 @utilatest.nightly
 def test_whitepages_extract_x(source, expected):
