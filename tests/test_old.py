@@ -39,7 +39,6 @@ def test_validate_docu027(docu027_sections_manual):
 
 
 @utilatest.nightly
-@utilatest.requires(power.DOCU007_PDF)
 def test_sections_simple(td, mp):
     """Check dumped result of section work method"""
     simple_sections = tests.sections_from_dir(
@@ -55,7 +54,6 @@ def test_sections_simple(td, mp):
 
 
 @utilatest.nightly
-@utilatest.requires(power.MASTER072_PDF)
 def test_sections_master72(td, mp):
     """Ensure that BUILDER in section is sorted correctly.
 
@@ -84,7 +82,6 @@ def test_sections_master72(td, mp):
 
 @pytest.mark.xfail(reason='software integration')
 @utilatest.nightly
-@utilatest.requires(power.MASTER075_PDF)
 def test_sections_master075_appendix(td, mp):
     result = tests.sections_from_dir(
         power.MASTER075_PDF,
