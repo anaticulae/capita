@@ -91,9 +91,10 @@ def extract(resources):
     genex.extract(
         base=power.REPOSITORY,
         files=resources,
-        pagenumber=True,
-        footnote=True,
-        headnote=True,
         cleanup=True,
+        footnote=True,
+        groupme='--hefopa',
+        headnote=True,
+        pagenumber=True,
         worker=WORKER,
     )
