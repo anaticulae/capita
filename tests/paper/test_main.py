@@ -19,8 +19,7 @@ def test_paper_main_diss148():
     source = power.DISS148_PDF
     detected = sections.paper.main.detect_paper(source)
     # enable later
-    # expected = [(46, 111)]
-    expected = [(92, 111)]
+    expected = [(46, 111)]
     assert detected == expected
 
 
