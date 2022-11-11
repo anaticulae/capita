@@ -45,16 +45,14 @@ pipeline {
             steps{
                 sh 'baw test skip --generate -n1'
             }
+            post{
+                always{script{publish.resource_generated()}}
+            }
         }
         stage('all'){
             steps{
                 sh 'baw test all -n auto --cov --junit_xml=report.xml'
                 junit '**/report.xml'
-            }
-            post{
-                failure{
-                    script{publish.resource_generated()}
-                }
             }
         }
         stage('release'){
