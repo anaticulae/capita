@@ -14,9 +14,9 @@
     012 012 Text
     013 013 Abstract
     014 014 Text
-    015 015 Text
-    016 016 Text
-    017 017 Text
+    015 015 WhitePage
+    016 016 WhitePage
+    017 017 WhitePage
 018 137 MainPart
     018 018 Chapter
     019 019 Text
@@ -42,7 +42,7 @@
     039 039 Text
     040 040 Text
     041 041 Text
-    042 042 Text
+    042 042 WhitePage
     043 043 Chapter
     044 044 Text
     045 045 Chapter
@@ -136,7 +136,7 @@
     133 133 Text
     134 134 Text
     135 135 Text
-    136 136 Text
+    136 136 WhitePage
 137 148 Appendix
     137 137 Bibliography
     138 138 Bibliography
