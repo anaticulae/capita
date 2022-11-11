@@ -76,7 +76,7 @@ def work(
         footers,
         pages=pages,
     )
-    navigators = texmex.create_pagetextnavigators(
+    navigators = texmex.create_ptns(
         text=document,
         textpositions=position,
         state=texmex.TextState.ALL,
