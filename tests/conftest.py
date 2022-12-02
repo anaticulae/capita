@@ -14,7 +14,6 @@ import utilatest
 from utilatest import mp  # pylint:disable=W0611
 from utilatest import td  # pylint:disable=W0611
 
-import sections
 # pylint:disable=W0611
 from tests.fixtures.docu027 import docu027_fontstore
 from tests.fixtures.docu027 import docu027_sections_manual
@@ -23,9 +22,7 @@ from tests.fixtures.paper import paper18
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
-power.setup(sections.ROOT)
-
-PACKAGE = sections.PACKAGE
+power.setup(__file__)
 
 RESOURCES = [
     (power.BACHELOR056_PDF, '0:55'),
