@@ -35,17 +35,6 @@ def docu027_fontstore() -> iamraw.FontStore:
     return lookup
 
 
-def docu027_fontstore_fixture() -> iamraw.FontStore:
-    utilatest.fixture_requires(power.DOCU027_PDF)
-    # TODO: Remove with new pytest - this is required, because pytest carn't
-    # use pytest.fixture in paramertized tests.
-    lookup = serializeraw.create_fontstore(
-        power.link(power.DOCU027_PDF),
-        power.link(power.DOCU027_PDF),
-    )
-    return lookup
-
-
 @pytest.fixture
 def docu027_sections_manual() -> iamraw.sections.Sections:
     result = iamraw.sections.Sections()

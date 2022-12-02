@@ -17,7 +17,6 @@ from utilatest import td  # pylint:disable=W0611
 import sections
 # pylint:disable=W0611
 from tests.fixtures.docu027 import docu027_fontstore
-from tests.fixtures.docu027 import docu027_fontstore_fixture
 from tests.fixtures.docu027 import docu027_sections_manual
 from tests.fixtures.docu027 import docu027_text
 from tests.fixtures.paper import paper18
