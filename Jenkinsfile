@@ -32,7 +32,7 @@ pipeline {
         }
         stage('generate'){
             steps{
-                sh 'baw test skip --generate -n1'
+                sh 'baw --docken generate all'
             }
             post{
                 always{script{publish.generated()}}
@@ -40,7 +40,8 @@ pipeline {
         }
         stage('all'){
             steps{
-                script{baw.all()}
+                sh 'baw --docken test all -n32'
+                //script{baw.all()}
             }
         }
         stage('quality'){
