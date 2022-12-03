@@ -2,6 +2,26 @@
 
 Every noteable change is logged here.
 
+## v1.23.0 (2022-12-03)
+
+### Feature
+
+* use more modern data (78ac898ee085)
+* use improved resource (fdef09b487bf)
+
+### Chore
+
+* run faster tasks first (81a417c55da9)
+* use docken to cache generation (215c425e38a8)
+* use quick installer (b3b569d18e2b)
+* remove sections dependency (b721952a5803)
+* update pipeline (cfff22ccc969)
+* upgrade pipe library (338c95a0375b)
+* reduce feedback time (352fe4684f8b)
+* upgrade environment (9a1f2f7a882d)
+* add groupme hefopa-merger (3326f6b88cb0)
+* upgrade requirements.txt (a23a2c7c91f4)
+
 ## v1.22.1 (2022-11-06)
 
 ### Fix
