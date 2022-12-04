@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.23.1 (2022-12-04)
+
+### Chore
+
+* upgrade requirements.txt (173548832b44)
+
 ## v1.23.0 (2022-12-03)
 
 ### Feature
