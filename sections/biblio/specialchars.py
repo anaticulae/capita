@@ -58,6 +58,8 @@ def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
         # thirty percent bonus
         marker *= (1 + SPECIAL_CHAR_BONUS)
     if content_page(raw):
+        if marker:
+            utila.debug(f'contentpage p{ptn.page}/marker{marker}=0')
         marker = 0
     likelihood = 0.0
     if marker and len(ptn) >= 1:
