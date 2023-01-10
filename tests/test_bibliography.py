@@ -83,6 +83,7 @@ def test_bibliography_ensure_connected_pages(td, mp):
 
 # pytest.param(power.DISS406_PDF, utila.rlist(343, 406), id='diss406'),
 @pytest.mark.parametrize('source, expected', [
+    pytest.param(power.BACHELOR029A_PDF, [28], id='bachelor029a'),
     pytest.param(power.BACHELOR037_PDF, [33, 34, 35, 36], id='bachelor037'),
     pytest.param(power.BACHELOR090_PDF, [84, 85, 86, 87, 88], id='bachelor090'),
     pytest.param(power.BACHELOR128_PDF, utila.rlist(96, 103), id='bachelor128'),
