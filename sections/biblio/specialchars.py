@@ -310,7 +310,10 @@ def split_doublecolon(text: str) -> list:
     ['Ich glaube', '"Heute is ein guter Tag"']
     >>> split_doublecolon('http://donotsplit.com https://donotsplit.com')
     ['http://donotsplit.com https://donotsplit.com']
+    >>> split_doublecolon('Literaturverzeichnis:')
+    ['Literaturverzeichnis']
     """
+    text = text.strip(': ')
     return DOUBLE_COLON.split(text)
 
 
