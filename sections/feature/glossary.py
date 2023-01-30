@@ -92,7 +92,10 @@ def extract(data: sections.utils.spa.Data) -> list:
         item for item in extracted
         if item.content.value > LIKELIHOOD_MIN(item.page / data.page_count)
     ]
-    hugest = sections.biblio.utils.cluster_bibpages(valid)
+    hugest = sections.biblio.utils.cluster_bibpages(
+        valid,
+        likelihood_name='glossary',
+    )
     return hugest
 
 
