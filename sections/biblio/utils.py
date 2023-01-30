@@ -23,7 +23,10 @@ DIFF_MAX = configo.HolyTable(
 )
 
 
-def cluster_bibpages(items):
+def cluster_bibpages(
+    items,
+    likelihood_name='bibliography_table',
+):
     """Select hugest(max sum likelihood value) group."""
     if not items:
         return []
@@ -45,11 +48,14 @@ def cluster_bibpages(items):
     for item in hugest:
         # every item of the group should have the same likelihood
         item.content.value = avg
-    result = fill_empty(hugest)
+    result = fill_empty(
+        hugest,
+        likelihood_name=likelihood_name,
+    )
     return result
 
 
-def fill_empty(items: list) -> list:
+def fill_empty(items: list, likelihood_name: str) -> list:
     """Fill holes inside connected bib."""
     result = list(items)
     start, end = result[0].page, result[-1].page
@@ -63,7 +69,7 @@ def fill_empty(items: list) -> list:
                 page=page,
                 content=iamraw.Likelihood(
                     value=avg,
-                    name='bibliography_table',
+                    name=likelihood_name,
                 ),
             ))
     result.sort(key=lambda x: x.page)
