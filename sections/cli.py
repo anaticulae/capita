@@ -51,15 +51,6 @@ WORKPLAN = [
         output=('likelihood',),
     ),
     utila.create_step(
-        'bibliography',
-        inputs=[
-            utila.ResultFile('rawmaker', 'text_text'),
-            utila.ResultFile('rawmaker', 'text_positions'),
-            utila.ResultFile('groupme', 'hefopa_result'),
-        ],
-        output=('likelihood',),
-    ),
-    utila.create_step(
         'figuretable',
         inputs=[
             utila.ResultFile('rawmaker', 'oneline_text_text'),
@@ -169,7 +160,7 @@ WORKPLAN = [
             utila.ResultFile('sections', 'abstract_likelihood'),
             utila.ResultFile('sections', 'acknowledge_likelihood'),
             utila.ResultFile('sections', 'appendix_likelihood'),
-            utila.ResultFile('sections', 'bibliography_likelihood'),
+            utila.ResultFile('sections_ref', 'bibliography_like'),
             utila.ResultFile('sections', 'chapter_likelihood'),
             utila.ResultFile('sections', 'figuretable_likelihood'),
             utila.ResultFile('sections', 'index_likelihood'),
