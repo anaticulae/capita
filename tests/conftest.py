@@ -93,5 +93,6 @@ def extract(resources):
         groupme='--hefopa',
         headnote=True,
         pagenumber=True,
+        sections_ref=True,
         worker=WORKER,
     )
