@@ -62,10 +62,10 @@ pipeline{
                 }
             }
         }
-        stage('all'){
+        stage('cov'){
             steps{
                 script{
-                    baw.all(32, true)
+                    baw.cov(32, true, true)
                 }
             }
         }
