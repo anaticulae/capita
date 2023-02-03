@@ -2,6 +2,36 @@
 
 Every noteable change is logged here.
 
+## v1.24.0 (2023-02-03)
+
+### Feature
+
+* replace with sections_ref (1a83bdae4d5e)
+* inform about content page (39fdbcbcd5fe)
+* improve author detector (cf7f1a6c5577)
+
+### Fix
+
+* fix likelihood name (ecea9dd7a2c3)
+* do not split empty sentences (a4c9b61d954a)
+
+### Documentation
+
+* happy New Year! (aeef772c7224)
+
+### Chore
+
+* convert all into cov step (93f60e6a7535)
+* extend test data generator (31eb82ecf811)
+* add missing generator (80953a661e4d)
+* upgrade requirements.txt (860373187d38)
+* upgrade requirements.txt (e0bd22a8b2e3)
+* adjust pipeline (c460d6e4388f)
+* upgrade Jenkinsfile (0ce5374dd7f0)
+* upgrade pipe library (e6f45374ed75)
+* upgrade requirements.txt (323c70f79608)
+* extend test data generator (9400d6b9f921)
+
 ## v1.23.3 (2023-01-09)
 
 ### Chore
