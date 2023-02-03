@@ -1,6 +1,6 @@
-010 020 MultipleSection
-    10.0 10.5 Bibliography
-    10.5 11.0 TableTable
+010 011 Unknown
+    010 010 TableTable
+011 020 Appendix
     011 011 AbbreviationTable
     012 012 AbbreviationTable
     013 013 AbbreviationTable

@@ -1,7 +1,7 @@
 000 002 Introduction
     000 000 TitlePageSection
     001 001 WhitePage
-002 029 MainPart
+002 034 MainPart
     002 002 Chapter
     003 003 WhitePage
     004 004 Text
@@ -29,8 +29,7 @@
     026 026 Chapter
     027 027 Text
     028 028 Text
-029 034 Appendix
-    029 029 Bibliography
+    029 029 Text
     030 030 Text
     031 031 Text
     032 032 Text

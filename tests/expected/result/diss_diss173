@@ -17,7 +17,7 @@
     015 015 AbbreviationTable
     016 016 AbbreviationTable
     017 017 AbbreviationTable
-018 045 MainPart
+018 030 MainPart
     018 018 Chapter
     019 019 Text
     020 020 Text
@@ -30,14 +30,16 @@
     027 027 Text
     028 028 Text
     029 029 Text
-    030 030 Text
-    031 031 Text
-    032 032 Text
+030 038 Appendix
+    030 030 Bibliography
+    031 031 Bibliography
+    032 032 Bibliography
     033 033 Text
     034 034 Text
     035 035 Text
     036 036 Text
     037 037 Text
+038 050 MainPart
     038 038 Chapter
     039 039 Text
     040 040 Text
@@ -45,8 +47,7 @@
     042 042 Text
     043 043 Text
     044 044 Text
-045 050 Appendix
-    045 045 Bibliography
+    045 045 Text
     046 046 Text
     047 047 Text
     048 048 Text
