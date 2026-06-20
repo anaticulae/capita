@@ -52,6 +52,9 @@ dev = [
 Homepage = "https://github.com/anaticulae/sections"
 Repository = "https://github.com/anaticulae/sections"
 
+[project.scripts]
+sections = "sections.cli:main"
+
 [tool.semantic_release]
 version_toml = [
     "pyproject.toml:project.version",
