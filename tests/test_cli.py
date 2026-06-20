@@ -7,24 +7,24 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import tests
 
 
 @pytest.mark.parametrize('cmd', [
-    pytest.param(f'-i {power.DOCU027_PDF} -o . --all', id='docu27'),
+    pytest.param(f'-i {hoverpower.DOCU027_PDF} -o . --all', id='docu27'),
 ])
 def test_run_sections_failed(cmd, td, mp):  #pylint: disable=W0613
     """Run `sections` with bad input"""
     tests.fail(cmd, mp=mp)
 
 
-@utilatest.nightly
-@utilatest.requires(power.MASTER072_PDF)
+@utilotest.nightly
+@utilotest.requires(hoverpower.MASTER072_PDF)
 def test_run_sections_multicore(td, mp):
     """Regression test to ensure the correct order of the different
     steps in multicore behavior.
@@ -32,14 +32,14 @@ def test_run_sections_multicore(td, mp):
     There was a bug in the order of steps. `sections` step was runned to
     early and the required test data were not generated.
 
-    Solved by: upgrading utila lib.
+    Solved by: upgrading utilo lib.
     """
-    source = power.link(power.MASTER072_PDF)
+    source = hoverpower.link(hoverpower.MASTER072_PDF)
     # this step is required, cause the test generator already generates
     # this required items.
     # Copy yaml files which starts with rawmaker or groupme.
     pattern = '(rawmaker|groupme|pdfinfo|sections_ref)*.yaml'
-    utila.copy_content(source, td.tmpdir, pattern=pattern)
+    utilo.copy_content(source, td.tmpdir, pattern=pattern)
     jobs = 5
     cmd = f'-j{jobs} -i {td.tmpdir} -o {td.tmpdir} --pages=0:5 --all'
     tests.run(cmd, mp=mp)

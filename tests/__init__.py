@@ -7,16 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw
-import power
 import serializeraw
-import utilatest
+import utilotest
 
 import sections
 
-run, fail = utilatest.create_cli_runner(sections)
+run, fail = utilotest.create_cli_runner(sections)
 
-utilatest.register_marker('huge')
+utilotest.register_marker('huge')
 
 
 def sections_from_dir(
@@ -25,8 +25,8 @@ def sections_from_dir(
     mp,
     pages: str = ':',
 ) -> iamraw.SectionList:
-    utilatest.fixture_requires(pdf)
-    source = power.link(pdf)
+    utilotest.fixture_requires(pdf)
+    source = hoverpower.link(pdf)
     cmd = f'--pdf={pdf} -i {source} -o {path} -j8 --pages={pages} -VVV --profile'
     run(cmd, mp=mp)
     result = serializeraw.load_sections(str(path))

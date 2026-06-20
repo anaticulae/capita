@@ -8,13 +8,13 @@
 # =============================================================================
 
 import serializeraw
-import utila
+import utilo
 
 import sections.section.load
 import sections.section.run
 
 
-@utila.checkdatatype
+@utilo.checkdatatype
 def work(  # pylint:disable=R0913,R0914,W0613
     xabbreviation: str,
     xabstract: str,

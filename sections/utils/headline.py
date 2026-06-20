@@ -9,16 +9,16 @@
 
 import re
 
-import configo
-import elements
+import configos
+import elementae
 import texmex
-import utila
+import utilo
 
-HEADLINES_LENGTH_MIN = configo.HV_INT_PLUS(default=5)
+HEADLINES_LENGTH_MIN = configos.HV_INT_PLUS(default=5)
 
-HEADLINES_WORD_COUNT_MIN = configo.HV_INT_PLUS(default=1)
+HEADLINES_WORD_COUNT_MIN = configos.HV_INT_PLUS(default=1)
 
-HEADLINES_WORD_COUNT_MAX = configo.HV_INT_PLUS(default=6)
+HEADLINES_WORD_COUNT_MAX = configos.HV_INT_PLUS(default=6)
 
 
 def headlines(
@@ -35,7 +35,7 @@ def headlines(
     """
     navigator = navigator[0:6] if topsearch else navigator[:]
     navigator = [
-        item for item in navigator if not elements.noheadline(
+        item for item in navigator if not elementae.noheadline(
             line=item.text,
             length_min=length_min,
             wordcount_max=word_count_max,
@@ -58,7 +58,7 @@ def headlines(
     result = [
         item for item in result
         if word_count_min <= len(item.split()) <= word_count_max or
-        elements.headline.decide.singlechar(item)
+        elementae.headline.decide.singlechar(item)
     ]
     result = [item.title() for item in result]
     # remove end chars
@@ -73,7 +73,7 @@ def headline_lookup(ptn):
     """Backup strategy."""
     result = []
     for line in ptn[0:4]:
-        if not elements.isheadline(line.text):
+        if not elementae.isheadline(line.text):
             continue
         result.append(line.text)
     return result
@@ -94,31 +94,31 @@ def cleanup_styles(styles):
             result.append(cluster)
             continue
         if len(cluster) > 2:
-            # too many elements for small font size
+            # too many elementae for small font size
             continue
         result.append(cluster)
     return result
 
 
-FONTSIZE_DIFF_MAX = configo.HV_PERCENT_PLUS(default=10)
+FONTSIZE_DIFF_MAX = configos.HV_PERCENT_PLUS(default=10)
 
 
-def common_textstyle(items, elements_min=1):
+def common_textstyle(items, elementa_min=1):
 
     def equal_fontsize(candidat, clusteritem):
         cluster = clusteritem.style.textsize()
         candidat = candidat.style.textsize()
-        return utila.pnear(cluster, candidat, rel_tol=FONTSIZE_DIFF_MAX)
+        return utilo.pnear(cluster, candidat, rel_tol=FONTSIZE_DIFF_MAX)
 
     def classifier(candidat, clusteritem) -> bool:
         if not equal_fontsize(candidat, clusteritem):
             return False
         return True
 
-    return utila.classifier.base.determine_cluster(
+    return utilo.classifier.base.determine_cluster(
         items,
         classifier=classifier,
-        min_elements=elements_min,
+        min_element=elementa_min,
     )
 
 
@@ -149,7 +149,7 @@ def remove_numbered_pattern(items: list, level_max: int = None) -> list:
         parsed = parse_headline(item)
         if parsed:
             if level_max is not None:
-                level = elements.level_numbered(parsed['level'])
+                level = elementae.level_numbered(parsed['level'])
                 if level > level_max:
                     continue
             result.append(parsed['text'])

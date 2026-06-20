@@ -7,30 +7,30 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw
 import iamraw.path
 import iamraw.sections
-import power
 import pytest
 import serializeraw
-import utilatest
+import utilotest
 
 import sections.creator
 
 
 @pytest.fixture
 def docu027_text() -> iamraw.Document:
-    utilatest.fixture_requires(power.DOCU027_PDF)
-    loaded = serializeraw.load_document(power.link(power.DOCU027_PDF))
+    utilotest.fixture_requires(hoverpower.DOCU027_PDF)
+    loaded = serializeraw.load_document(hoverpower.link(hoverpower.DOCU027_PDF))
     return loaded
 
 
 @pytest.fixture
 def docu027_fontstore() -> iamraw.FontStore:
-    utilatest.fixture_requires(power.DOCU027_PDF)
+    utilotest.fixture_requires(hoverpower.DOCU027_PDF)
     lookup = serializeraw.create_fontstore(
-        power.link(power.DOCU027_PDF),
-        power.link(power.DOCU027_PDF),
+        hoverpower.link(hoverpower.DOCU027_PDF),
+        hoverpower.link(hoverpower.DOCU027_PDF),
     )
     return lookup
 

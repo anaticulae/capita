@@ -7,21 +7,21 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
-import elements.headline.lookup
-import utila
+import configos
+import elementae.headline.lookup
+import utilo
 
 import sections.chapter.utils
 
-HEADLINES_CHECK_FIRST_N_LINES = configo.HV_INT_PLUS(default=4)
+HEADLINES_CHECK_FIRST_N_LINES = configos.HV_INT_PLUS(default=4)
 
-NO_CHAPTER_PATTERN_LINE_LENGTH_MAX = configo.HV_INT_PLUS(default=15)
+NO_CHAPTER_PATTERN_LINE_LENGTH_MAX = configos.HV_INT_PLUS(default=15)
 
-HEADLINE_LENGTH_MAX = configo.HV_INT_PLUS(default=75)
+HEADLINE_LENGTH_MAX = configos.HV_INT_PLUS(default=75)
 
-FIRSTLEVEL_CHAPTER_MAX = configo.HV_INT_PLUS(default=13)
+FIRSTLEVEL_CHAPTER_MAX = configos.HV_INT_PLUS(default=13)
 
-HEADLINE_CHARRATE_MIN = configo.HolyTable(items=(
+HEADLINE_CHARRATE_MIN = configos.HolyTable(items=(
     (0, 0.8),
     (10, 0.75),
     (100, 0.8),
@@ -29,7 +29,7 @@ HEADLINE_CHARRATE_MIN = configo.HolyTable(items=(
 
 
 def contain_chapter(content) -> float:  # pylint:disable=R1260
-    """Check if `content` contains elements which are hints that this
+    """Check if `content` contains elementae which are hints that this
     content is part of the start of the chapter.
 
     A big hint is that the word `Kapitel` occurs on the start of the
@@ -67,7 +67,7 @@ def startwith_chapterpattern(raw: list) -> bool:
     return False
 
 
-CHAPTER_PATTERN = utila.compiles(r"""
+CHAPTER_PATTERN = utilo.compiles(r"""
     ^
     (chapter|kapitel)
     [ ]{0,3}
@@ -87,7 +87,7 @@ def startwith_whitelist(raw: list) -> bool:
             continue
         if sections.chapter.utils.huge_match(
                 line,
-                elements.headline.lookup.CHAPTER,
+                elementae.headline.lookup.CHAPTER,
         ):
             return True
     return False
@@ -95,7 +95,7 @@ def startwith_whitelist(raw: list) -> bool:
 
 # We need only one number with dot, because we want only chapters, not
 # sections etc.
-NUMBER_PATTERN = utila.compiles(r"""
+NUMBER_PATTERN = utilo.compiles(r"""
     ^  # page start
     (?P<number>[0-9]{1,2})[\.]{0,1}  # chapter number with dot
     [ ]{1,4}
@@ -107,25 +107,25 @@ def startwith_firstlevelheadline(raw: list) -> bool:
     for line in raw:
         matched = NUMBER_PATTERN.match(line)
         if matched:
-            line = utila.extract_match(matched)
+            line = utilo.extract_match(matched)
             if len(line) > HEADLINE_LENGTH_MAX:
                 # TODO: REQUIRE A BETTER SELECTOR
                 # seam to be a content line.
                 continue
             chapternumber = int(matched['number'])
             if chapternumber > FIRSTLEVEL_CHAPTER_MAX:
-                utila.debug(f'chapter number to hight: {line}')
+                utilo.debug(f'chapter number to hight: {line}')
                 continue
-            charrate = utila.char_rate(line)
+            charrate = utilo.char_rate(line)
             charrate_min = HEADLINE_CHARRATE_MIN(len(line))
             if charrate < charrate_min:
-                utila.debug(f'char rate to low: {charrate} {line}')
+                utilo.debug(f'char rate to low: {charrate} {line}')
                 continue
             return True
     return False
 
 
-HUGENUMBER_MIN = configo.HV_INT_PLUS(default=25)
+HUGENUMBER_MIN = configos.HV_INT_PLUS(default=25)
 
 
 def startwith_hugenumber(raw: list) -> bool:
@@ -146,13 +146,13 @@ def startwith_hugenumber(raw: list) -> bool:
     huge = huge_numbers(raw, size_min=HUGENUMBER_MIN)
     if not huge:
         return False
-    single = [item for item in raw if utila.issinglechar(item.text)]
+    single = [item for item in raw if utilo.issinglechar(item.text)]
     if not single:
         return False
     toc = [
-        item for item in raw if utila.verysimilar(
+        item for item in raw if utilo.verysimilar(
             current=item.text,
-            expected=elements.headline.lookup.TOC,
+            expected=elementae.headline.lookup.TOC,
         )
     ]
     if not toc:
@@ -168,7 +168,7 @@ def huge_numbers(items, size_min: int = 25):
             if style.size < size_min:
                 continue
             text = item.text[style.start:style.end]
-            if not utila.isint(text):
+            if not utilo.isint(text):
                 continue
             result.append(int(text))
     return result

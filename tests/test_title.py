@@ -7,13 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw
 import iamraw.path
-import power
 import pytest
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.feature.title
 import sections.utils
@@ -36,13 +36,13 @@ TITLE_LIKELIHOOD_MIN = 0.70
 
 # yapf:disable
 @pytest.mark.parametrize('source', [
-    pytest.param(power.DOCU027_PDF, id='docu027'),
-    pytest.param(power.DOCU007_PDF, id='docu007', marks=pytest.mark.xfail(reason='improve algo')),
+    pytest.param(hoverpower.DOCU027_PDF, id='docu027'),
+    pytest.param(hoverpower.DOCU007_PDF, id='docu007', marks=pytest.mark.xfail(reason='improve algo')),
 ])
 # yapf:enable
 def test_extract_title_likelihood(source):
-    utilatest.fixture_requires(source)
-    source = power.link(source)
+    utilotest.fixture_requires(source)
+    source = hoverpower.link(source)
     document = iamraw.path.text(source)
     fontheader = iamraw.path.fontheader(source)
     fontcontent = iamraw.path.fontcontent(source)
@@ -76,9 +76,9 @@ def test_dump_and_load_likelhood(
 
 
 def titlepage_likelihood(document: str) -> tuple:
-    utilatest.fixture_requires(document)
+    utilotest.fixture_requires(document)
     title = sections.feature.title.extract_titlelikelihood_frompath(
-        power.link(document),
+        hoverpower.link(document),
         pages=tuple(range(10)),
     )
     extracted = sections.utils.simple_content(title)
@@ -86,17 +86,18 @@ def titlepage_likelihood(document: str) -> tuple:
 
 
 def test_extract_title_likelihood_master72():
-    extracted = titlepage_likelihood(power.MASTER072_PDF)
+    extracted = titlepage_likelihood(hoverpower.MASTER072_PDF)
     assert extracted[0] >= 0.95
 
 
 def test_title_likelihood_master049():
-    extracted = titlepage_likelihood(power.MASTER049_PDF)
+    extracted = titlepage_likelihood(hoverpower.MASTER049_PDF)
     assert extracted[2] >= 0.80
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_extract_title_likelihood_order107():
-    extracted = titlepage_likelihood(power.ORDER107_PDF)  # TODO: CHANGE 107
+    extracted = titlepage_likelihood(
+        hoverpower.ORDER107_PDF)  # TODO: CHANGE 107
     # assert extracted[0] >= 0.95
-    assert utila.iszero(extracted[2])
+    assert utilo.iszero(extracted[2])

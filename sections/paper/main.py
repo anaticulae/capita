@@ -15,14 +15,14 @@
 
 import statistics
 
-import layout.double
-import pdfinfo.pages
-import utila
+import layouta.double
+import pdflog.pages
+import utilo
 
 
 def detect_paper(pdf: str, pages: tuple = None) -> tuple:
-    percents = layout.double.percentage(pdf, pages=pages)
-    pages_max = pdfinfo.pages.determine(pdf)
+    percents = layouta.double.percentage(pdf, pages=pages)
+    pages_max = pdflog.pages.determine(pdf)
     pages_gen = PageGenerator(pages=pages, pages_max=pages_max)
     grouped = group_percentage(percents, pages_gen=pages_gen)
     if not grouped:
@@ -89,7 +89,7 @@ def group_percentage(  # pylint:disable=R1260,R0912
         # double column rate is higher than requested rate
         success = percent is not None and percent > double_column_min
         density_mean = statistics.mean(density) if density else 0.0
-        if density_mean < layout.strategy.DOUBLE_COLUMN_HIGH_DENSITY:
+        if density_mean < layouta.strategy.DOUBLE_COLUMN_HIGH_DENSITY:
             # double page, but content is not dense enough. May an index
             # page and not a paper.
             success = False
@@ -145,8 +145,8 @@ class PageGenerator:
 
     def __init__(self, pages: tuple = None, pages_max: int = 256):
         self.pages = [
-            page for page in utila.rlist(pages_max)
-            if not utila.should_skip(page, pages)
+            page for page in utilo.rlist(pages_max)
+            if not utilo.should_skip(page, pages)
         ]
         self.pages = iter(self.pages)
 

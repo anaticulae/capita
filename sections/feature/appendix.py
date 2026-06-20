@@ -11,7 +11,7 @@
 """
 
 import serializeraw
-import utila
+import utilo
 
 import sections.feature
 import sections.utils.headline
@@ -40,12 +40,12 @@ def analyse_page(content):
     if not headlines:
         return sections.feature.NO_PAGE
     # ensure that every cased headlines are parsed correctly
-    if utila.similar(expected=HEADLINES, current=headlines, maxdiff=0.9):
+    if utilo.similar(expected=HEADLINES, current=headlines, maxdiff=0.9):
         return sections.feature.PERFECT
     return sections.feature.NO_PAGE
 
 
-HEADLINES = utila.splitlines("""
+HEADLINES = utilo.splitlines("""
 A. Anhang
 B. Anhang
 C. Anhang

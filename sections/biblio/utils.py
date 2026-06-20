@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import iamraw
-import utila
+import utilo
 
-DIFF_MAX = configo.HolyTable(
+DIFF_MAX = configos.HolyTable(
     items=(
         (1, 0),
         (5, 0),
@@ -31,7 +31,7 @@ def cluster_bibpages(
     if not items:
         return []
     maxdiff = DIFF_MAX(len(items)) + 1
-    grouped = utila.groupby_diff(
+    grouped = utilo.groupby_diff(
         items,
         maxdiff=maxdiff,
         selector=lambda x: x.page,
@@ -44,7 +44,7 @@ def cluster_bibpages(
     )
     hugest = hugest[-1]
     avg = sum((item.content.value for item in hugest)) / len(hugest)
-    avg = utila.roundme(avg)
+    avg = utilo.roundme(avg)
     for item in hugest:
         # every item of the group should have the same likelihood
         item.content.value = avg
@@ -61,7 +61,7 @@ def fill_empty(items: list, likelihood_name: str) -> list:
     start, end = result[0].page, result[-1].page
     done = {item.page for item in result}
     avg = result[0].content.value
-    for page in utila.rlist(start, end):
+    for page in utilo.rlist(start, end):
         if page in done:
             continue
         result.append(

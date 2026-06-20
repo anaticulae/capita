@@ -17,29 +17,29 @@ inside the document.
 
 import re
 
-import configo
-import elements.headline.lookup
-import utila
+import configos
+import elementae.headline.lookup
+import utilo
 
 import sections.chapter.utils
 
-TOCS_COUNT_MIN = configo.HV_INT_PLUS(default=3)
+TOCS_COUNT_MIN = configos.HV_INT_PLUS(default=3)
 
 
 def rate_from_outlines(tocs, pagestart: list) -> float:
     """Try to find potential headline inside toc from outlines.
 
-    If no toc is given, use elements.headlines-list as backup strategy.
+    If no toc is given, use elementae.headlines-list as backup strategy.
     """
     chapter_rate = 0.0
     if len(tocs) >= TOCS_COUNT_MIN:
         chapter_rate = contains_outline(pagestart, tocs)
         return chapter_rate
     # disable feature if no toc is given
-    utila.info('chapter: no toc provided')
+    utilo.info('chapter: no toc provided')
     # try backup
     matched = any(
-        utila.similar(
+        utilo.similar(
             expected=HEADLINES_BACKUP,
             current=item.text,
             maxdiff=0.9,
@@ -49,7 +49,7 @@ def rate_from_outlines(tocs, pagestart: list) -> float:
     return 0.0
 
 
-HEADLINES_BACKUP = elements.headline.lookup.CHAPTER
+HEADLINES_BACKUP = elementae.headline.lookup.CHAPTER
 
 
 def contains_outline(content, toc) -> float:
@@ -66,8 +66,8 @@ def contains_outline(content, toc) -> float:
         return 0.0
     flat_toc = [item for item in flat_toc if item.lower() not in NOHEADLINES]
     for line in content:
-        line = utila.normalize_whitespaces(line.text.strip())
-        if utila.issinglechar(line):
+        line = utilo.normalize_whitespaces(line.text.strip())
+        if utilo.issinglechar(line):
             # I N T R O D U C T I O N 1
             line = line.replace(' ', '')
         # remove numbered headline pattern and potential white spaces
@@ -88,7 +88,7 @@ def contains_outline(content, toc) -> float:
     return -0.5
 
 
-NOHEADLINES = elements.headline.lookup.HEADLINES - elements.headline.lookup.CHAPTER
+NOHEADLINES = elementae.headline.lookup.HEADLINES - elementae.headline.lookup.CHAPTER
 
 FIRSTLEVEL_DOT_PATTERN = re.compile(r'^\d{1,2}\.{0,1}\s+')
 
@@ -98,7 +98,7 @@ def level_remove(toc):
     for item in toc:
         if not item.title.strip():
             # invalid outlines can break further processing
-            utila.debug('empty outline element')
+            utilo.debug('empty outline element')
             continue
         flat.append(FIRSTLEVEL_DOT_PATTERN.sub('', item.title))
     # remove roman level
@@ -108,7 +108,7 @@ def level_remove(toc):
         if len(splitted) == 1:
             result.append(item)
             continue
-        if utila.isroman(splitted[0]):
+        if utilo.isroman(splitted[0]):
             result.append(splitted[1])
             continue
         result.append(item)

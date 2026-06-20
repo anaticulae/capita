@@ -12,7 +12,7 @@
 
 import re
 
-import elements.headline.lookup
+import elementae.headline.lookup
 import serializeraw
 
 import sections.strategy
@@ -35,7 +35,7 @@ def work(
     )
     dumped = sections.strategy.work(
         ptcns,
-        headline=elements.headline.lookup.TABLETABLE,
+        headline=elementae.headline.lookup.TABLETABLE,
         noheadlines=NOHEADLINES,
         pattern=table,
         shortcut='tableoftable',
@@ -44,9 +44,9 @@ def work(
     return dumped
 
 
-NOHEADLINES = (elements.headline.lookup.TOC |
-               elements.headline.lookup.FIGURETABLE |
-               elements.headline.lookup.LISTINGS)
+NOHEADLINES = (elementae.headline.lookup.TOC |
+               elementae.headline.lookup.FIGURETABLE |
+               elementae.headline.lookup.LISTINGS)
 
 TABLE = re.compile(
     r'(Tab\.{0,1}|Tabelle)[ ]{0,3}\d{1,2}[ ]{0,3}.{0,50}',

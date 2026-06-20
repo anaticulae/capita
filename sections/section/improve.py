@@ -11,7 +11,7 @@ import copy
 
 import iamraw
 import iamraw.sections
-import utila
+import utilo
 
 import sections.section.after
 
@@ -146,6 +146,6 @@ def type_range(sectionx, typ):
     if not pages:
         return None
     pages = sorted(pages)
-    grouped = utila.groupby_diff(pages)
+    grouped = utilo.groupby_diff(pages)
     grouped = [(group[0], group[-1]) for group in grouped]
     return grouped

@@ -11,7 +11,7 @@ import inspect
 
 import iamraw
 import iamraw.sections
-import utila
+import utilo
 
 
 def determine_document_section(
@@ -60,9 +60,9 @@ def determine_document_section(
 
 
 def multiplesection_next(multiple):
-    if utila.select_type(multiple.content, iamraw.sections.Bibliography):
+    if utilo.select_type(multiple.content, iamraw.sections.Bibliography):
         return iamraw.sections.Appendix
-    if utila.select_type(multiple.content, iamraw.sections.Appendix):
+    if utilo.select_type(multiple.content, iamraw.sections.Appendix):
         return iamraw.sections.Appendix
     return iamraw.MultipleSection
 

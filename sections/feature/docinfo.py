@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
-import german
+import configos
+import germania
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 
 def work(
@@ -32,19 +32,19 @@ def work(
     return dumped
 
 
-LANG_PAGES = configo.HV_INT_PLUS(default=20)
+LANG_PAGES = configos.HV_INT_PLUS(default=20)
 
-LANG_TRUST_MIN = configo.HV_PERCENT_PLUS(default=70)
+LANG_TRUST_MIN = configos.HV_PERCENT_PLUS(default=70)
 
 
 def determine_lang(text: iamraw.Document) -> iamraw.Language:
     text = text_flat(text)
-    lang = german.lang(text)
+    lang = germania.lang(text)
     if lang.probability < LANG_TRUST_MIN:
         return iamraw.Language.UNKNOWN
     # TODO: REMOVE CONVERTER AFTER UPGRADING GERMAN
     detected = lang.language.name.lower()
-    if detected == 'german':
+    if detected == 'germania':
         return iamraw.Language.GERMAN
     if detected == 'english':
         return iamraw.Language.ENGLISH
@@ -52,9 +52,9 @@ def determine_lang(text: iamraw.Document) -> iamraw.Language:
 
 
 def text_flat(text: iamraw.Document) -> list:
-    pages = utila.choose_random(text, count=LANG_PAGES, seed=0.5)
+    pages = utilo.choose_random(text, count=LANG_PAGES, seed=0.5)
     text = [
         [item.text for item in page if len(item.text) > 20] for page in pages
     ]
-    text = utila.flat(text)
+    text = utilo.flat(text)
     return text

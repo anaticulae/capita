@@ -25,12 +25,12 @@ Ausfallkriterium
     und damit als ausgefallen angesehen werden kann.
 """
 
-import configo
-import elements
+import configos
+import elementae
 import geostrat
 import serializeraw
 import texmex
-import utila
+import utilo
 
 import sections.biblio.utils
 import sections.feature
@@ -45,7 +45,7 @@ def work(
     pages: tuple = None,
 ) -> str:
     page_count = 256
-    if utila.exists(pdfinfo):
+    if utilo.exists(pdfinfo):
         page_count = serializeraw.load_pdfinfo(pdfinfo).pages
     data = sections.utils.spa.Data(
         document=document,
@@ -58,7 +58,7 @@ def work(
     return dumped
 
 
-LIKELIHOOD_MIN = configo.HolyTable(
+LIKELIHOOD_MIN = configos.HolyTable(
     items=[
         (0.0, 0.5),
         (0.2, 0.5),
@@ -67,10 +67,10 @@ LIKELIHOOD_MIN = configo.HolyTable(
         (0.75, 0.5),
         (1.0, 0.5),
     ],
-    strategy=utila.Strategy.LINEARISE,
+    strategy=utilo.Strategy.LINEARISE,
 )
 
-MARKER_COUNT_MIN = configo.HolyTable(items=[
+MARKER_COUNT_MIN = configos.HolyTable(items=[
     (0, 5),
     (6, 5),
     (10, 8),
@@ -99,7 +99,7 @@ def extract(data: sections.utils.spa.Data) -> list:
     return hugest
 
 
-LINES_PER_PAGE_MAX = configo.HV_INT_PLUS(default=45)
+LINES_PER_PAGE_MAX = configos.HV_INT_PLUS(default=45)
 
 
 def analyse_page(
@@ -113,8 +113,8 @@ def analyse_page(
         # too many lines, may a table, figure or something page
         return len(navigator), 0
     headlines = sections.utils.headline.headlines(navigator)
-    with_headline = headlines and utila.similar(
-        expected=elements.GLOSSARY,
+    with_headline = headlines and utilo.similar(
+        expected=elementae.GLOSSARY,
         current=headlines,
         maxdiff=0.95,
     )
@@ -150,7 +150,7 @@ def no_glossary(left, content) -> bool:
         return True
     if len(text.split()) >= 3:
         return True
-    if utila.char_rate(text) < 0.9:
+    if utilo.char_rate(text) < 0.9:
         return True
     if len(content) < 3:
         return True

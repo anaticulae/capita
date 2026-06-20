@@ -7,16 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
-import utila
-import utilatest
+import hoverpower
+import utilo
+import utilotest
 
 import sections.paper.main
 
 
-@utilatest.nightly
+@utilotest.nightly
 def test_paper_main_diss148():
-    source = power.DISS148_PDF
+    source = hoverpower.DISS148_PDF
     detected = sections.paper.main.detect_paper(source)
     # enable later
     expected = [(46, 111)]
@@ -24,26 +24,26 @@ def test_paper_main_diss148():
     assert detected == expected or fixup
 
 
-@utilatest.nightly
+@utilotest.nightly
 def test_paper_bachelor111():
     """Do not detect end of bachelor111 as cited content.
 
-    There was a bug in layout-double detector which identifies end of
+    There was a bug in layouta-double detector which identifies end of
     document as paper content."""
-    source = power.BACHELOR111_PDF
+    source = hoverpower.BACHELOR111_PDF
     detected = sections.paper.main.detect_paper(
         source,
-        pages=utila.rtuple(100, 115),
+        pages=utilo.rtuple(100, 115),
     )
     assert not detected
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_paper_book173():
     """Do not detect end of book173 as cited content."""
-    source = power.BOOK173_PDF
+    source = hoverpower.BOOK173_PDF
     detected = sections.paper.main.detect_paper(
         source,
-        pages=utila.rtuple(164, 172),
+        pages=utilo.rtuple(164, 172),
     )
     assert not detected

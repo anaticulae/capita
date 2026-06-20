@@ -10,9 +10,9 @@
 ===================
 """
 
-import elements
+import elementae
 import serializeraw
-import utila
+import utilo
 
 import sections.feature
 import sections.utils.headline
@@ -37,8 +37,8 @@ def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
         return sections.feature.NO_PAGE
-    if utila.similar(
-            expected=elements.headline.lookup.SYMBOLTABLE,
+    if utilo.similar(
+            expected=elementae.headline.lookup.SYMBOLTABLE,
             current=headlines,
             maxdiff=0.95,
     ):

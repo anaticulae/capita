@@ -32,7 +32,7 @@ import iamraw
 import serializeraw
 import serializeraw.images
 import texmex
-import utila
+import utilo
 
 PageContentWhitepages = collections.namedtuple(
     'PageContentWhitepages',
@@ -68,7 +68,7 @@ def work(
     Returns:
         dumped `yaml` result of extracted whitepages
     """
-    pages = utila.ensure_tuple(pages)
+    pages = utilo.ensure_tuple(pages)
     # load
     document = serializeraw.load_document(document, pages=pages)
     position = serializeraw.load_textpositions(position, pages=pages)
@@ -98,21 +98,21 @@ def work(
 def load_imagesfigures(images, figures, pages):
     images = images if isinstance(images, str) else images[0]
     figures = figures if isinstance(images, str) else figures[0]
-    if images and utila.exists(images):
+    if images and utilo.exists(images):
         images = serializeraw.images.load_image_informations_frompath(
             images,
             pages=pages,
         )
     else:
-        utila.debug(f'no images: {images}')
+        utilo.debug(f'no images: {images}')
         images = None
-    if figures and utila.exists(figures):
+    if figures and utilo.exists(figures):
         figures = serializeraw.images.load_image_informations_frompath(
             figures,
             pages=pages,
         )
     else:
-        utila.debug(f'no figures: {figures}')
+        utilo.debug(f'no figures: {figures}')
         figures = None
     return images, figures
 
@@ -127,7 +127,7 @@ def extract_whitepages(  # pylint:disable=R0914
     images = images if images else []
     figures = figures if figures else []
     result = {}
-    for pagenumber, data in utila.sync_pages([
+    for pagenumber, data in utilo.sync_pages([
             document,
             navigators,
             headerfooters,

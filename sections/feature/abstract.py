@@ -10,18 +10,18 @@
 =================
 """
 
-import configo
-import elements.headline.lookup
+import configos
+import elementae.headline.lookup
 import serializeraw
-import utila
+import utilo
 
 import sections.feature
 import sections.utils.headline
 
-ABSTRACT_PAGE_MIN = configo.HV_INT_PLUS(default=0)
+ABSTRACT_PAGE_MIN = configos.HV_INT_PLUS(default=0)
 
 # TODO: MAKE THIS DOCUMENT LENGTH DEPENDENT!
-ABSTRACT_PAGE_MAX = configo.HV_INT_PLUS(default=20)
+ABSTRACT_PAGE_MAX = configos.HV_INT_PLUS(default=20)
 
 
 def work(
@@ -33,7 +33,7 @@ def work(
     pages=None,
 ) -> str:
     pages_max = None
-    if utila.exists(pdfinfo):
+    if utilo.exists(pdfinfo):
         pages_max = serializeraw.load_pdfinfo(pdfinfo).pages
     navigators = serializeraw.ptcn_fromfile(
         text=text_linewise,
@@ -55,13 +55,13 @@ def pages_shrink(pages: tuple, pages_max: int = None) -> tuple:
     """Allow abstract at the start and at the end of the document."""
     if not pages and not pages_max:
         return None
-    pages = utila.pages_inside(
+    pages = utilo.pages_inside(
         pages=pages,
         minn=ABSTRACT_PAGE_MIN,
         maxx=ABSTRACT_PAGE_MAX,
     )
     if pages_max is not None:
-        morepages = utila.pages_inside(
+        morepages = utilo.pages_inside(
             pages=pages,
             minn=pages_max - ABSTRACT_PAGE_MAX,
             maxx=pages_max,
@@ -79,8 +79,8 @@ def analyse_page(content):
     )
     if not headlines:
         return sections.feature.NO_PAGE
-    if utila.similar(
-            expected=elements.headline.lookup.ABSTRACT,
+    if utilo.similar(
+            expected=elementae.headline.lookup.ABSTRACT,
             current=headlines,
             maxdiff=0.95,
     ):

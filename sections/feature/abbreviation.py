@@ -17,11 +17,11 @@ NOTE: This approach is only for demo time.
 import contextlib
 import statistics
 
-import configo
-import elements.headline.lookup
+import configos
+import elementae.headline.lookup
 import geostrat
 import serializeraw
-import utila
+import utilo
 
 import sections.feature
 import sections.strategy
@@ -29,7 +29,7 @@ import sections.utils.headline
 
 BACKUP_PAGE = (1, 0.5)
 
-ABBREVIATION_TRUST_MIN = configo.HV_PERCENT_PLUS(default=65)
+ABBREVIATION_TRUST_MIN = configos.HV_PERCENT_PLUS(default=65)
 
 
 def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
@@ -71,7 +71,7 @@ def analyse_page(content):
     # headlined page
     parsed = geostrat.parse(content, column_count=2)
     if not parsed:
-        # no double column layout detected
+        # no double column layouta detected
         return sections.feature.NO_PAGE
     if not invalid_column(parsed[0], parsed[1]):
         return BACKUP_PAGE
@@ -82,15 +82,15 @@ def byheadline(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
         return None
-    if utila.similar(
+    if utilo.similar(
             expected=NOABBR,
             current=headlines,
             maxdiff=0.95,
     ):
         # SKIP ABBR HEADLINE INSIDE TABLE OF CONTENT
         return sections.feature.NO_PAGE
-    if utila.similar(
-            expected=elements.headline.lookup.ABBREVIATION,
+    if utilo.similar(
+            expected=elementae.headline.lookup.ABBREVIATION,
             current=headlines,
             maxdiff=0.95,
     ):
@@ -98,7 +98,7 @@ def byheadline(content):
     return None
 
 
-NOABBR = elements.headline.lookup.TOC
+NOABBR = elementae.headline.lookup.TOC
 
 
 def invalid_column(left, right) -> bool:  # pylint:disable=R0911
@@ -132,7 +132,7 @@ def invalid_column(left, right) -> bool:  # pylint:disable=R0911
 def numbered_column(column) -> bool:
     # item in right column in a row contain any number and may other stuff
     right_numbers = [
-        item for item in column if item and utila.parse_ints(text(item))
+        item for item in column if item and utilo.parse_ints(text(item))
     ]
     if len(column) < 6:
         return False
@@ -145,7 +145,7 @@ def numbered_column(column) -> bool:
     return True
 
 
-SHORT_COLUMN_MEAN_MAX = configo.HV_FLOAT_PLUS(default=10.0)
+SHORT_COLUMN_MEAN_MAX = configos.HV_FLOAT_PLUS(default=10.0)
 
 
 def short_column(left) -> bool:
@@ -157,13 +157,13 @@ def short_column(left) -> bool:
     return True
 
 
-WHITESPACED_VALID_MAX = configo.HV_PERCENT_PLUS(default=30.0)
+WHITESPACED_VALID_MAX = configos.HV_PERCENT_PLUS(default=30.0)
 
-WHITESPACED_INVALID_RATE_MIN = configo.HV_PERCENT_PLUS(default=20.0)
+WHITESPACED_INVALID_RATE_MIN = configos.HV_PERCENT_PLUS(default=20.0)
 
 
 def whitespaced(right) -> bool:
-    valid, invalid = utila.partition(
+    valid, invalid = utilo.partition(
         key=lambda x: whitespace_rate(x) < WHITESPACED_VALID_MAX,
         items=right,
     )
@@ -191,5 +191,5 @@ def whitespace_rate(item) -> float:
     if not item:
         return 0
     rate = item.count(' ') / len(item)
-    rate: float = utila.roundme(rate)
+    rate: float = utilo.roundme(rate)
     return rate

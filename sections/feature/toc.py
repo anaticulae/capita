@@ -16,19 +16,19 @@ TODO:
 
 import re
 
-import configo
-import elements.headline.lookup
+import configos
+import elementae.headline.lookup
 import serializeraw
-import utila
+import utilo
 
 import sections.strategy
 import sections.table
 
 # no possible toc later than page 20
 
-VALID_TOC_PAGES_MIN = configo.HV_INT_PLUS(default=0)
+VALID_TOC_PAGES_MIN = configos.HV_INT_PLUS(default=0)
 
-VALID_TOC_PAGES_MAX = configo.HV_INT_PLUS(default=20)
+VALID_TOC_PAGES_MAX = configos.HV_INT_PLUS(default=20)
 
 
 def work(
@@ -52,7 +52,7 @@ def work(
     )
     dumped = sections.strategy.work(
         ptcns,
-        headline=elements.headline.lookup.TOC,
+        headline=elementae.headline.lookup.TOC,
         noheadlines=NOHEADLINES,
         shortcut='toc',
         second=True,
@@ -61,9 +61,9 @@ def work(
     return dumped
 
 
-NOHEADLINES = (elements.headline.lookup.TABLETABLE |
-               elements.headline.lookup.FIGURETABLE |
-               elements.headline.lookup.LISTINGS)
+NOHEADLINES = (elementae.headline.lookup.TABLETABLE |
+               elementae.headline.lookup.FIGURETABLE |
+               elementae.headline.lookup.LISTINGS)
 
 APPENDIX = re.compile(
     r'(ANHANG|APPENDIX)[ ]{0,3}\d{1,2}[ ]{0,3}:{0,1}[ ]{0,5}.{0,50}\d{1,3}',
@@ -94,6 +94,6 @@ def pages_inside(pages: tuple, minn: int = 0, maxx=None) -> tuple:
     if not pages:
         if maxx is None:
             return None
-        return utila.rtuple(minn, maxx + 1)
+        return utilo.rtuple(minn, maxx + 1)
     pages = tuple(item for item in pages if minn <= item <= maxx)
     return pages

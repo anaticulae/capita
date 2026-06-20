@@ -7,19 +7,19 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import iamraw
 import iamraw.sections
-import utila
+import utilo
 
 import sections.section.ctor
 import sections.section.improve
 
 # features with lower trust are not expected as detected feature
-FEATURE_TRUST_MIN = configo.HV_PERCENT_PLUS(default=40)
+FEATURE_TRUST_MIN = configos.HV_PERCENT_PLUS(default=40)
 
 # more than one feature have this trust, accept all of them
-MULTIPLE_FEATURE_TRUST = configo.HV_PERCENT_PLUS(default=75)
+MULTIPLE_FEATURE_TRUST = configos.HV_PERCENT_PLUS(default=75)
 
 
 def run(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
@@ -130,7 +130,7 @@ def create_multisection(trusted, pagenumber, content):
         # TODO: Preseve order on page
         start = pagenumber + index * 1 / len(trusted)
         end = pagenumber + (index + 1) * 1 / len(trusted)
-        start, end = utila.roundme(start, end)
+        start, end = utilo.roundme(start, end)
         new = sections.section.ctor.create(
             start=start,
             end=end,

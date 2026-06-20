@@ -7,17 +7,17 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import iamraw
 import serializeraw
 import texmex
-import utila
+import utilo
 
 import sections.feature
 import sections.utils.headline
 
-HEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(default=0.85, limit=1.0)
-NOHEADLINE_COLLECT_MIN = configo.HV_FLOAT_PLUS(default=0.85, limit=1.0)
+HEADLINE_COLLECT_MIN = configos.HV_FLOAT_PLUS(default=0.85, limit=1.0)
+NOHEADLINE_COLLECT_MIN = configos.HV_FLOAT_PLUS(default=0.85, limit=1.0)
 
 
 def work(
@@ -78,7 +78,7 @@ def extract_xxx_likelihood(
     }
     result = {
         page:
-            judged if not utila.should_skip(page, pages) and
+            judged if not utilo.should_skip(page, pages) and
             matched(content, headline, noheadlines, topsearch=topsearch) else
             sections.feature.NO_PAGE
         for page, (content, judged) in result.items()
@@ -115,7 +115,7 @@ def matched(
     """
     detected = sections.utils.headline.headlines(navigator, topsearch=topsearch)
     if noheadlines and detected:
-        if utila.similar(noheadlines, detected, maxdiff=HEADLINE_COLLECT_MIN):
+        if utilo.similar(noheadlines, detected, maxdiff=HEADLINE_COLLECT_MIN):
             return False
     if not headline:
         # disable headline check, use noheadline to skip false positive
@@ -123,7 +123,7 @@ def matched(
         # a table of content for example.
         return True
     if detected and headline:
-        if utila.similar(headline, detected, maxdiff=NOHEADLINE_COLLECT_MIN):
+        if utilo.similar(headline, detected, maxdiff=NOHEADLINE_COLLECT_MIN):
             return True
     return False
 
@@ -163,7 +163,7 @@ def merge_second(
             start = index
             break
     if start == -1:
-        utila.debug(f'could not find {title} start; merge_second not possible')
+        utilo.debug(f'could not find {title} start; merge_second not possible')
         return extracted
     start += 1
     for index, item in enumerate(without[start:], start=start):

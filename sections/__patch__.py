@@ -9,8 +9,8 @@
 
 import re
 
-import german
-import utila
+import germania
+import utilo
 
 
 def authors(raw: str, verbose: bool = False) -> list:
@@ -28,11 +28,11 @@ def authors(raw: str, verbose: bool = False) -> list:
     """
     result = []
     for item in re.finditer(pattern, raw, re.VERBOSE):
-        item = utila.extract_match(item).strip()
+        item = utilo.extract_match(item).strip()
         if verbose:
             item = (item, item)
         result.append(item)
     return result
 
 
-german.authors = authors
+germania.authors = authors

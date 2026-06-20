@@ -302,7 +302,7 @@ Every noteable change is logged here.
 
 * make junk remover less strict (1f27d9d74fda)
 * remove duplication to reduce junk detection (254d95d7acc8)
-* do not split hyperlink as german sentences (3a17bba46e11)
+* do not split hyperlink as germania sentences (3a17bba46e11)
 
 ## v1.13.0
 
@@ -341,7 +341,7 @@ Every noteable change is logged here.
 
 ### Feature
 
-* move headlines from elements (367ac63e8174)
+* move headlines from elementae (367ac63e8174)
 * add literature headline (129cc6113c35)
 
 ## v1.12.1
@@ -356,7 +356,7 @@ Every noteable change is logged here.
 ### Feature
 
 * add modifiable holy values (69555779a2c9)
-* introduce configo holy values (8cb6c5e077b4)
+* introduce configos holy values (8cb6c5e077b4)
 
 ### Fix
 
@@ -482,7 +482,7 @@ Every noteable change is logged here.
 
 * add tolerance in bib grouper (fee6190ce9d1)
 * improve main merger (fc257175cbfd)
-* introduce layout min height to avoid (0482b76cff18)
+* introduce layouta min height to avoid (0482b76cff18)
 * add option to write images to a common folder (360b53832a82)
 * introduce CiteContent (5c2b3b231604)
 * ensure that section is not sorted alphabetically (86e661d5ac68)
@@ -493,9 +493,9 @@ Every noteable change is logged here.
 * user grouper to determine valid range of pages (9d699ded5041)
 * do not run double column on rotated page (9faeb1940a93)
 * reduce execution time (72ee670f958a)
-* adjust layout extractor (a94d3fe0c861)
+* adjust layouta extractor (a94d3fe0c861)
 * add option to analyze selected pages (79c6f4b24ae6)
-* add double layout detector (b61e335f2125)
+* add double layouta detector (b61e335f2125)
 * skip small rectangles (770564d2009a)
 * add pdf to image converter (d88c1d1e631e)
 * add page font detection (11f67c30a77f)

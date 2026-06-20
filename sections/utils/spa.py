@@ -17,7 +17,7 @@ import dataclasses
 
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 import sections.feature
 
@@ -72,6 +72,6 @@ def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
 
 
 def pages_ifrequired(analysis, page, page_count):
-    if 'page_count' in utila.attributes(analysis):
+    if 'page_count' in utilo.attributes(analysis):
         return analysis(page, page_count=page_count)
     return analysis(page)

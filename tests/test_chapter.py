@@ -7,12 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw.path
-import power
 import pytest
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.chapter.run
 import sections.feature.chapter
@@ -25,51 +25,51 @@ import sections.feature.chapter
 # yapf:disable
 @pytest.mark.parametrize('source, expected', [
     pytest.param(
-        power.DOCU027_PDF,
+        hoverpower.DOCU027_PDF,
         [6, 8, 10, 12, 18, 20, 22, 24],
         id='docu027',
         marks=pytest.mark.xfail(reason='parser is too optimistic'),
     ),
     pytest.param(
-        power.MASTER072_PDF,
+        hoverpower.MASTER072_PDF,
         [3, 6, 22, 45, 63],
         id='master72pages',
     ),
     pytest.param(
-        power.MASTER091A_PDF,
+        hoverpower.MASTER091A_PDF,
         [13, 16, 18, 33, 37, 47, 58, 66, 72, 82],
         id='master91a',
     ),
     pytest.param(
-        power.DISS266_PDF,
+        hoverpower.DISS266_PDF,
         [9, 23, 30, 81, 103, 197, 203],
         # [4, 5, 9, 23, 81, 103, 197, 203, 205],
         id='diss266',
     ),
     pytest.param(
-        power.BACHELOR051_PDF,
+        hoverpower.BACHELOR051_PDF,
         [3, 4, 28, 35, 42],
         id='bachelor51',
     ),
     pytest.param(
-        power.BACHELOR037_PDF,
+        hoverpower.BACHELOR037_PDF,
         # [6, 15, 27],
         [6, 15],
         id='bachelor37',
     ),
     pytest.param(
-        power.BACHELOR111_PDF,
+        hoverpower.BACHELOR111_PDF,
         [5, 8, 31, 40, 52, 66, 80],
         id='bachelor111',
     ),
     pytest.param(
-        power.DISS172_PDF,
+        hoverpower.DISS172_PDF,
         [16, 24, 43, 54, 75, 89, 112, 132, 148, 150],
         # [16, 89, 148, 150],
         id='diss172',
     ),
     pytest.param(
-        power.DISS406_PDF,
+        hoverpower.DISS406_PDF,
         # [22, 25, 40],
         # too optimistic, but this is not a problem
         [22, 26, 40, 48, 49],
@@ -77,9 +77,9 @@ import sections.feature.chapter
     ),
 ])
 # yapf:enable
-@utilatest.nightly
+@utilotest.nightly
 def test_chapter_extract(source, expected):
-    source = power.link(source)
+    source = hoverpower.link(source)
     # run
     result = extract_chapter(source)
     # verify result
@@ -87,9 +87,9 @@ def test_chapter_extract(source, expected):
     assert pages == expected
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_chapter_dump_and_load_detection():
-    source = power.link(power.DOCU027_PDF)
+    source = hoverpower.link(hoverpower.DOCU027_PDF)
     result = extract_chapter(source)
     dumped = serializeraw.dump_likelihood(result)
     loaded = serializeraw.load_likelihood(dumped)
@@ -97,7 +97,7 @@ def test_chapter_dump_and_load_detection():
 
 
 def extract_chapter(source):
-    utilatest.fixture_requires(source)
+    utilotest.fixture_requires(source)
     # load
     navigators = serializeraw.ptcn_frompath(source)
     outlines = serializeraw.load_toc(iamraw.path.outlines(source))
@@ -110,7 +110,7 @@ def extract_chapter(source):
 
 
 def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
-    utilatest.fixture_requires(source)
+    utilotest.fixture_requires(source)
     dumped = sections.feature.chapter.work(
         document=iamraw.path.text(source, prefix='oneline'),  # use default path
         position=iamraw.path.textposition(source, prefix='oneline'),
@@ -124,15 +124,15 @@ def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     return loaded
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_chapter_work_bachelor63():
-    source = power.link(power.BACHELOR063_PDF)
+    source = hoverpower.link(hoverpower.BACHELOR063_PDF)
     extracted = chapter(source)
     # Einleitung
-    first_chapter = utila.select_page(extracted, page=8)
+    first_chapter = utilo.select_page(extracted, page=8)
     assert first_chapter.content.value >= 0.5, str(extracted)
     # Grundlagen
-    second_chapter = utila.select_page(extracted, page=9)
+    second_chapter = utilo.select_page(extracted, page=9)
     assert second_chapter.content.value >= 0.5, str(extracted)
     # verify
     expected = [8, 9, 17, 19, 33, 39]
@@ -140,9 +140,9 @@ def test_chapter_work_bachelor63():
     assert pages == expected
 
 
-@utilatest.nightly
+@utilotest.nightly
 def test_chapter_work_master98():
-    source = power.link(power.MASTER098_PDF)
+    source = hoverpower.link(hoverpower.MASTER098_PDF)
     extracted = chapter(source)
 
     expected = [2, 6, 26, 42, 67, 85, 88, 96]
@@ -151,10 +151,10 @@ def test_chapter_work_master98():
     assert pages == expected
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_chapter_work_paper18():
     """Regression test to ensure that chapter start is detected."""
-    source = power.link(power.PAPER018_PDF)
+    source = hoverpower.link(hoverpower.PAPER018_PDF)
     extracted = chapter(source)
 
     expected = [1]  # extend after upgrader chapter parser
@@ -164,12 +164,12 @@ def test_chapter_work_paper18():
 
 
 def test_chapter_diss180_introduction():
-    source = power.link(power.DISS180_PDF)
+    source = hoverpower.link(hoverpower.DISS180_PDF)
     extracted = chapter(source, pages=(18,))
     assert extracted[0].content.value >= 0.5
 
 
 def test_chapter_diss266():
-    source = power.link(power.DISS266_PDF)
+    source = hoverpower.link(hoverpower.DISS266_PDF)
     extracted = chapter(source, pages=(9,))
     assert extracted[0].content.value >= 0.5

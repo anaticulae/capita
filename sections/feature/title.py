@@ -9,10 +9,10 @@
 
 import statistics
 
-import configo
+import configos
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 import sections.feature
 
@@ -49,11 +49,11 @@ def extract_title_likelihood(
     return result
 
 
-TITLE_LENGTH_MIN = configo.HV_INT_PLUS(default=10)
+TITLE_LENGTH_MIN = configos.HV_INT_PLUS(default=10)
 
-TITLE_LENGTH_MAX = configo.HV_INT_PLUS(default=200)
+TITLE_LENGTH_MAX = configos.HV_INT_PLUS(default=200)
 
-TITLE_CHARACTER_COUNT_MAX = configo.HV_INT_PLUS(default=1000)
+TITLE_CHARACTER_COUNT_MAX = configos.HV_INT_PLUS(default=1000)
 
 EMPTY_RESULT = (0, 0.0)
 
@@ -84,14 +84,14 @@ def analyse_page(page: iamraw.Page, fontstore: iamraw.FontStore) -> float:
     title_indicator = title_indicator * pow(0.10, pagenumber)
     # For high pages title_indicator produces very small number 10^-45. To
     # stabilize further algorithms, we do not want this "precision".
-    title_indicator = utila.roundme(title_indicator)  # pylint:disable=R0204
+    title_indicator = utilo.roundme(title_indicator)  # pylint:disable=R0204
     return font_length_max, title_indicator
 
 
 def no_titlepage(page, fonts):
     if not fonts:  # empty page or page with images
         return EMPTY_RESULT
-    numbers = sum((len(utila.parse_ints(str(item))) for item in page))
+    numbers = sum((len(utilo.parse_ints(str(item))) for item in page))
     if numbers > 70:
         # skip potential table of content page
         return EMPTY_RESULT
@@ -108,7 +108,7 @@ def font_sizes_from_page(store: iamraw.FontStore, pagenumber: int):
         try:
             fonts.append(store[font].scale)
         except KeyError:
-            utila.error(f'missing font key: {font}')
+            utilo.error(f'missing font key: {font}')
     return fonts
 
 
@@ -128,7 +128,7 @@ def determine_hugest_font(fonts, positions, page: iamraw.Page):  # pylint:disabl
     # font_max_index = fonts.index(font_max)
     # text_length = [len(item) for item in texmex.split_page(page, positions)]
     # font_length_max = text_length[font_max_index]
-    font_max, font_length_max = -utila.INF, -utila.INF
+    font_max, font_length_max = -utilo.INF, -utilo.INF
     for container in page:
         # TODO: MERGE EQUAL TEXT LINE TOGETHER?
         for line in container:

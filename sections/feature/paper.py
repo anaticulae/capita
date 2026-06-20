@@ -7,22 +7,22 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import iamraw
-import pdfinfo.pages
+import pdflog.pages
 import serializeraw
-import utila
+import utilo
 
 import sections.paper.main
 
-PAGES_MIN = configo.HV_INT_PLUS(default=120)
+PAGES_MIN = configos.HV_INT_PLUS(default=120)
 
 
 def work(pdf: str, pages=None) -> str:
     if pdf is None:
-        utila.error('skip paper, use --pdf to define pdf')
+        utilo.error('skip paper, use --pdf to define pdf')
         return NOPAPER
-    utila.exists_assert(pdf)
+    utilo.exists_assert(pdf)
     if skip_strategy(pdf):
         return NOPAPER
     detected = sections.paper.main.detect_paper(pdf, pages=pages)
@@ -34,9 +34,9 @@ def work(pdf: str, pages=None) -> str:
 
 def skip_strategy(pdf: str) -> bool:
     # TODO: USE DOCTYPE ALSO
-    pages_max = pdfinfo.pages.determine(pdf)
+    pages_max = pdflog.pages.determine(pdf)
     if pages_max < PAGES_MIN:
-        utila.debug(f'do not search papers, document too short: {pages_max}')
+        utilo.debug(f'do not search papers, document too short: {pages_max}')
         return True
     return False
 

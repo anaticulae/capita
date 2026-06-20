@@ -7,15 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import serializeraw
-import utilatest
+import utilotest
 
 
 @pytest.fixture
 def paper18():
-    utilatest.fixture_requires(power.PAPER018_PDF)
-    source = power.link(power.PAPER018_PDF)
+    utilotest.fixture_requires(hoverpower.PAPER018_PDF)
+    source = hoverpower.link(hoverpower.PAPER018_PDF)
     navigator = serializeraw.ptn_frompath(source)
     return navigator

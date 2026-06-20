@@ -9,15 +9,15 @@
 
 import statistics
 
-import configo
+import configos
 import iamraw
 import texmex
-import utila
+import utilo
 
 import sections.chapter.outlines
 import sections.chapter.starter
 
-FIRST_QUARTER = configo.HV_PERCENT_PLUS(default=45.0)
+FIRST_QUARTER = configos.HV_PERCENT_PLUS(default=45.0)
 
 
 def extract_chapter(
@@ -38,7 +38,7 @@ def extract_chapter(
         )
         if rate <= 0.0:
             # TODO: VERY VERBOSE, CHECK LATER
-            utila.verbose(f'    no chapter {page.page}: chapterate {rate}')
+            utilo.verbose(f'    no chapter {page.page}: chapterate {rate}')
             continue
         # convert result to percents
         rate_in_percent = chaptervalue_to_percent(rate, outlines)
@@ -58,15 +58,15 @@ def nochapter(page) -> bool:
         # empty page
         return True
     if page.rotated:
-        utila.verbose(f'no chapter {page.page}: rotated')
+        utilo.verbose(f'no chapter {page.page}: rotated')
         return True
     pagestart = page.before(FIRST_QUARTER)
     if no_textcontent(pagestart):
-        utila.verbose(f'no chapter {page.page}: no textcontent')
+        utilo.verbose(f'no chapter {page.page}: no textcontent')
         return True
     if contains_listof(pagestart):
         if not sections.chapter.starter.startwith_hugenumber(pagestart):
-            utila.verbose(f'no chapter {page.page}: list of dots')
+            utilo.verbose(f'no chapter {page.page}: list of dots')
             # TODO: See todo below XXX???
             # chapter_rate = 0
             return True
@@ -118,6 +118,6 @@ def contains_listof(content: list) -> bool:
 
 
 def rawcontent(content) -> str:
-    raw = utila.NEWLINE.join([item.text for item in content])
+    raw = utilo.NEWLINE.join([item.text for item in content])
     raw = raw.lower()
     return raw

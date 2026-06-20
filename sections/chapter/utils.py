@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 
 def huge_match(line: str, part: str) -> bool:
@@ -17,7 +17,7 @@ def huge_match(line: str, part: str) -> bool:
     False
     """
     line = line.lower()
-    if utila.iterable(part):
+    if utilo.iterable(part):
         return any(huge_match(line, item) for item in part)
     if part not in line:
         return False
@@ -40,6 +40,6 @@ def startswith(line: str, start: str) -> bool:
         # matched part is to small
         maxdiff = 0.9
     # TODO: REPLACE WITH UTILA CODe
-    if utila.similar(start, line, maxdiff=maxdiff):
+    if utilo.similar(start, line, maxdiff=maxdiff):
         return True
     return False

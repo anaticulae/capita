@@ -7,19 +7,19 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw
 import iamraw.path
-import power
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.feature.appendix
 
 
 def appendix(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
-    source = power.link(source)
-    utilatest.fixture_requires(source)
+    source = hoverpower.link(source)
+    utilotest.fixture_requires(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
 
@@ -30,10 +30,10 @@ def appendix(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     return loaded
 
 
-@utilatest.nightly
+@utilotest.nightly
 def test_appendix_diss170():
-    extracted = appendix(power.DISS170_PDF)
-    page163 = utila.select_page(extracted, 163)
+    extracted = appendix(hoverpower.DISS170_PDF)
+    page163 = utilo.select_page(extracted, 163)
     assert page163.content.value == 1.0
 
 
@@ -45,6 +45,6 @@ def test_appendix_diss143page121():
     Messung sehr kleiner
     Signalamplituden
     """
-    extracted = appendix(power.DISS143_PDF, pages=(121))
-    page121 = utila.select_page(extracted, 121)
+    extracted = appendix(hoverpower.DISS143_PDF, pages=(121))
+    page121 = utilo.select_page(extracted, 121)
     assert page121.content.value == 1.0

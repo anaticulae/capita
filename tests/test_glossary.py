@@ -7,39 +7,39 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw.path
-import power
 import pytest
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.feature.glossary
 
 
-@utilatest.longrun
-@utilatest.requires(power.DISS143_PDF)
+@utilotest.longrun
+@utilotest.requires(hoverpower.DISS143_PDF)
 def test_glossary_work_diss143():
-    pages = glossary(power.DISS143_PDF)
+    pages = glossary(hoverpower.DISS143_PDF)
     assert pages == [127, 128, 129, 130]
 
 
-@utilatest.nightly
+@utilotest.nightly
 @pytest.mark.parametrize('source, pages', [
-    pytest.param(power.BACHELOR076_PDF, None, id='bachelor076'),
-    pytest.param(power.BOOK173_PDF, None, id='book173'),
-    pytest.param(power.DISS173_PDF, utila.rtuple(50), id='diss173'),
-    pytest.param(power.DISS287_PDF, None, id='diss287'),
+    pytest.param(hoverpower.BACHELOR076_PDF, None, id='bachelor076'),
+    pytest.param(hoverpower.BOOK173_PDF, None, id='book173'),
+    pytest.param(hoverpower.DISS173_PDF, utilo.rtuple(50), id='diss173'),
+    pytest.param(hoverpower.DISS287_PDF, None, id='diss287'),
 ])
 def test_no_glossary_regression_x(source, pages):
     """Do not detect page 142 as glossary. It's just a page about glossaries."""
-    utilatest.fixture_requires(source)
+    utilotest.fixture_requires(source)
     extracted = glossary(source, pages)
     assert not extracted
 
 
 def glossary(source, pages: tuple = None):
-    source = power.link(source)
+    source = hoverpower.link(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
     pdfinfo = iamraw.path.pdfinfo(source)

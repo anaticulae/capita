@@ -7,25 +7,25 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import serializeraw
-import utilatest
+import utilotest
 
 import sections.utils.headline
 
 
 # yapf:disable
 @pytest.mark.parametrize('source, page, expected', [
-    pytest.param(power.BACHELOR090_PDF, 2, 'Eidesstattliche Erklärung', id='eides'),
-    pytest.param(power.BACHELOR090_PDF, 3, ['Kurzfassung', 'Abstract'], id='abstract'),
-    pytest.param(power.BACHELOR090_PDF, 4, 'Inhaltsverzeichnis', id='toc'),
-    pytest.param(power.MASTER148_PDF, 109, 'Literaturverzeichnis', id='bib'),
+    pytest.param(hoverpower.BACHELOR090_PDF, 2, 'Eidesstattliche Erklärung', id='eides'),
+    pytest.param(hoverpower.BACHELOR090_PDF, 3, ['Kurzfassung', 'Abstract'], id='abstract'),
+    pytest.param(hoverpower.BACHELOR090_PDF, 4, 'Inhaltsverzeichnis', id='toc'),
+    pytest.param(hoverpower.MASTER148_PDF, 109, 'Literaturverzeichnis', id='bib'),
 ])
 # yapf:enable
 def test_detect_page_headlines(source, page, expected):
-    utilatest.fixture_requires(source)
-    source = power.link(source)
+    utilotest.fixture_requires(source)
+    source = hoverpower.link(source)
     navigator = serializeraw.ptn_frompath(
         source,
         pages=(page,),

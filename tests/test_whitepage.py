@@ -7,13 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw.path
-import power
 import pytest
 import serializeraw
 import texmex
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.feature.whitepage
 
@@ -24,23 +24,23 @@ RESTRUCT_EXPECTED = (
     [3, 5, 7, 11, 19, 21, 23, 25],
 )
 # CONTENT, BLANK, WHITE
-MASTER155_EXPECTED = (utila.rlist(155), [], [])
+MASTER155_EXPECTED = (utilo.rlist(155), [], [])
 # CONTENT, BLANK, WHITE
 # TODO IMPROVE AFTER FIXING WHITEPAGE EXTRACTOR
 HC_DISS166_EXPECTED = ()
 
 
 @pytest.mark.parametrize('source, expected', [
-    pytest.param(power.DOCU027_PDF, RESTRUCT_EXPECTED, id='docu27'),
-    pytest.param(power.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
-    pytest.param(power.HC_DISS166,
+    pytest.param(hoverpower.DOCU027_PDF, RESTRUCT_EXPECTED, id='docu27'),
+    pytest.param(hoverpower.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
+    pytest.param(hoverpower.HC_DISS166,
                  HC_DISS166_EXPECTED,
                  id='diss166hc',
                  marks=pytest.mark.xfail(reason='improve paper detector')),
 ])
-@utilatest.nightly
+@utilotest.nightly
 def test_whitepages_extract_x(source, expected):
-    utilatest.fixture_requires(source)
+    utilotest.fixture_requires(source)
     result = whitepages(source)
     result = current(result)
     assert result == expected
@@ -56,9 +56,9 @@ BACHELOR090_EXPECTED = (
 )
 
 
-@utilatest.requires(power.BACHELOR090_PDF)
+@utilotest.requires(hoverpower.BACHELOR090_PDF)
 def test_document_whith_gaps():
-    source = power.BACHELOR090_PDF
+    source = hoverpower.BACHELOR090_PDF
     result = whitepages(source)
     result = current(result)
     # adjust test after changing page numbers
@@ -66,7 +66,7 @@ def test_document_whith_gaps():
 
 
 def whitepages(document: str):
-    source = power.link(document)
+    source = hoverpower.link(document)
     navigators = serializeraw.ptn_frompath(
         source,
         state=texmex.TextState.ALL,
@@ -74,12 +74,12 @@ def whitepages(document: str):
     )
     document = serializeraw.load_document(iamraw.path.text(source))
 
-    headerfooters = utila.join(source, 'headnote__result_result.yaml')
+    headerfooters = utilo.join(source, 'headnote__result_result.yaml')
     headerfooters = serializeraw.load_headerfooter(headerfooters)
 
     images, figures = sections.feature.whitepage.load_imagesfigures(
-        images=utila.join(source, 'rawmaker__images_images'),
-        figures=utila.join(source, 'rawmaker__figures_figures'),
+        images=utilo.join(source, 'rawmaker__images_images'),
+        figures=utilo.join(source, 'rawmaker__figures_figures'),
         pages=None,
     )
     # work

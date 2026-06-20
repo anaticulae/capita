@@ -7,9 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import elements.headline.lookup
+import elementae.headline.lookup
 import serializeraw
-import utila
+import utilo
 
 import sections.feature
 import sections.utils.headline
@@ -35,8 +35,8 @@ def analyse_page(content):
     headlines = sections.utils.headline.headlines(content)
     if not headlines:
         return sections.feature.NO_PAGE
-    if utila.similar(
-            expected=elements.headline.lookup.ACKNOWLEDGE,
+    if utilo.similar(
+            expected=elementae.headline.lookup.ACKNOWLEDGE,
             current=headlines,
             maxdiff=0.95,
     ):

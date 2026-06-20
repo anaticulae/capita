@@ -58,14 +58,14 @@ Requirements
 [Theisen]
 """
 
-import configo
+import configos
 import serializeraw
 import texmex
-import utila
+import utilo
 
 import sections.utils.spa
 
-FEATURE_POINT_COUNT_MIN = configo.HV_INT_PLUS(default=5)
+FEATURE_POINT_COUNT_MIN = configos.HV_INT_PLUS(default=5)
 
 
 def work(document: str, position: str, pages=None) -> str:
@@ -109,7 +109,7 @@ def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
     return len(located), trust
 
 
-FEATURE_POINTS = utila.splitlines("""\
+FEATURE_POINTS = utilo.splitlines("""\
 ANGEFERTIGT
 ARBEIT
 AUFGEFÜHRTEN QUELLEN UND HILFSMITTEL

@@ -7,13 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import sections
 
 
 def result(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'section_result',
@@ -26,7 +26,7 @@ sections_ = result  # pylint:disable=C0103
 
 
 def abbreviation(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'abbreviation_likelihood',
@@ -35,7 +35,7 @@ def abbreviation(path: str, prefix: str = '') -> str:
 
 
 def abstract(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'abstract_likelihood',
@@ -44,7 +44,7 @@ def abstract(path: str, prefix: str = '') -> str:
 
 
 def acknowledge(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'acknowledge_likelihood',
@@ -53,7 +53,7 @@ def acknowledge(path: str, prefix: str = '') -> str:
 
 
 def appendix(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'appendix_likelihood',
@@ -62,7 +62,7 @@ def appendix(path: str, prefix: str = '') -> str:
 
 
 def bibliography(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'bibliography_likelihood',
@@ -71,7 +71,7 @@ def bibliography(path: str, prefix: str = '') -> str:
 
 
 def chapter(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'chapter_likelihood',
@@ -80,7 +80,7 @@ def chapter(path: str, prefix: str = '') -> str:
 
 
 def index(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'index_likelihood',
@@ -89,7 +89,7 @@ def index(path: str, prefix: str = '') -> str:
 
 
 def legal(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'legal_likelihood',
@@ -98,7 +98,7 @@ def legal(path: str, prefix: str = '') -> str:
 
 
 def title(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'title_likelihood',
@@ -107,7 +107,7 @@ def title(path: str, prefix: str = '') -> str:
 
 
 def toc(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'toc_likelihood',
@@ -116,7 +116,7 @@ def toc(path: str, prefix: str = '') -> str:
 
 
 def tabletable(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'tabletable_likelihood',
@@ -125,7 +125,7 @@ def tabletable(path: str, prefix: str = '') -> str:
 
 
 def symboltable(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'symboltable_likelihood',
@@ -134,7 +134,7 @@ def symboltable(path: str, prefix: str = '') -> str:
 
 
 def figuretable(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'figuretable_likelihood',
@@ -143,7 +143,7 @@ def figuretable(path: str, prefix: str = '') -> str:
 
 
 def whitepage(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'whitepage_likelihood',
@@ -152,7 +152,7 @@ def whitepage(path: str, prefix: str = '') -> str:
 
 
 def paper(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         sections.PROCESS,
         'paper_likelihood',

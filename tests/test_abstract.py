@@ -7,18 +7,18 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw
-import power
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.feature.abstract
 
 
 def abstract(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
-    source = power.link(source)
-    utilatest.fixture_requires(source)
+    source = hoverpower.link(source)
+    utilotest.fixture_requires(source)
     dumped = sections.feature.abstract.work(
         source,
         source,
@@ -33,36 +33,36 @@ def abstract(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
 
 
 def test_abstract_diss180():
-    extracted = abstract(power.DISS180_PDF, pages=(16,))
-    page16 = utila.select_page(extracted, 16)
+    extracted = abstract(hoverpower.DISS180_PDF, pages=(16,))
+    page16 = utilo.select_page(extracted, 16)
     assert page16.content.value == 1.0
 
 
 def test_abtract_diss172():
-    extracted = abstract(power.DISS172_PDF, pages=(3,))
-    page3 = utila.select_page(extracted, 3)
+    extracted = abstract(hoverpower.DISS172_PDF, pages=(3,))
+    page3 = utilo.select_page(extracted, 3)
     assert page3.content.value == 1.0
 
 
 def test_abstract_master049():
-    extracted = abstract(power.MASTER049_PDF, pages=(1,))
-    page1 = utila.select_page(extracted, 1)
+    extracted = abstract(hoverpower.MASTER049_PDF, pages=(1,))
+    page1 = utilo.select_page(extracted, 1)
     assert page1.content.value == 1.0
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_abstract_master193():
-    extracted = abstract(power.MASTER193_PDF, pages=(191, 192))
-    page191 = utila.select_page(extracted, 191)
+    extracted = abstract(hoverpower.MASTER193_PDF, pages=(191, 192))
+    page191 = utilo.select_page(extracted, 191)
     assert page191.content.value == 1.0
-    page192 = utila.select_page(extracted, 192)
+    page192 = utilo.select_page(extracted, 192)
     assert page192.content.value == 1.0
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_noabstract_bachelor111page14():
     """\
     2.2.4 Zusammenfassung was detected as abstract page.
     """
-    extracted = abstract(power.BACHELOR111_PDF, pages=(14,))
+    extracted = abstract(hoverpower.BACHELOR111_PDF, pages=(14,))
     assert not extracted[0].content.value

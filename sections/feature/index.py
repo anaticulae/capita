@@ -24,7 +24,7 @@ Example
 """
 
 import serializeraw
-import utila
+import utilo
 
 import sections.strategy
 
@@ -56,12 +56,12 @@ def work(
     return dumped
 
 
-HEADLINES = utila.splitlines("""
+HEADLINES = utilo.splitlines("""
 INDEX
 """)
 
 # INDEX, PAGENUMBER
-INDEX_ITEM_PATTERN = utila.compiles(r"""
+INDEX_ITEM_PATTERN = utilo.compiles(r"""
     ^
     ([A-Z]+\s?){1,3}                    # one till three words
     [\s|,]?                             # optional `,`

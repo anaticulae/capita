@@ -7,12 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw
 import iamraw.sections
-import power
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.creator
 import sections.feature.section
@@ -37,11 +37,11 @@ def test_validate_docu027(docu027_sections_manual):
     assert validated
 
 
-@utilatest.nightly
+@utilotest.nightly
 def test_sections_simple(td, mp):
     """Check dumped result of section work method"""
     simple_sections = tests.sections_from_dir(
-        power.DOCU007_PDF,
+        hoverpower.DOCU007_PDF,
         path=td.tmpdir,
         mp=mp,
     )
@@ -52,7 +52,7 @@ def test_sections_simple(td, mp):
     assert loaded == simple_sections, loaded
 
 
-@utilatest.nightly
+@utilotest.nightly
 def test_sections_master72(td, mp):
     """Ensure that BUILDER in section is sorted correctly.
 
@@ -61,7 +61,7 @@ def test_sections_master72(td, mp):
     correctly.
     """
     result = tests.sections_from_dir(
-        power.MASTER072_PDF,
+        hoverpower.MASTER072_PDF,
         path=td.tmpdir,
         mp=mp,
     )
@@ -73,16 +73,16 @@ def test_sections_master72(td, mp):
     assert len(mainpart) == 62  # content pages
     chapternumbers = [
         item.start
-        for item in utila.select_type(mainpart.content, iamraw.sections.Chapter)
+        for item in utilo.select_type(mainpart.content, iamraw.sections.Chapter)
     ]
     expected = [3, 6, 22, 45, 63]
     assert chapternumbers == expected
 
 
-@utilatest.nightly
+@utilotest.nightly
 def test_sections_master075_appendix(td, mp):
     result = tests.sections_from_dir(
-        power.MASTER075_PDF,
+        hoverpower.MASTER075_PDF,
         pages='70,71,72,73,74',
         path=td.tmpdir,
         mp=mp,

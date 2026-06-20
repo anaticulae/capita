@@ -12,14 +12,14 @@
 
 import re
 
-import elements.headline.lookup
+import elementae.headline.lookup
 import serializeraw
-import utila
+import utilo
 
 import sections.strategy
 import sections.table
 
-NOHEADLINES = elements.headline.lookup.HEADLINES - elements.headline.lookup.FIGURETABLE
+NOHEADLINES = elementae.headline.lookup.HEADLINES - elementae.headline.lookup.FIGURETABLE
 
 
 def work(
@@ -38,7 +38,7 @@ def work(
     )
     dumped = sections.strategy.work(
         ptcns,
-        headline=elements.headline.lookup.FIGURETABLE,
+        headline=elementae.headline.lookup.FIGURETABLE,
         noheadlines=NOHEADLINES,
         shortcut='figuretable',
         pattern=figure,
@@ -50,7 +50,7 @@ FIGURE = re.compile(
     r'(Abb\.{0,1}|Abbildung)[ ]{0,3}\d{1,2}[ ]{0,3}.{0,50}',
     re.X | re.I,
 )
-FIGURE_ENG = utila.compiles(r"""
+FIGURE_ENG = utilo.compiles(r"""
     FIGURE[ ]{0,3}
     \d{1,2}(\-\d{1,2}\.)?
     [ ]{0,3}

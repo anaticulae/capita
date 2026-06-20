@@ -7,8 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import elements
-import utila
+import elementae
+import utilo
 
 
 def valid_line(line: str) -> bool:
@@ -17,7 +17,7 @@ def valid_line(line: str) -> bool:
         return True
     if line.count('..') > 3:
         return True
-    if elements.level_numbered(line):
+    if elementae.level_numbered(line):
         return True
     if LINE_WITHPAGES.match(line):
         return True
@@ -25,4 +25,4 @@ def valid_line(line: str) -> bool:
 
 
 # E. Abschließende Zusammenfassung      S. 85
-LINE_WITHPAGES = utila.compiles(r'^.+S\.[ ]{0,3}\d{1,4}$')
+LINE_WITHPAGES = utilo.compiles(r'^.+S\.[ ]{0,3}\d{1,4}$')

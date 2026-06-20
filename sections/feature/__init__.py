@@ -8,10 +8,10 @@
 # =============================================================================
 # TODO: MOVE TO UTILA
 
-import configo
+import configos
 import iamraw
 import texmex
-import utila
+import utilo
 
 Count = int
 Page = int
@@ -55,11 +55,11 @@ def uniform_result(
         page: (feature / features_max) for page, (_, feature) in items.items()
     }
     # round to 2 digits
-    result = {page: utila.roundme(item) for page, item in result.items()}
+    result = {page: utilo.roundme(item) for page, item in result.items()}
     return result
 
 
-MULTIFORM_RESULT_LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=45)
+MULTIFORM_RESULT_LIKELIHOOD_MIN = configos.HV_PERCENT_PLUS(default=45)
 
 
 def multiform_result(items):
@@ -89,15 +89,15 @@ def multiform_result(items):
     per_page_max = max((feature for _, feature in values))
     half_max = 0.5 * per_page_max
     multi_max = [
-        feature for elements, feature in values if feature >= half_max or
-        likelihood(feature, elements) > MULTIFORM_RESULT_LIKELIHOOD_MIN
+        feature for elementae, feature in values if feature >= half_max or
+        likelihood(feature, elementae) > MULTIFORM_RESULT_LIKELIHOOD_MIN
     ]
     if len(multi_max) < 2:
-        # not enough multi form elements
+        # not enough multi form elementae
         return None
     result = {}
-    for page, (elements, feature) in items.items():
-        matching = likelihood(feature, elements)
+    for page, (elementae, feature) in items.items():
+        matching = likelihood(feature, elementae)
         if feature >= half_max:
             result[page] = matching
         elif matching > MULTIFORM_RESULT_LIKELIHOOD_MIN:
@@ -105,19 +105,19 @@ def multiform_result(items):
         else:
             result[page] = 0.0
     # round to 2 digits
-    result = {page: utila.roundme(item) for page, item in result.items()}
+    result = {page: utilo.roundme(item) for page, item in result.items()}
     return result
 
 
-def likelihood(feature, elements) -> float:
-    """Determine percent of feature in elements group.
+def likelihood(feature, elementae) -> float:
+    """Determine percent of feature in elementae group.
 
     Elements is higher than feature, because not every element is a
     feature.
     """
-    if not elements:
+    if not elementae:
         return 0.0
-    return feature / elements
+    return feature / elementae
 
 
 def pagebypage(

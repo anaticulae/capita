@@ -7,18 +7,18 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import serializeraw
-import utilatest
+import utilotest
 
 import sections
 import tests
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_table_table_master98_page95(td, mp):
-    utilatest.fixture_requires(power.MASTER098_PDF)
-    source = power.link(power.MASTER098_PDF)
+    utilotest.fixture_requires(hoverpower.MASTER098_PDF)
+    source = hoverpower.link(hoverpower.MASTER098_PDF)
     tests.run(
         f'-i {source} --tabletable --pages=95',
         mp=mp,

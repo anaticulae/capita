@@ -9,26 +9,26 @@
 
 import functools
 
-import power
+import hoverpower
 import pytest
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections
 import tests
 import tests.conftest
 
-ARCHIVE = utila.join(sections.ROOT, 'tests/expected/result', exist=True)
+ARCHIVE = utilo.join(sections.ROOT, 'tests/expected/result', exist=True)
 
 
-@utilatest.nightly
+@utilotest.nightly
 @pytest.mark.parametrize(
     'source',
-    utilatest.test_resources(tests.conftest.RESOURCES),
+    utilotest.test_resources(tests.conftest.RESOURCES),
 )
 def test_validate(source, td, mp):
-    utilatest.fixture_requires(source)
+    utilotest.fixture_requires(source)
     Evaluate(
         step='',
         source=source,
@@ -38,7 +38,7 @@ def test_validate(source, td, mp):
     ).evaluate()
 
 
-class Evaluate(utilatest.BaseLiner):
+class Evaluate(utilotest.BaseLiner):
 
     def __init__(self, step, source, pages, workdir, mp):
         super().__init__(
@@ -49,7 +49,7 @@ class Evaluate(utilatest.BaseLiner):
                 mp=mp,
             ),
             pages=pages,
-            source=power.link(source),
+            source=hoverpower.link(source),
             workdir=workdir,
             archive=ARCHIVE,
             loader=self.load_sections,
@@ -68,7 +68,7 @@ class Evaluate(utilatest.BaseLiner):
             for item in section:
                 line = rawline(item)
                 result.append('    ' + line)
-        raw = utila.NEWLINE.join(result)
+        raw = utilo.NEWLINE.join(result)
         return raw
 
 

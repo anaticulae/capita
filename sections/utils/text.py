@@ -12,13 +12,13 @@ import dataclasses
 import functools
 import statistics
 
-import configo
-import german
-import konrad
+import configos
+import germania
+import konradus
 import texmex
-import utila
+import utilo
 
-SENTENCE_LENGTH_MIN = configo.HV_INT_PLUS(default=20)
+SENTENCE_LENGTH_MIN = configos.HV_INT_PLUS(default=20)
 
 
 @dataclasses.dataclass
@@ -28,9 +28,9 @@ class TextOnPage:
     paragraphs_: int = None
     headlines_: int = None
     # signs included in sentences
-    signs_: konrad.Marks = dataclasses.field(default_factory=list)
+    signs_: konradus.Marks = dataclasses.field(default_factory=list)
     # ordinary dots ... which are used in table of content etc.
-    dots_: konrad.Marks = dataclasses.field(default_factory=list)
+    dots_: konradus.Marks = dataclasses.field(default_factory=list)
 
     def append_sentence(self, item: str):
         self.sentences_.append(item)  # pylint:disable=E1101
@@ -75,13 +75,13 @@ class TextOnPage:
             'min': min,
             'mean': statistics.mean,
             'median': statistics.median,
-            'mode': functools.partial(utila.mode, maximize=True),
+            'mode': functools.partial(utilo.mode, maximize=True),
             'stdev': statistics.stdev,
             'variance': statistics.variance,
         }
         with contextlib.suppress(KeyError):
             result = operation[action](length)
-            return utila.roundme(result)
+            return utilo.roundme(result)
         raise ValueError(f'unsupported operation {action} {variable}')
 
 
@@ -89,12 +89,12 @@ def textonpage(page: texmex.PTN) -> TextOnPage:
     result = TextOnPage()
     for chunk in page:
         text = chunk.text.strip()
-        sentences = german.sentence_tokenize(text)
+        sentences = germania.sentence_tokenize(text)
         for item in sentences:
-            if not german.is_sentence(item, length_min=SENTENCE_LENGTH_MIN):
+            if not germania.is_sentence(item, length_min=SENTENCE_LENGTH_MIN):
                 continue
             result.append_sentence(item)
-        splitted = german.words_fromstr(text)
+        splitted = germania.words_fromstr(text)
         for item in splitted:
             if isinstance(item, str):
                 if len(item) <= 2:
@@ -102,10 +102,10 @@ def textonpage(page: texmex.PTN) -> TextOnPage:
                     continue
                 result.append_word(item)
                 continue
-            if item == konrad.Mark.FULLSTOP:
+            if item == konradus.Mark.FULLSTOP:
                 result.append_dot(item)
                 continue
-            if isinstance(item, konrad.Mark):
+            if isinstance(item, konradus.Mark):
                 result.append_sign(item)
                 continue
             assert 0, f'unsupported item {item}'

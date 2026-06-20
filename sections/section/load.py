@@ -10,10 +10,10 @@
 import dataclasses
 import functools
 
-import configo
+import configos
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 
 @dataclasses.dataclass
@@ -37,11 +37,11 @@ class SectionsRequiredResources:
 
     def sync(self):
         data = list(vars(self).values())
-        for pagenumber, content in utila.sync_pages(iterators=data):
+        for pagenumber, content in utilo.sync_pages(iterators=data):
             yield pagenumber, content
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@functools.lru_cache(configos.CACHE_SMALL)
 def load_features(  # pylint:disable=R0913,R0914
     xabbreviation: str,
     xabstract: str,

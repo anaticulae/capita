@@ -7,19 +7,19 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.utils.text
 
 
 def example(pages: tuple = None):
-    utilatest.fixture_requires(power.BACHELOR037_PDF)
+    utilotest.fixture_requires(hoverpower.BACHELOR037_PDF)
     loaded = serializeraw.ptn_frompath(
-        power.link(power.BACHELOR037_PDF),
+        hoverpower.link(hoverpower.BACHELOR037_PDF),
         pages=pages,
     )
     if len(loaded) == 1:
@@ -27,7 +27,7 @@ def example(pages: tuple = None):
     return loaded
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_textonpage_page1():
     page1 = example((1,))
     result = sections.utils.text.textonpage(page1)
@@ -41,7 +41,7 @@ def test_textonpage_descriptor_operation():
     data.append_word('My')
     data.append_word('Friend')
     mean = data.words_mean
-    assert utila.roundme(mean) == 4.33, mean
+    assert utilo.roundme(mean) == 4.33, mean
     assert data.words_max == 6
     assert data.words_min == 2
 

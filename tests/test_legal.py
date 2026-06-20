@@ -7,18 +7,18 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw
 import iamraw.path
-import power
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import sections.feature.legal
 
 
 def legal(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
-    utilatest.fixture_requires(source)
+    utilotest.fixture_requires(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
 
@@ -30,18 +30,18 @@ def legal(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
 
 
 def test_legal_work_master116():
-    source = power.link(power.MASTER116_PDF)
+    source = hoverpower.link(hoverpower.MASTER116_PDF)
     pages = (0, 1, 2, 3, 4, 5, 96)
 
     extracted = legal(source, pages)
 
-    legal_page = utila.select_page(extracted, page=1)
+    legal_page = utilo.select_page(extracted, page=1)
     assert legal_page.content.value == 1.0, str(extracted)
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_legal_work_bachelor63():
-    source = power.link(power.BACHELOR063_PDF)
+    source = hoverpower.link(hoverpower.BACHELOR063_PDF)
     extracted = legal(source)
-    legal_page = utila.select_page(extracted, page=2)
+    legal_page = utilo.select_page(extracted, page=2)
     assert legal_page.content.value == 1.0, str(extracted)
