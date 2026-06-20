@@ -14,6 +14,7 @@ import re
 
 import elementae.headline.lookup
 import serializeraw
+import utilo
 
 import sections.strategy
 import sections.table
@@ -44,9 +45,11 @@ def work(
     return dumped
 
 
-NOHEADLINES = (elementae.headline.lookup.TOC |
-               elementae.headline.lookup.FIGURETABLE |
-               elementae.headline.lookup.LISTINGS)
+NOHEADLINES = utilo.union(  #pylint:disable=no-member
+    elementae.headline.lookup.TOC,
+    elementae.headline.lookup.FIGURETABLE,
+    elementae.headline.lookup.LISTINGS,
+)
 
 TABLE = re.compile(
     r'(Tab\.{0,1}|Tabelle)[ ]{0,3}\d{1,2}[ ]{0,3}.{0,50}',

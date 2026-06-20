@@ -61,9 +61,11 @@ def work(
     return dumped
 
 
-NOHEADLINES = (elementae.headline.lookup.TABLETABLE |
-               elementae.headline.lookup.FIGURETABLE |
-               elementae.headline.lookup.LISTINGS)
+NOHEADLINES = utilo.union(  #pylint:disable=no-member
+    elementae.headline.lookup.TABLETABLE,
+    elementae.headline.lookup.FIGURETABLE,
+    elementae.headline.lookup.LISTINGS,
+)
 
 APPENDIX = re.compile(
     r'(ANHANG|APPENDIX)[ ]{0,3}\d{1,2}[ ]{0,3}:{0,1}[ ]{0,5}.{0,50}\d{1,3}',

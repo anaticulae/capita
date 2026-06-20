@@ -88,7 +88,10 @@ def contains_outline(content, toc) -> float:
     return -0.5
 
 
-NOHEADLINES = elementae.headline.lookup.HEADLINES - elementae.headline.lookup.CHAPTER
+NOHEADLINES = utilo.a_minus_b(  #pylint:disable=no-member
+    elementae.headline.lookup.HEADLINES,
+    elementae.headline.lookup.CHAPTER,
+)
 
 FIRSTLEVEL_DOT_PATTERN = re.compile(r'^\d{1,2}\.{0,1}\s+')
 

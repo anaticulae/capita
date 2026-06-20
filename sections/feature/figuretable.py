@@ -19,7 +19,10 @@ import utilo
 import sections.strategy
 import sections.table
 
-NOHEADLINES = elementae.headline.lookup.HEADLINES - elementae.headline.lookup.FIGURETABLE
+NOHEADLINES = utilo.a_minus_b(  #pylint:disable=no-member
+    elementae.headline.lookup.HEADLINES,
+    elementae.headline.lookup.FIGURETABLE,
+)
 
 
 def work(
