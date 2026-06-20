@@ -115,10 +115,10 @@ def common_textstyle(items, elementa_min=1):
             return False
         return True
 
-    return utilo.classifier.base.determine_cluster(
+    return utilo.determine_cluster(
         items,
         classifier=classifier,
-        min_element=elementa_min,
+        min_elements=elementa_min,
     )
 
 

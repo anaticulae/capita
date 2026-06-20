@@ -45,6 +45,6 @@ def test_appendix_diss143page121():
     Messung sehr kleiner
     Signalamplituden
     """
-    extracted = appendix(hoverpower.DISS143_PDF, pages=(121))
+    extracted = appendix(hoverpower.DISS143_PDF, pages=(121,))
     page121 = utilo.select_page(extracted, 121)
     assert page121.content.value == 1.0

@@ -25,7 +25,7 @@ def parse_page(navigator: texmex.PTN):
     fontface = collections.defaultdict(int)
     for line in navigator:
         for style in line.style.content:
-            width = (style.end - style.start)
+            width = style.end - style.start
             fontsize[style.size] += width
             fontface[style.font] += width
     fontsize, fontface = dict(fontsize), dict(fontface)
