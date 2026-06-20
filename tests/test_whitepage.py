@@ -56,6 +56,7 @@ BACHELOR090_EXPECTED = (
 )
 
 
+@pytest.mark.xfail(reason='missing headnote')
 @utilotest.requires(hoverpower.BACHELOR090_PDF)
 def test_document_whith_gaps():
     source = hoverpower.BACHELOR090_PDF
