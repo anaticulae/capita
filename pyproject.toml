@@ -44,7 +44,6 @@ dev = [
     "hoverpower==1.4.2",
     "pagenumber==1.0.0",
     "rawmaker==2.40.3",
-    "utilotest==1.0.4",
     "utilotest>=1.0.4,<2.0.0",
 ]
 
