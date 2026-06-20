@@ -77,9 +77,11 @@ def extract_xxx_likelihood(
         page.page: (page, analyse_page(page, pattern)) for page in document
     }
     result = {
-        page: judged if not utila.should_skip(page, pages) and
-        matched(content, headline, noheadlines, topsearch=topsearch) else
-        sections.feature.NO_PAGE for page, (content, judged) in result.items()
+        page:
+            judged if not utila.should_skip(page, pages) and
+            matched(content, headline, noheadlines, topsearch=topsearch) else
+            sections.feature.NO_PAGE
+        for page, (content, judged) in result.items()
     }
     uniformed = sections.feature.uniform_result(result)
     multiformed = sections.feature.multiform_result(result)
