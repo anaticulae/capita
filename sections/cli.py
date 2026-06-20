@@ -30,7 +30,7 @@ WORKPLAN = [
             utilo.ResultFile('rawmaker', 'oneline_text_positions'),
             utilo.ResultFile('rawmaker', 'border_pages'),
             utilo.ResultFile('groupme', 'hefopa_result'),
-            utilo.File(name='pdfinfo', optional=True),
+            utilo.File(name='pdflog', optional=True),
         ],
         output=('likelihood',),
     ),
@@ -65,7 +65,7 @@ WORKPLAN = [
         inputs=[
             utilo.ResultFile('rawmaker', 'text_text'),
             utilo.ResultFile('rawmaker', 'text_positions'),
-            utilo.File(name='pdfinfo', optional=True),
+            utilo.File(name='pdflog', optional=True),
         ],
         output=('likelihood',),
     ),
@@ -180,7 +180,7 @@ WORKPLAN = [
         inputs=[
             utilo.ResultFile('sections', 'section_result'),
             utilo.ResultFile('rawmaker', 'text_text'),
-            utilo.File(name='pdfinfo', optional=True),
+            utilo.File(name='pdflog', optional=True),
         ],
         output=('docinfo',),
     ),
