@@ -64,7 +64,7 @@ def appendix(path: str, prefix: str = '') -> str:
 def bibliography(path: str, prefix: str = '') -> str:
     return utilo.pathconnector(
         path,
-        sections.PROCESS,
+        'sections_ref',
         'bibliography_likelihood',
         prefix,
     )
