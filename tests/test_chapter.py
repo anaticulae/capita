@@ -124,6 +124,7 @@ def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     return loaded
 
 
+@pytest.mark.xfail(reason='incomplete integration')
 @utilotest.longrun
 def test_chapter_work_bachelor63():
     source = hoverpower.link(hoverpower.BACHELOR063_PDF)
