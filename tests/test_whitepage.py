@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.whitepage
 import hoverpower
 import iamraw.path
 import pytest
@@ -14,8 +15,6 @@ import serializeraw
 import texmex
 import utilo
 import utilotest
-
-import sections.feature.whitepage
 
 # CONTENT, BLANK, WHITE
 RESTRUCT_EXPECTED = (
@@ -85,13 +84,13 @@ def whitepages(document: str):
     else:
         headerfooters = iamraw.PageContentFooterHeaders(content=[])
 
-    images, figures = sections.feature.whitepage.load_imagesfigures(
+    images, figures = capita.feature.whitepage.load_imagesfigures(
         images=utilo.join(source, 'rawmaker__images_images'),
         figures=utilo.join(source, 'rawmaker__figures_figures'),
         pages=None,
     )
     # work
-    result = sections.feature.whitepage.extract_whitepages(
+    result = capita.feature.whitepage.extract_whitepages(
         document,
         navigators,
         headerfooters,
@@ -104,11 +103,11 @@ def whitepages(document: str):
 def current(items):
     content, blank, white = [], [], []
     for item in items:
-        if item.content == sections.feature.whitepage.WhitePage.CONTENT:
+        if item.content == capita.feature.whitepage.WhitePage.CONTENT:
             content.append(item.page)
-        elif item.content == sections.feature.whitepage.WhitePage.BLANK:
+        elif item.content == capita.feature.whitepage.WhitePage.BLANK:
             blank.append(item.page)
-        elif item.content == sections.feature.whitepage.WhitePage.WHITE:
+        elif item.content == capita.feature.whitepage.WhitePage.WHITE:
             white.append(item.page)
         else:
             raise ValueError(f'should not happen: {item}')

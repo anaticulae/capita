@@ -23,10 +23,9 @@ Example
     Master version of text, 25
 """
 
+import capita.strategy
 import serializeraw
 import utilo
-
-import sections.strategy
 
 
 def work(
@@ -44,7 +43,7 @@ def work(
         headerfooter=headerfooters,
         pages=pages,
     )
-    dumped = sections.strategy.work(
+    dumped = capita.strategy.work(
         ptcns,
         headline=HEADLINES,
         noheadlines=None,

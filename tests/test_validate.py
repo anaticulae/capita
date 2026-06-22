@@ -9,17 +9,17 @@
 
 import functools
 
+import capita
 import hoverpower
 import pytest
 import serializeraw
 import utilo
 import utilotest
 
-import sections
 import tests
 import tests.conftest
 
-ARCHIVE = utilo.join(sections.ROOT, 'tests/expected/result', exist=True)
+ARCHIVE = utilo.join(capita.ROOT, 'tests/expected/result', exist=True)
 
 
 @utilotest.nightly

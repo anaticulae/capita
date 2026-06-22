@@ -7,14 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.index
+import capita.strategy
 import hoverpower
 import iamraw.path
 import serializeraw
 import utilo
 import utilotest
-
-import sections.feature.index
-import sections.strategy
 
 # manually set to secure index finder quality, TODO: investigate later
 LAST_PAGE_INDEX_LIKELYHOOD = 0.45
@@ -63,7 +62,7 @@ def test_index_book173():
 
 def index(source, pages: tuple = None, prefix: str = 'oneline'):
     source = hoverpower.link(source)
-    dumped = sections.feature.index.work(
+    dumped = capita.feature.index.work(
         iamraw.path.text(source, prefix=prefix),
         iamraw.path.textposition(source, prefix=prefix),
         iamraw.path.sizeandborder(source),

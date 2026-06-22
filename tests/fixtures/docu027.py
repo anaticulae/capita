@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.creator
 import hoverpower
 import iamraw
 import iamraw.path
@@ -14,8 +15,6 @@ import iamraw.sections
 import pytest
 import serializeraw
 import utilotest
-
-import sections.creator
 
 
 @pytest.fixture
@@ -51,27 +50,27 @@ def docu027_sections_manual() -> iamraw.sections.Sections:
 
     # Page, Start
     # Intro
-    intro = analyse(sections.creator.add_introduction, 0, 6)
-    add_children(intro, sections.creator.add_title, 0, 0)
-    add_children(intro, sections.creator.add_whitepage, 1, 1)
-    add_children(intro, sections.creator.add_toc, 2, 2)
-    add_children(intro, sections.creator.add_whitepage, 3, 3)
-    add_children(intro, sections.creator.add_text, 4, 4)
-    add_children(intro, sections.creator.add_whitepage, 5, 5)
+    intro = analyse(capita.creator.add_introduction, 0, 6)
+    add_children(intro, capita.creator.add_title, 0, 0)
+    add_children(intro, capita.creator.add_whitepage, 1, 1)
+    add_children(intro, capita.creator.add_toc, 2, 2)
+    add_children(intro, capita.creator.add_whitepage, 3, 3)
+    add_children(intro, capita.creator.add_text, 4, 4)
+    add_children(intro, capita.creator.add_whitepage, 5, 5)
 
     # Content starts here
-    content = analyse(sections.creator.add_content, 6, 26)
-    sections.creator.add_chapter(content, 6, 7, number=1)
-    sections.creator.add_chapter(content, 8, 9, number=2)
-    sections.creator.add_chapter(content, 10, 11, number=3)
-    sections.creator.add_chapter(content, 12, 17, number=4)
-    sections.creator.add_chapter(content, 18, 19, number=5)
-    sections.creator.add_chapter(content, 20, 21, number=6)
-    sections.creator.add_chapter(content, 22, 23, number=7)
-    sections.creator.add_chapter(content, 24, 25, number=8)
+    content = analyse(capita.creator.add_content, 6, 26)
+    capita.creator.add_chapter(content, 6, 7, number=1)
+    capita.creator.add_chapter(content, 8, 9, number=2)
+    capita.creator.add_chapter(content, 10, 11, number=3)
+    capita.creator.add_chapter(content, 12, 17, number=4)
+    capita.creator.add_chapter(content, 18, 19, number=5)
+    capita.creator.add_chapter(content, 20, 21, number=6)
+    capita.creator.add_chapter(content, 22, 23, number=7)
+    capita.creator.add_chapter(content, 24, 25, number=8)
 
     # Second pages with table
-    table_second = analyse(sections.creator.add_table, 26, 27)
-    add_children(table_second, sections.creator.add_index, 26, 26)
+    table_second = analyse(capita.creator.add_table, 26, 27)
+    add_children(table_second, capita.creator.add_index, 26, 26)
 
     return result

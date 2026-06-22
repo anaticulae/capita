@@ -10,13 +10,12 @@
 =================
 """
 
+import capita.feature
+import capita.utils.headline
 import configos
 import elementae.headline.lookup
 import serializeraw
 import utilo
-
-import sections.feature
-import sections.utils.headline
 
 ABSTRACT_PAGE_MIN = configos.HV_INT_PLUS(default=0)
 
@@ -42,7 +41,7 @@ def work(
         headerfooter=headerfooters,
         pages=pages_shrink(pages, pages_max=pages_max),
     )
-    result = sections.feature.pagebypage(
+    result = capita.feature.pagebypage(
         navigators,
         pageme=analyse_page,
         name='abstract',
@@ -72,17 +71,17 @@ def pages_shrink(pages: tuple, pages_max: int = None) -> tuple:
 
 
 def analyse_page(content):
-    headlines = sections.utils.headline.headlines(
+    headlines = capita.utils.headline.headlines(
         content,
         topsearch=False,
         level_max=1,
     )
     if not headlines:
-        return sections.feature.NO_PAGE
+        return capita.feature.NO_PAGE
     if utilo.similar(
             expected=elementae.headline.lookup.ABSTRACT,
             current=headlines,
             maxdiff=0.95,
     ):
-        return sections.feature.PERFECT
-    return sections.feature.NO_PAGE
+        return capita.feature.PERFECT
+    return capita.feature.NO_PAGE

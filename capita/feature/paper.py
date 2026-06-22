@@ -7,13 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.paper.main
 import configos
 import iamraw
 import pdflog.pages
 import serializeraw
 import utilo
-
-import sections.paper.main
 
 PAGES_MIN = configos.HV_INT_PLUS(default=120)
 
@@ -25,7 +24,7 @@ def work(pdf: str, pages=None) -> str:
     utilo.exists_assert(pdf)
     if skip_strategy(pdf):
         return NOPAPER
-    detected = sections.paper.main.detect_paper(pdf, pages=pages)
+    detected = capita.paper.main.detect_paper(pdf, pages=pages)
     if detected is None:
         return NOPAPER
     dumped = dump_groups(detected)

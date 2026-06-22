@@ -9,12 +9,11 @@
 
 import statistics
 
+import capita.feature
 import configos
 import iamraw
 import serializeraw
 import utilo
-
-import sections.feature
 
 
 def work(
@@ -38,7 +37,7 @@ def extract_title_likelihood(
 ) -> iamraw.PageContentLikelihood:
     result = {page.page: analyse_page(page, fontstore) for page in document}
 
-    uniformed = sections.feature.uniform_result(result)
+    uniformed = capita.feature.uniform_result(result)
 
     result = [
         iamraw.PageContentLikelihood(
@@ -152,7 +151,7 @@ def extract_titlelikelihood_frompath(
         iamraw.path.fontcontent(path),
         pages=pages,
     )
-    result = sections.feature.title.extract_title_likelihood(
+    result = capita.feature.title.extract_title_likelihood(
         document,
         fontstore,
     )

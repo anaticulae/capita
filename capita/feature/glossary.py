@@ -25,17 +25,16 @@ Ausfallkriterium
     und damit als ausgefallen angesehen werden kann.
 """
 
+import capita.biblio.utils
+import capita.feature
+import capita.utils.headline
+import capita.utils.spa
 import configos
 import elementae
 import geostrat
 import serializeraw
 import texmex
 import utilo
-
-import sections.biblio.utils
-import sections.feature
-import sections.utils.headline
-import sections.utils.spa
 
 
 def work(
@@ -47,7 +46,7 @@ def work(
     page_count = 256
     if utilo.exists(pdfinfo):
         page_count = serializeraw.load_pdfinfo(pdfinfo).pages
-    data = sections.utils.spa.Data(
+    data = capita.utils.spa.Data(
         document=document,
         position=position,
         pages=pages,
@@ -81,18 +80,18 @@ MARKER_COUNT_MIN = configos.HolyTable(items=[
 ])
 
 
-def extract(data: sections.utils.spa.Data) -> list:
-    config = sections.utils.spa.Config(
+def extract(data: capita.utils.spa.Data) -> list:
+    config = capita.utils.spa.Config(
         likelihood_name='glossary',
         page_analysis=analyse_page,
     )
-    extracted = sections.utils.spa.work(data=data, config=config)
+    extracted = capita.utils.spa.work(data=data, config=config)
     # ignore to low valued glossary pages
     valid = [
         item for item in extracted
         if item.content.value > LIKELIHOOD_MIN(item.page / data.page_count)
     ]
-    hugest = sections.biblio.utils.cluster_bibpages(
+    hugest = capita.biblio.utils.cluster_bibpages(
         valid,
         likelihood_name='glossary',
     )
@@ -105,14 +104,14 @@ LINES_PER_PAGE_MAX = configos.HV_INT_PLUS(default=45)
 def analyse_page(
     navigator: texmex.PTN,
     page_count: int,
-) -> sections.feature.StatisticalResultItem:
+) -> capita.feature.StatisticalResultItem:
     if not navigator:
         # empty page
         return 0, 0
     if len(navigator) > LINES_PER_PAGE_MAX:
         # too many lines, may a table, figure or something page
         return len(navigator), 0
-    headlines = sections.utils.headline.headlines(navigator)
+    headlines = capita.utils.headline.headlines(navigator)
     with_headline = headlines and utilo.similar(
         expected=elementae.GLOSSARY,
         current=headlines,

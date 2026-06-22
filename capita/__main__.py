@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-from sections.cli import main
+from capita.cli import main
 
 if __name__ == "__main__":
     main()

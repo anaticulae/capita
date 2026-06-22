@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.creator
+import capita.feature.section
 import hoverpower
 import iamraw
 import iamraw.sections
@@ -15,8 +17,6 @@ import serializeraw
 import utilo
 import utilotest
 
-import sections.creator
-import sections.feature.section
 import tests
 
 # TODO: MOVE TESTS FROM test_cli.py
@@ -34,7 +34,7 @@ def test_dump_and_load_sections(docu027_sections_manual):
 
 
 def test_validate_docu027(docu027_sections_manual):
-    validated = sections.creator.validate(docu027_sections_manual)
+    validated = capita.creator.validate(docu027_sections_manual)
     assert validated
 
 

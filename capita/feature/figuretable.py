@@ -12,12 +12,11 @@
 
 import re
 
+import capita.strategy
+import capita.table
 import elementae.headline.lookup
 import serializeraw
 import utilo
-
-import sections.strategy
-import sections.table
 
 NOHEADLINES = utilo.a_minus_b(  #pylint:disable=no-member
     elementae.headline.lookup.HEADLINES,
@@ -39,7 +38,7 @@ def work(
         headerfooter=headerfooters,
         pages=pages,
     )
-    dumped = sections.strategy.work(
+    dumped = capita.strategy.work(
         ptcns,
         headline=elementae.headline.lookup.FIGURETABLE,
         noheadlines=NOHEADLINES,
@@ -74,6 +73,6 @@ def figure(line: str) -> bool:
         return True
     if FIGURE_ENG.match(line):
         return True
-    if sections.table.valid_line(line):
+    if capita.table.valid_line(line):
         return True
     return False

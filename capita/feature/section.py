@@ -7,11 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.section.load
+import capita.section.run
 import serializeraw
 import utilo
-
-import sections.section.load
-import sections.section.run
 
 
 @utilo.checkdatatype
@@ -39,9 +38,9 @@ def work(  # pylint:disable=R0913,R0914,W0613
 
     Returns dumped `Section`.
     """
-    loaded = sections.section.load.load_features(**locals())
+    loaded = capita.section.load.load_features(**locals())
     # work
-    extracted = sections.section.run.run(loaded)
+    extracted = capita.section.run.run(loaded)
     # save
     dumped = serializeraw.dump_sections(extracted)
     return dumped

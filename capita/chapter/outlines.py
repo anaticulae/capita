@@ -17,11 +17,10 @@ inside the document.
 
 import re
 
+import capita.chapter.utils
 import configos
 import elementae.headline.lookup
 import utilo
-
-import sections.chapter.utils
 
 TOCS_COUNT_MIN = configos.HV_INT_PLUS(default=3)
 
@@ -74,8 +73,8 @@ def contains_outline(content, toc) -> float:
         without_number = FIRSTLEVEL_DOT_PATTERN.sub('', line)
         for headline in flat_toc:
             if all((
-                    not sections.chapter.utils.startswith(line, headline),
-                    not sections.chapter.utils.startswith(
+                    not capita.chapter.utils.startswith(line, headline),
+                    not capita.chapter.utils.startswith(
                         without_number, headline),
             )):
                 continue

@@ -7,15 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.chapter.run
+import capita.feature.chapter
 import hoverpower
 import iamraw.path
 import pytest
 import serializeraw
 import utilo
 import utilotest
-
-import sections.chapter.run
-import sections.feature.chapter
 
 
 # TODO: BACHELOR37: ADD HEADLINES IN THE MIDDLE OF THE PAGE LATER
@@ -105,7 +104,7 @@ def extract_chapter(source):
     navigators = serializeraw.ptcn_frompath(source)
     outlines = serializeraw.load_toc(iamraw.path.outlines(source))
     # run
-    result = sections.chapter.run.extract_chapter(
+    result = capita.chapter.run.extract_chapter(
         navigators,
         outlines,
     )
@@ -114,7 +113,7 @@ def extract_chapter(source):
 
 def chapter(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     utilotest.fixture_requires(source)
-    dumped = sections.feature.chapter.work(
+    dumped = capita.feature.chapter.work(
         document=iamraw.path.text(source, prefix='oneline'),  # use default path
         position=iamraw.path.textposition(source, prefix='oneline'),
         sizeandborder=source,

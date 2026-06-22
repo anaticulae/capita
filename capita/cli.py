@@ -7,9 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
+import capita
 import utilo
-
-import sections
 
 DESCRIPTION = ('The sections tool analyses every single page of an pdf file '
                'and determines the likelihood to be an feature')
@@ -190,15 +189,15 @@ WORKPLAN = [
 def main():
     utilo.featurepack(
         workplan=WORKPLAN,
-        root=sections.ROOT,
-        featurepackage='sections.feature',
+        root=capita.ROOT,
+        featurepackage='capita.feature',
         config=utilo.FeaturePackConfig(
             description=DESCRIPTION,
             multiprocessed=True,
-            name=sections.PROCESS,
+            name=capita.PROCESS,
             pages=True,
             singleinput=False,  # require result folder, ignore single pdf file
             profileflag=True,
-            version=sections.__version__,
+            version=capita.__version__,
         ),
     )

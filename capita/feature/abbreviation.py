@@ -17,15 +17,14 @@ NOTE: This approach is only for demo time.
 import contextlib
 import statistics
 
+import capita.feature
+import capita.strategy
+import capita.utils.headline
 import configos
 import elementae.headline.lookup
 import geostrat
 import serializeraw
 import utilo
-
-import sections.feature
-import sections.strategy
-import sections.utils.headline
 
 BACKUP_PAGE = (1, 0.5)
 
@@ -38,13 +37,13 @@ def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:
         oneline_textpositions,
         pages=pages,
     )
-    result = sections.feature.pagebypage(
+    result = capita.feature.pagebypage(
         navigators,
         analyse_page,
         name='abbreviation_table',
     )
     # TODO: A LITTLE HACKY BUT WORKS
-    result = sections.strategy.merge_second(
+    result = capita.strategy.merge_second(
         result,
         result,
         merge_min=0.49,
@@ -72,14 +71,14 @@ def analyse_page(content):
     parsed = geostrat.parse(content, column_count=2)
     if not parsed:
         # no double column layouta detected
-        return sections.feature.NO_PAGE
+        return capita.feature.NO_PAGE
     if not invalid_column(parsed[0], parsed[1]):
         return BACKUP_PAGE
-    return sections.feature.NO_PAGE
+    return capita.feature.NO_PAGE
 
 
 def byheadline(content):
-    headlines = sections.utils.headline.headlines(content)
+    headlines = capita.utils.headline.headlines(content)
     if not headlines:
         return None
     if utilo.similar(
@@ -88,13 +87,13 @@ def byheadline(content):
             maxdiff=0.95,
     ):
         # SKIP ABBR HEADLINE INSIDE TABLE OF CONTENT
-        return sections.feature.NO_PAGE
+        return capita.feature.NO_PAGE
     if utilo.similar(
             expected=elementae.headline.lookup.ABBREVIATION,
             current=headlines,
             maxdiff=0.95,
     ):
-        return sections.feature.PERFECT
+        return capita.feature.PERFECT
     return None
 
 

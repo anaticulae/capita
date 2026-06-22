@@ -9,13 +9,12 @@
 
 import statistics
 
+import capita.chapter.outlines
+import capita.chapter.starter
 import configos
 import iamraw
 import texmex
 import utilo
-
-import sections.chapter.outlines
-import sections.chapter.starter
 
 FIRST_QUARTER = configos.HV_PERCENT_PLUS(default=45.0)
 
@@ -31,8 +30,8 @@ def extract_chapter(
         # prepare content
         pagestart = page.before(FIRST_QUARTER)
         # run strategies
-        rate = sections.chapter.starter.contain_chapter(pagestart)
-        rate += sections.chapter.outlines.rate_from_outlines(
+        rate = capita.chapter.starter.contain_chapter(pagestart)
+        rate += capita.chapter.outlines.rate_from_outlines(
             outlines,
             pagestart,
         )
@@ -65,7 +64,7 @@ def nochapter(page) -> bool:
         utilo.verbose(f'no chapter {page.page}: no textcontent')
         return True
     if contains_listof(pagestart):
-        if not sections.chapter.starter.startwith_hugenumber(pagestart):
+        if not capita.chapter.starter.startwith_hugenumber(pagestart):
             utilo.verbose(f'no chapter {page.page}: list of dots')
             # TODO: See todo below XXX???
             # chapter_rate = 0

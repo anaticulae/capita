@@ -10,11 +10,10 @@
 =================
 """
 
+import capita.feature
+import capita.utils.headline
 import serializeraw
 import utilo
-
-import sections.feature
-import sections.utils.headline
 
 
 def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
@@ -25,7 +24,7 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
     )
     # TODO: MAY CHANGE LATER?
     # do not detect appendix at the start of the document
-    result = sections.feature.pagebypage(
+    result = capita.feature.pagebypage(
         navigators=navigators,
         pageme=analyse_page,
         name='appendix',
@@ -36,13 +35,13 @@ def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:
 
 
 def analyse_page(content):
-    headlines = sections.utils.headline.headlines(content)
+    headlines = capita.utils.headline.headlines(content)
     if not headlines:
-        return sections.feature.NO_PAGE
+        return capita.feature.NO_PAGE
     # ensure that every cased headlines are parsed correctly
     if utilo.similar(expected=HEADLINES, current=headlines, maxdiff=0.9):
-        return sections.feature.PERFECT
-    return sections.feature.NO_PAGE
+        return capita.feature.PERFECT
+    return capita.feature.NO_PAGE
 
 
 HEADLINES = utilo.splitlines("""

@@ -7,13 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.abbreviation
 import hoverpower
 import iamraw
 import serializeraw
 import utilo
 import utilotest
-
-import sections.feature.abbreviation
 
 
 @utilotest.longrun
@@ -100,7 +99,7 @@ def abbreviations(source, pages=None):
     source = hoverpower.link(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
-    extracted = sections.feature.abbreviation.work(
+    extracted = capita.feature.abbreviation.work(
         text,
         textposition,
         pages=pages,

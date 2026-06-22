@@ -58,29 +58,28 @@ Requirements
 [Theisen]
 """
 
+import capita.utils.spa
 import configos
 import serializeraw
 import texmex
 import utilo
 
-import sections.utils.spa
-
 FEATURE_POINT_COUNT_MIN = configos.HV_INT_PLUS(default=5)
 
 
 def work(document: str, position: str, pages=None) -> str:
-    data = sections.utils.spa.Data(
+    data = capita.utils.spa.Data(
         document=document,
         position=position,
         pages=pages,
     )
 
-    config = sections.utils.spa.Config(
+    config = capita.utils.spa.Config(
         likelihood_name='legal',
         page_analysis=analyse_page,
     )
 
-    extracted = sections.utils.spa.work(
+    extracted = capita.utils.spa.work(
         data=data,
         config=config,
     )
@@ -89,7 +88,7 @@ def work(document: str, position: str, pages=None) -> str:
     return dumped
 
 
-def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
+def analyse_page(ptn: texmex.PTN) -> capita.feature.StatisticalResultItem:
     raw = ptn.debug
     lower = raw.lower()
     located = [item for item in FEATURE_POINTS if item in lower]

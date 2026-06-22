@@ -27,10 +27,9 @@ QUESTIONS:
 * TODO: REQUIRE APPROACH FOR SHORT PAPERS WIHTOUT CHPATER START AT TOP OF PAGE
 """
 
+import capita.chapter.run
 import iamraw
 import serializeraw
-
-import sections.chapter.run
 
 
 def work(
@@ -51,7 +50,7 @@ def work(
     )
     outlines = load_outlines(outlines)
     # work
-    result = sections.chapter.run.extract_chapter(
+    result = capita.chapter.run.extract_chapter(
         navigators=navigators,
         outlines=outlines,
     )

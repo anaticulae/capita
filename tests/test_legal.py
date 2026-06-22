@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.legal
 import hoverpower
 import iamraw
 import iamraw.path
@@ -14,15 +15,13 @@ import serializeraw
 import utilo
 import utilotest
 
-import sections.feature.legal
-
 
 def legal(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     utilotest.fixture_requires(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
 
-    dumped = sections.feature.legal.work(text, textposition, pages=pages)
+    dumped = capita.feature.legal.work(text, textposition, pages=pages)
     assert dumped, dumped
 
     loaded = serializeraw.load_likelihood(dumped)

@@ -7,13 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.section.ctor
+import capita.section.improve
 import configos
 import iamraw
 import iamraw.sections
 import utilo
-
-import sections.section.ctor
-import sections.section.improve
 
 # features with lower trust are not expected as detected feature
 FEATURE_TRUST_MIN = configos.HV_PERCENT_PLUS(default=40)
@@ -51,14 +50,14 @@ def run(loaded: 'SectionsRequiredResources') -> iamraw.Sections:
             collected[pagenumber] = multiple
         else:
             item = trusted[0]
-            new = sections.section.ctor.create(
+            new = capita.section.ctor.create(
                 start=pagenumber,
                 end=pagenumber,
                 trust=item.content.value,
                 typ=content.index(item),
             )
             collected[pagenumber] = new
-    result = sections.section.improve.improve(collected)
+    result = capita.section.improve.improve(collected)
     return result
 
 
@@ -131,7 +130,7 @@ def create_multisection(trusted, pagenumber, content):
         start = pagenumber + index * 1 / len(trusted)
         end = pagenumber + (index + 1) * 1 / len(trusted)
         start, end = utilo.roundme(start, end)
-        new = sections.section.ctor.create(
+        new = capita.section.ctor.create(
             start=start,
             end=end,
             trust=item.content.value,

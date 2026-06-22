@@ -7,14 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.glossary
 import hoverpower
 import iamraw.path
 import pytest
 import serializeraw
 import utilo
 import utilotest
-
-import sections.feature.glossary
 
 
 @pytest.mark.xfail(reason='missing integration')
@@ -44,7 +43,7 @@ def glossary(source, pages: tuple = None):
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
     pdfinfo = iamraw.path.pdfinfo(source)
-    extracted = sections.feature.glossary.work(
+    extracted = capita.feature.glossary.work(
         text,
         textposition,
         pdfinfo=pdfinfo,

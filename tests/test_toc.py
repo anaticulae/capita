@@ -7,6 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.toc
+import capita.strategy
+import capita.table
 import hoverpower
 import iamraw
 import pytest
@@ -14,20 +17,16 @@ import serializeraw
 import utilo
 import utilotest
 
-import sections.feature.toc
-import sections.strategy
-import sections.table
-
 DOCU27 = hoverpower.link(hoverpower.DOCU027_PDF)
 
 
 @utilotest.requires(hoverpower.DOCU027_PDF)
 def test_extract_toc_likelihood():
     navigator = serializeraw.ptn_frompath(DOCU27)
-    extracted = sections.strategy.extract_xxx_likelihood(
+    extracted = capita.strategy.extract_xxx_likelihood(
         navigator,
         'Contents',
-        pattern=sections.table.valid_line,
+        pattern=capita.table.valid_line,
     )
     extracted = [item.content.value for item in extracted]
     assert sum(extracted) == pytest.approx(1.0)
@@ -40,10 +39,10 @@ def test_extract_toc_likelihood_bachelor63():
         pages=utilo.rtuple(8),
         prefix='oneline',
     )
-    extracted = sections.strategy.extract_xxx_likelihood(
+    extracted = capita.strategy.extract_xxx_likelihood(
         text,
         headline='Inhaltsverzeichnis',
-        pattern=sections.table.valid_line,
+        pattern=capita.table.valid_line,
     )
     extracted = [item.content.value for item in extracted]
     likelihood = sum(extracted)
@@ -62,17 +61,17 @@ def test_extract_toc_likelihood_master72():
         pages=utilo.rtuple(8),
         prefix='oneline',
     )
-    extracted = sections.strategy.extract_xxx_likelihood(
+    extracted = capita.strategy.extract_xxx_likelihood(
         text,
         headline='Inhaltsverzeichnis',
-        pattern=sections.table.valid_line,
+        pattern=capita.table.valid_line,
     )
-    without = sections.strategy.extract_xxx_likelihood(
+    without = capita.strategy.extract_xxx_likelihood(
         text,
         headline=None,
-        pattern=sections.table.valid_line,
+        pattern=capita.table.valid_line,
     )
-    extracted = sections.strategy.merge_second(extracted, without)
+    extracted = capita.strategy.merge_second(extracted, without)
     extracted = [item.content.value for item in extracted]
 
     expected_result = [False, True, True, False, False, False, False, False]
@@ -92,7 +91,7 @@ def extract_toc(
     textposition = iamraw.path.textposition(source, prefix='oneline')
     sizeandborder = iamraw.path.sizeandborder(source)
     headerfooters = iamraw.path.headerfooters(source)
-    dumped = sections.feature.toc.work(
+    dumped = capita.feature.toc.work(
         oneline_text=text,
         oneline_textposition=textposition,
         sizeandborder=sizeandborder,

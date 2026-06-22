@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita
 import hoverpower
 import serializeraw
 import utilotest
 
-import sections
 import tests
 
 
@@ -23,7 +23,7 @@ def test_table_table_master98_page95(td, mp):
         f'-i {source} --tabletable --pages=95',
         mp=mp,
     )
-    path = sections.path.tabletable(td.tmpdir)
+    path = capita.path.tabletable(td.tmpdir)
     likelihood = serializeraw.load_likelihood(path)
 
     non_zero = [item.page for item in likelihood if item.content.value > 0.0]

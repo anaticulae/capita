@@ -7,12 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.utils.headline
 import hoverpower
 import pytest
 import serializeraw
 import utilotest
-
-import sections.utils.headline
 
 
 # yapf:disable
@@ -30,5 +29,5 @@ def test_detect_page_headlines(source, page, expected):
         source,
         pages=(page,),
     )
-    extracted = sections.utils.headline.headlines(navigator[0])
+    extracted = capita.utils.headline.headlines(navigator[0])
     assert extracted == expected

@@ -16,13 +16,12 @@ TODO:
 
 import re
 
+import capita.strategy
+import capita.table
 import configos
 import elementae.headline.lookup
 import serializeraw
 import utilo
-
-import sections.strategy
-import sections.table
 
 # no possible toc later than page 20
 
@@ -50,7 +49,7 @@ def work(
         headerfooter=headerfooters,
         pages=pages,
     )
-    dumped = sections.strategy.work(
+    dumped = capita.strategy.work(
         ptcns,
         headline=elementae.headline.lookup.TOC,
         noheadlines=NOHEADLINES,
@@ -80,7 +79,7 @@ def appendix_line(line: str) -> bool:
     """
     if APPENDIX.match(line):
         return True
-    if sections.table.valid_line(line):
+    if capita.table.valid_line(line):
         return True
     return False
 

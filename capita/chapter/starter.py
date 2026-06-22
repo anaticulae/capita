@@ -7,11 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.chapter.utils
 import configos
 import elementae.headline.lookup
 import utilo
-
-import sections.chapter.utils
 
 HEADLINES_CHECK_FIRST_N_LINES = configos.HV_INT_PLUS(default=4)
 
@@ -85,7 +84,7 @@ def startwith_whitelist(raw: list) -> bool:
         matched = NUMBER_PATTERN.match(line)
         if not matched:
             continue
-        if sections.chapter.utils.huge_match(
+        if capita.chapter.utils.huge_match(
                 line,
                 elementae.headline.lookup.CHAPTER,
         ):

@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.title
+import capita.utils
 import hoverpower
 import iamraw
 import iamraw.path
@@ -14,9 +16,6 @@ import pytest
 import serializeraw
 import utilo
 import utilotest
-
-import sections.feature.title
-import sections.utils
 
 
 def test_load_font_lookup(docu027_fontstore):
@@ -50,7 +49,7 @@ def test_extract_title_likelihood(source):
     document = serializeraw.load_document(document)
     fontstore = serializeraw.create_fontstore(fontheader, fontcontent)
 
-    result = sections.feature.title.extract_title_likelihood(
+    result = capita.feature.title.extract_title_likelihood(
         document,
         fontstore,
     )
@@ -65,7 +64,7 @@ def test_dump_and_load_likelhood(
     docu027_text,
     docu027_fontstore,
 ):
-    result = sections.feature.title.extract_title_likelihood(
+    result = capita.feature.title.extract_title_likelihood(
         docu027_text,
         docu027_fontstore,
     )
@@ -77,11 +76,11 @@ def test_dump_and_load_likelhood(
 
 def titlepage_likelihood(document: str) -> tuple:
     utilotest.fixture_requires(document)
-    title = sections.feature.title.extract_titlelikelihood_frompath(
+    title = capita.feature.title.extract_titlelikelihood_frompath(
         hoverpower.link(document),
         pages=tuple(range(10)),
     )
-    extracted = sections.utils.simple_content(title)
+    extracted = capita.utils.simple_content(title)
     return extracted
 
 

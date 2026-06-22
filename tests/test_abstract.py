@@ -7,19 +7,18 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.abstract
 import hoverpower
 import iamraw
 import serializeraw
 import utilo
 import utilotest
 
-import sections.feature.abstract
-
 
 def abstract(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     source = hoverpower.link(source)
     utilotest.fixture_requires(source)
-    dumped = sections.feature.abstract.work(
+    dumped = capita.feature.abstract.work(
         source,
         source,
         source,

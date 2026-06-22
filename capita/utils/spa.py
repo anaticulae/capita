@@ -15,11 +15,10 @@ information.
 
 import dataclasses
 
+import capita.feature
 import iamraw
 import serializeraw
 import utilo
-
-import sections.feature
 
 
 @dataclasses.dataclass
@@ -59,9 +58,9 @@ def work(data: Data, config: Config) -> iamraw.PageContentLikelihoods:
         page.page: pages_ifrequired(page_analysis, page, data.page_count)
         for page in navigators
     }
-    uniformed = sections.feature.multiform_result(result)
+    uniformed = capita.feature.multiform_result(result)
     if uniformed is None:
-        uniformed = sections.feature.uniform_result(result)
+        uniformed = capita.feature.uniform_result(result)
     likelihood = [
         iamraw.PageContentLikelihood(
             page=page,

@@ -7,14 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature
+import capita.utils.headline
 import configos
 import iamraw
 import serializeraw
 import texmex
 import utilo
-
-import sections.feature
-import sections.utils.headline
 
 HEADLINE_COLLECT_MIN = configos.HV_FLOAT_PLUS(default=0.85, limit=1.0)
 NOHEADLINE_COLLECT_MIN = configos.HV_FLOAT_PLUS(default=0.85, limit=1.0)
@@ -80,11 +79,11 @@ def extract_xxx_likelihood(
         page:
             judged if not utilo.should_skip(page, pages) and
             matched(content, headline, noheadlines, topsearch=topsearch) else
-            sections.feature.NO_PAGE
+            capita.feature.NO_PAGE
         for page, (content, judged) in result.items()
     }
-    uniformed = sections.feature.uniform_result(result)
-    multiformed = sections.feature.multiform_result(result)
+    uniformed = capita.feature.uniform_result(result)
+    multiformed = capita.feature.multiform_result(result)
     uniformed = multiformed if multiformed else uniformed
     assert len(uniformed) == len(document)
 
@@ -113,7 +112,7 @@ def matched(
     """Collect headlines from `navigator` and check if given `headline`
     is found and collected headline is not `noheadlines`.
     """
-    detected = sections.utils.headline.headlines(navigator, topsearch=topsearch)
+    detected = capita.utils.headline.headlines(navigator, topsearch=topsearch)
     if noheadlines and detected:
         if utilo.similar(noheadlines, detected, maxdiff=HEADLINE_COLLECT_MIN):
             return False

@@ -12,12 +12,11 @@
 
 import re
 
+import capita.strategy
+import capita.table
 import elementae.headline.lookup
 import serializeraw
 import utilo
-
-import sections.strategy
-import sections.table
 
 
 def work(
@@ -34,7 +33,7 @@ def work(
         headerfooter=headerfooters,
         pages=pages,
     )
-    dumped = sections.strategy.work(
+    dumped = capita.strategy.work(
         ptcns,
         headline=elementae.headline.lookup.TABLETABLE,
         noheadlines=NOHEADLINES,
@@ -72,6 +71,6 @@ def table(line: str) -> bool:
         return True
     if TABLE_ENG.match(line):
         return True
-    if sections.table.valid_line(line):
+    if capita.table.valid_line(line):
         return True
     return False

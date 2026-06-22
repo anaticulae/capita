@@ -66,14 +66,14 @@ The following sections are planned to be supported:
       * Bibliography
 """
 
+import importlib.metadata
 import os
 
-import sections.__patch__
-import sections.path
-
-__version__ = '1.24.0'
+import capita.__patch__
+import capita.path
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
+PACKAGE = 'capita'
 PROCESS = 'sections'
-PACKAGE = 'sections'
+__version__ = importlib.metadata.version(PACKAGE)

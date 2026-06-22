@@ -9,11 +9,10 @@
 
 import copy
 
+import capita.section.after
 import iamraw
 import iamraw.sections
 import utilo
-
-import sections.section.after
 
 
 def improve(collected):
@@ -54,7 +53,7 @@ def group_sections(items: AreaItems) -> iamraw.Sections:
     current = None
     chapter = 1
     for page, item in items.items():
-        next_ = sections.section.after.determine_document_section(
+        next_ = capita.section.after.determine_document_section(
             current,
             item,
         )

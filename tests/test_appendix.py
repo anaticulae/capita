@@ -7,14 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.feature.appendix
 import hoverpower
 import iamraw
 import iamraw.path
 import serializeraw
 import utilo
 import utilotest
-
-import sections.feature.appendix
 
 
 def appendix(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
@@ -23,7 +22,7 @@ def appendix(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
 
-    dumped = sections.feature.appendix.work(text, textposition, pages=pages)
+    dumped = capita.feature.appendix.work(text, textposition, pages=pages)
     assert dumped, dumped
 
     loaded = serializeraw.load_likelihood(dumped)

@@ -7,13 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.utils.text
 import hoverpower
 import pytest
 import serializeraw
 import utilo
 import utilotest
-
-import sections.utils.text
 
 
 def example(pages: tuple = None):
@@ -30,13 +29,13 @@ def example(pages: tuple = None):
 @utilotest.longrun
 def test_textonpage_page1():
     page1 = example((1,))
-    result = sections.utils.text.textonpage(page1)
+    result = capita.utils.text.textonpage(page1)
     assert len(result.words) >= 1
     assert len(result.signs) >= 1
 
 
 def test_textonpage_descriptor_operation():
-    data = sections.utils.text.TextOnPage()
+    data = capita.utils.text.TextOnPage()
     data.append_word('Hello')
     data.append_word('My')
     data.append_word('Friend')
@@ -47,6 +46,6 @@ def test_textonpage_descriptor_operation():
 
 
 def test_textonpage_descriptor_key_error():
-    data = sections.utils.text.TextOnPage()
+    data = capita.utils.text.TextOnPage()
     with pytest.raises(AttributeError):
         _ = data.mean_not_existing

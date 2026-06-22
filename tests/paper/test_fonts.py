@@ -7,13 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import capita.paper.fonts
 import utilotest
-
-import sections.paper.fonts
 
 
 @utilotest.longrun
 def test_fonts_bypage(paper18):
     # this test is not very usefull yet. Fonts where not used in the moment.
-    parsed = sections.paper.fonts.bypage(paper18)
+    parsed = capita.paper.fonts.bypage(paper18)
     assert parsed
