@@ -17,14 +17,15 @@ NOTE: This approach is only for demo time.
 import contextlib
 import statistics
 
-import capita.feature
-import capita.strategy
-import capita.utils.headline
 import configos
 import elementae.headline.lookup
 import geostrat
 import serializeraw
 import utilo
+
+import capita.feature
+import capita.strategy
+import capita.utils.headline
 
 BACKUP_PAGE = (1, 0.5)
 

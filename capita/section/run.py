@@ -7,12 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.section.ctor
-import capita.section.improve
 import configos
 import iamraw
 import iamraw.sections
 import utilo
+
+import capita.section.ctor
+import capita.section.improve
 
 # features with lower trust are not expected as detected feature
 FEATURE_TRUST_MIN = configos.HV_PERCENT_PLUS(default=40)

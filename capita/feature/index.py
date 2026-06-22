@@ -23,9 +23,10 @@ Example
     Master version of text, 25
 """
 
-import capita.strategy
 import serializeraw
 import utilo
+
+import capita.strategy
 
 
 def work(

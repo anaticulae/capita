@@ -15,10 +15,11 @@ information.
 
 import dataclasses
 
-import capita.feature
 import iamraw
 import serializeraw
 import utilo
+
+import capita.feature
 
 
 @dataclasses.dataclass

@@ -7,12 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.paper.main
 import configos
 import iamraw
 import pdflog.pages
 import serializeraw
 import utilo
+
+import capita.paper.main
 
 PAGES_MIN = configos.HV_INT_PLUS(default=120)
 

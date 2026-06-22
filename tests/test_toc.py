@@ -7,15 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.feature.toc
-import capita.strategy
-import capita.table
 import hoverpower
 import iamraw
 import pytest
 import serializeraw
 import utilo
 import utilotest
+
+import capita.feature.toc
+import capita.strategy
+import capita.table
 
 DOCU27 = hoverpower.link(hoverpower.DOCU027_PDF)
 

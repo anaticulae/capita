@@ -9,13 +9,13 @@
 
 import functools
 
-import capita
 import hoverpower
 import pytest
 import serializeraw
 import utilo
 import utilotest
 
+import capita
 import tests
 import tests.conftest
 
@@ -27,7 +27,7 @@ ARCHIVE = utilo.join(capita.ROOT, 'tests/expected/result', exist=True)
     'source',
     utilotest.test_resources(tests.conftest.RESOURCES),
 )
-def test_validate(source, td, mp): #pylint:disable=unused-argument
+def test_validate(source, td, mp):  #pylint:disable=unused-argument
     utilotest.fixture_requires(source)
     # TODO: ENABLE LATER
     # Evaluate(

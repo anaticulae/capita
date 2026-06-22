@@ -7,10 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.chapter.utils
 import configos
 import elementae.headline.lookup
 import utilo
+
+import capita.chapter.utils
 
 HEADLINES_CHECK_FIRST_N_LINES = configos.HV_INT_PLUS(default=4)
 

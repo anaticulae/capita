@@ -10,12 +10,13 @@
 =================
 """
 
-import capita.feature
-import capita.utils.headline
 import configos
 import elementae.headline.lookup
 import serializeraw
 import utilo
+
+import capita.feature
+import capita.utils.headline
 
 ABSTRACT_PAGE_MIN = configos.HV_INT_PLUS(default=0)
 

@@ -7,11 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita
 import hoverpower
 import iamraw
 import serializeraw
 import utilotest
+
+import capita
 
 run, fail = utilotest.create_cli_runner(capita)
 

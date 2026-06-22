@@ -7,12 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.utils.text
 import hoverpower
 import pytest
 import serializeraw
 import utilo
 import utilotest
+
+import capita.utils.text
 
 
 def example(pages: tuple = None):

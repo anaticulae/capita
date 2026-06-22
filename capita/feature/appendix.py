@@ -10,10 +10,11 @@
 =================
 """
 
-import capita.feature
-import capita.utils.headline
 import serializeraw
 import utilo
+
+import capita.feature
+import capita.utils.headline
 
 
 def work(text_linewise: str, textpositions: str, pages: tuple = None) -> str:

@@ -7,11 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.utils.headline
 import hoverpower
 import pytest
 import serializeraw
 import utilotest
+
+import capita.utils.headline
 
 
 # yapf:disable

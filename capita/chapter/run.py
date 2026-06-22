@@ -9,12 +9,13 @@
 
 import statistics
 
-import capita.chapter.outlines
-import capita.chapter.starter
 import configos
 import iamraw
 import texmex
 import utilo
+
+import capita.chapter.outlines
+import capita.chapter.starter
 
 FIRST_QUARTER = configos.HV_PERCENT_PLUS(default=45.0)
 

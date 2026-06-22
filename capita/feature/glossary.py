@@ -25,16 +25,17 @@ Ausfallkriterium
     und damit als ausgefallen angesehen werden kann.
 """
 
-import capita.biblio.utils
-import capita.feature
-import capita.utils.headline
-import capita.utils.spa
 import configos
 import elementae
 import geostrat
 import serializeraw
 import texmex
 import utilo
+
+import capita.biblio.utils
+import capita.feature
+import capita.utils.headline
+import capita.utils.spa
 
 
 def work(

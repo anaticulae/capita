@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.feature.whitepage
 import hoverpower
 import iamraw.path
 import pytest
@@ -15,6 +14,8 @@ import serializeraw
 import texmex
 import utilo
 import utilotest
+
+import capita.feature.whitepage
 
 # CONTENT, BLANK, WHITE
 RESTRUCT_EXPECTED = (

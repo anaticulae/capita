@@ -7,8 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-import capita
 import utilo
+
+import capita
 
 DESCRIPTION = ('The sections tool analyses every single page of an pdf file '
                'and determines the likelihood to be an feature')

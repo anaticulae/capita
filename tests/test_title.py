@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.feature.title
-import capita.utils
 import hoverpower
 import iamraw
 import iamraw.path
@@ -16,6 +14,9 @@ import pytest
 import serializeraw
 import utilo
 import utilotest
+
+import capita.feature.title
+import capita.utils
 
 
 def test_load_font_lookup(docu027_fontstore):

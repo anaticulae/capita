@@ -27,9 +27,10 @@ QUESTIONS:
 * TODO: REQUIRE APPROACH FOR SHORT PAPERS WIHTOUT CHPATER START AT TOP OF PAGE
 """
 
-import capita.chapter.run
 import iamraw
 import serializeraw
+
+import capita.chapter.run
 
 
 def work(

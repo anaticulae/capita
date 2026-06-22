@@ -16,12 +16,13 @@ TODO:
 
 import re
 
-import capita.strategy
-import capita.table
 import configos
 import elementae.headline.lookup
 import serializeraw
 import utilo
+
+import capita.strategy
+import capita.table
 
 # no possible toc later than page 20
 

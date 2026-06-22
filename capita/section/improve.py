@@ -9,10 +9,11 @@
 
 import copy
 
-import capita.section.after
 import iamraw
 import iamraw.sections
 import utilo
+
+import capita.section.after
 
 
 def improve(collected):

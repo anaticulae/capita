@@ -9,11 +9,12 @@
 
 import statistics
 
-import capita.feature
 import configos
 import iamraw
 import serializeraw
 import utilo
+
+import capita.feature
 
 
 def work(

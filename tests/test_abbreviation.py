@@ -7,12 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.feature.abbreviation
 import hoverpower
 import iamraw
 import serializeraw
 import utilo
 import utilotest
+
+import capita.feature.abbreviation
 
 
 @utilotest.longrun

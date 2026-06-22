@@ -7,13 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.feature.glossary
 import hoverpower
 import iamraw.path
 import pytest
 import serializeraw
 import utilo
 import utilotest
+
+import capita.feature.glossary
 
 
 @pytest.mark.xfail(reason='missing integration')

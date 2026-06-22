@@ -58,11 +58,12 @@ Requirements
 [Theisen]
 """
 
-import capita.utils.spa
 import configos
 import serializeraw
 import texmex
 import utilo
+
+import capita.utils.spa
 
 FEATURE_POINT_COUNT_MIN = configos.HV_INT_PLUS(default=5)
 

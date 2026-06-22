@@ -7,10 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.section.load
-import capita.section.run
 import serializeraw
 import utilo
+
+import capita.section.load
+import capita.section.run
 
 
 @utilo.checkdatatype

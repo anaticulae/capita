@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita
 import hoverpower
 import serializeraw
 import utilotest
 
+import capita
 import tests
 
 

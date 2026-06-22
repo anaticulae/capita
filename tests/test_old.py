@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.creator
-import capita.feature.section
 import hoverpower
 import iamraw
 import iamraw.sections
@@ -17,6 +15,8 @@ import serializeraw
 import utilo
 import utilotest
 
+import capita.creator
+import capita.feature.section
 import tests
 
 # TODO: MOVE TESTS FROM test_cli.py

@@ -7,8 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.paper.fonts
 import utilotest
+
+import capita.paper.fonts
 
 
 @utilotest.longrun

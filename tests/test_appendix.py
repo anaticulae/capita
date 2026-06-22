@@ -7,13 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.feature.appendix
 import hoverpower
 import iamraw
 import iamraw.path
 import serializeraw
 import utilo
 import utilotest
+
+import capita.feature.appendix
 
 
 def appendix(source: str, pages: tuple = None) -> iamraw.PageContentLikelihoods:

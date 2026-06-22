@@ -7,10 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.paper.main
 import hoverpower
 import utilo
 import utilotest
+
+import capita.paper.main
 
 
 @utilotest.nightly

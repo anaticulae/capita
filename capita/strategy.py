@@ -7,13 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.feature
-import capita.utils.headline
 import configos
 import iamraw
 import serializeraw
 import texmex
 import utilo
+
+import capita.feature
+import capita.utils.headline
 
 HEADLINE_COLLECT_MIN = configos.HV_FLOAT_PLUS(default=0.85, limit=1.0)
 NOHEADLINE_COLLECT_MIN = configos.HV_FLOAT_PLUS(default=0.85, limit=1.0)

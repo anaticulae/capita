@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.creator
 import hoverpower
 import iamraw
 import iamraw.path
@@ -15,6 +14,8 @@ import iamraw.sections
 import pytest
 import serializeraw
 import utilotest
+
+import capita.creator
 
 
 @pytest.fixture

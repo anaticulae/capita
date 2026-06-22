@@ -7,8 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita
 import utilo
+
+import capita
 
 
 def result(path: str, prefix: str = '') -> str:

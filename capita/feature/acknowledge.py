@@ -7,11 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import capita.feature
-import capita.utils.headline
 import elementae.headline.lookup
 import serializeraw
 import utilo
+
+import capita.feature
+import capita.utils.headline
 
 
 def work(oneline_text: str, oneline_textpositions: str, pages=None) -> str:

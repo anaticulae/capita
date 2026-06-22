@@ -13,11 +13,12 @@ import hoverpower
 import iamraw
 import iamraw.path
 import utilotest
-from capita.feature.title import font_positions_from_page
 from serializeraw import load_document
 from serializeraw import load_font_content
 from serializeraw import load_font_header
 from texmex.iter import PageIter
+
+from capita.feature.title import font_positions_from_page
 
 
 def docu007_pages(pagenumber: int):

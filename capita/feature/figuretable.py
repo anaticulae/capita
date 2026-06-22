@@ -12,11 +12,12 @@
 
 import re
 
-import capita.strategy
-import capita.table
 import elementae.headline.lookup
 import serializeraw
 import utilo
+
+import capita.strategy
+import capita.table
 
 NOHEADLINES = utilo.a_minus_b(  #pylint:disable=no-member
     elementae.headline.lookup.HEADLINES,
