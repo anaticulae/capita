@@ -42,13 +42,10 @@ def determine_lang(text: iamraw.Document) -> iamraw.Language:
     lang = germania.lang(text)
     if lang.probability < LANG_TRUST_MIN:
         return iamraw.Language.UNKNOWN
-    # TODO: REMOVE CONVERTER AFTER UPGRADING GERMAN
-    detected = lang.language.name.lower()
-    if detected == 'germania':
-        return iamraw.Language.GERMAN
-    if detected == 'english':
-        return iamraw.Language.ENGLISH
-    return iamraw.Language.UNKNOWN
+    try:
+        return iamraw.Language.from_str(lang.language.name)
+    except ValueError:
+        return iamraw.Language.UNKNOWN
 
 
 def text_flat(text: iamraw.Document) -> list:
