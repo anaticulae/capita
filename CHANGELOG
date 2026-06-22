@@ -1,873 +1,3911 @@
-# Changelog
+# CHANGELOG
 
-Every noteable change is logged here.
+
+## v1.25.0 (2026-06-22)
+
+### Bug Fixes
+
+- **cli**: Adjust pdflog
+  ([`65e7b82`](https://github.com/anaticulae/capita/commit/65e7b823b26a65438cb779c33bdf87b412a1c2e2))
+
+- **docinfo**: Use improved lang converter
+  ([`b43a307`](https://github.com/anaticulae/capita/commit/b43a3076889cfca2ed81d599a8a3a0c2e418771a))
+
+- **feature**: Adjust sets
+  ([`20390cd`](https://github.com/anaticulae/capita/commit/20390cd3a58ab0b9c54b0bad2f19cbbbcd0608cb))
+
+- **path**: Adjust after moving bib step into sections_ref
+  ([`a6d0973`](https://github.com/anaticulae/capita/commit/a6d0973842c53a7e7d915837c667aa69337dc392))
+
+- **release**: Adjust repo
+  ([`4a9883f`](https://github.com/anaticulae/capita/commit/4a9883fc075cad089f8c4ef9f6fac3daa714f632))
+
+- **sections**: Skip bib likelihood if not exists
+  ([`2de61ff`](https://github.com/anaticulae/capita/commit/2de61ff4bf7fe237d8cb0c7baed942584075c071))
+
+### Chores
+
+- **github**: Add .github
+  ([`4a4f825`](https://github.com/anaticulae/capita/commit/4a4f825ed970a4a1f99129346de2737e9d1e874d))
+
+- **markdown**: Rename files
+  ([`1113684`](https://github.com/anaticulae/capita/commit/111368463f11f5875dcc3ecd305de74cda89bdd5))
+
+- **project**: Add modern setup
+  ([`9815538`](https://github.com/anaticulae/capita/commit/9815538cee88ad7c85627e96ff6a25f7545e43c7))
+
+- **pyproject**: Remove duplicated requirement
+  ([`040e737`](https://github.com/anaticulae/capita/commit/040e737effd127ed8e07a8085419f1c6933822c0))
+
+- **rename**: Adjust project name
+  ([`8af061b`](https://github.com/anaticulae/capita/commit/8af061b81e07eb447492e68b31ed1bba3bad2f30))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`5394804`](https://github.com/anaticulae/capita/commit/539480461b6fa008c820143fc973c02e8eeefdc3))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4b94380`](https://github.com/anaticulae/capita/commit/4b943804a601d4f7d021d71a30ddd6b52addcb70))
+
+- **resources**: Disable missing generators
+  ([`1700354`](https://github.com/anaticulae/capita/commit/1700354c9fb8b9e8cdb6ee8ab8e5e965d71123cc))
+
+- **resources**: Disable missing resources
+  ([`8525eee`](https://github.com/anaticulae/capita/commit/8525eeedbf3c919141fe3e075468fbc563d199c7))
+
+### Code Style
+
+- **strategy**: Format code
+  ([`448c1fe`](https://github.com/anaticulae/capita/commit/448c1fef7c6dfd1c4a6b06f233896637cce39b26))
+
+### Features
+
+- **patch**: Add method to generate unions
+  ([`34e86f9`](https://github.com/anaticulae/capita/commit/34e86f9dd3432dbb3e6309a2d7bceb16c223a3af))
+
+### Refactoring
+
+- **rename**: Adjust package names
+  ([`724f25c`](https://github.com/anaticulae/capita/commit/724f25cd6bdd24752dd424fa2746a4264f526db5))
+
+### Testing
+
+- **baseline**: Adjust baseline
+  ([`346b12c`](https://github.com/anaticulae/capita/commit/346b12c493beed9134e57d69d6641a574f3d22fc))
+
+- **glossary**: Skip till integrate complete process
+  ([`3125ee9`](https://github.com/anaticulae/capita/commit/3125ee967df0511e391f4174feb70f6890419570))
+
+- **validate**: Skip invalid test
+  ([`43c4679`](https://github.com/anaticulae/capita/commit/43c4679e6f4739b9b29709fa04d5779ecdf2164d))
+
+- **whitepage**: Skipping failing test
+  ([`97ba0f4`](https://github.com/anaticulae/capita/commit/97ba0f4e5ee3f648d87d2edcbd314571dcc517b4))
+
+- **whitespace**: Skip test
+  ([`a3e7d94`](https://github.com/anaticulae/capita/commit/a3e7d9480b7f4a06d4070505ccfc58e98ded34cc))
+
 
 ## v1.24.0 (2023-02-03)
 
-### Feature
+### Bug Fixes
 
-* replace with sections_ref (1a83bdae4d5e)
-* inform about content page (39fdbcbcd5fe)
-* improve author detector (cf7f1a6c5577)
+- **content**: Do not split empty sentences
+  ([`a4c9b61`](https://github.com/anaticulae/capita/commit/a4c9b61d954ae0001d9b51815deaa66369fc59c6))
 
-### Fix
+- **glossary**: Fix likelihood name
+  ([`ecea9dd`](https://github.com/anaticulae/capita/commit/ecea9dd7a2c3293d6f943ffe98fc86f28fe7e3df))
 
-* fix likelihood name (ecea9dd7a2c3)
-* do not split empty sentences (a4c9b61d954a)
+### Chores
+
+- **Jenkins**: Adjust pipeline
+  ([`c460d6e`](https://github.com/anaticulae/capita/commit/c460d6e4388fc9d9d93c25bf5c30995df1aff8cf))
+
+- **Jenkins**: Convert all into cov step
+  ([`93f60e6`](https://github.com/anaticulae/capita/commit/93f60e6a7535f247ced0957def4741139eb56db6))
+
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`0ce5374`](https://github.com/anaticulae/capita/commit/0ce5374dd7f0993a10ec74bb626e58ca44f7cc8f))
+
+- **Jenkins**: Upgrade pipe library
+  ([`e6f4537`](https://github.com/anaticulae/capita/commit/e6f45374ed75043de2913446d019eedb79bc6f58))
+
+- **requirements**: Add missing generator
+  ([`80953a6`](https://github.com/anaticulae/capita/commit/80953a661e4d0ee3bf2946fe7d353b6613220e92))
+
+- **requirements**: Upgrade requirements.txt
+  ([`8603731`](https://github.com/anaticulae/capita/commit/860373187d38be430984d6688b932a8c5244f024))
+
+- **requirements**: Upgrade requirements.txt
+  ([`e0bd22a`](https://github.com/anaticulae/capita/commit/e0bd22a8b2e303373236396a69bf908585a26ded))
+
+- **requirements**: Upgrade requirements.txt
+  ([`323c70f`](https://github.com/anaticulae/capita/commit/323c70f79608e5f9d4d21357e0397f736c71f6e0))
+
+- **resources**: Extend test data generator
+  ([`31eb82e`](https://github.com/anaticulae/capita/commit/31eb82ecf81137fd667399075517526717bffa60))
+
+- **resources**: Extend test data generator
+  ([`9400d6b`](https://github.com/anaticulae/capita/commit/9400d6b9f92128cc1c6c6fef1a5712557ab93196))
 
 ### Documentation
 
-* happy New Year! (aeef772c7224)
+- **copyright**: Happy New Year!
+  ([`aeef772`](https://github.com/anaticulae/capita/commit/aeef772c7224d0d089f8a4c3988412e37e503a8a))
 
-### Chore
+### Features
 
-* convert all into cov step (93f60e6a7535)
-* extend test data generator (31eb82ecf811)
-* add missing generator (80953a661e4d)
-* upgrade requirements.txt (860373187d38)
-* upgrade requirements.txt (e0bd22a8b2e3)
-* adjust pipeline (c460d6e4388f)
-* upgrade Jenkinsfile (0ce5374dd7f0)
-* upgrade pipe library (e6f45374ed75)
-* upgrade requirements.txt (323c70f79608)
-* extend test data generator (9400d6b9f921)
+- **bib**: Improve author detector
+  ([`cf7f1a6`](https://github.com/anaticulae/capita/commit/cf7f1a6c557779d0088c9ac8e29dd260c2dd21d3))
+
+- **bib**: Inform about content page
+  ([`39fdbcb`](https://github.com/anaticulae/capita/commit/39fdbcbcd5fe3e64a44b58ed083edd43ab734ef0))
+
+- **bib**: Replace with sections_ref
+  ([`1a83bda`](https://github.com/anaticulae/capita/commit/1a83bdae4d5e9585509e0ba5ef4b7dfd0f3994fe))
+
+### Refactoring
+
+- **bib**: Remove outdated code
+  ([`d02b490`](https://github.com/anaticulae/capita/commit/d02b490b82e14140319a8f6ee4c3453ad5bccfbd))
+
+- **utils**: Make likelihood name changeable
+  ([`08f0421`](https://github.com/anaticulae/capita/commit/08f042192bc6d767b4bd91589df70f97c222c8ac))
+
+### Testing
+
+- **bib**: Adjust baseline
+  ([`47140af`](https://github.com/anaticulae/capita/commit/47140af962c04dad9d6f1c8122f1a3da2b848175))
+
+- **bib**: Remove outdated validation code
+  ([`58a65e3`](https://github.com/anaticulae/capita/commit/58a65e378ee7cd94c309bbc8b3c83342b63494fc))
+
+- **bib**: Validate bachelor029a
+  ([`0f6c971`](https://github.com/anaticulae/capita/commit/0f6c9715ca9273b84a050fad6f4a3ff01a919255))
+
 
 ## v1.23.3 (2023-01-09)
 
-### Chore
+### Chores
 
-* upgrade requirements.txt (b4ae278d4781)
-* upgrade Jenkinsfile (ffeff1cea035)
-* upgrade pipe library (c2065f4e4ca7)
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`ffeff1c`](https://github.com/anaticulae/capita/commit/ffeff1cea0356e564c418e596a0e054366687e56))
+
+- **Jenkins**: Upgrade pipe library
+  ([`c2065f4`](https://github.com/anaticulae/capita/commit/c2065f4e4ca7c3362ecae7ebf3937b0e1306af04))
+
+- **requirements**: Upgrade requirements.txt
+  ([`b4ae278`](https://github.com/anaticulae/capita/commit/b4ae278d47815f932b3bcfa53945ee098e62dc2d))
+
 
 ## v1.23.2 (2022-12-21)
 
-### Chore
+### Chores
 
-* upgrade requirements.txt (3f8f26ce0b8c)
-* upgrade pipeline (98fe98701c57)
+- **Jenkins**: Upgrade pipeline
+  ([`98fe987`](https://github.com/anaticulae/capita/commit/98fe98701c57318fcd91c1b3fa09958ee8675664))
+
+- **requirements**: Upgrade requirements.txt
+  ([`3f8f26c`](https://github.com/anaticulae/capita/commit/3f8f26ce0b8cf6b1e4d80c4a91d9300a26e8bd71))
+
 
 ## v1.23.1 (2022-12-04)
 
-### Chore
+### Chores
 
-* upgrade requirements.txt (173548832b44)
+- **requirements**: Upgrade requirements.txt
+  ([`1735488`](https://github.com/anaticulae/capita/commit/173548832b445b5cb7b34da7cfbfbffb67fce288))
+
 
 ## v1.23.0 (2022-12-03)
 
-### Feature
+### Chores
 
-* use more modern data (78ac898ee085)
-* use improved resource (fdef09b487bf)
+- **Jenkins**: Reduce feedback time
+  ([`352fe46`](https://github.com/anaticulae/capita/commit/352fe4684f8b317b1a4e90142c7b838888bdd4c7))
 
-### Chore
+- **Jenkins**: Run faster tasks first
+  ([`81a417c`](https://github.com/anaticulae/capita/commit/81a417c55da94dc06b0992c37e9e260c5b0b3c4b))
 
-* run faster tasks first (81a417c55da9)
-* use docken to cache generation (215c425e38a8)
-* use quick installer (b3b569d18e2b)
-* remove sections dependency (b721952a5803)
-* update pipeline (cfff22ccc969)
-* upgrade pipe library (338c95a0375b)
-* reduce feedback time (352fe4684f8b)
-* upgrade environment (9a1f2f7a882d)
-* add groupme hefopa-merger (3326f6b88cb0)
-* upgrade requirements.txt (a23a2c7c91f4)
+- **Jenkins**: Update pipeline
+  ([`cfff22c`](https://github.com/anaticulae/capita/commit/cfff22ccc969dabe875d36d7e2bd2965524e95f3))
+
+- **Jenkins**: Upgrade environment
+  ([`9a1f2f7`](https://github.com/anaticulae/capita/commit/9a1f2f7a882ded51d194abaae415bd83dd955f23))
+
+- **Jenkins**: Upgrade pipe library
+  ([`338c95a`](https://github.com/anaticulae/capita/commit/338c95a0375b496f5d97fe9ae0fc86acfe8ececc))
+
+- **Jenkins**: Use docken to cache generation
+  ([`215c425`](https://github.com/anaticulae/capita/commit/215c425e38a826e27028f335a9cd218dd0e4ced2))
+
+- **requirements**: Upgrade requirements.txt
+  ([`a23a2c7`](https://github.com/anaticulae/capita/commit/a23a2c7c91f492470b93add5f5ceccbd3370a37b))
+
+- **resources**: Remove sections dependency
+  ([`b721952`](https://github.com/anaticulae/capita/commit/b721952a5803838f23058c2c4f5f50b30694efe4))
+
+- **setup**: Add groupme hefopa-merger
+  ([`3326f6b`](https://github.com/anaticulae/capita/commit/3326f6b88cb0f493ad4136785cc4a3ec11c9c284))
+
+- **setup**: Use quick installer
+  ([`b3b569d`](https://github.com/anaticulae/capita/commit/b3b569d18e2bb2d40ccff0ba4231191ac36b500e))
+
+### Features
+
+- **cli**: Use improved resource
+  ([`fdef09b`](https://github.com/anaticulae/capita/commit/fdef09b487bf129d6d4a00147ca1343f7d9c6d54))
+
+- **cli**: Use more modern data
+  ([`78ac898`](https://github.com/anaticulae/capita/commit/78ac898ee085105b5736418fa376e953bdb4174a))
+
+### Refactoring
+
+- **replace**: Automated replacement
+  ([`ddade72`](https://github.com/anaticulae/capita/commit/ddade724a7b75a352e56f0b877e2c9e10a9c292c))
+
+### Testing
+
+- **adjust**: Adjust baseline
+  ([`c40b2ff`](https://github.com/anaticulae/capita/commit/c40b2ffb948ae7e8fa1f2de46baaedf698425ebf))
+
+- **baseline**: Adjust baseline
+  ([`9e98956`](https://github.com/anaticulae/capita/commit/9e989564ec7a120f709a404aa9b28b5d5a1ef175))
+
+- **main**: Try to enable test
+  ([`48b37a8`](https://github.com/anaticulae/capita/commit/48b37a8650279110a97bd41d662e36bb76feac9d))
+
+- **old**: Enable test after improving header footer pagenumber
+  ([`97ac614`](https://github.com/anaticulae/capita/commit/97ac614f6fb3b5866446d2427892e7586e9adb4a))
+
+- **old**: Remove code duplication
+  ([`234282a`](https://github.com/anaticulae/capita/commit/234282a4620081bd8cc6db588fbb0ea016572609))
+
+- **paper**: Revert after upgrading
+  ([`f39b608`](https://github.com/anaticulae/capita/commit/f39b6087070a397c2f948d9d90636b7ed83ed223))
+
+- **remove**: Remove unused fixture
+  ([`0485fd4`](https://github.com/anaticulae/capita/commit/0485fd4deedbf2e997f967cbb679ffc4aecc02ea))
+
+- **whitepage**: Adjust baseline
+  ([`1ef598b`](https://github.com/anaticulae/capita/commit/1ef598ba8896c7ceb9c61d212ef243fdd9869f9b))
+
 
 ## v1.22.1 (2022-11-06)
 
-### Fix
+### Bug Fixes
 
-* load white page likelihood correctly (80bd15716d33)
-* do not fill gaps inside document (f520b632b956)
-* adjust data loader (2de61eda3691)
+- **section**: Load white page likelihood correctly
+  ([`80bd157`](https://github.com/anaticulae/capita/commit/80bd15716d338818c4884d7827d8547fb43d34c0))
 
-### Chore
+- **whitepage**: Do not fill gaps inside document
+  ([`f520b63`](https://github.com/anaticulae/capita/commit/f520b632b95638137adb21fbb4cd0422bc406bcf))
 
-* add missing ghost (f7c2769d15ac)
-* remove default config (1ea4351855e3)
-* upgrade requirements.txt (8a4b2f48e817)
-* upgrade baw (1689e6a847c7)
-* upgrade requirements.txt (9af25fd3c293)
-* upgrade pipe library (23be05d5a1b4)
-* convert nightly to all (9ac00abe2548)
-* upgrade environment (485fbd0c5769)
-* upgrade requirements.txt (865d38657aba)
+- **whitespace**: Adjust data loader
+  ([`2de61ed`](https://github.com/anaticulae/capita/commit/2de61eda369120b779c36a103223aa4489e3b58f))
+
+### Chores
+
+- **baw**: Remove default config
+  ([`1ea4351`](https://github.com/anaticulae/capita/commit/1ea4351855e336efd0621febf2ba0ea129b02bcd))
+
+- **Jenkins**: Add missing ghost
+  ([`f7c2769`](https://github.com/anaticulae/capita/commit/f7c2769d15acc696fd579e69ddd3c3cb6e3cd471))
+
+- **Jenkins**: Convert nightly to all
+  ([`9ac00ab`](https://github.com/anaticulae/capita/commit/9ac00abe25481cb6c89791341c0702b6d94fd9ee))
+
+- **Jenkins**: Upgrade baw
+  ([`1689e6a`](https://github.com/anaticulae/capita/commit/1689e6a847c7cbd08ee735ec5670c21fb0a93014))
+
+- **Jenkins**: Upgrade environment
+  ([`485fbd0`](https://github.com/anaticulae/capita/commit/485fbd0c57691cebbd22f7d60d764a8017408a32))
+
+- **Jenkins**: Upgrade pipe library
+  ([`23be05d`](https://github.com/anaticulae/capita/commit/23be05d5a1b4ee8b5e4b9d5fe4a244a07f67991f))
+
+- **requirements**: Upgrade requirements.txt
+  ([`8a4b2f4`](https://github.com/anaticulae/capita/commit/8a4b2f48e817ae575b385e16a2bffb6afd8546af))
+
+- **requirements**: Upgrade requirements.txt
+  ([`9af25fd`](https://github.com/anaticulae/capita/commit/9af25fd3c29312f99d633bc1490378bb4fce4f22))
+
+- **requirements**: Upgrade requirements.txt
+  ([`865d386`](https://github.com/anaticulae/capita/commit/865d38657abade31d668e033109f279c4eba53ce))
+
+### Code Style
+
+- **baw**: Add missing header
+  ([`a6951ee`](https://github.com/anaticulae/capita/commit/a6951ee41cdabf25b70e2bf4e73804d7945ac6a0))
+
+- **paper**: Format code
+  ([`f6b2757`](https://github.com/anaticulae/capita/commit/f6b2757bad03ff97f8be655557db069890eda4e1))
+
+- **spelling**: Fix spelling error
+  ([`03f717c`](https://github.com/anaticulae/capita/commit/03f717c244513dd85a03e787097d222ce216dd67))
+
+### Refactoring
+
+- **linter**: Solve linter warning
+  ([`8ad34b5`](https://github.com/anaticulae/capita/commit/8ad34b5be4a69d285894cdc908c0d4de0ebb5c67))
+
+- **replace**: Automated replacement
+  ([`31586e7`](https://github.com/anaticulae/capita/commit/31586e73114f13f6f48716e40c3815ca98bf8f5f))
+
+- **whitepage**: Replace with utila code
+  ([`8a6daa1`](https://github.com/anaticulae/capita/commit/8a6daa1f8bdd9be0a83a5e25d62b17a5b049d926))
+
+### Testing
+
+- **baseline**: Adjust baseline after improving white page
+  ([`bc85bb2`](https://github.com/anaticulae/capita/commit/bc85bb2dba725fd31a061aa743ba0d0ef6646972))
+
+- **refactor**: Improve method order
+  ([`4470487`](https://github.com/anaticulae/capita/commit/447048713f799fcdf4c5b1d76960792481aeb711))
+
+- **refactor**: Replace with new runner
+  ([`7bf1cb0`](https://github.com/anaticulae/capita/commit/7bf1cb0a0a7f8f95c395e73730f0d5e0aac06e11))
+
+- **whitepage**: Add regression test
+  ([`b2c9651`](https://github.com/anaticulae/capita/commit/b2c9651dff5d33e37a9680b5dd9139323ce95a17))
+
+- **whitepage**: Simplify test code
+  ([`80cb061`](https://github.com/anaticulae/capita/commit/80cb061b2ca75d246d597511102250aa3c652fc4))
+
+- **whitepage**: Verify white pages with gaps
+  ([`c06437c`](https://github.com/anaticulae/capita/commit/c06437c5d365b794270796eba5941dfdb1e21087))
+
 
 ## v1.22.0 (2022-10-05)
 
-### Chore
+### Chores
 
-* publish generated data if nightly fails (50d3cdec1d03)
-* do not run in privileged mode (0816919bbf11)
-* run cleanup (efd362a10ad7)
-* add cleanup (8ba56efcf1ca)
-* upgrade requirements.txt (b3788ea4b34f)
-* upgrade baw (9dacb377c208)
-* increase number of executor in nightly (425c712a2f55)
-* adjust worker on ci (9e974ddd3519)
-* run headnote extractor (41b5789ed6ba)
-* add headnote (32f8e2ce6e71)
+- **ci**: Adjust worker on ci
+  ([`9e974dd`](https://github.com/anaticulae/capita/commit/9e974ddd3519af60e63b5a4cd7dd0a370455f1cc))
+
+- **Jenkinsfile**: Do not run in privileged mode
+  ([`0816919`](https://github.com/anaticulae/capita/commit/0816919bbf1112244438fdd83be4fa99a957d192))
+
+- **Jenkinsfile**: Increase number of executor in nightly
+  ([`425c712`](https://github.com/anaticulae/capita/commit/425c712a2f558f7052029c5ab0000a9aa2390f96))
+
+- **Jenkinsfile**: Publish generated data if nightly fails
+  ([`50d3cde`](https://github.com/anaticulae/capita/commit/50d3cdec1d031b3b33eb362f1f8af9ad14659dd1))
+
+- **Jenkinsfile**: Upgrade baw
+  ([`9dacb37`](https://github.com/anaticulae/capita/commit/9dacb377c2089f00fa3adc1eba6fcbf1d8d67499))
+
+- **requirements**: Add cleanup
+  ([`8ba56ef`](https://github.com/anaticulae/capita/commit/8ba56efcf1ca8d6cd05b4b54043ba30ba09c4112))
+
+- **requirements**: Add headnote
+  ([`32f8e2c`](https://github.com/anaticulae/capita/commit/32f8e2ce6e719805cf3b07ded9ac871bf4210ede))
+
+- **requirements**: Upgrade requirements.txt
+  ([`b3788ea`](https://github.com/anaticulae/capita/commit/b3788ea4b34f58b92b401f9661807f6390c74a4f))
+
+- **resources**: Run cleanup
+  ([`efd362a`](https://github.com/anaticulae/capita/commit/efd362a10ad795a13c92fbc519d2f6426382d213))
+
+- **resources**: Run headnote extractor
+  ([`41b5789`](https://github.com/anaticulae/capita/commit/41b5789ed6ba56eded0ef11ffa314144c54db861))
+
+### Testing
+
+- **adjust**: Adjust test data after software integration
+  ([`114b30d`](https://github.com/anaticulae/capita/commit/114b30d5d23cee102bbd15489a277e6415edc91e))
+
 
 ## v1.21.3 (2022-09-28)
 
-### Fix
+### Bug Fixes
 
-* extend level outline collector (a0db0740381f)
+- **outlines**: Extend level outline collector
+  ([`a0db074`](https://github.com/anaticulae/capita/commit/a0db0740381f46388d14c6ebed8e5e1e6226254b))
 
-### Chore
+### Chores
 
-* use more worker if running in CI (d01104127ba2)
-* adjust to current generator (172eb81f536f)
-* add missing dev requirement (a5b6e5cb3834)
-* add separate generation step (92c9fe5bb484)
-* add Jenkinsfile (1add9a26b475)
-* upgrade requirements.txt (2acc79466c67)
-* upgrade requirements.txt (30aa5aa79460)
-* upgrade requirements.txt (186552514625)
+- **ci**: Add Jenkinsfile
+  ([`1add9a2`](https://github.com/anaticulae/capita/commit/1add9a26b475211803d94e723badaf96be03dd5a))
 
-## v1.21.2
+- **Jenkinsfile**: Add separate generation step
+  ([`92c9fe5`](https://github.com/anaticulae/capita/commit/92c9fe5bb484f23d7d3cba71d198cf1173f7e83a))
 
-### Feature
+- **requirements**: Add missing dev requirement
+  ([`a5b6e5c`](https://github.com/anaticulae/capita/commit/a5b6e5cb3834c28948d72a95e4a82f0777118b06))
 
-* return failure earlier (6cff81450114)
+- **requirements**: Upgrade requirements.txt
+  ([`2acc794`](https://github.com/anaticulae/capita/commit/2acc79466c67fa38f8c6b36a1e4424e8e98a6830))
 
-### Fix
+- **requirements**: Upgrade requirements.txt
+  ([`30aa5aa`](https://github.com/anaticulae/capita/commit/30aa5aa794607ce02f76f8cc08b8d9b3110c2faa))
 
-* adjust abbrev column detector (1da955a0b1ce)
+- **requirements**: Upgrade requirements.txt
+  ([`1865525`](https://github.com/anaticulae/capita/commit/1865525146250c75417f6ffcb1eb4942f60cbcbf))
 
-## v1.21.1
+- **resources**: Adjust to current generator
+  ([`172eb81`](https://github.com/anaticulae/capita/commit/172eb81f536f49617321339d05e8e19b57f36d30))
 
-### Feature
+- **resources**: Use more worker if running in CI
+  ([`d011041`](https://github.com/anaticulae/capita/commit/d01104127ba24c867f7dfd256112945340e59f59))
 
-* add pattern to overwrite special pattern (2bd14e6e8a17)
-* skip pages with too many footnotes (8e795e09ba13)
-* use footnote to improve bib extraction (b5f468be9736)
+### Code Style
 
-## v1.21.0
+- **adjust**: Adjust to release tool
+  ([`edf8df8`](https://github.com/anaticulae/capita/commit/edf8df807c21656a8d023d6c0dd7fa269c2b728d))
 
-### Feature
+### Refactoring
 
-* do not change Appendix on MultipleSection (eaf7547ad409)
+- **bib**: Reduce complexity
+  ([`cdb0036`](https://github.com/anaticulae/capita/commit/cdb00364f1a459f045befb3a728d50bf5975dffe))
 
-### Fix
+- **bib**: Solve todo
+  ([`8d6f9b2`](https://github.com/anaticulae/capita/commit/8d6f9b214b238bd4f17a5681001cb2b4e4b07b03))
 
-* change from unknown to appendix if required (39eab97ace8c)
-* do not intro on multiple section (abac448e226e)
+- **special**: Shorten code
+  ([`2a049c6`](https://github.com/anaticulae/capita/commit/2a049c62199eb4c82924cb0cd70fe72fa89a8235))
 
-## v1.20.0
+### Testing
 
-### Feature
+- **bib**: Validate all bibliography
+  ([`74a0b79`](https://github.com/anaticulae/capita/commit/74a0b79bdcef7ef3aef0397a7c43e44fc957ea99))
 
-* add better author detector (9fb500d3b304)
-* remove headline end char to improve detection (8c08a8d77e30)
+- **refactor**: Move expected results to a better place
+  ([`58b7035`](https://github.com/anaticulae/capita/commit/58b70351cee942b5809c7f37445c6ba53a687f79))
 
-## v1.19.2
+- **refactor**: Replace with utilatest code
+  ([`201d2fc`](https://github.com/anaticulae/capita/commit/201d2fce347ef16d0c285da179d7529d6e724718))
 
-### Fix
+- **refactor**: Use fixture shortcuts
+  ([`6f366fe`](https://github.com/anaticulae/capita/commit/6f366fec3525f4af93a0392b0859d47e6f8f30dc))
 
-* skip empty page (acfd7092bd2f)
+- **remove**: Remove outdated sections example
+  ([`dc8b21a`](https://github.com/anaticulae/capita/commit/dc8b21a8b6d176d7dc1648419f3d0d2b9ea48c8b))
 
-## v1.19.1
+- **validate**: Make validator more reusable
+  ([`e0115ec`](https://github.com/anaticulae/capita/commit/e0115ec964e35ccea8f5be6b84be0cf8c4646a68))
 
-### Feature
 
-* do not detect paper inside documents for just a few pages (abd889e52991)
+## v1.21.2 (2022-07-01)
 
-### Fix
+### Bug Fixes
 
-* adjust chapter detector (1f7ba188646e)
-* ensure that first match does not reduce value (bce955ebba7b)
-* make pattern case insensitive (0b56c58cf5e1)
-* we already use ptcn (3d1d5daef664)
+- **abbrev**: Adjust abbrev column detector
+  ([`1da955a`](https://github.com/anaticulae/capita/commit/1da955a0b1ceb0ae1f16feb084339f708a6cd811))
 
-## v1.19.0
+### Chores
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`f1f732c`](https://github.com/anaticulae/capita/commit/f1f732cf0678d741625882f7773acb1eac01985c))
 
-* indent to increase readability (0a06d724e662)
-* add huge number chapter start detector (9ab7a3528059)
-* add debugging information (666e88349dbd)
-* increase legal feature points (94d242e1454f)
+### Features
 
-### Fix
+- **abbrev**: Return failure earlier
+  ([`6cff814`](https://github.com/anaticulae/capita/commit/6cff81450114aaf5b6da2027026124f694d94bae))
 
-* do not detect huge number with short toc as dotted list (a310b2ea7c9f)
-* adjust logger message (4037d7e08ca4)
-* match single chars with toc correctly (1df121c91183)
+### Testing
+
+- **abbrev**: Shorten test names
+  ([`69e37a5`](https://github.com/anaticulae/capita/commit/69e37a5c049189e34dd175654e995be1cd3b89e5))
+
+- **abbrev**: Validate bachelor090
+  ([`924314d`](https://github.com/anaticulae/capita/commit/924314d6dbb00a140406e9d7e6501bddb490b8e9))
+
+
+## v1.21.1 (2022-06-30)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`910ccb7`](https://github.com/anaticulae/capita/commit/910ccb74c561e729f99ccc8cadfe5035f723bda5))
+
+- **resources**: Extend test data generator
+  ([`d40f343`](https://github.com/anaticulae/capita/commit/d40f343dfe1887c844bdeb869212c0d2cd8747f8))
+
+- **resources**: Remove default config
+  ([`77c942c`](https://github.com/anaticulae/capita/commit/77c942c44ba0a395698926d816cd6c39bd73ee19))
+
+- **resources**: Toc is not required and not possible without sections
+  ([`fc3f7fd`](https://github.com/anaticulae/capita/commit/fc3f7fd2e78156821b12f2d0091d4a900867cf38))
+
+### Features
+
+- **bib**: Add pattern to overwrite special pattern
+  ([`2bd14e6`](https://github.com/anaticulae/capita/commit/2bd14e6e8a179fec09617ccc5bf6d3299c8cbace))
+
+- **bib**: Skip pages with too many footnotes
+  ([`8e795e0`](https://github.com/anaticulae/capita/commit/8e795e09ba13b6c65c136da84c063f5deb09d2b0))
+
+- **cli**: Use footnote to improve bib extraction
+  ([`b5f468b`](https://github.com/anaticulae/capita/commit/b5f468be97360ec3716d87e4aee6c97975403a0b))
+
+### Testing
+
+- **bib**: Adjust tests
+  ([`3d2e170`](https://github.com/anaticulae/capita/commit/3d2e17062f73124155a80b506360f3464872cb59))
+
+- **chapter**: Adjust expected pages
+  ([`19eaf56`](https://github.com/anaticulae/capita/commit/19eaf56131acc9f8506beb7a69cebacfe2cf12b4))
+
+
+## v1.21.0 (2022-05-17)
+
+### Bug Fixes
+
+- **section**: Change from unknown to appendix if required
+  ([`39eab97`](https://github.com/anaticulae/capita/commit/39eab97ace8c01fd907bf05e03b6aa42496970be))
+
+- **section**: Do not intro on multiple section
+  ([`abac448`](https://github.com/anaticulae/capita/commit/abac448e226e14da23727f9a667d4cab409c117b))
+
+### Code Style
+
+- **docs**: Format text
+  ([`fbb05b6`](https://github.com/anaticulae/capita/commit/fbb05b62028ced93e2ee6ce5e335ca63565542a1))
+
+- **imports**: Organize imports
+  ([`15928d2`](https://github.com/anaticulae/capita/commit/15928d2da628de35974afe819ebc588a6f611519))
+
+- **section**: Fix spelling error
+  ([`2be56b1`](https://github.com/anaticulae/capita/commit/2be56b1147badbf3844ccaad825ad8263b86a06c))
+
+### Features
+
+- **section**: Do not change Appendix on MultipleSection
+  ([`eaf7547`](https://github.com/anaticulae/capita/commit/eaf7547ad409c08fa022c799a62e7676ad668be6))
+
+### Refactoring
+
+- **improve**: Improve method order
+  ([`1b7f17c`](https://github.com/anaticulae/capita/commit/1b7f17cd16fa6951f33f303b80ccf51150dc43e5))
+
+- **iter**: Move data iter to data structure
+  ([`ce1a930`](https://github.com/anaticulae/capita/commit/ce1a930a6909ab18c7bdf2ec34666e8b80bc0781))
+
+- **section**: Improve method order
+  ([`6094009`](https://github.com/anaticulae/capita/commit/60940091f29dcc9b1026546a0c21270b53e5ea5a))
+
+- **section**: Move code to separate module
+  ([`7dc146a`](https://github.com/anaticulae/capita/commit/7dc146a0688e968c83f7a9d569f3d919fbd77038))
+
+- **section**: Move improve to separate module
+  ([`f725774`](https://github.com/anaticulae/capita/commit/f725774f51b0ccf6a8f198a3397942f80fa78434))
+
+- **section**: Move loader to separate module
+  ([`289c2f3`](https://github.com/anaticulae/capita/commit/289c2f3b2698c3dd4f1da07cc9d7b5b4deb2caa0))
+
+- **section**: Move section to separate package
+  ([`6fc0a13`](https://github.com/anaticulae/capita/commit/6fc0a138e23cf7c9c7d1eee8d0ec137ecd641670))
+
+- **section**: Simplify code
+  ([`d1edb35`](https://github.com/anaticulae/capita/commit/d1edb3562e157a06684cadc521bc21a50d0e22eb))
+
+- **section**: Split code into separate packages
+  ([`56897eb`](https://github.com/anaticulae/capita/commit/56897eb41c2f6041cf2f9e1581c0b66b2eb52924))
+
+### Testing
+
+- **diss**: Update expected section
+  ([`5228d6f`](https://github.com/anaticulae/capita/commit/5228d6f7c4fd8a81957d803df15fcaa760526498))
+
+- **refactor**: Ease extending code
+  ([`8580571`](https://github.com/anaticulae/capita/commit/8580571146461f39734d957604c2fbdd2718e85a))
+
+- **remove**: Remove outdated tests
+  ([`e03ffda`](https://github.com/anaticulae/capita/commit/e03ffda24b55cedd4b1d00b068b8bbb3f548f6f6))
+
+- **rename**: Shorten naming
+  ([`456fc3a`](https://github.com/anaticulae/capita/commit/456fc3af0dca249dd499a30b5327f88b0be642b1))
+
+- **rename**: Shorten test name
+  ([`3dbd2a0`](https://github.com/anaticulae/capita/commit/3dbd2a0ca1fe2c94243fa3bb924f3dcffaaeff14))
+
+- **validate**: Convert bachelor section tests
+  ([`0414571`](https://github.com/anaticulae/capita/commit/04145715828495cce751d153db12f3929a624c2d))
+
+- **validate**: Convert to new validator
+  ([`c746429`](https://github.com/anaticulae/capita/commit/c7464290bad02a465ac0372a1ee628c2aa76265c))
+
+- **validate**: Make test names unique
+  ([`a373d97`](https://github.com/anaticulae/capita/commit/a373d97c5600e0b83a8d9fa7b078c5b7f193f9ee))
+
+- **validate**: Validate all sections
+  ([`54f728f`](https://github.com/anaticulae/capita/commit/54f728fc21c66ab326c362c5689472439ee062c1))
+
+
+## v1.20.0 (2022-05-16)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b020aec`](https://github.com/anaticulae/capita/commit/b020aec6d1970d6c6573eda43da3645b5094fa7e))
+
+- **resources**: Adjust resource generator
+  ([`0037798`](https://github.com/anaticulae/capita/commit/0037798a985178327af53558b865b86e1627d669))
+
+- **resources**: Extend test data generator
+  ([`8557af8`](https://github.com/anaticulae/capita/commit/8557af8dfeedb516044a4091d818779170e5cfea))
+
+- **resources**: Sort resources alphabetically
+  ([`dce2ae6`](https://github.com/anaticulae/capita/commit/dce2ae670bf199cb33759ea6c6564f68bb37fef1))
+
+### Code Style
+
+- **docs**: Adjust headline
+  ([`0409422`](https://github.com/anaticulae/capita/commit/0409422fe37eafcc2c1600c31bc567bbd210c32f))
+
+### Features
+
+- **headline**: Remove headline end char to improve detection
+  ([`8c08a8d`](https://github.com/anaticulae/capita/commit/8c08a8d77e3070fa4c5bf868daa60596aa483776))
+
+- **special**: Add better author detector
+  ([`9fb500d`](https://github.com/anaticulae/capita/commit/9fb500d3b3044a282e736a3671e6504e031ecf90))
+
+### Refactoring
+
+- **docinfo**: Reduce complexity
+  ([`499c63a`](https://github.com/anaticulae/capita/commit/499c63a4c797c26eae7341bb52b66a33410bb751))
+
+- **rename**: Use improved naming
+  ([`c7c89e8`](https://github.com/anaticulae/capita/commit/c7c89e856883753fee94437c1a3c1abee353fda2))
+
+### Testing
+
+- **bib**: Validate master148 bib
+  ([`280a81e`](https://github.com/anaticulae/capita/commit/280a81e0d8de9f5858b8ffc2657617329a796873))
+
+- **format**: Format test
+  ([`47b94e9`](https://github.com/anaticulae/capita/commit/47b94e9b54837d93e18d503d6f9bd7d30e4dfccd))
+
+- **improve**: Improve test names
+  ([`429c820`](https://github.com/anaticulae/capita/commit/429c820984acb82aa9f7edeae5222f683a030bd9))
+
+- **sections**: Validate master148
+  ([`fdb6cc7`](https://github.com/anaticulae/capita/commit/fdb6cc7d8ce114e9b47609a3795882a900fe3dd5))
+
+
+## v1.19.2 (2022-04-26)
+
+### Bug Fixes
+
+- **glossary**: Skip empty page
+  ([`acfd709`](https://github.com/anaticulae/capita/commit/acfd7092bd2fbd3f9fa0257962ab86d7b0462ab0))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bf2b815`](https://github.com/anaticulae/capita/commit/bf2b815e558cea70ff1a83404ab732524b0f6437))
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`333f5bc`](https://github.com/anaticulae/capita/commit/333f5bc090c1e532559ed0cf02a2b8eaa24565a0))
+
+### Refactoring
+
+- **whitepage**: Adjust interface name
+  ([`701aa00`](https://github.com/anaticulae/capita/commit/701aa0012f4dcfd3b0af52fca291fd56fcefce4a))
+
+
+## v1.19.1 (2022-04-15)
+
+### Bug Fixes
+
+- **chapter**: Adjust chapter detector
+  ([`1f7ba18`](https://github.com/anaticulae/capita/commit/1f7ba188646e326cdd1f93faa9b384afac6dddc2))
+
+- **chapter**: We already use ptcn
+  ([`3d1d5da`](https://github.com/anaticulae/capita/commit/3d1d5daef664abe913b105da5b5d4d560bed5689))
+
+- **starter**: Ensure that first match does not reduce value
+  ([`bce955e`](https://github.com/anaticulae/capita/commit/bce955ebba7bafd21bc8f34afe80bed01df63b04))
+
+- **starter**: Make pattern case insensitive
+  ([`0b56c58`](https://github.com/anaticulae/capita/commit/0b56c58cf5e112acb495609a75dd670473c77a29))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`5e8cd9f`](https://github.com/anaticulae/capita/commit/5e8cd9f3e92cacce17d905b7c8f8cec356525e39))
+
+### Features
+
+- **paper**: Do not detect paper inside documents for just a few pages
+  ([`abd889e`](https://github.com/anaticulae/capita/commit/abd889e52991323d96fd73bc1049acaff6df6841))
+
+### Testing
+
+- **chapter**: Adjust required resource
+  ([`2deffbb`](https://github.com/anaticulae/capita/commit/2deffbbf4723dc46123fbe89caed76eb25e1e2f8))
+
+- **chapter**: Ensure that page9 detects chapter
+  ([`47c3050`](https://github.com/anaticulae/capita/commit/47c30504d68c45cac2e4cd85a5a841bd17786028))
+
+- **sections**: Validate diss266
+  ([`13cc5db`](https://github.com/anaticulae/capita/commit/13cc5db95ed75f1564a43b4c8399d3c786f49209))
+
+
+## v1.19.0 (2022-04-09)
+
+### Bug Fixes
+
+- **chapter**: Adjust logger message
+  ([`4037d7e`](https://github.com/anaticulae/capita/commit/4037d7e08ca4b109fda6c978dc2ebdcab9c92d46))
+
+- **chapter**: Do not detect huge number with short toc as dotted list
+  ([`a310b2e`](https://github.com/anaticulae/capita/commit/a310b2ea7c9f4893d06d629548557e8b8eb62d12))
+
+- **chapter**: Match single chars with toc correctly
+  ([`1df121c`](https://github.com/anaticulae/capita/commit/1df121c91183207f94c9e476f80ef4a7a659db16))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`c3b9a15`](https://github.com/anaticulae/capita/commit/c3b9a1557cde2b8939d45260406ea3a752d89b92))
+
+- **requirements**: Upgrade requirements.txt
+  ([`42a0ae6`](https://github.com/anaticulae/capita/commit/42a0ae663ba24ff44ebc134a32bf10b61f15abd8))
+
+### Code Style
+
+- **chapter**: Beautify regex
+  ([`9d59359`](https://github.com/anaticulae/capita/commit/9d59359fb58ecc3127565d5b71b9ac47c21281d8))
+
+- **title**: Fix spelling error
+  ([`1df0c69`](https://github.com/anaticulae/capita/commit/1df0c6916e7d22c9da1883f007aea24fae9c1a1d))
 
 ### Documentation
 
-* extend interface information (766aba3b5893)
+- **chapter**: Extend interface information
+  ([`766aba3`](https://github.com/anaticulae/capita/commit/766aba3b58938cb5af2120b1d1e53ffd7fbd5cca))
 
-## v1.18.1
+### Features
 
-### Fix
+- **chapter**: Add debugging information
+  ([`666e883`](https://github.com/anaticulae/capita/commit/666e88349dbdad822da557b9585f588ab2fcf524))
 
-* adjust text on page converter (e28547257cf2)
+- **chapter**: Add huge number chapter start detector
+  ([`9ab7a35`](https://github.com/anaticulae/capita/commit/9ab7a35280594ca500734cd4285d78918658fcc8))
 
-## v1.18.0
+- **chapter**: Indent to increase readability
+  ([`0a06d72`](https://github.com/anaticulae/capita/commit/0a06d724e6629a1465114eef85314a13b939e225))
 
-### Feature
+- **legal**: Increase legal feature points
+  ([`94d242e`](https://github.com/anaticulae/capita/commit/94d242e1454feb1a01a2b089d6067a92cc8e1d59))
 
-* disable glossary if rate is too low (21d7570ca579)
-* pass page count if required (e1b7e259c82f)
-* limit glossary rate without headlines (28b017a87ca1)
-* make glossary detector line length dependent (0e1c1a8bd3da)
-* make glossary rate page number dependent (447ef3bc0e86)
-* skip page with too many lines as glossary (1f340a9b9b48)
-* increase special words (4d0bcdf5c730)
-* increase logging (a946aa93bc48)
+### Refactoring
 
-### Fix
+- **chapte**: Reduce complexity
+  ([`c881f84`](https://github.com/anaticulae/capita/commit/c881f84c64b16f0e247de46f978dce8a238be21e))
 
-* reduce verbosity (b94a432704dc)
+- **chapter**: Move chapter to separate package
+  ([`0e51ecd`](https://github.com/anaticulae/capita/commit/0e51ecd502b34b4989e9dc2eb476f7e5c7964dae))
 
-## v1.17.0
+- **chapter**: Move runner to run module
+  ([`2ee04e7`](https://github.com/anaticulae/capita/commit/2ee04e75e6c624c7cda62797ef0f1386b610674f))
 
-### Feature
+- **chapter**: Move starter pattern into separate module
+  ([`f664d76`](https://github.com/anaticulae/capita/commit/f664d76c2a46ad2e740de659a678db59630452b8))
 
-* reduce amount of required patterns (9902d57b0cfb)
-* increase debugging information (f3ab4a78fd5d)
-* extend pattern list (0febca416f05)
-* add method to determine range of section (b364e1a5272d)
+- **chapter**: Reduce complexity
+  ([`fab0653`](https://github.com/anaticulae/capita/commit/fab0653409cf246934d55b42d4d3a253c378a647))
 
-### Fix
+- **chapter**: Replace with texmex code
+  ([`c90cc84`](https://github.com/anaticulae/capita/commit/c90cc84b8f44fb3a68f3c203c114c3cbff3f3546))
 
-* ensure that pdfinfo is optional (3bd83de00009)
-* do not detect MainPart before toc (1fc6a75c70b0)
-* the headline is not enough (4b6a43df8328)
+- **chapter**: Shorten naming
+  ([`8a21d40`](https://github.com/anaticulae/capita/commit/8a21d408a58766b34151483c1c376ca5d436bf4d))
+
+- **chapter**: Split code into different modules
+  ([`b32f7c0`](https://github.com/anaticulae/capita/commit/b32f7c001c7fd4db16a40721c042e63f1af79884))
+
+- **chapter**: Use improved configo approach
+  ([`6c6693b`](https://github.com/anaticulae/capita/commit/6c6693badf78a50d56e26c4cfda2cfbdec9f816b))
+
+- **test**: Shorten code
+  ([`526a0aa`](https://github.com/anaticulae/capita/commit/526a0aa94f0a86e417964a064ac468ebc325de48))
+
+### Testing
+
+- **chapter**: Validate diss172
+  ([`f496f2f`](https://github.com/anaticulae/capita/commit/f496f2f8b6f2434a04b05515612ef731df515533))
+
+
+## v1.18.1 (2022-04-03)
+
+### Bug Fixes
+
+- **text**: Adjust text on page converter
+  ([`e285472`](https://github.com/anaticulae/capita/commit/e28547257cf228f77e5e5178ea2d58e0affb79c5))
+
+### Chores
+
+- **requirements**: Add hardcore
+  ([`020fb41`](https://github.com/anaticulae/capita/commit/020fb4139849fd526f9fcdfb4dbb8723f9226e01))
+
+- **requirements**: Upgrade requirements.txt
+  ([`b8f983f`](https://github.com/anaticulae/capita/commit/b8f983f0675356f236151ccc9877faf2373fe9e5))
+
+- **resources**: Extend test data generator
+  ([`471036d`](https://github.com/anaticulae/capita/commit/471036d75edf4c1b43bca794f4bccd66d5ba8783))
+
+- **resources**: Reduce worker count
+  ([`46ce574`](https://github.com/anaticulae/capita/commit/46ce574f4e778004008b8824b880a0040da23281))
+
+### Testing
+
+- **refactor**: Move outdated tests
+  ([`297eba2`](https://github.com/anaticulae/capita/commit/297eba2b39780c61bdc26e17ddb01dda20f820c8))
+
+- **refactor**: Simplify code
+  ([`360541b`](https://github.com/anaticulae/capita/commit/360541b2b0d31ef5133d0e3f78c51a6c8580f5d9))
+
+- **sections**: Extend sections validation
+  ([`e17ec33`](https://github.com/anaticulae/capita/commit/e17ec339da5215614e934241f58dd51ccdfb92d4))
+
+- **sections**: Validate hardcore files
+  ([`a2e362a`](https://github.com/anaticulae/capita/commit/a2e362aa321e4b46f555898943a2a56682913b05))
+
+- **validate**: Validate sections
+  ([`888efad`](https://github.com/anaticulae/capita/commit/888efad3cac233ba91d1c397147fb4a2d02b5794))
+
+
+## v1.18.0 (2022-02-24)
+
+### Bug Fixes
+
+- **strategy**: Reduce verbosity
+  ([`b94a432`](https://github.com/anaticulae/capita/commit/b94a432704dc5b75fbfc58383d8fee3775afdc2b))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3a50bbf`](https://github.com/anaticulae/capita/commit/3a50bbf5117837f8e18e911340bd43398ced81cd))
+
+- **resources**: Extend test data generator
+  ([`9b4d5be`](https://github.com/anaticulae/capita/commit/9b4d5be7cb658af76c740586ec26edfbb7ae16a1))
+
+- **resources**: Extend test data generator
+  ([`dc9d6a1`](https://github.com/anaticulae/capita/commit/dc9d6a1a2f3d2e89a10a7265655e8fd3424c8d03))
+
+- **resources**: Extend test data generator
+  ([`1bec8f6`](https://github.com/anaticulae/capita/commit/1bec8f6934fdb6c33a697245cee728a02e9583fe))
+
+- **test**: Keep dev run fast
+  ([`2ee5b6a`](https://github.com/anaticulae/capita/commit/2ee5b6a79679e5911ea62922a1a7c845b61bff92))
+
+- **test**: Keep long run fast
+  ([`fb485df`](https://github.com/anaticulae/capita/commit/fb485df0ef225ebc0f6b8d3b91ba3e78284c48d7))
+
+- **test**: Keep longrun fast
+  ([`ede6dbf`](https://github.com/anaticulae/capita/commit/ede6dbfa323beb84f733b396e453e637f614a893))
+
+### Code Style
+
+- **remove**: Remove print
+  ([`bf0f949`](https://github.com/anaticulae/capita/commit/bf0f94931fd75dab7a15329326b484e6b8c72f3f))
+
+- **spelling**: Fix spelling error
+  ([`ca02e51`](https://github.com/anaticulae/capita/commit/ca02e51efa3e799fbc57a139737506ad0c319fe2))
+
+### Features
+
+- **bib**: Increase special words
+  ([`4d0bcdf`](https://github.com/anaticulae/capita/commit/4d0bcdf5c7308081cd4b75a6db276585516c6a50))
+
+- **glossary**: Disable glossary if rate is too low
+  ([`21d7570`](https://github.com/anaticulae/capita/commit/21d7570ca5797e33db241d059d47483958f71e88))
+
+- **glossary**: Limit glossary rate without headlines
+  ([`28b017a`](https://github.com/anaticulae/capita/commit/28b017a87ca1437af57c4cbbd11ddf4d5e032cff))
+
+- **glossary**: Make glossary detector line length dependent
+  ([`0e1c1a8`](https://github.com/anaticulae/capita/commit/0e1c1a8bd3da383926bbefd33fb67623b6d98480))
+
+- **glossary**: Make glossary rate page number dependent
+  ([`447ef3b`](https://github.com/anaticulae/capita/commit/447ef3bc0e862c4ee35d0e93d8f2bd4178e59e0f))
+
+- **glossary**: Skip page with too many lines as glossary
+  ([`1f340a9`](https://github.com/anaticulae/capita/commit/1f340a9b9b4802c9e00a9b3edc4684d0041b6d5d))
+
+- **spa**: Pass page count if required
+  ([`e1b7e25`](https://github.com/anaticulae/capita/commit/e1b7e259c82ff2de526ca9614cbc0b71409aa8cd))
+
+- **special**: Increase logging
+  ([`a946aa9`](https://github.com/anaticulae/capita/commit/a946aa93bc4824f39b2017f13b5a265ef0a1453c))
+
+### Refactoring
+
+- **glossary**: Fix var name
+  ([`42f383e`](https://github.com/anaticulae/capita/commit/42f383e0b145fc34ba5006d0b9fc34c9c27d3c83))
+
+- **glossary**: Simplify code
+  ([`fc2ef14`](https://github.com/anaticulae/capita/commit/fc2ef14150f209c249d5a7240d3ca2f4d722dc8d))
+
+- **spa**: Simplify loader
+  ([`f0437d0`](https://github.com/anaticulae/capita/commit/f0437d05c314c471031b025ee70bfe4e9d137fae))
+
+- **special**: Extract specialized pattern first
+  ([`40de02b`](https://github.com/anaticulae/capita/commit/40de02bc2c8202014a7913185059d7180794a07e))
+
+- **style**: Shorten naming
+  ([`93fb534`](https://github.com/anaticulae/capita/commit/93fb534ae76dbd3221d8291f9398c4de31b0bba3))
+
+### Testing
+
+- **fix**: Adjust file name
+  ([`5ddb3af`](https://github.com/anaticulae/capita/commit/5ddb3afb58c0681d642cde763a2fbb370f910c41))
+
+- **fix**: Fix pages selection
+  ([`d256769`](https://github.com/anaticulae/capita/commit/d25676989438475f1db3ce13cfd17eccce666682))
+
+- **glossary**: Add bachelor076 regression test
+  ([`811a00a`](https://github.com/anaticulae/capita/commit/811a00a7dcf6ca3044727973609b6c2a1c53eeba))
+
+- **glossary**: Add regression test
+  ([`9a833a8`](https://github.com/anaticulae/capita/commit/9a833a86ae2d030d338e5333109cd51527c54750))
+
+- **glossary**: Add regression test diss287
+  ([`2616b1f`](https://github.com/anaticulae/capita/commit/2616b1f75a896fda0c179d359cd4b5f5a804f309))
+
+- **move**: Move tests from cli
+  ([`55235c7`](https://github.com/anaticulae/capita/commit/55235c775d9567c8594666b88b45535c1b017f6f))
+
+- **profile**: Profile section run
+  ([`dee486f`](https://github.com/anaticulae/capita/commit/dee486fe3a474d82f4c14a492716402c32a94e33))
+
+- **refactor**: Format code
+  ([`4b3ca77`](https://github.com/anaticulae/capita/commit/4b3ca77934b96db48f7b949a30a1cf74ef1059b6))
+
+- **refactor**: Improve test order
+  ([`e15cdcb`](https://github.com/anaticulae/capita/commit/e15cdcb57cd7e6800bc749bbba188f69c156cb81))
+
+- **refactor**: Parametrize glossary
+  ([`985f53f`](https://github.com/anaticulae/capita/commit/985f53fbf6475ad7082832f737af08dde46513aa))
+
+- **refactor**: Simplify code
+  ([`bdde515`](https://github.com/anaticulae/capita/commit/bdde515fd472faf41e06e1a08808456020b312e4))
+
+- **refactor**: Simplify tests
+  ([`100e5cd`](https://github.com/anaticulae/capita/commit/100e5cdbc17836c03d372fd4b2b1bf19e1f65b60))
+
+
+## v1.17.0 (2022-02-10)
+
+### Bug Fixes
+
+- **abstract**: Ensure that pdfinfo is optional
+  ([`3bd83de`](https://github.com/anaticulae/capita/commit/3bd83de000090f7218277a7573205e878e6b5f19))
+
+- **glossary**: The headline is not enough
+  ([`4b6a43d`](https://github.com/anaticulae/capita/commit/4b6a43df8328fe42d4718d682a55771f3fd8e7fe))
+
+- **section**: Do not detect MainPart before toc
+  ([`1fc6a75`](https://github.com/anaticulae/capita/commit/1fc6a75c70b051f66030e3a6084aa057ff607769))
+
+### Chores
+
+- **project**: Cleanup changelog
+  ([`8ad7bc7`](https://github.com/anaticulae/capita/commit/8ad7bc71f2e8c6bb9d0f98f0aab2805dfc15b275))
+
+- **requirements**: Upgrade requirements.txt
+  ([`3c22908`](https://github.com/anaticulae/capita/commit/3c22908c7b5ea9007dc1a19ca664e4031d495dc8))
+
+- **test**: Keep dev build fast
+  ([`955875b`](https://github.com/anaticulae/capita/commit/955875bcce43b90568a7edd0e5cff80fb98b03a2))
+
+### Code Style
+
+- **import**: Organize imports
+  ([`81c2a61`](https://github.com/anaticulae/capita/commit/81c2a61dbc32cc24e33cd33b8d86b90baee9170a))
 
 ### Documentation
 
-* adjust modules path (e96692b38966)
+- **fix**: Adjust modules path
+  ([`e96692b`](https://github.com/anaticulae/capita/commit/e96692b3896691269ec33a45767e4e354f268329))
 
-## v1.16.0
+### Features
 
-### Feature
+- **section**: Add method to determine range of section
+  ([`b364e1a`](https://github.com/anaticulae/capita/commit/b364e1a5272dfbdfbcf954ebb0d8d7c1ec08d449))
 
-* do not detect low dens double column as paper (d9ffe2c4b73a)
-* add global page numbers (606b91bd3a46)
-* add page generator (387693e85743)
+- **special**: Extend pattern list
+  ([`0febca4`](https://github.com/anaticulae/capita/commit/0febca416f05cf23e9e529d91cb0b156cd0edda6))
 
-### Fix
+- **special**: Increase debugging information
+  ([`f3ab4a7`](https://github.com/anaticulae/capita/commit/f3ab4a78fd5df6583181a8fcf1721f0a68a23208))
 
-* do not always detect bib if bib headline is on page (85c1e94c4132)
+- **special**: Reduce amount of required patterns
+  ([`9902d57`](https://github.com/anaticulae/capita/commit/9902d57b0cfbdf74ef42956a711b02479b8faf34))
 
-## v1.15.0
+### Refactoring
 
-### Feature
+- **section**: Clarify code
+  ([`808a7f3`](https://github.com/anaticulae/capita/commit/808a7f3778d96c98a89a7eaaaf5045b6854e7704))
 
-* use shortcut as error title (639d4bda950b)
-* use table strategy to detect index page (af731ff2dac4)
+- **section**: Improve code order
+  ([`66bf6f4`](https://github.com/anaticulae/capita/commit/66bf6f4c2d3a56a31eff4ff2927cfc4b622f90fe))
 
-### Fix
+### Testing
 
-* adjust debug message (e529bf713691)
-* ensure that empty page is skipped correctly (0929861e218d)
+- **fix**: Add missing resource
+  ([`8ecff0a`](https://github.com/anaticulae/capita/commit/8ecff0a1539f940d3fa2ed1452c9fff0bdc18d1c))
 
-### Documentation
+- **refactor**: Clarify naming
+  ([`135ea00`](https://github.com/anaticulae/capita/commit/135ea008cf7fb17455f08725331f683b15526d4c))
 
-* add module documentation (798a1b98c2cb)
+- **refactor**: Simplify code
+  ([`50b0e55`](https://github.com/anaticulae/capita/commit/50b0e55ad7ef2d681527347a693729e39026e9fd))
 
-## v1.14.2
+- **validate**: Extend debugging information
+  ([`5290127`](https://github.com/anaticulae/capita/commit/5290127e81e83bd4a277332231979c7a73c958d6))
 
-### Feature
 
-* add hint that merging does not work (3c0fe46bf641)
-* skip very short pages to improve extraction result (096935d25e18)
+## v1.16.0 (2022-02-09)
 
-## v1.14.1
+### Bug Fixes
 
-### Feature
+- **special**: Do not always detect bib if bib headline is on page
+  ([`85c1e94`](https://github.com/anaticulae/capita/commit/85c1e94c4132050b4c5b5eb5428b1e4a1eb10249))
 
-* allow abstract at the end of the document (3a5e5b9c90ca)
+### Chores
 
-### Fix
+- **requirements**: Upgrade requirements.txt
+  ([`0069ab3`](https://github.com/anaticulae/capita/commit/0069ab3d018a955f07b971171f4811a963ae31ed))
 
-* skip false detected empty tables (0aaf3208ea00)
+### Features
 
-## v1.14.0
+- **paper**: Add global page numbers
+  ([`606b91b`](https://github.com/anaticulae/capita/commit/606b91bd3a4692c93269acb2df619d5a90d4d43c))
 
-### Feature
+- **paper**: Add page generator
+  ([`387693e`](https://github.com/anaticulae/capita/commit/387693e85743611cb11e19daf93e770d6f79ca06))
 
-* increase debugging information (0b92ede73b2d)
-* add volume pattern to detect more pattern (4dd356f8c4e0)
-* enable profiling (6e4d989b9d7f)
-* determine document language (08c9890b7dc6)
-* skip pages with too many content as title pages (473c48629ab7)
-* increase number of words inside a headline (e411004864cd)
-* shrink pages to given pages (a2a9fea25b8e)
+- **paper**: Do not detect low dens double column as paper
+  ([`d9ffe2c`](https://github.com/anaticulae/capita/commit/d9ffe2c4b73a38955d0dff3ce8e7185003a9a5b9))
 
-### Fix
+### Refactoring
 
-* make junk remover less strict (1f27d9d74fda)
-* remove duplication to reduce junk detection (254d95d7acc8)
-* do not split hyperlink as germania sentences (3a17bba46e11)
+- **paper**: Clarify code
+  ([`6b7768f`](https://github.com/anaticulae/capita/commit/6b7768f1734473fff8dbc778e81d8b735683822a))
 
-## v1.13.0
+- **paper**: Use const
+  ([`b550924`](https://github.com/anaticulae/capita/commit/b550924a514c608c2f8afa54666b003cf87f04d6))
 
-### Feature
+### Testing
 
-* line count based min marker rate (12ab98b178c8)
-* skip potential chapter with too few text lines at start (5be931c89755)
-* add chapter support for line with a lot spaces (85fc93e7d9b2)
-* use headline list as backup strategy (ca2a967932af)
-* disable pattern approach on too many page detections (357d9ab6e98b)
-* shrink loaded ptn to possible toc ranges (c991eaa642c2)
-* add method to shrink pages (d61033a3ed1f)
-* add backup strategy to determine headlines (c4006655459c)
-* extend toc detector (9ba5f21803b2)
+- **paper**: Do not detect index as paper
+  ([`ede2d8e`](https://github.com/anaticulae/capita/commit/ede2d8e5a44ba25d00f820364472fb09b312baef))
 
-### Fix
 
-* skip multiple sections for abbr and symbol table (eb345d48637e)
-* skip abbr headline inside table of content (816f190888e3)
+## v1.15.0 (2022-02-07)
 
-### Documentation
+### Bug Fixes
 
-* Happy New Year! (99be6920f93d)
+- **debug**: Adjust debug message
+  ([`e529bf7`](https://github.com/anaticulae/capita/commit/e529bf713691dd21b1b7e08cfa4f6c1bbeeed5ee))
 
-## v1.12.3
+- **whitepage**: Ensure that empty page is skipped correctly
+  ([`0929861`](https://github.com/anaticulae/capita/commit/0929861e218d2114c162399128b618e3100a984b))
 
-### Feature
+### Chores
 
-* extend figure table detector (6a94aa57cb72)
+- **requirements**: Upgrade requirements.txt
+  ([`1ee653d`](https://github.com/anaticulae/capita/commit/1ee653d55a908988c065dbc0d894ac3a69ad4b50))
 
-### Fix
+- **test**: Keep longrun fast
+  ([`180eead`](https://github.com/anaticulae/capita/commit/180eead823e6430ba8a75c55ad39f48ed6888041))
 
-* do not skip single char headlines (82d2606c7c17)
+- **test**: Keep longrun fast
+  ([`3d379d7`](https://github.com/anaticulae/capita/commit/3d379d7e839e3bb8103ebd341fff7da7d3438ff2))
 
-## v1.12.2
+### Code Style
 
-### Feature
-
-* move headlines from elementae (367ac63e8174)
-* add literature headline (129cc6113c35)
-
-## v1.12.1
-
-### Fix
-
-* remove magic value (ab51fc17cd5c)
-* adjust number rate computation (9a76ae706a79)
-
-## v1.12.0
-
-### Feature
-
-* add modifiable holy values (69555779a2c9)
-* introduce configos holy values (8cb6c5e077b4)
-
-### Fix
-
-* adjust bug in feature detection (a542e1da1701)
-
-## v1.11.1
-
-### Feature
-
-* change to appendix if glossary is detected (bd1879436fcb)
-
-### Fix
-
-* make headline skip size dependent (e7c700688e97)
-
-## v1.11.0
-
-### Feature
-
-* add list of headlines (401ef4e91258)
-* improve starts with check (ee1cc025cc6e)
-* extend bib headlines (f3692565d4e0)
-
-## v1.10.0
-
-### Feature
-
-* connect glossary step (1c3f7360b99b)
-* add glossary detector step (888d5dece9fd)
-* add more invalid bib chapter headlines (0e3209dd7332)
-
-### Fix
-
-* skip page with very low matching (8c7b2046b1c6)
-* its a single file not a pattern (ca3cb7ea0477)
+- **format**: Format code
+  ([`d332d9a`](https://github.com/anaticulae/capita/commit/d332d9ad8cb3f91cf711dd39927530160925bc66))
 
 ### Documentation
 
-* clarify code (90bbb53a4ca0)
+- **index**: Add module documentation
+  ([`798a1b9`](https://github.com/anaticulae/capita/commit/798a1b98c2cbe3d423dba73f5b06cbebb16d0cba))
 
-## v1.9.0
+### Features
 
-### Feature
+- **index**: Use table strategy to detect index page
+  ([`af731ff`](https://github.com/anaticulae/capita/commit/af731ff2dac4ce4b58b0237394a1764ccadbe3de))
 
-* add docinfo step (657bb865dc41)
+- **table**: Use shortcut as error title
+  ([`639d4bd`](https://github.com/anaticulae/capita/commit/639d4bda950ba1ff92ee7580167f569271faa6fa))
 
-## v1.8.0
+### Refactoring
 
-### Feature
+- **index**: Format regex
+  ([`ec7c413`](https://github.com/anaticulae/capita/commit/ec7c413bbba0575363085bbf18a7c0b0145fa1a6))
 
-* add white space rate (8607fab04d67)
-* introduce max level to shrink headline extraction (fd1f2e2ba7ab)
-* adjust valid chapter area (f021db535edf)
+- **index**: Improve naming
+  ([`70c0111`](https://github.com/anaticulae/capita/commit/70c0111080760016b23f94c6c7a48c00bbb3a67b))
 
-### Fix
+- **strategy**: Move table strategy into separate module
+  ([`e519dfd`](https://github.com/anaticulae/capita/commit/e519dfd26ecbe6bfa018ceba446479e0183cbcfe))
 
-* skip white spaced abbr page (272f0b1732e0)
-* use maxlevel to reduce false positive extraction (e28f01c9c93e)
+### Testing
 
-## v1.7.0
+- **index**: Adjust unit test
+  ([`06b1a96`](https://github.com/anaticulae/capita/commit/06b1a96d457a29d7239a8cad724e0eee71887d62))
 
-### Feature
+- **index**: Validate book173
+  ([`bc157f1`](https://github.com/anaticulae/capita/commit/bc157f19649690229fa9ff5d4a4786e812c1629c))
 
-* improve section merger (081ed17049e0)
-* extend valid headlines list (3d8d395b0f0d)
+- **refactor**: Clarify naming
+  ([`674d27d`](https://github.com/anaticulae/capita/commit/674d27dd15508be1991c77fe4b31f4ad39624c04))
+
+
+## v1.14.2 (2022-02-02)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e175a08`](https://github.com/anaticulae/capita/commit/e175a085bf620d3b33180d2ca3e2531c48f241cb))
+
+- **resources**: Extend test data generator
+  ([`988de43`](https://github.com/anaticulae/capita/commit/988de43218d5839bfdb1e0e295c233f47932d065))
+
+### Code Style
+
+- **format**: Format docs
+  ([`2597718`](https://github.com/anaticulae/capita/commit/25977184d2cff839d2a620040519b3bf549dfd68))
+
+### Features
+
+- **table**: Add hint that merging does not work
+  ([`3c0fe46`](https://github.com/anaticulae/capita/commit/3c0fe46bf641982601d9a5acf03386f2baac3604))
+
+- **table**: Skip very short pages to improve extraction result
+  ([`096935d`](https://github.com/anaticulae/capita/commit/096935d25e18ceaa5a98af3b8180c5d5045c1f86))
+
+### Testing
+
+- **toc**: Validate book173 toc section
+  ([`440f172`](https://github.com/anaticulae/capita/commit/440f172ffa1d95dc2580bb778d5e985686efee71))
+
+
+## v1.14.1 (2022-01-28)
+
+### Bug Fixes
+
+- **abbr**: Skip false detected empty tables
+  ([`0aaf320`](https://github.com/anaticulae/capita/commit/0aaf3208ea00ce14a28571f7a53da1efa1f6d2b3))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a2d0dce`](https://github.com/anaticulae/capita/commit/a2d0dce7f1f65ead13fab51f70b9a8776c9748b8))
+
+### Features
+
+- **attract**: Allow abstract at the end of the document
+  ([`3a5e5b9`](https://github.com/anaticulae/capita/commit/3a5e5b9c90ca2f42505c074a17e239c168439511))
+
+### Testing
+
+- **abbr**: Do not detect any abbr table master193
+  ([`7da0354`](https://github.com/anaticulae/capita/commit/7da0354d5f7b018193a810e1298ae30b662dd054))
+
+
+## v1.14.0 (2022-01-18)
+
+### Bug Fixes
+
+- **bib**: Remove duplication to reduce junk detection
+  ([`254d95d`](https://github.com/anaticulae/capita/commit/254d95d7acc8d94b4b9665d526f08e738bd6e91e))
+
+- **special**: Do not split hyperlink as german sentences
+  ([`3a17bba`](https://github.com/anaticulae/capita/commit/3a17bba46e1185a62bb8a98c65844e8897edd399))
+
+- **special**: Make junk remover less strict
+  ([`1f27d9d`](https://github.com/anaticulae/capita/commit/1f27d9d74fda76c015135759795dda54c7b8acc3))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b0a9148`](https://github.com/anaticulae/capita/commit/b0a91484ae33bfb890eab1c30657c0eb8b34c65d))
+
+- **resources**: Extend test data generator
+  ([`91779d4`](https://github.com/anaticulae/capita/commit/91779d4e3558d0c7f6f4634397920ccb07642127))
+
+- **resources**: Extend test data generator
+  ([`86cc92d`](https://github.com/anaticulae/capita/commit/86cc92d155e938e8ee0b9ada7a2576cbf2edec08))
+
+- **test**: Keep dev build fast
+  ([`866eb8d`](https://github.com/anaticulae/capita/commit/866eb8d1aa63040c9c40cbf323f1e2b0afafdb67))
+
+### Features
+
+- **abstract**: Shrink pages to given pages
+  ([`a2a9fea`](https://github.com/anaticulae/capita/commit/a2a9fea25b8ea89dbdfde85bb990f66d5a27fb5f))
+
+- **cli**: Enable profiling
+  ([`6e4d989`](https://github.com/anaticulae/capita/commit/6e4d989b9d7fdc6fa02833794cb49e97b04a2dfe))
+
+- **docinfo**: Determine document language
+  ([`08c9890`](https://github.com/anaticulae/capita/commit/08c9890b7dc6bf6ee1dfc63d1336f5a95a50d215))
+
+- **headlines**: Increase number of words inside a headline
+  ([`e411004`](https://github.com/anaticulae/capita/commit/e411004864cd7bb8daba00d4e5942fec2ea4ec1b))
+
+- **special**: Add volume pattern to detect more pattern
+  ([`4dd356f`](https://github.com/anaticulae/capita/commit/4dd356f8c4e014c3837e434a7f20aede1965d948))
+
+- **special**: Increase debugging information
+  ([`0b92ede`](https://github.com/anaticulae/capita/commit/0b92ede73b2d2dc0c24302db9d8d5157761945f4))
+
+- **title**: Skip pages with too many content as title pages
+  ([`473c486`](https://github.com/anaticulae/capita/commit/473c48629ab7be48e421eacca4f9a9878e75584f))
+
+### Refactoring
+
+- **title**: Simplify code
+  ([`aa07ead`](https://github.com/anaticulae/capita/commit/aa07ead0b5055c0cbdfd3106554dffd177a1c5ec))
+
+### Testing
+
+- **abstract**: Validate master049
+  ([`773471d`](https://github.com/anaticulae/capita/commit/773471d13b06888d1573847cb1f4422f9453fdcb))
+
+- **bib**: Add regression test to reduce bib detection
+  ([`2bcd5d1`](https://github.com/anaticulae/capita/commit/2bcd5d1ffa409a8368d7cc06199bfba3e6331efc))
+
+- **bib**: Validate master193 bib
+  ([`4b2a125`](https://github.com/anaticulae/capita/commit/4b2a125d3f0411596c2455222a38e0f850fb2440))
+
+- **docinfo**: Add test to verify language detection
+  ([`8d9abe0`](https://github.com/anaticulae/capita/commit/8d9abe08fe2cc68c68542f0a0b554f26a9436995))
+
+- **refactor**: Increase code re usability
+  ([`72b1132`](https://github.com/anaticulae/capita/commit/72b1132ea0f23762678eb602a7c2152b8497503a))
+
+- **rename**: Fix test name
+  ([`6047c35`](https://github.com/anaticulae/capita/commit/6047c35b654f37aa5b5ddc8f6b11ed7700a3f361))
+
+- **rename**: Fix test name
+  ([`0fd60ac`](https://github.com/anaticulae/capita/commit/0fd60ac319b265aac12ede2c4a37f36e6558d33d))
+
+- **sections**: Make test more verbose
+  ([`25dd690`](https://github.com/anaticulae/capita/commit/25dd690aea6c162b51d6f7789843a7e596dd5cde))
+
+- **validate**: Validate sections master193
+  ([`d2202ed`](https://github.com/anaticulae/capita/commit/d2202ed447b20af8881e4237b62f29d5038fa777))
+
+
+## v1.13.0 (2022-01-01)
+
+### Bug Fixes
+
+- **abbr**: Skip abbr headline inside table of content
+  ([`816f190`](https://github.com/anaticulae/capita/commit/816f190888e3a1122ef41efb40e956944ee08127))
+
+- **section**: Skip multiple sections for abbr and symbol table
+  ([`eb345d4`](https://github.com/anaticulae/capita/commit/eb345d48637e94c1f7106bdf2bcf7a037b336875))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3d67fe4`](https://github.com/anaticulae/capita/commit/3d67fe4fefc86f12faa1ab63a33ed97058f6c110))
+
+- **resources**: Extend test data generator
+  ([`7d98ae2`](https://github.com/anaticulae/capita/commit/7d98ae28205f6a3813c60c98e53cd1b9be24999b))
+
+- **resources**: Extend test data generator
+  ([`929c747`](https://github.com/anaticulae/capita/commit/929c74760aca05add2137091449a34a4675de7a4))
 
 ### Documentation
 
-* fix logic error (45ebed986391)
+- **copyright**: Happy New Year!
+  ([`99be692`](https://github.com/anaticulae/capita/commit/99be6920f93d613e93bb1c81f7ed80ce293d2b49))
 
-## v1.6.1
+### Features
 
-### Fix
+- **bib**: Line count based min marker rate
+  ([`12ab98b`](https://github.com/anaticulae/capita/commit/12ab98b178c8e9ec9b79de6d7bf86142f232b3cc))
 
-* convert path newlines (a1afc6176cae)
-* skip empty outline element (6df348c266f9)
+- **chapter**: Add chapter support for line with a lot spaces
+  ([`85fc93e`](https://github.com/anaticulae/capita/commit/85fc93e7d9b2091e866a7b57c67d74b6f2eb279b))
 
-## v1.6.0
+- **chapter**: Skip potential chapter with too few text lines at start
+  ([`5be931c`](https://github.com/anaticulae/capita/commit/5be931c89755702ee5aad0a7c6df3a228f040d70))
 
-### Feature
+- **chapter**: Use headline list as backup strategy
+  ([`ca2a967`](https://github.com/anaticulae/capita/commit/ca2a967932af07950f1a2df28ac3bcfba6c70a5b))
 
-* skip potential headlines with very low char rate (5d8b38377710)
-* extend valid chapter headlines (d0c98dea2552)
-* add more valid headlines (237c55054750)
-* use hyperlink as another marker (f4c20e225dbf)
-* add acknowledge section detection step (a80690ae5fc7)
+- **headline**: Add backup strategy to determine headlines
+  ([`c400665`](https://github.com/anaticulae/capita/commit/c4006655459cfdabdfa71b494abf93759ce3aa46))
 
-### Fix
+- **special**: Disable pattern approach on too many page detections
+  ([`357d9ab`](https://github.com/anaticulae/capita/commit/357d9ab6e98b391097c5b523016fd4e9f7944085))
 
-* copy is not required here (5c16b7bf5bac)
-* do not create multiple section on CitePart (afbe13d5ee32)
+- **toc**: Add method to shrink pages
+  ([`d61033a`](https://github.com/anaticulae/capita/commit/d61033a3ed1f0deea8584248ce82fa11c31547d2))
+
+- **toc**: Extend toc detector
+  ([`9ba5f21`](https://github.com/anaticulae/capita/commit/9ba5f21803b268791c10b2ea9a2ed7e671a7bdd0))
+
+- **toc**: Shrink loaded ptn to possible toc ranges
+  ([`c991eaa`](https://github.com/anaticulae/capita/commit/c991eaa642c27840d8ca48ddcbd70516e44c5758))
+
+### Refactoring
+
+- **bib**: Move special pattern to separate method
+  ([`3d80a7f`](https://github.com/anaticulae/capita/commit/3d80a7f555e648f1fadae4817545b8e0d0c9148a))
+
+- **bib**: Reduce complexity
+  ([`63c2a36`](https://github.com/anaticulae/capita/commit/63c2a36f82a2b9de6b3d5108ab20bf8ce5934152))
+
+- **chapter**: Reduce complexity
+  ([`5e06daf`](https://github.com/anaticulae/capita/commit/5e06dafa24b561abb5c9b821772028c51e5b386c))
+
+- **section**: Move to separate method
+  ([`f3e4cb3`](https://github.com/anaticulae/capita/commit/f3e4cb33301bd11f1ced4898df1d87448cc547a1))
+
+- **todo**: Solve todo after upgrading configo
+  ([`246adab`](https://github.com/anaticulae/capita/commit/246adab4bd0f941c47a732d492e1c0f6c34fa524))
+
+### Testing
+
+- **abbr**: Validate diss406
+  ([`155e0e6`](https://github.com/anaticulae/capita/commit/155e0e6b3e465082a3a968fd1adfe44f91e5d36b))
+
+- **bib**: Enable xfailed test
+  ([`43e8532`](https://github.com/anaticulae/capita/commit/43e85325e6c53e2107ce49904861b76e5c25fcad))
+
+- **bib**: Validate diss406 bibs
+  ([`9cee133`](https://github.com/anaticulae/capita/commit/9cee133e5f33f7394d92635914cf39e829815492))
+
+- **chapter**: Validate diss406 chapter
+  ([`9863288`](https://github.com/anaticulae/capita/commit/98632889cc1f80ea1cf0a4bc1d9edd4afe81ee53))
+
+- **section**: Validate diss406 sections
+  ([`0f67027`](https://github.com/anaticulae/capita/commit/0f670277084731944fc079ce73e9e8131578ff1f))
+
+- **toc**: Validate diss406 toc
+  ([`1231be2`](https://github.com/anaticulae/capita/commit/1231be244388a21074d92ef3059c7aba83d5a492))
+
+
+## v1.12.3 (2021-12-28)
+
+### Bug Fixes
+
+- **headline**: Do not skip single char headlines
+  ([`82d2606`](https://github.com/anaticulae/capita/commit/82d2606c7c17a1bc3e37c13e294ada61419201bc))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`9b8fa7b`](https://github.com/anaticulae/capita/commit/9b8fa7bd8cfb5f47f9db697bc61949a6c02167f8))
+
+- **resources**: Extend test data generator
+  ([`c6144dd`](https://github.com/anaticulae/capita/commit/c6144dd9473a702a0b56379d63686b1189dad652))
+
+### Features
+
+- **figure**: Extend figure table detector
+  ([`6a94aa5`](https://github.com/anaticulae/capita/commit/6a94aa57cb72ce78be94fefd66a4f0f7f4be7251))
+
+### Refactoring
+
+- **legal**: Replace with texmex code
+  ([`ddca7c4`](https://github.com/anaticulae/capita/commit/ddca7c458fa8472030c3c495de51a7fe3a3d7348))
+
+### Testing
+
+- **rename**: Rename validation file
+  ([`b77d0d4`](https://github.com/anaticulae/capita/commit/b77d0d455b8f8bb976740e9de8354a3a3f7c3f9f))
+
+- **validate**: Validate diss172 sections
+  ([`ff48b4e`](https://github.com/anaticulae/capita/commit/ff48b4e58f00c2cdd1c0fbda487c3aae0796a661))
+
+
+## v1.12.2 (2021-12-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7963277`](https://github.com/anaticulae/capita/commit/79632770afced8049262b53fd0c60c1e2841b6d9))
+
+### Features
+
+- **headlines**: Add literature headline
+  ([`129cc61`](https://github.com/anaticulae/capita/commit/129cc6113c35611cbc848f50274c43bd5348e53b))
+
+- **headlines**: Move headlines from elements
+  ([`367ac63`](https://github.com/anaticulae/capita/commit/367ac63e8174d73b62a4786cc9d8e8b9eed57e8b))
+
+### Refactoring
+
+- **bib**: Use elements list
+  ([`7ee391b`](https://github.com/anaticulae/capita/commit/7ee391b6cfe32cbf01a2ad42d1f1bd3b25b04d66))
+
+- **headlines**: Replace with elements code
+  ([`0838bf9`](https://github.com/anaticulae/capita/commit/0838bf9901b59aba6754c17d88a0d5cbd740c65c))
+
+### Testing
+
+- **refactor**: Clarify naming
+  ([`95d9060`](https://github.com/anaticulae/capita/commit/95d9060e9738e3ada3bf418c3a4ab827c9329850))
+
+- **style**: Format test code
+  ([`16f32a1`](https://github.com/anaticulae/capita/commit/16f32a1b5e07d47fd50f5577efd37903b493eb50))
+
+
+## v1.12.1 (2021-11-11)
+
+### Bug Fixes
+
+- **abbr**: Adjust number rate computation
+  ([`9a76ae7`](https://github.com/anaticulae/capita/commit/9a76ae706a79eeb938cd8e8b1dcecea46d0dab2a))
+
+- **cli**: Remove magic value
+  ([`ab51fc1`](https://github.com/anaticulae/capita/commit/ab51fc17cd5cc7a319e89bc91c5721fc9c2dd584))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`11532d9`](https://github.com/anaticulae/capita/commit/11532d97c70d628b67aed810d54683adc09bdf20))
+
+- **requirements**: Upgrade requirements.txt
+  ([`754588c`](https://github.com/anaticulae/capita/commit/754588ce52da03b260b6a57d76a75fac460ff556))
+
+- **resources**: Extend test data generator
+  ([`e0b196d`](https://github.com/anaticulae/capita/commit/e0b196d30202fa8417051fe8ac0c149e82a71f66))
+
+### Testing
+
+- **abbr**: Add diss167 regression test
+  ([`7f7e71d`](https://github.com/anaticulae/capita/commit/7f7e71ddb92b61249ccc3d2d1eceb40b51c7f122))
+
+
+## v1.12.0 (2021-10-18)
+
+### Bug Fixes
+
+- **multi**: Adjust bug in feature detection
+  ([`a542e1d`](https://github.com/anaticulae/capita/commit/a542e1da1701cbf53d6220f5ab73bc5a5f08bbcc))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`809495a`](https://github.com/anaticulae/capita/commit/809495a5c45b535ea72d149a927e946cf642c460))
+
+- **test**: Cleanup test data generator
+  ([`331e1a7`](https://github.com/anaticulae/capita/commit/331e1a70081c9cdf8e116affe69f021325f0ce32))
+
+- **test**: Keep dev build fast
+  ([`9092ea3`](https://github.com/anaticulae/capita/commit/9092ea31ff6f49379354e3b7548317343f505e92))
+
+### Features
+
+- **hv**: Add modifiable holy values
+  ([`6955577`](https://github.com/anaticulae/capita/commit/69555779a2c93fe4a44e5cc76e74518b4a4bcddb))
+
+- **hv**: Introduce configo holy values
+  ([`8cb6c5e`](https://github.com/anaticulae/capita/commit/8cb6c5e077b43720cfc916aca9ea9193e7af7ae7))
+
+### Refactoring
+
+- **hv**: Clarify hv access
+  ([`9cd6064`](https://github.com/anaticulae/capita/commit/9cd6064244e45dfab0ecab0c0ddb4a8cdee7858f))
+
+- **rename**: Clarify naming
+  ([`26e309d`](https://github.com/anaticulae/capita/commit/26e309d0f83de368a90dd4e96717fa3f9885644f))
+
+- **style**: Clarify naming
+  ([`3bfdb3a`](https://github.com/anaticulae/capita/commit/3bfdb3a6ba9dc9570702bc390f52f830e01abd6d))
+
+### Testing
+
+- **adjust**: Adjust test after detecting glossary as appendix
+  ([`8600ec0`](https://github.com/anaticulae/capita/commit/8600ec059de4ba7a3ec2c07163c611ab145e0e62))
+
+- **fix**: Adjust unit test
+  ([`5878b98`](https://github.com/anaticulae/capita/commit/5878b9815ad155863c1e215dff1d7b2b6ebe9382))
+
+- **paper**: Skip test if resource is not generated
+  ([`6123e95`](https://github.com/anaticulae/capita/commit/6123e954b0bfe3ba139237952b4542002dcbfd73))
+
+
+## v1.11.1 (2021-10-05)
+
+### Bug Fixes
+
+- **headline**: Make headline skip size dependent
+  ([`e7c7006`](https://github.com/anaticulae/capita/commit/e7c700688e9705e068e5a0059b34b9b09cd02990))
+
+### Features
+
+- **section**: Change to appendix if glossary is detected
+  ([`bd18794`](https://github.com/anaticulae/capita/commit/bd1879436fcbcc59a2d1f0a488e2834624961307))
+
+
+## v1.11.0 (2021-10-05)
+
+### Features
+
+- **bib**: Extend bib headlines
+  ([`f369256`](https://github.com/anaticulae/capita/commit/f3692565d4e0496856c8a79b6e524ef2b302c10c))
+
+- **chapter**: Improve starts with check
+  ([`ee1cc02`](https://github.com/anaticulae/capita/commit/ee1cc025cc6e92ff82900e9cc4a9186b26b23de5))
+
+- **headlines**: Add list of headlines
+  ([`401ef4e`](https://github.com/anaticulae/capita/commit/401ef4e91258f2c6e86f0f696c5223381d22d0d0))
+
+### Refactoring
+
+- **chapter**: Replace with improved headlines list
+  ([`7793223`](https://github.com/anaticulae/capita/commit/779322371ae7b438ed0cf5123fd1be63d3b79fd7))
+
+### Testing
+
+- **chapter**: Adjust unit test
+  ([`1d8d3f2`](https://github.com/anaticulae/capita/commit/1d8d3f2cbfd6c7f06136fdf58fff32a63f76670f))
+
+
+## v1.10.0 (2021-10-04)
+
+### Bug Fixes
+
+- **cli**: Its a single file not a pattern
+  ([`ca3cb7e`](https://github.com/anaticulae/capita/commit/ca3cb7ea0477ecec4ee9707aa9594e2cf7422e88))
+
+- **glossary**: Skip page with very low matching
+  ([`8c7b204`](https://github.com/anaticulae/capita/commit/8c7b2046b1c6617209cf53f33c1bcc1806047931))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`fb4d15a`](https://github.com/anaticulae/capita/commit/fb4d15a3a18fe0427fd11bfb3be42b8cd633abbb))
+
+- **resources**: Extend test data generator
+  ([`9aee30c`](https://github.com/anaticulae/capita/commit/9aee30cf55f73d0938a9f698b5a5d33d1c32d3fe))
+
+- **resources**: Shrink test data generator
+  ([`d5c19f4`](https://github.com/anaticulae/capita/commit/d5c19f497892aacd4c774396d4f58efc4f3d73cd))
 
 ### Documentation
 
-* extend interface documentation (6a3c90ea2e47)
+- **double**: Clarify code
+  ([`90bbb53`](https://github.com/anaticulae/capita/commit/90bbb53a4ca0cf2993c0bea6d0216db2287985d5))
 
-## v1.5.0
+### Features
 
-### Feature
+- **chapter**: Add more invalid bib chapter headlines
+  ([`0e3209d`](https://github.com/anaticulae/capita/commit/0e3209dd7332875735dbaf2c2a0d98b413246d4c))
 
-* disable top search restriction to detect more tables (e29141a5dfc9)
-* add valid table to tabletable detector (1b36b61aa937)
-* add option to disable top search (e44804f14ee0)
-* extend no headline list (8014fe277c64)
-* improve symbol headline detector (927e69b0199a)
-* add English list of figures pattern (495d091ca2e6)
-* add more valid headlines (8b18287396cb)
-* use more modern approach (54644019d430)
-* extend list of valid headlines (75d075e721b0)
-* extend list of valid headlines (a37c62df8f9c)
-* add another headline marker (6c22367ec943)
-* replace with content navigator (23fff92ae9ca)
+- **section**: Connect glossary step
+  ([`1c3f736`](https://github.com/anaticulae/capita/commit/1c3f7360b99bad4b44edc42a3446ec3779d3c48f))
 
-### Fix
+- **sections**: Add glossary detector step
+  ([`888d5de`](https://github.com/anaticulae/capita/commit/888d5dece9fd29398892fa73f75e2f094ca59b62))
 
-* strip first outline if necessary (bac329dd8f97)
-* increase headline word count (499981beda7c)
-* skip references as chapter (8948dbd50014)
+### Refactoring
 
-## v1.4.0
+- **bib**: Move bib headlines to better place
+  ([`6878857`](https://github.com/anaticulae/capita/commit/6878857b7418dba220a5a2dda505002264947e46))
 
-### Feature
+### Testing
 
-* add tolerance in bib grouper (fee6190ce9d1)
-* improve main merger (fc257175cbfd)
-* introduce layouta min height to avoid (0482b76cff18)
-* add option to write images to a common folder (360b53832a82)
-* introduce CiteContent (5c2b3b231604)
-* ensure that section is not sorted alphabetically (86e661d5ac68)
-* link paper result to default extractor (3ed045ec2e4f)
-* add paper step (af4cffd136f8)
-* improve code style (cb6317bee156)
-* ensure to have a more proper group start (7527ff4d0a7a)
-* user grouper to determine valid range of pages (9d699ded5041)
-* do not run double column on rotated page (9faeb1940a93)
-* reduce execution time (72ee670f958a)
-* adjust layouta extractor (a94d3fe0c861)
-* add option to analyze selected pages (79c6f4b24ae6)
-* add double layouta detector (b61e335f2125)
-* skip small rectangles (770564d2009a)
-* add pdf to image converter (d88c1d1e631e)
-* add page font detection (11f67c30a77f)
-* add paper detection package (660e9ae4a8c3)
+- **imports**: Add missing import
+  ([`20951d1`](https://github.com/anaticulae/capita/commit/20951d12e0f5918544c5a472544a95563aa7bbeb))
 
-### Fix
 
-* reset bonus after failure group (04f98a72ceb4)
-* make pattern parser more robust (92bd8235bd84)
-* add missing pages flag (fd1c50834023)
-* ensure correct return value (5813f151697b)
-* reduce verbosity (49130d15fe84)
-* fix normal skipper (95619b50e7d4)
-* skip empty pages (67dce7c73048)
-* run clustering more than once (5022aeadbf56)
+## v1.9.0 (2021-09-23)
 
-### Documentation
+### Chores
 
-* extend code docs (3e800f7dc219)
+- **requirements**: Upgrade requirements.txt
+  ([`1abe615`](https://github.com/anaticulae/capita/commit/1abe615eb4324ac5ad636628a5970b6e678ed329))
 
-## v1.3.2
+### Features
 
-### Feature
+- **cli**: Add docinfo step
+  ([`657bb86`](https://github.com/anaticulae/capita/commit/657bb865dc4179779a1c823edc051aea1da86675))
 
-* ensure that left and right column are balanced (d349b401988f)
-* ease testing ability (97deb2082ba9)
 
-## v1.3.1
+## v1.8.0 (2021-09-19)
 
-### Fix
+### Bug Fixes
 
-* ensure that part of headline is long enough (c27b1ff7f7b8)
+- **abbr**: Skip white spaced abbr page
+  ([`272f0b1`](https://github.com/anaticulae/capita/commit/272f0b1732e02b45e26f88ba605c762f4445464e))
 
-## v1.3.0
+- **abstract**: Use maxlevel to reduce false positive extraction
+  ([`e28f01c`](https://github.com/anaticulae/capita/commit/e28f01c9c93eb8d069c3e74c60431e897a88c053))
 
-### Feature
+### Chores
 
-* extend pattern (389c687b52ac)
-* remove roman number from flat toc (a88ff8b3c957)
-* skip not matching chapter headlines (a9d7c6eed58a)
-* skip rotated pages (e4382e4332ae)
-* extend chapter noheadline pattern (20aa5f4eb652)
-* use improved chapter headline detector (c8bce5d4954b)
-* add another headline to bib section detector (0811f3bbb1af)
+- **requirements**: Upgrade requirements.txt
+  ([`77324e4`](https://github.com/anaticulae/capita/commit/77324e4d2d59fd3b1c526cdbe486ee758738e85d))
 
-### Fix
+### Features
 
-* do not detect single character as headline (9a49029ec218)
-* make start comparison more robust against white spaces (c954e438e097)
-* do not handle anhang as separate chapter (3483e984c56b)
-* adjust method name (eff5e1a8df6c)
-* make approach more stable against caps (86b6e1325eb9)
+- **abbr**: Add white space rate
+  ([`8607fab`](https://github.com/anaticulae/capita/commit/8607fab04d67a9884e17bc10077198f1e6b92761))
 
-## v1.2.0
+- **chapter**: Adjust valid chapter area
+  ([`f021db5`](https://github.com/anaticulae/capita/commit/f021db535edf57c40e47651366677ff18d4f19eb))
 
-### Feature
+- **headlines**: Introduce max level to shrink headline extraction
+  ([`fd1f2e2`](https://github.com/anaticulae/capita/commit/fd1f2e2ba7ab63c706e714715a44f7f54c277e25))
 
-* skip too hight chapter cause of false positive (bd4f5efc50c1)
-* extend appendix pattern (eaacc4d87805)
-* use content navigator to exclude header (8e27921b9885)
-* lower min headline match (2589e256f935)
-* use figures for blank/empty page check (bf5a11026556)
-* load figures and images if exists (7d4a2b9275cd)
+### Testing
 
-## v1.1.0
+- **abbr**: Add no abbreviation table test
+  ([`3845011`](https://github.com/anaticulae/capita/commit/38450117a674a57cc3a5a211a3dd0db750098b8f))
 
-### Feature
+- **fix**: Use outlines
+  ([`de5d82f`](https://github.com/anaticulae/capita/commit/de5d82fbdc5c38e2d389c4e9ca89bc58691118e3))
 
-* add method to skip regular content pages (1bc3b43610fd)
-* use improved headline comparer (a83e47634317)
-* add short left column check (bc682e41912f)
-* skip potential toc page as title page (3f8205466eb7)
-* add min toc value to identify as table of content (d2844d7dde41)
+- **paper**: Add negative regression test
+  ([`a02475a`](https://github.com/anaticulae/capita/commit/a02475ad52921f0c7f602fa7c871cb1b14dde309))
 
-### Fix
+- **sections**: Verify bachelor111 sections
+  ([`23930b0`](https://github.com/anaticulae/capita/commit/23930b011d4d8fd399750c51745cf96dcbb702fc))
 
-* skip numbered column as abbreviation table (50ea7a268f0c)
-* ensure to support double headline detection (9ccb42d641c4)
 
-## v1.0.1
+## v1.7.0 (2021-09-06)
 
-## v1.0.0
+### Chores
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`f91ce66`](https://github.com/anaticulae/capita/commit/f91ce666566b99257abd300ed1f62faa2f54733b))
 
-* remove workplan (95eeda297026)
-* increase strictness of column check (29a96bf2016a)
-* use merge to merge following non headlined pages (dd79bd146b12)
-* use better headline selector strategy (c082c4772fb7)
-* improve code style and use better data structure (2cdb26c95969)
+- **resources**: Extend test data generator
+  ([`185b9d4`](https://github.com/anaticulae/capita/commit/185b9d4635392394e69ca21382f8adc702c9dd00))
+
+### Code Style
+
+- **docs**: Fix headline
+  ([`26e0b05`](https://github.com/anaticulae/capita/commit/26e0b05d9f7bfcb8bacef0f0ea03b3e16eb9d3bc))
 
 ### Documentation
 
-* Happy New Year! (dc9688b42eda)
+- **style**: Fix logic error
+  ([`45ebed9`](https://github.com/anaticulae/capita/commit/45ebed98639126e25cd34e09f81f11978cac7e0a))
 
-## v0.15.1
+### Features
 
-### Fix
+- **abbr**: Extend valid headlines list
+  ([`3d8d395`](https://github.com/anaticulae/capita/commit/3d8d395b0f0da5f56f5fcb7b0783e8ed39069404))
 
-* pass minimal value to method checker (5d7dfbf5c042)
+- **section**: Improve section merger
+  ([`081ed17`](https://github.com/anaticulae/capita/commit/081ed17049e0446d24b7f33519f2b0fa2a2d4544))
 
-## v0.15.0
+### Refactoring
 
-### Feature
+- **bib**: Simplify code
+  ([`5c5399d`](https://github.com/anaticulae/capita/commit/5c5399dcf152ce0faaf598d3d3998e1484d87162))
 
-* use pattern to extend figuretable detector (dfc90182f950)
-* add option to define own valid line strategy (8bae99681b91)
+### Testing
 
-## v0.14.2
+- **refactor**: Improve test names
+  ([`1651802`](https://github.com/anaticulae/capita/commit/16518029f4187c83963203112a6eadec3a1a0c92))
 
-### Feature
+- **sections**: Verify invalid sections merger
+  ([`6c645ce`](https://github.com/anaticulae/capita/commit/6c645cebd0c6603c7c45ef52252e5ea223289ed4))
 
-* extend table detection strategy (6e5299ba2ec4)
-* unite strategy with detected pages without headline (c2f828337aac)
-* add appendix line checker (c3cbe681d637)
 
-## v0.14.1
+## v1.6.1 (2021-08-29)
 
-## v0.14.0
+### Bug Fixes
 
-### Feature
+- **chapter**: Skip empty outline element
+  ([`6df348c`](https://github.com/anaticulae/capita/commit/6df348c266f90842547d398a751011ba36fe508e))
 
-* extend toc page detection (edd73cc03c7a)
-* improve chapter start detector (3c91c267a034)
+- **rectangle**: Convert path newlines
+  ([`a1afc61`](https://github.com/anaticulae/capita/commit/a1afc6176cae801bd98952775ac011812b2dd244))
 
-## v0.13.8
+### Chores
 
-## v0.13.7
+- **config**: Use new project config path
+  ([`e472843`](https://github.com/anaticulae/capita/commit/e47284344856a4ae15216c4182be6fdce8a70645))
 
-### Fix
+- **requirements**: Add layout detector
+  ([`a2beb0a`](https://github.com/anaticulae/capita/commit/a2beb0a11a7d0c5c5d847b1ebf47878db7b6d457))
 
-* shrink chapter selector for better results (777a01c1843e)
+- **requirements**: Upgrade requirements.txt
+  ([`6f94784`](https://github.com/anaticulae/capita/commit/6f94784ec65d37d0d1252bf6fbeae717b2991a90))
 
-## v0.13.6
+### Code Style
 
-## v0.13.0
+- **imports**: Organize imports
+  ([`7008f30`](https://github.com/anaticulae/capita/commit/7008f301ffb25ea05e8d140b8b211c18b74f5bc6))
 
-### Feature
+### Refactoring
 
-* cut non required `precision` (def3a31f0de6)
-* introduce threshold to avoid surprising results (04aa24bb219b)
-* use content navigator to improve performance (d07938d2fb76)
+- **replace**: Replace with layout code
+  ([`6ef3d0d`](https://github.com/anaticulae/capita/commit/6ef3d0d3e79d2370bfde0e520b4cfdd6a6c78d95))
 
-### Fix
 
-* skip very small headlines (82e8d5fa09a4)
+## v1.6.0 (2021-08-24)
 
-## v0.12.2
+### Bug Fixes
 
-### Feature
+- **section**: Copy is not required here
+  ([`5c16b7b`](https://github.com/anaticulae/capita/commit/5c16b7bf5bac72b3776ee3a747629b56c461fb3b))
 
-* extend special word list (2fdfab60d16d)
+- **section**: Do not create multiple section on CitePart
+  ([`afbe13d`](https://github.com/anaticulae/capita/commit/afbe13d5ee326efdb8ce1cb38fbbb307e15d48fa))
 
-### Fix
+### Chores
 
-* fix broken import (2becc5c609fe)
+- **requirements**: Upgrade requirements.txt
+  ([`8c76750`](https://github.com/anaticulae/capita/commit/8c76750c88a998f1e425bca7c54bc3b7262cc2d7))
 
-## v0.12.1
+- **requirements**: Upgrade requirements.txt
+  ([`51bc2bc`](https://github.com/anaticulae/capita/commit/51bc2bc870ff0cb73a623fc81740b87d3407f940))
 
-## v0.12.0
+### Code Style
 
-### Feature
-
-* extend keywords to detect bib section (b702f4cd82c0)
-
-## v0.11.0
-
-### Feature
-
-* use authors to improve bib section detection (8e0d84514f5f)
-* add authors to extract list of authors (1c1f0504d704)
-* use parse level for toc line detection (aee74d45a72d)
-* make bib detector more robust against level (de9b7c12cce4)
-
-### Fix
-
-* add min value of marker to use feature (aaa5d0e941ce)
-* improve single char feature (279e0c51814f)
-* fix hugest font size determiner for correct title page extraction (673bb33043f4)
-
-## v0.10.0
-
-### Feature
-
-* add white list to improve headline detection (0d6dcb2b9669)
-* add headline as hundred percent marker (152114a16026)
-
-### Fix
-
-* disable check for (short) document without toc (bc87038042cc)
-* skip pages with more than two column (8e64164ab26f)
-
-## v0.9.7
-
-### Fix
-
-* add missing package (54e9f310f895)
-
-## v0.9.1
-
-### Fix
-
-* add missing package (1343968e2853)
-
-## v0.9.0
-
-### Feature
-
-* add double column bib detector (c1d99317cb58)
-* add double column parser (786bb6e06aa9)
-* introduce strategy infrastructure (7e3d12af23dc)
-* support more appendix start headlines (8f5e8ee5e155)
-
-### Fix
-
-* add missing default values (76bb51dac5e2)
+- **format**: Format code
+  ([`f9fae8d`](https://github.com/anaticulae/capita/commit/f9fae8da15a0b7b96cd651a7af50159d9ecc6883))
 
 ### Documentation
 
-* add module information (41291b73681f)
-* extend interface documentation (2c6d8517f540)
-* extend interface documentation (3bc29f1ae811)
+- **section**: Extend interface documentation
+  ([`6a3c90e`](https://github.com/anaticulae/capita/commit/6a3c90ea2e4790ef31089e486a7fe79fee46dc3b))
 
-## v0.8.3
+### Features
 
-## v0.8.2
+- **bib**: Use hyperlink as another marker
+  ([`f4c20e2`](https://github.com/anaticulae/capita/commit/f4c20e225dbfef9c9711349c02f2c863b553aacf))
 
-## v0.8.1
+- **chapter**: Extend valid chapter headlines
+  ([`d0c98de`](https://github.com/anaticulae/capita/commit/d0c98dea2552b3f7f232c8d678447734def9efda))
 
-## v0.8.0
+- **chapter**: Skip potential headlines with very low char rate
+  ([`5d8b383`](https://github.com/anaticulae/capita/commit/5d8b38377710aa9500ccf2fb8baec3b948d0a06f))
 
-### Feature
+- **section**: Add acknowledge section detection step
+  ([`a80690a`](https://github.com/anaticulae/capita/commit/a80690ae5fc74e2369c3061785a7f119b13c89ef))
 
-* extend table headline detector (f1d4df159f44)
+- **sections**: Add more valid headlines
+  ([`237c550`](https://github.com/anaticulae/capita/commit/237c55054750bcd6f60396ab11fcbf3b88174e24))
 
-### Fix
+### Refactoring
 
-* fix wrong detected bib section detection (215e4048dfb6)
+- **abbr**: Use improved headline splitter
+  ([`13f59f3`](https://github.com/anaticulae/capita/commit/13f59f3f2a68836e6d324a89afc81c61398f0fc0))
 
-## v0.7.1
+- **bib**: Use improved split lines
+  ([`0796b4f`](https://github.com/anaticulae/capita/commit/0796b4fd33051e115bbaa4c02dc57f081cf99672))
 
-### Fix
+- **chapter**: Move value to const
+  ([`2ee030f`](https://github.com/anaticulae/capita/commit/2ee030f4b2f44e462f9de4ac7e2ef391a9e900a9))
 
-* adjust test to correct page ranges (98c78534467a)
+- **section**: Move creator method
+  ([`5ad6f97`](https://github.com/anaticulae/capita/commit/5ad6f9740076ba9e906e5d822e0fb6800e7b59bb))
 
-## v0.7.0
+- **test**: Simplify code
+  ([`129a90e`](https://github.com/anaticulae/capita/commit/129a90e2d477d3cd7f7587aa7e0eada01d4961fe))
 
-### Feature
+### Testing
 
-* add symbol section detection step (f8ce1ba7cdc7)
-* extend chapter headline detector (6f1c09b4bf50)
+- **bachelor**: Clarify test
+  ([`7b9b749`](https://github.com/anaticulae/capita/commit/7b9b749d47832d243d61bfa4dafdcd78012ad266))
 
-### Fix
+- **cli**: Adjust unit test
+  ([`c95de01`](https://github.com/anaticulae/capita/commit/c95de011cf81067817229fc82d190bcfa2a99bc3))
 
-* clarify source of error message (03f2b84755e8)
+- **fix**: Improve test after improving table parser
+  ([`84113ac`](https://github.com/anaticulae/capita/commit/84113aca576b52359d4c566af58999f4c19ef444))
+
+- **section**: Enable xpassed test
+  ([`cc63546`](https://github.com/anaticulae/capita/commit/cc63546076c87aa14d10f9fc3b24522dee9880f9))
+
+
+## v1.5.0 (2021-07-28)
+
+### Bug Fixes
+
+- **chapter**: Skip references as chapter
+  ([`8948dbd`](https://github.com/anaticulae/capita/commit/8948dbd5001499af1055aec5ba1f3c35641a2329))
+
+- **chapter**: Strip first outline if necessary
+  ([`bac329d`](https://github.com/anaticulae/capita/commit/bac329dd8f977ff1c3999e94cc4b5e01cddc04de))
+
+- **headline**: Increase headline word count
+  ([`499981b`](https://github.com/anaticulae/capita/commit/499981beda7c715851e900fe76edcf160f825fa3))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6bfaede`](https://github.com/anaticulae/capita/commit/6bfaede4e4131a9be404bb93f82f03640161fc52))
+
+- **requirements**: Upgrade requirements.txt
+  ([`1128462`](https://github.com/anaticulae/capita/commit/11284623837200fe02d1952ee1af27c1e2c135a3))
+
+- **resources**: Extend test data generator
+  ([`0cc647a`](https://github.com/anaticulae/capita/commit/0cc647a8d005299cd6da2fa319c18baf9d73e022))
+
+- **resources**: Extend test data generator
+  ([`904a819`](https://github.com/anaticulae/capita/commit/904a8195e23521b1cdf0c2981bbb895f73d08252))
+
+### Features
+
+- **abstract**: Add another headline marker
+  ([`6c22367`](https://github.com/anaticulae/capita/commit/6c22367ec943f2eaebbd6df55e39bfbac0905635))
+
+- **abstract**: Add more valid headlines
+  ([`8b18287`](https://github.com/anaticulae/capita/commit/8b18287396cb99d5d63a6e7452823ad30f08106e))
+
+- **abstract**: Replace with content navigator
+  ([`23fff92`](https://github.com/anaticulae/capita/commit/23fff92ae9ca3fe37b2129729da664e93d61cdad))
+
+- **abstract**: Use more modern approach
+  ([`5464401`](https://github.com/anaticulae/capita/commit/54644019d430be6b72733e505f46373310ca3dad))
+
+- **chapter**: Extend no headline list
+  ([`8014fe2`](https://github.com/anaticulae/capita/commit/8014fe277c649b354cebaf1ae790cec3d9820812))
+
+- **figure**: Add English list of figures pattern
+  ([`495d091`](https://github.com/anaticulae/capita/commit/495d091ca2e6836791d825c61b16e3239ab5db00))
+
+- **figure**: Extend list of valid headlines
+  ([`a37c62d`](https://github.com/anaticulae/capita/commit/a37c62df8f9c04d6f5d4b071a79a5d753724ecfe))
+
+- **strategy**: Add option to disable top search
+  ([`e44804f`](https://github.com/anaticulae/capita/commit/e44804f14ee043bd9be7363022b3a83b9ec79c84))
+
+- **symbol**: Improve symbol headline detector
+  ([`927e69b`](https://github.com/anaticulae/capita/commit/927e69b0199ae4e536201f693f87327bcd786ccb))
+
+- **table**: Add valid table to tabletable detector
+  ([`1b36b61`](https://github.com/anaticulae/capita/commit/1b36b61aa9377702e89c358ba3cc7d3419257a60))
+
+- **table**: Disable top search restriction to detect more tables
+  ([`e29141a`](https://github.com/anaticulae/capita/commit/e29141a5dfc9bedaba482d8f7a649cd34cd2c961))
+
+- **table**: Extend list of valid headlines
+  ([`75d075e`](https://github.com/anaticulae/capita/commit/75d075e721b09851f0ed461b4db25daab8bd928a))
+
+### Refactoring
+
+- **chapter**: Uppercase and sort list of chapter headlines
+  ([`2780d68`](https://github.com/anaticulae/capita/commit/2780d6888e21b6dbe6b8cf8eb715e456e984e42f))
+
+- **feature**: Move const to central location
+  ([`7db3369`](https://github.com/anaticulae/capita/commit/7db33698f5af87098cebab275812b423fee86cd5))
+
+- **figure**: Use modern approach
+  ([`220bef5`](https://github.com/anaticulae/capita/commit/220bef50ce19f99d56b8f351ee2703ca0683d7e8))
+
+- **move**: Unite equal code
+  ([`03e951c`](https://github.com/anaticulae/capita/commit/03e951c1b72560b559f3995d02ee7a40cc6e5c24))
+
+- **table**: Use more modern approach
+  ([`e6b06a9`](https://github.com/anaticulae/capita/commit/e6b06a9d2ce2d9afbf3e83f72f42fe35954e6852))
+
+### Testing
+
+- **abstract**: Add regression test to find many words headline
+  ([`6f90fd8`](https://github.com/anaticulae/capita/commit/6f90fd8159fe90442dac4b07644343bb4b217d42))
+
+- **chapter**: Add regression test to detect introduction as headline
+  ([`aefac7b`](https://github.com/anaticulae/capita/commit/aefac7b9f39663b85440eb2b398547e3eca6b204))
+
+- **fix**: Adjust test after striping outlines
+  ([`63699fc`](https://github.com/anaticulae/capita/commit/63699fcbac10f8d011c62390e08905cb297a1abb))
+
+- **section**: Validate diss148 sections
+  ([`35dae82`](https://github.com/anaticulae/capita/commit/35dae8268924133e4bd24f6490135780f73cc09f))
+
+- **section**: Validate diss180 sections
+  ([`5c12a0d`](https://github.com/anaticulae/capita/commit/5c12a0df784593aa7fa8eef5e4ef912dc220fc40))
+
+- **sections**: Add option to shrink extraction to given pages
+  ([`461cf7d`](https://github.com/anaticulae/capita/commit/461cf7ddf454be19f30c29f1b2abeee904187428))
+
+
+## v1.4.0 (2021-07-24)
+
+### Bug Fixes
+
+- **bib**: Make pattern parser more robust
+  ([`92bd823`](https://github.com/anaticulae/capita/commit/92bd8235bd84e6744dfda4eb48c13f679980e472))
+
+- **layout**: Fix normal skipper
+  ([`95619b5`](https://github.com/anaticulae/capita/commit/95619b50e7d42c8b9283068f2d705c38258a905b))
+
+- **layout**: Skip empty pages
+  ([`67dce7c`](https://github.com/anaticulae/capita/commit/67dce7c7304871f176ff7c5318fca0d144c12744))
+
+- **log**: Reduce verbosity
+  ([`49130d1`](https://github.com/anaticulae/capita/commit/49130d15fe84d016ddaee98924ad8749f115f270))
+
+- **main**: Add missing pages flag
+  ([`fd1c508`](https://github.com/anaticulae/capita/commit/fd1c50834023bddad29eb58f905abc09077b9daa))
+
+- **main**: Reset bonus after failure group
+  ([`04f98a7`](https://github.com/anaticulae/capita/commit/04f98a72ceb4142d5e4ef3d82152eed5752c16c2))
+
+- **paper**: Ensure correct return value
+  ([`5813f15`](https://github.com/anaticulae/capita/commit/5813f151697b8d50abfdfc7cff6451afcebb4715))
+
+- **rectangle**: Run clustering more than once
+  ([`5022aea`](https://github.com/anaticulae/capita/commit/5022aeadbf56271d2e99b6d10125eae8b6a18d68))
+
+### Chores
+
+- **config**: Load cv2 to help linter to find module content correctly
+  ([`0cb58d6`](https://github.com/anaticulae/capita/commit/0cb58d62a214b078f1088d2faa44d0e945bff7e7))
+
+- **generator**: Add missing generator flag
+  ([`d5b4040`](https://github.com/anaticulae/capita/commit/d5b40400931a668a6e835d78ac684ee84e01ecde))
+
+- **requirements**: Add image processor
+  ([`f3c28f4`](https://github.com/anaticulae/capita/commit/f3c28f4437ae6c074dc4a384c24437410857a910))
+
+- **requirements**: Upgrade requirements.txt
+  ([`db65bf3`](https://github.com/anaticulae/capita/commit/db65bf37af987a835072052f5805a387c12bafba))
+
+- **requirements**: Upgrade requirements.txt
+  ([`30c906b`](https://github.com/anaticulae/capita/commit/30c906b77d83bb7e6537108f798df0c29b037788))
+
+- **requirements**: Upgrade requirements.txt
+  ([`e97d8d2`](https://github.com/anaticulae/capita/commit/e97d8d2102875a5d2006df0757b182e45d924dc4))
+
+- **requirements**: Upgrade requirements.txt
+  ([`5c73553`](https://github.com/anaticulae/capita/commit/5c7355360686282028c86964c32b34c6dacf1b7c))
+
+- **resources**: Adjust test data generator
+  ([`5fe0147`](https://github.com/anaticulae/capita/commit/5fe0147e16b618a382ec05d3258705cde40b32db))
+
+- **resources**: Generate all pages if no page is given
+  ([`c252a31`](https://github.com/anaticulae/capita/commit/c252a31fb2c7872dcd5515fc10b6ba4382e492f3))
+
+- **setup**: Cleanup setup package
+  ([`14e7e44`](https://github.com/anaticulae/capita/commit/14e7e44d9c7de4d30b2a0bc4417c884b4518cd7c))
+
+- **test**: Keep longrun fast
+  ([`df7731c`](https://github.com/anaticulae/capita/commit/df7731c1d6ec7242774e87fa85c8d174347d3716))
+
+### Code Style
+
+- **format**: Format code
+  ([`5f77ba2`](https://github.com/anaticulae/capita/commit/5f77ba2e0dbc9313d04710881d2abe4bd6e17207))
 
 ### Documentation
 
-* fix interface documentation (d5ae25577c69)
+- **layout**: Extend code docs
+  ([`3e800f7`](https://github.com/anaticulae/capita/commit/3e800f7dc21974a3eb20d1ab9dcc2eb8d40ba6ca))
 
-## v0.6.0
+### Features
 
-### Feature
+- **bib**: Add tolerance in bib grouper
+  ([`fee6190`](https://github.com/anaticulae/capita/commit/fee6190ce9d17d327affc603e04f616d975a57de))
 
-* add first draft of appendix detector (a75419b2c438)
-* add abstract step detection step (2c741ec74623)
-* add figuretable and tabletable section detection step (affd2043478f)
-* use new toc likelihood detector (e1254f89c517)
-* add method to determine potential headline out of text style (12530995b1ee)
+- **cli**: Add paper step
+  ([`af4cffd`](https://github.com/anaticulae/capita/commit/af4cffd136f85ad3ffd440c90847a09f0a6017c7))
 
-### Fix
+- **cli**: Link paper result to default extractor
+  ([`3ed045e`](https://github.com/anaticulae/capita/commit/3ed045ec2e4f86c8c34033c236ad3c42b1c20350))
 
-* use mean bib value to avoid holes in group while merging with (817f6f697aec)
+- **layout**: Add double layout detector
+  ([`b61e335`](https://github.com/anaticulae/capita/commit/b61e335f21255848827ada0ced12953793cfcf4f))
 
-## v0.5.1
+- **layout**: Add option to analyze selected pages
+  ([`79c6f4b`](https://github.com/anaticulae/capita/commit/79c6f4b24ae6b715135c6f9f423e478e67d6252e))
 
-## v0.5.0
+- **layout**: Add option to write images to a common folder
+  ([`360b538`](https://github.com/anaticulae/capita/commit/360b53832a82c9b6b26b5b57289f695c8471cc59))
 
-### Feature
+- **layout**: Adjust layout extractor
+  ([`a94d3fe`](https://github.com/anaticulae/capita/commit/a94d3fe0c86195fadb6d5abb4f56cc91a75315cc))
 
-* add dynamic next class selector (141806e27f9f)
-* make chapter start detector more robust (1d466e72be67)
+- **layout**: Do not run double column on rotated page
+  ([`9faeb19`](https://github.com/anaticulae/capita/commit/9faeb1940a93b793c72fef151c86ccc8a6e03ce1))
 
-### Fix
+- **layout**: Introduce layout min height to avoid
+  ([`0482b76`](https://github.com/anaticulae/capita/commit/0482b76cff18045d792e5d00718de1457dcda0f1))
 
-* do not parse newlines in headline pattern (a97ac4bc366a)
-* do not detect appendix with a lot of points as toc page (81b047fcb1f7)
+- **layout**: Reduce execution time
+  ([`72ee670`](https://github.com/anaticulae/capita/commit/72ee670f958a36cfaca4346fe27c5f1ffaebedba))
+
+- **main**: Ensure to have a more proper group start
+  ([`7527ff4`](https://github.com/anaticulae/capita/commit/7527ff4d0a7ac6b523d7ca1b9684b5aef5050731))
+
+- **main**: Improve main merger
+  ([`fc25717`](https://github.com/anaticulae/capita/commit/fc257175cbfdedfeaa84d96132a432ceac3f5d9b))
+
+- **main**: User grouper to determine valid range of pages
+  ([`9d699de`](https://github.com/anaticulae/capita/commit/9d699ded5041f4d6be71c2eb3669d06e8a7616e4))
+
+- **paper**: Add page font detection
+  ([`11f67c3`](https://github.com/anaticulae/capita/commit/11f67c30a77fad489928640ca00d51ed13525f46))
+
+- **paper**: Add paper detection package
+  ([`660e9ae`](https://github.com/anaticulae/capita/commit/660e9ae4a8c395ab133327870273ee1ffa7701a6))
+
+- **paper**: Improve code style
+  ([`cb6317b`](https://github.com/anaticulae/capita/commit/cb6317bee15669495360cdcdec3659036bbf550c))
+
+- **rectangle**: Add pdf to image converter
+  ([`d88c1d1`](https://github.com/anaticulae/capita/commit/d88c1d1e631e25bd93d810e4179409d20126d302))
+
+- **rectangle**: Skip small rectangles
+  ([`770564d`](https://github.com/anaticulae/capita/commit/770564d2009a7a3e0fb298a8129e357f4cecd825))
+
+- **section**: Ensure that section is not sorted alphabetically
+  ([`86e661d`](https://github.com/anaticulae/capita/commit/86e661d5ac68f34d8b4c97b6d43973444a0328cb))
+
+- **section**: Introduce CiteContent
+  ([`5c2b3b2`](https://github.com/anaticulae/capita/commit/5c2b3b2316047e9d78905b42ab3ec0767537265a))
+
+### Refactoring
+
+- **layout**: Move worker count into global constant
+  ([`853e3fe`](https://github.com/anaticulae/capita/commit/853e3fe212eea5e64ee4807f3482e4280c8f2a77))
+
+- **move**: Move method to testing
+  ([`b7d7cbf`](https://github.com/anaticulae/capita/commit/b7d7cbf287f482729fc6d06ed24cf6ff799487b8))
+
+- **style**: Improve code style
+  ([`61ad414`](https://github.com/anaticulae/capita/commit/61ad4147b8e60ff8da98048174acba92c51602e6))
+
+### Testing
+
+- **fix**: Create_job requires dest as str
+  ([`9c9213f`](https://github.com/anaticulae/capita/commit/9c9213f1eb691cea1d26f769646a538bd989a6b8))
+
+- **fix**: Enable selecting single test
+  ([`23b0066`](https://github.com/anaticulae/capita/commit/23b00668da07ce3c44e3c191e19e465777778b0d))
+
+- **fixture**: Add paper18 navigator fixture
+  ([`860aa9a`](https://github.com/anaticulae/capita/commit/860aa9a9363a8608301ce8c546c8a3365ef4b83c))
+
+- **images**: Parametrize unit test
+  ([`ee54dce`](https://github.com/anaticulae/capita/commit/ee54dcee2179b4ba5bd376fbc189ffb73286a993))
+
+- **layout**: Add negative examples
+  ([`edbcc95`](https://github.com/anaticulae/capita/commit/edbcc95485e0623913215c4ea50ef928cdbfd1aa))
+
+- **layout**: Keep tests fast
+  ([`60273c6`](https://github.com/anaticulae/capita/commit/60273c6ffb935d6a9e5cb8dd58c45d6ff06a07e3))
+
+- **layout**: Validate more paper examples
+  ([`296a656`](https://github.com/anaticulae/capita/commit/296a656238fefbcfe95e9ab98547ba1ed8991f1a))
+
+
+## v1.3.2 (2021-07-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`afc760b`](https://github.com/anaticulae/capita/commit/afc760be95681ee40334315e0d85a70b33cd6ac4))
+
+- **resources**: Extend test data generator
+  ([`ed507b0`](https://github.com/anaticulae/capita/commit/ed507b023fe85878c3ae1582b76ddf0e47edec93))
+
+- **resources**: Reduce data generation time
+  ([`7382f30`](https://github.com/anaticulae/capita/commit/7382f30e96df382056559f5b9d83c91e5e17634d))
+
+### Features
+
+- **abbr**: Ease testing ability
+  ([`97deb20`](https://github.com/anaticulae/capita/commit/97deb2082ba9314b26ef0672eb2b0105d1dac590))
+
+- **abbr**: Ensure that left and right column are balanced
+  ([`d349b40`](https://github.com/anaticulae/capita/commit/d349b401988f9a966fe04475d24e1bc07f86a84e))
+
+### Testing
+
+- **abbr**: Add negative abbr check
+  ([`b3c47b9`](https://github.com/anaticulae/capita/commit/b3c47b96cc4cc29acd08695b8af384e619debb97))
+
+- **conf**: Improve figure import
+  ([`7d5a4fe`](https://github.com/anaticulae/capita/commit/7d5a4fe3a9cd3ca0d4276fdb8de49bd85b758162))
+
+- **fixture**: Simplify code
+  ([`bd21bea`](https://github.com/anaticulae/capita/commit/bd21beab1d0f4baacfca55219d0f4795ea100425))
+
+- **resources**: Skip test if data is not generated
+  ([`fcf9593`](https://github.com/anaticulae/capita/commit/fcf9593458b90b91e9647220f80990973d52b87c))
+
+
+## v1.3.1 (2021-07-05)
+
+### Bug Fixes
+
+- **chapter**: Ensure that part of headline is long enough
+  ([`c27b1ff`](https://github.com/anaticulae/capita/commit/c27b1ff7f7b81cbfc703af38e58379395ec52671))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b2892af`](https://github.com/anaticulae/capita/commit/b2892af810feeae761005ec241421cf494c23231))
+
+- **resources**: Extend resource generator master083
+  ([`bc85b4d`](https://github.com/anaticulae/capita/commit/bc85b4d5e0feca07835b1bcbe89e3eab24c815e2))
+
+- **resources**: Extend test data generator
+  ([`aef3dd1`](https://github.com/anaticulae/capita/commit/aef3dd154ffffd76ec8645196c5ccc8c44d0845f))
+
+- **sections**: Validate master083
+  ([`2fc8593`](https://github.com/anaticulae/capita/commit/2fc85934e3edecb407155c899ee52dc5488ac485))
+
+### Testing
+
+- **chapter**: Validate bachelor37
+  ([`2403b4c`](https://github.com/anaticulae/capita/commit/2403b4c1f40c66fc20cea6599c8bc1c582036f46))
+
+
+## v1.3.0 (2021-05-29)
+
+### Bug Fixes
+
+- **chapter**: Do not detect single character as headline
+  ([`9a49029`](https://github.com/anaticulae/capita/commit/9a49029ec218b1c478bc2b821290885cfb719e02))
+
+- **chapter**: Do not handle anhang as separate chapter
+  ([`3483e98`](https://github.com/anaticulae/capita/commit/3483e984c56b7b3e64239b86e7e5fb5a53f47ac1))
+
+- **chapter**: Make approach more stable against caps
+  ([`86b6e13`](https://github.com/anaticulae/capita/commit/86b6e1325eb9007e1caf0eb2cb3d01c6da5eae6b))
+
+- **chapter**: Make start comparison more robust against white spaces
+  ([`c954e43`](https://github.com/anaticulae/capita/commit/c954e438e097a2e710c9a8864a5aa4b2bb14e3ef))
+
+- **test**: Adjust method name
+  ([`eff5e1a`](https://github.com/anaticulae/capita/commit/eff5e1a8df6c5ec5760b06918783880c17b03b9f))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`f47f6ab`](https://github.com/anaticulae/capita/commit/f47f6ab2a2ccfa59f0eb99ae89bd2f5870e851d5))
+
+- **requirements**: Upgrade requirements.txt
+  ([`ebf21c2`](https://github.com/anaticulae/capita/commit/ebf21c22eefe85d9feb13d83956f9f8b045fd7d5))
+
+- **resources**: Extend test data generator
+  ([`4597b46`](https://github.com/anaticulae/capita/commit/4597b46caea53ee41b899861771b3879c5d972fe))
+
+- **test**: Keep dev build fast
+  ([`f6862a0`](https://github.com/anaticulae/capita/commit/f6862a01641550cc9d25197950e385c6c635bec4))
+
+### Code Style
+
+- **format**: Format code
+  ([`00d62ea`](https://github.com/anaticulae/capita/commit/00d62eaada2b7ea5cb0be483382f14cddb38271e))
+
+- **format**: Use improved yapf formatter
+  ([`d7d8c56`](https://github.com/anaticulae/capita/commit/d7d8c56d00bf7fe16c4dd96f34111700fc7ed9d7))
+
+### Features
+
+- **appendix**: Extend pattern
+  ([`389c687`](https://github.com/anaticulae/capita/commit/389c687b52acfb898ebd45d1cb6c76397d8b43d7))
+
+- **bib**: Add another headline to bib section detector
+  ([`0811f3b`](https://github.com/anaticulae/capita/commit/0811f3bbb1af8ca49b082d3c73a65bd3200f79c9))
+
+- **chapter**: Extend chapter noheadline pattern
+  ([`20aa5f4`](https://github.com/anaticulae/capita/commit/20aa5f4eb65263310055834d6aeab3866921f763))
+
+- **chapter**: Remove roman number from flat toc
+  ([`a88ff8b`](https://github.com/anaticulae/capita/commit/a88ff8b3c957d3fdd3e146a6cf89da8a2059becf))
+
+- **chapter**: Skip not matching chapter headlines
+  ([`a9d7c6e`](https://github.com/anaticulae/capita/commit/a9d7c6eed58a7b8ac6e323a4e30f922c092d75a8))
+
+- **chapter**: Skip rotated pages
+  ([`e4382e4`](https://github.com/anaticulae/capita/commit/e4382e4332aeca501e3d4a20fd6d32a840245d0f))
+
+- **chapter**: Use improved chapter headline detector
+  ([`c8bce5d`](https://github.com/anaticulae/capita/commit/c8bce5d4954b244cdbf2336b06177299684a7b93))
+
+### Refactoring
+
+- **appendix**: Use improved code
+  ([`1660199`](https://github.com/anaticulae/capita/commit/166019909e861c2885b3bdb959e176aaf912fd50))
+
+- **bib**: Improve naming
+  ([`fd988e5`](https://github.com/anaticulae/capita/commit/fd988e5a1e657eeb055a18b719539ee8f38375b8))
+
+- **rename**: Improve naming
+  ([`b46f09a`](https://github.com/anaticulae/capita/commit/b46f09a3344ad380bd4b1d0a83286e75319e74d6))
+
+- **sections**: Shorten code
+  ([`3ebf40a`](https://github.com/anaticulae/capita/commit/3ebf40aae55b74c876c1b2248158ca9025243e0b))
+
+- **test**: Rename to new API
+  ([`8ec9dd9`](https://github.com/anaticulae/capita/commit/8ec9dd94ee2b06c40469d3fb2d03d250f131bc32))
+
+- **toc**: Use improved concept
+  ([`85b94e4`](https://github.com/anaticulae/capita/commit/85b94e49dbcd4a082579384baa0f374e7637710d))
+
+### Testing
+
+- **appendix**: Validate diss170
+  ([`b61394b`](https://github.com/anaticulae/capita/commit/b61394b83e22263cd8a31a7a96abd7c3dddbbeb1))
+
+- **chapter**: Validate master91a chapters
+  ([`17dadf8`](https://github.com/anaticulae/capita/commit/17dadf8350b30d5fbaf4df022a118f6360c2ab82))
+
+- **fix**: Adjust unit test
+  ([`fc245f0`](https://github.com/anaticulae/capita/commit/fc245f0642b248273026e537c006a12142aad300))
+
+
+## v1.2.0 (2021-05-03)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`2747a3c`](https://github.com/anaticulae/capita/commit/2747a3c055b368765760a56263b3c444db9e5178))
+
+- **requirements**: Upgrade requirements.txt
+  ([`def9e9e`](https://github.com/anaticulae/capita/commit/def9e9eb1ffb2a00461546d91564ad48cc7220f5))
+
+- **resources**: Extend test data generator
+  ([`b53e338`](https://github.com/anaticulae/capita/commit/b53e338a348234d0ee9f6fcaceebbeaf3fe935b8))
+
+- **resources**: Extend test data generator
+  ([`0595991`](https://github.com/anaticulae/capita/commit/059599182aa2c388d44b388f8a5dd2f6c78ce1d9))
+
+- **resources**: Extend test data generator
+  ([`4120abc`](https://github.com/anaticulae/capita/commit/4120abce0706a14f3f9af8c162a046a2dcd23d1f))
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`a8e1218`](https://github.com/anaticulae/capita/commit/a8e1218bb1dcbaaecc7de7f51e16d37c6cbf072c))
+
+### Features
+
+- **appendix**: Extend appendix pattern
+  ([`eaacc4d`](https://github.com/anaticulae/capita/commit/eaacc4d8780574e1996e8f6b9a2438a7ffbd0468))
+
+- **chapter**: Skip too hight chapter cause of false positive
+  ([`bd4f5ef`](https://github.com/anaticulae/capita/commit/bd4f5efc50c1a671ee41a74b191b728f88f84050))
+
+- **chapter**: Use content navigator to exclude header
+  ([`8e27921`](https://github.com/anaticulae/capita/commit/8e27921b98855a5bf4e1e363b6a6435cb206ae94))
+
+- **table**: Lower min headline match
+  ([`2589e25`](https://github.com/anaticulae/capita/commit/2589e256f9358a00918807442beca59871fe46b2))
+
+- **whitepage**: Load figures and images if exists
+  ([`7d4a2b9`](https://github.com/anaticulae/capita/commit/7d4a2b9275cdeabff2c1b34a6504583119f278f1))
+
+- **whitepage**: Use figures for blank/empty page check
+  ([`bf5a110`](https://github.com/anaticulae/capita/commit/bf5a11026556c18168d7972bc390b2a70900e910))
+
+### Refactoring
+
+- **appendix**: Use modern headline comparer approach
+  ([`7a61969`](https://github.com/anaticulae/capita/commit/7a61969b8a2af5ca9366c0d93d5753e5a840e759))
+
+- **test**: Improve re-usability
+  ([`2460b68`](https://github.com/anaticulae/capita/commit/2460b680f53c88f19abb42df549b7d55d4b9dbdd))
+
+### Testing
+
+- **chapter**: Improve diss266 validation
+  ([`32abb0e`](https://github.com/anaticulae/capita/commit/32abb0e2ab848e7525e4ec7a3fbd7b5a2d150c16))
+
+- **sections**: Validate master91a
+  ([`2ba1b84`](https://github.com/anaticulae/capita/commit/2ba1b842d612a92ed00eca712f604fa0f631cfd5))
+
+- **toc**: Validate master155 toc pages
+  ([`c767899`](https://github.com/anaticulae/capita/commit/c767899a4ff94ca488041368b96570e832afa93e))
+
+- **toc**: Validate master91a toc
+  ([`698d67c`](https://github.com/anaticulae/capita/commit/698d67c43596ab0eb7f17f1f82c09b2694c74796))
+
+- **whitepage**: Load missing figure and image data
+  ([`5e70a1f`](https://github.com/anaticulae/capita/commit/5e70a1f8711647a719970c70fc5c4897c799eff1))
+
+- **whitespace**: Validate master155 white spaces
+  ([`613d6cb`](https://github.com/anaticulae/capita/commit/613d6cb2257122cc868421d0bc6135faae3d3c5d))
+
+
+## v1.1.0 (2021-04-28)
+
+### Bug Fixes
+
+- **abbreviation**: Skip numbered column as abbreviation table
+  ([`50ea7a2`](https://github.com/anaticulae/capita/commit/50ea7a268f0cd22e2e5c3b35d25795426635f738))
+
+- **table**: Ensure to support double headline detection
+  ([`9ccb42d`](https://github.com/anaticulae/capita/commit/9ccb42d641c472f865ae083f01d0b74bed3892e3))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`f22c733`](https://github.com/anaticulae/capita/commit/f22c7335b3bd021072e4b7919c201176333b3894))
+
+- **resources**: Extend test data generator
+  ([`7696a7c`](https://github.com/anaticulae/capita/commit/7696a7cff8e583ba075f8868dbd5a43d2fe37366))
+
+### Features
+
+- **abbreviation**: Add short left column check
+  ([`bc682e4`](https://github.com/anaticulae/capita/commit/bc682e41912f583e0f4498083fc82e2057353470))
+
+- **abbreviation**: Use improved headline comparer
+  ([`a83e476`](https://github.com/anaticulae/capita/commit/a83e47634317af79907312db2ceb911d7da1fdeb))
+
+- **bib**: Add method to skip regular content pages
+  ([`1bc3b43`](https://github.com/anaticulae/capita/commit/1bc3b43610fddc0c16a1c911336bdcd4e1a05dbc))
+
+- **table**: Add min toc value to identify as table of content
+  ([`d2844d7`](https://github.com/anaticulae/capita/commit/d2844d7dde415a194a645154b903b76268204ef3))
+
+- **title**: Skip potential toc page as title page
+  ([`3f82054`](https://github.com/anaticulae/capita/commit/3f8205466eb743d1a3917505956762bc66452548))
+
+### Refactoring
+
+- **replace**: Replace with new german API
+  ([`06ec0c2`](https://github.com/anaticulae/capita/commit/06ec0c221b67fbd1c671cce1eb76ef72efc24c74))
+
+- **replace**: Replace with utila code
+  ([`98c3ec0`](https://github.com/anaticulae/capita/commit/98c3ec0284977ce5bd11a00542cc387322fe326c))
+
+- **style**: Improve clarity
+  ([`4fcec94`](https://github.com/anaticulae/capita/commit/4fcec94f868a2e6ee1ff952ef411ae079e803709))
+
+- **test**: Increase re usability
+  ([`50f3511`](https://github.com/anaticulae/capita/commit/50f3511d11bab4337afaba52c5a16f68b22298be))
+
+### Testing
+
+- **toc**: Add regression test
+  ([`7596ffb`](https://github.com/anaticulae/capita/commit/7596ffbcc6ef4686c1c9a0d28fa9738399e95fa0))
+
+
+## v1.0.1 (2021-03-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`9fd2587`](https://github.com/anaticulae/capita/commit/9fd2587d8156d1872ab7f4d7dd46333d34e6a23f))
+
+### Testing
+
+- **sections**: Validate bachelor128 example
+  ([`fbfeb2c`](https://github.com/anaticulae/capita/commit/fbfeb2cac394c8f38f82ae820e056e6e85cada6f))
+
+
+## v1.0.0 (2021-02-05)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`cfc64c5`](https://github.com/anaticulae/capita/commit/cfc64c5474beb0cfc1f059342ec07a3f1beaa596))
+
+- **resources**: Extend test data generator
+  ([`3017443`](https://github.com/anaticulae/capita/commit/301744301d11a76d1d5598beef60b67ecd04a739))
+
+- **sections**: Validate diss170 example
+  ([`ae9a646`](https://github.com/anaticulae/capita/commit/ae9a646283446643df170ce50eda31f950995bfa))
+
+- **test**: Keep dev build fast
+  ([`3225f69`](https://github.com/anaticulae/capita/commit/3225f69bd053e6f11dcd0921bbd269b1cf07b4d7))
 
 ### Documentation
 
-* extend interface documentation (cc1524c4560c)
+- **copyright**: Happy New Year!
+  ([`dc9688b`](https://github.com/anaticulae/capita/commit/dc9688b42edadbfea0b4afd445d7d635e38134b0))
 
-## v0.4.10
+### Features
 
-## v0.4.0
+- **abbr**: Increase strictness of column check
+  ([`29a96bf`](https://github.com/anaticulae/capita/commit/29a96bf2016ab8964f03fbfd6fa07dd90f32926a))
 
-### Feature
+- **abbr**: Use merge to merge following non headlined pages
+  ([`dd79bd1`](https://github.com/anaticulae/capita/commit/dd79bd146b12ff5f60682fbbc3cd44e1dc2805de))
 
-* select hugest single potential bib group (089a5e3e464d)
-* open interface to use result directly (2bebb735bd8a)
+- **abbreviation**: Use better headline selector strategy
+  ([`c082c47`](https://github.com/anaticulae/capita/commit/c082c4772fb7402cf749105546e02a1489d1c667))
 
-## v0.3.1
+- **legal**: Improve code style and use better data structure
+  ([`2cdb26c`](https://github.com/anaticulae/capita/commit/2cdb26c95969ba57173efe885d5c2d26cb7088d8))
 
-### Fix
+- **remove**: Remove workplan
+  ([`95eeda2`](https://github.com/anaticulae/capita/commit/95eeda297026703509e7c56c6290ec6961177275))
 
-* fix unit test (72bfe86493f4)
+### Refactoring
 
-## v0.3.0
+- **legal**: Improve file structure
+  ([`b92d5f0`](https://github.com/anaticulae/capita/commit/b92d5f0277c94ef83589302323518b32f2184cc6))
 
-### Feature
+- **test**: Simplify test
+  ([`4fe662d`](https://github.com/anaticulae/capita/commit/4fe662dbf507786df312b085cac1371cd710feb9))
 
-* create huger sections to avoid splitting document area (7c0b5966fe29)
-* use python style range pattern (538c6a95e5eb)
-* improve chapter detector (2e3c7d860d5f)
-* extend legal detection (a07938c2ccbb)
+### Testing
 
-### Fix
+- **abbr**: Add regression to not parse false positive abbr. table
+  ([`7722009`](https://github.com/anaticulae/capita/commit/77220097085bae210134a134fd6679a1ab4ddb3e))
 
-* replace with correct copy pattern (b745ca333ab6)
-* log missing font access (a398ad474a11)
+- **abbr**: Add test to validate diss170 abbreviation table
+  ([`2555cd0`](https://github.com/anaticulae/capita/commit/2555cd0fd636f71fd37c9d10f5448a2067ffbad8))
+
+- **refactor**: Beautify code
+  ([`80014b4`](https://github.com/anaticulae/capita/commit/80014b47fa7849ee98eebddfddfa1c581940cff3))
+
+
+## v0.15.1 (2021-01-28)
+
+### Bug Fixes
+
+- **table**: Pass minimal value to method checker
+  ([`5d7dfbf`](https://github.com/anaticulae/capita/commit/5d7dfbf5c0421bd2162004eaf6edf9197501d7c3))
+
+### Refactoring
+
+- **clean**: Cleanup linter warnings
+  ([`20c1bcb`](https://github.com/anaticulae/capita/commit/20c1bcb9c22521019ed4a6bedc8b3239101bef6f))
+
+
+## v0.15.0 (2021-01-28)
+
+### Chores
+
+- **requirements**: Add groupme for test data generator
+  ([`5720d08`](https://github.com/anaticulae/capita/commit/5720d086d2d557b09d5c5ed40d83396fa4c16afa))
+
+- **requirements**: Upgrade requirements.txt
+  ([`ccf6a19`](https://github.com/anaticulae/capita/commit/ccf6a19230f795580fcff77aa4c2fccbe85bcdbd))
+
+### Features
+
+- **figure**: Use pattern to extend figuretable detector
+  ([`dfc9018`](https://github.com/anaticulae/capita/commit/dfc90182f9502b6e8e5f374d802e355620d0ffe2))
+
+- **strategy**: Add option to define own valid line strategy
+  ([`8bae996`](https://github.com/anaticulae/capita/commit/8bae99681b91d40baddf2e9db433a6bf332d0dea))
+
+### Refactoring
+
+- **replace**: Replace with elements code
+  ([`deb5e19`](https://github.com/anaticulae/capita/commit/deb5e1941427955446cb9b456907709cf4cbd73c))
+
+- **test**: Increase test re usability
+  ([`d1f0b3d`](https://github.com/anaticulae/capita/commit/d1f0b3d278837bff0ae2421f4d9b15c32be9074f))
+
+- **test**: Sort test names
+  ([`82e17fb`](https://github.com/anaticulae/capita/commit/82e17fb9ff4b680b8328a2531e04b5fc8569fbe3))
+
+- **toc**: Use new pattern option
+  ([`11a1e1b`](https://github.com/anaticulae/capita/commit/11a1e1b073e09f07c7dc2c6ff611907982d72c2d))
+
+### Testing
+
+- **validate**: Validate bachelor37 sections
+  ([`1d0d73d`](https://github.com/anaticulae/capita/commit/1d0d73d7c626a46f23697216d399a1b07bb90f95))
+
+
+## v0.14.2 (2021-01-25)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`652526a`](https://github.com/anaticulae/capita/commit/652526a28672bb882cd9e795101330c4eec9aae7))
+
+- **test**: Keep dev build fast
+  ([`8b8b7f0`](https://github.com/anaticulae/capita/commit/8b8b7f0145fc88223895c6cefd77f3135f5e635d))
+
+### Code Style
+
+- **docs**: Fix interface documentation
+  ([`bf565e3`](https://github.com/anaticulae/capita/commit/bf565e315f7c1d3b88acf2f33f5633f05951ae1b))
+
+### Features
+
+- **strategy**: Add appendix line checker
+  ([`c3cbe68`](https://github.com/anaticulae/capita/commit/c3cbe681d63712aa32c932fc4d1aecd73cb6f000))
+
+- **strategy**: Extend table detection strategy
+  ([`6e5299b`](https://github.com/anaticulae/capita/commit/6e5299ba2ec40cfc9cbc6bb215a613e49c6fe331))
+
+- **table**: Unite strategy with detected pages without headline
+  ([`c2f8283`](https://github.com/anaticulae/capita/commit/c2f828337aac9b4fa458c2018c0f9e93a283d022))
+
+### Refactoring
+
+- **replace**: Replace with utila code
+  ([`b10894d`](https://github.com/anaticulae/capita/commit/b10894d17c00f86e3abf53ca8235567ed81672e5))
+
+### Testing
+
+- **fix**: Enable xpassed test
+  ([`b7b0a93`](https://github.com/anaticulae/capita/commit/b7b0a93703e22818771b2429a765fdc35f69a696))
+
+
+## v0.14.1 (2021-01-25)
+
+### Chores
+
+- **requirements**: Add elements package
+  ([`f73efd4`](https://github.com/anaticulae/capita/commit/f73efd4a270221c91d70160d1c7aa9be7c1d5eb7))
+
+- **requirements**: Upgrade requirements.txt
+  ([`cc80fee`](https://github.com/anaticulae/capita/commit/cc80fee81cb247367ee8ab52b7ec1d37f8f38ab8))
+
+- **test**: Register huge marker
+  ([`e2e5357`](https://github.com/anaticulae/capita/commit/e2e5357467eb636fd9681c7eafcc22fb9bd09c1b))
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`6d42693`](https://github.com/anaticulae/capita/commit/6d42693fdd1750fde07a56f215e1e6d60746c876))
+
+### Refactoring
+
+- **replace**: Replace with elements code
+  ([`c47ff85`](https://github.com/anaticulae/capita/commit/c47ff8539dacdea6b6c9a8058e0b0510047c68f2))
+
+
+## v0.14.0 (2021-01-06)
+
+### Chores
+
+- **resources**: Extend test data generator
+  ([`860250c`](https://github.com/anaticulae/capita/commit/860250c05dab0a646079112f6ea9fa5b81a7f07b))
+
+- **resources**: Fix resources generator
+  ([`290ce99`](https://github.com/anaticulae/capita/commit/290ce99018ff688e72647f7e2b4ddda4bfcfa5fa))
+
+- **test**: Keep dev build fast
+  ([`46ae19d`](https://github.com/anaticulae/capita/commit/46ae19d885e87f8f52e50c814d196dc5735bfaf7))
+
+### Code Style
+
+- **docs**: Fix typo
+  ([`0dec3b7`](https://github.com/anaticulae/capita/commit/0dec3b79429e6c89cf6c7ab32cb0a9e88f013d21))
+
+- **path**: Ease importing path module
+  ([`f865483`](https://github.com/anaticulae/capita/commit/f865483ada4e39c555b188b499a6792620e4bdea))
+
+### Features
+
+- **chapter**: Improve chapter start detector
+  ([`3c91c26`](https://github.com/anaticulae/capita/commit/3c91c267a0349e411b56e6366eb3bab3f43a93c8))
+
+- **toc**: Extend toc page detection
+  ([`edd73cc`](https://github.com/anaticulae/capita/commit/edd73cc03c7a9d497d7fbdbe6da7655738bb20e5))
+
+### Refactoring
+
+- **chapter**: Simplify test code
+  ([`dab10b6`](https://github.com/anaticulae/capita/commit/dab10b6253b112597993db94bc4aadf95d511939))
+
+- **naming**: Use project specific naming
+  ([`e195860`](https://github.com/anaticulae/capita/commit/e195860d6841ab73b9015b206633539f645fe602))
+
+- **path**: Rename result path method
+  ([`8d3cd1f`](https://github.com/anaticulae/capita/commit/8d3cd1f311022d7128381cbc0920ffd9d15466c1))
+
+- **replace**: Replace with serializeraw code
+  ([`0ce7b23`](https://github.com/anaticulae/capita/commit/0ce7b2307ac5444d9aa3b6e690b661ae2cdd4113))
+
+- **replace**: Replace with utila code
+  ([`d1779e3`](https://github.com/anaticulae/capita/commit/d1779e34bfe62b47928445a1da89bfa003756a17))
+
+- **strategy**: Improve strategy code style
+  ([`f50eb39`](https://github.com/anaticulae/capita/commit/f50eb39cff99eda0fee46a79378728d07e8baa89))
+
+- **table**: Move check to external method
+  ([`4d03f28`](https://github.com/anaticulae/capita/commit/4d03f28ea3e005dbf2824e31207aa004317cb029))
+
+- **test**: Ease test code
+  ([`6c322b0`](https://github.com/anaticulae/capita/commit/6c322b07b0d8279e0240282a8a9b65a0b9fea091))
+
+- **test**: Improve test code
+  ([`1945e44`](https://github.com/anaticulae/capita/commit/1945e441b647d9fd5d0ccf59dbd5653dafc14e28))
+
+- **test**: Remove outdated code
+  ([`00db014`](https://github.com/anaticulae/capita/commit/00db0146fa3128f8917d3ac1834bfb0206e0fd79))
+
+- **test**: Use new naming concept
+  ([`be282c7`](https://github.com/anaticulae/capita/commit/be282c70c2529459d1069dd2d327a667061ae8c6))
+
+- **toc**: Improve naming
+  ([`176a4db`](https://github.com/anaticulae/capita/commit/176a4db4fe5f747eda7dd3fe0c7266e58b70f0c1))
+
+### Testing
+
+- **chapter**: Validate diss266 chapters
+  ([`08d3b2b`](https://github.com/anaticulae/capita/commit/08d3b2b2f026db4461bea6f29fc67dd5ba700ac4))
+
+
+## v0.13.8 (2021-01-04)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3ea4d3b`](https://github.com/anaticulae/capita/commit/3ea4d3bcc66f33a72a491daf0d422b92fe5f6d48))
+
+
+## v0.13.7 (2021-01-04)
+
+### Bug Fixes
+
+- **chapter**: Shrink chapter selector for better results
+  ([`777a01c`](https://github.com/anaticulae/capita/commit/777a01c1843e3127bb79b2c17d7ffddeea505f5e))
+
+### Chores
+
+- **requirements**: Do not release so often
+  ([`f81b0f4`](https://github.com/anaticulae/capita/commit/f81b0f4705822ca7b3c61c33adbd6cbf06d6fdcb))
+
+- **requirements**: Upgrade requirements.txt
+  ([`dbdb4a5`](https://github.com/anaticulae/capita/commit/dbdb4a55044cd77fd780de72b3a5d8a520e9b17b))
+
+- **requirements**: Upgrade requirements.txt
+  ([`b541943`](https://github.com/anaticulae/capita/commit/b5419434ca53d178313e92df8898d8a523214de8))
+
+- **resources**: Extend test data generator
+  ([`fbfa793`](https://github.com/anaticulae/capita/commit/fbfa7938a751e7a2baeca2c0ee45a9efbb49eec1))
+
+### Refactoring
+
+- **test**: Simplify test code
+  ([`af0b9b3`](https://github.com/anaticulae/capita/commit/af0b9b36e274291e11275500654236d88e4f7e04))
+
+### Testing
+
+- **bib**: Validate master110 example
+  ([`87dd8a2`](https://github.com/anaticulae/capita/commit/87dd8a24a97fb8ce5d96bd3b41e2768abfb852e2))
+
+
+## v0.13.6 (2020-12-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`5a62988`](https://github.com/anaticulae/capita/commit/5a629883b34d4a269c276dda8b4482fffca03db2))
+
+
+## v0.13.5 (2020-12-04)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`28fda6e`](https://github.com/anaticulae/capita/commit/28fda6ea0ccf49f8e10a23da25fbfda0a81ad7e8))
+
+
+## v0.13.4 (2020-11-30)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a46f345`](https://github.com/anaticulae/capita/commit/a46f345ec8415fa2944a245447fee34fe0e68c04))
+
+
+## v0.13.3 (2020-11-27)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3df70b4`](https://github.com/anaticulae/capita/commit/3df70b414772c6cc66b891967a4225edd007a3ad))
+
+
+## v0.13.2 (2020-11-26)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`96b8a9b`](https://github.com/anaticulae/capita/commit/96b8a9b4cd8470dce6530081f643181a2950f8fe))
+
+
+## v0.13.1 (2020-11-19)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7e184f7`](https://github.com/anaticulae/capita/commit/7e184f70c1728819522a1c62c6d758fd9d8ced0b))
+
+
+## v0.13.0 (2020-11-19)
+
+### Bug Fixes
+
+- **headlines**: Skip very small headlines
+  ([`82e8d5f`](https://github.com/anaticulae/capita/commit/82e8d5fa09a4f1f06d5c45cdc6af0984ce2b6851))
+
+### Features
+
+- **sections**: Use content navigator to improve performance
+  ([`d07938d`](https://github.com/anaticulae/capita/commit/d07938d2fb76477d2df4f741e1fbd54232be4537))
+
+- **title**: Cut non required `precision`
+  ([`def3a31`](https://github.com/anaticulae/capita/commit/def3a31f0de69334ba5d99a2eaf1f28f1fb5b592))
+
+- **uniform**: Introduce threshold to avoid surprising results
+  ([`04aa24b`](https://github.com/anaticulae/capita/commit/04aa24bb219bef866e8a46226513e2a013559e83))
+
+### Testing
+
+- **resources**: Extend test data generator
+  ([`050d15c`](https://github.com/anaticulae/capita/commit/050d15cee43940611ae8d920a54c3fa307dbaeaa))
+
+- **resources**: Run long documents first
+  ([`518db68`](https://github.com/anaticulae/capita/commit/518db6863d1d8029476fab4f9d85ec095d53a8ed))
+
+- **section**: Add test to validate master75 appendix
+  ([`f93944e`](https://github.com/anaticulae/capita/commit/f93944ea68c1c7754ba3266ca2c3f4b7aef11dd4))
+
+
+## v0.12.2 (2020-11-02)
+
+### Bug Fixes
+
+- **import**: Fix broken import
+  ([`2becc5c`](https://github.com/anaticulae/capita/commit/2becc5c609fed0e5e5c023e61ff4fb89477b7d73))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`4107926`](https://github.com/anaticulae/capita/commit/4107926dfb8c525ff7c45ca6a6d484e52286580b))
+
+- **resources**: Generate home18
+  ([`8ad9afd`](https://github.com/anaticulae/capita/commit/8ad9afd937ab6abdc0f39720e72e7bb62b5bb408))
+
+### Features
+
+- **bib**: Extend special word list
+  ([`2fdfab6`](https://github.com/anaticulae/capita/commit/2fdfab60d16d8df25810f4b72b64cef2f2b91a3b))
+
+### Refactoring
+
+- **remove**: Remove non required file
+  ([`346e9a7`](https://github.com/anaticulae/capita/commit/346e9a76a25e389a5ac1c3fb0c393b97287ac611))
+
+
+## v0.12.1 (2020-10-28)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`9c94f15`](https://github.com/anaticulae/capita/commit/9c94f1596c7cc88a6b1aae30326f7287a8c7b17e))
+
+
+## v0.12.0 (2020-10-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`1067e7f`](https://github.com/anaticulae/capita/commit/1067e7fa119a4cc44568f94f01257508444fc398))
+
+- **test**: Extend test data generator
+  ([`1c0bed0`](https://github.com/anaticulae/capita/commit/1c0bed077ec0f28aec72b59595fe5f9f16e6f5af))
+
+### Features
+
+- **bib**: Extend keywords to detect bib section
+  ([`b702f4c`](https://github.com/anaticulae/capita/commit/b702f4cd82c0c92a54e3700af96655e064df6cd0))
+
+### Refactoring
+
+- **style**: Improve code style
+  ([`94095d7`](https://github.com/anaticulae/capita/commit/94095d7073e3191ee32ad28c65d6708cfb78833a))
+
+### Testing
+
+- **add**: Add test to verify bachelor128 bib extraction
+  ([`57244bc`](https://github.com/anaticulae/capita/commit/57244bc25e4dab2b86d931f4162fc9ec44d75ba4))
+
+
+## v0.11.0 (2020-10-08)
+
+### Bug Fixes
+
+- **bib**: Add min value of marker to use feature
+  ([`aaa5d0e`](https://github.com/anaticulae/capita/commit/aaa5d0e941ce311130a497ba4a602487610075e8))
+
+- **index**: Improve single char feature
+  ([`279e0c5`](https://github.com/anaticulae/capita/commit/279e0c51814f04296148c522de7e312fdaffb488))
+
+- **title**: Fix hugest font size determiner for correct title page extraction
+  ([`673bb33`](https://github.com/anaticulae/capita/commit/673bb33043f420ff3ac2a440ec3ba75e26a67152))
+
+### Chores
+
+- **requirements**: Add missing generator requirement
+  ([`e5e8a39`](https://github.com/anaticulae/capita/commit/e5e8a39c2ad80882c2b7dc2e7be53822c69dfc22))
+
+- **requirements**: Prepare refactoring
+  ([`478125d`](https://github.com/anaticulae/capita/commit/478125dbd31125b9265cbeb403fd603f5b783814))
+
+- **requirements**: Upgrade requirements.txt
+  ([`b140c26`](https://github.com/anaticulae/capita/commit/b140c26f65b2482f4a3b23c90c85b5ec1783f736))
+
+- **requirements**: Upgrade requirements.txt
+  ([`cb2d770`](https://github.com/anaticulae/capita/commit/cb2d770b008e75cec756aa72b719016033db0acc))
+
+- **requirements**: Use groupme to determine toc line level
+  ([`5dfc5e2`](https://github.com/anaticulae/capita/commit/5dfc5e225e718095126e1dc03e1455b7fba21a12))
+
+- **test**: Extend test data generator
+  ([`293e9b7`](https://github.com/anaticulae/capita/commit/293e9b7b41a3d78dfe30c680852ba57fd45e7d6f))
+
+- **test**: Extend test data generator
+  ([`28e7217`](https://github.com/anaticulae/capita/commit/28e72171c4eae230ec4efaf1c6f767fcf043d7a6))
+
+- **test**: Extend test data generator
+  ([`29536e2`](https://github.com/anaticulae/capita/commit/29536e2ffa333a9858b9a818a28deac3176628c2))
+
+- **test**: Keep dev build fast
+  ([`ad1cde2`](https://github.com/anaticulae/capita/commit/ad1cde25616b13ce9a7bef46311ce07de7e50971))
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`a822a4e`](https://github.com/anaticulae/capita/commit/a822a4e16c33079dc07c342de4c29e2f354cb325))
+
+### Features
+
+- **bib**: Make bib detector more robust against level
+  ([`de9b7c1`](https://github.com/anaticulae/capita/commit/de9b7c12cce4afa1e32a22c660b606f9328a78d1))
+
+- **bib**: Use authors to improve bib section detection
+  ([`8e0d845`](https://github.com/anaticulae/capita/commit/8e0d84514f5f8592267bb8cbda24de0e524abd75))
+
+- **patch**: Add authors to extract list of authors
+  ([`1c1f050`](https://github.com/anaticulae/capita/commit/1c1f0504d7040e5664e3ebbce8dd1c68c28b2ee3))
+
+- **toc**: Use parse level for toc line detection
+  ([`aee74d4`](https://github.com/anaticulae/capita/commit/aee74d45a72de1637e59aa17d69834d48242be41))
+
+### Refactoring
+
+- **replace**: Replace outdated patch
+  ([`be3bd2b`](https://github.com/anaticulae/capita/commit/be3bd2bd62898ff36602fe879adb3c87c90a1128))
+
+- **replace**: Replace with geostrat code
+  ([`131c334`](https://github.com/anaticulae/capita/commit/131c33434adb86ad6795f4a0a97d37ea0b3817ca))
+
+- **toc**: Move white and black list to separate constants
+  ([`611350b`](https://github.com/anaticulae/capita/commit/611350bf5dfc5810282b3c976ebbb25a28cda2be))
+
+### Testing
+
+- **bib**: Add test to verify new behavior
+  ([`aa656ad`](https://github.com/anaticulae/capita/commit/aa656addded84a3f0866870b7e765124b209a8ad))
+
+- **section**: Add regression test to detect toc correctly
+  ([`399d98e`](https://github.com/anaticulae/capita/commit/399d98e3b437c8be77cabb31ff0a56e77e527744))
+
+- **section**: Add test to validate master31 section extraction
+  ([`d04ad75`](https://github.com/anaticulae/capita/commit/d04ad75f7ae34f28033f29842105f7d5d9823f9b))
+
+
+## v0.10.0 (2020-09-26)
+
+### Bug Fixes
+
+- **chapter**: Disable check for (short) document without toc
+  ([`bc87038`](https://github.com/anaticulae/capita/commit/bc87038042ccfe00758f414acff6729038a1bcd4))
+
+- **geometry**: Skip pages with more than two column
+  ([`8e64164`](https://github.com/anaticulae/capita/commit/8e64164ab26f731eac872f21c86e13ffa1b7fa32))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`84e72de`](https://github.com/anaticulae/capita/commit/84e72de890fe670d83e079ff92dfffd2c972bf64))
+
+- **test**: Extend test data generator
+  ([`3589004`](https://github.com/anaticulae/capita/commit/35890048350e4ca78ffc766252922ea5122eef19))
+
+- **test**: Simplify test data generator
+  ([`eaf76b6`](https://github.com/anaticulae/capita/commit/eaf76b60506eb3047e88f9fdafdeb7b69a2086d8))
+
+### Features
+
+- **bib**: Add headline as hundred percent marker
+  ([`152114a`](https://github.com/anaticulae/capita/commit/152114a16026fbb3c15763226a3cbb3993aa533d))
+
+- **chapter**: Add white list to improve headline detection
+  ([`0d6dcb2`](https://github.com/anaticulae/capita/commit/0d6dcb2b9669285cbd54b33b27e873379232005e))
+
+### Refactoring
+
+- **test**: Simplify test code
+  ([`41b1690`](https://github.com/anaticulae/capita/commit/41b1690c5d2124a58b383fb89f591ee2dd355e79))
+
+### Testing
+
+- **bib**: Extract bib section of paper18 example
+  ([`d40304c`](https://github.com/anaticulae/capita/commit/d40304c36739e57010805584dcda95ec32bcd6ff))
+
+
+## v0.9.7 (2020-09-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`81492c8`](https://github.com/anaticulae/capita/commit/81492c885e8f8c63da6a8e00053399f633938837))
+
+
+## v0.9.6 (2020-09-09)
+
+### Chores
+
+- **requirements**: Remove hey dependency
+  ([`0117469`](https://github.com/anaticulae/capita/commit/011746939c509995119cff1fc760b59171d0ef2e))
+
+- **requirements**: Upgrade requirements.txt
+  ([`81ece81`](https://github.com/anaticulae/capita/commit/81ece8151d6e9db065f79a8feebfe8e4a295d546))
+
+- **requirements**: Use external example generator
+  ([`9a961ab`](https://github.com/anaticulae/capita/commit/9a961ab1c7eb75a2b5ec9accbc0ae3fa8c4fa9bc))
+
+### Testing
+
+- **replace**: Use external test data generator
+  ([`2fb4cfe`](https://github.com/anaticulae/capita/commit/2fb4cfecaf088c6f1eecf683281e9feb713f8837))
+
+
+## v0.9.5 (2020-09-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a13fcad`](https://github.com/anaticulae/capita/commit/a13fcadb83a5874b8130a954b68d425074fb2f7f))
+
+
+## v0.9.4 (2020-09-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dcbd853`](https://github.com/anaticulae/capita/commit/dcbd853d38ea31a12f63bd9cbd5020a08fc86b39))
+
+
+## v0.9.3 (2020-08-28)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`500cdea`](https://github.com/anaticulae/capita/commit/500cdea5f8d72c5ef16f15935182ea325e93d727))
+
+- **test**: Extend test data generator
+  ([`fa5e5ab`](https://github.com/anaticulae/capita/commit/fa5e5abf165031f2664d9c7fc31cd9a0f676811c))
+
+### Testing
+
+- **sections**: Add validation diss264 test
+  ([`6dbe379`](https://github.com/anaticulae/capita/commit/6dbe3794b27bea04e45a15ef7a05f994740954ae))
+
+
+## v0.9.2 (2020-08-10)
+
+### Bug Fixes
+
+- **setup**: Add missing package
+  ([`54e9f31`](https://github.com/anaticulae/capita/commit/54e9f310f89565dec996d9b7f9d7f667c2a86090))
+
+
+## v0.9.1 (2020-08-10)
+
+### Bug Fixes
+
+- **setup**: Add missing package
+  ([`1343968`](https://github.com/anaticulae/capita/commit/1343968e2853c22b427e5638d972a411267b069e))
+
+
+## v0.9.0 (2020-08-10)
+
+### Bug Fixes
+
+- **test**: Add missing default values
+  ([`76bb51d`](https://github.com/anaticulae/capita/commit/76bb51dac5e2c7eee3a503ddb3faa15e3369ffd5))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`552b5fb`](https://github.com/anaticulae/capita/commit/552b5fb011baf8aeb8dc1423fe0b6445697d1d8b))
+
+- **test**: Extend test data generator
+  ([`8d52158`](https://github.com/anaticulae/capita/commit/8d521581eb938f4b21d0c96446fca8c8e6f03252))
 
 ### Documentation
 
-* fix description (cfb41ae8494f)
+- **bib**: Add module information
+  ([`41291b7`](https://github.com/anaticulae/capita/commit/41291b73681ff86382dab4fb09a410485bbd9d8b))
 
-## v0.2.34
+- **bib**: Extend interface documentation
+  ([`2c6d851`](https://github.com/anaticulae/capita/commit/2c6d8517f540f596c2924db5730b2f7565e08b0a))
 
-## v0.2.1
+- **interface**: Extend interface documentation
+  ([`3bc29f1`](https://github.com/anaticulae/capita/commit/3bc29f1ae811d553e24af5df8e6f59aae96b20cf))
 
-### Feature
+### Features
 
-* add first draft of validating 5 examples (f94b1e1692c5)
+- **appendix**: Support more appendix start headlines
+  ([`8f5e8ee`](https://github.com/anaticulae/capita/commit/8f5e8ee5e15542dc697afe81172a833d9e33feb8))
 
-## v0.2.0
+- **bib**: Add double column bib detector
+  ([`c1d9931`](https://github.com/anaticulae/capita/commit/c1d99317cb58a1c93af70cd6801534f89ed1379e))
 
-### Feature
+- **bib**: Introduce strategy infrastructure
+  ([`7e3d12a`](https://github.com/anaticulae/capita/commit/7e3d12af23dc03dc0c0f8fca0724d50737eb12c9))
 
-* introduce header to define variable replacements (8d6621eb9fe3)
-* add method to dump config to string (5320ea50d4f0)
-* introduce execution plan link config and cmds (cd69982e533f)
-* add method to load configuration files (024dceb76573)
-* change format to .pl of generated working plan (2fc6504c7427)
-* add workplan step to extract planned extraction (445cdc59a195)
-* add method to setup folder structure (b97f3819fb28)
-* add runtime parallelize (d69397d643b6)
-* add method to split raw execution plan (692cfd153859)
-* add method to convert plan to raw plan (d71ba638f392)
-* merge section `Chapter` and `Text` (80fda1f5ec4d)
-* add workplan runner (9bdd2fe82ccc)
-* add workplan creator (e591c1195d48)
+- **geometry**: Add double column parser
+  ([`786bb6e`](https://github.com/anaticulae/capita/commit/786bb6e06aa920730744224eb3edfc4ddca3be24))
 
-### Fix
+### Refactoring
 
-* fix expected return type (0838d1342881)
+- **bib**: Move bib group selector to separate method
+  ([`5c83439`](https://github.com/anaticulae/capita/commit/5c83439313efbf55df1adaf2e97c733aa3a31293))
+
+### Testing
+
+- **bib**: Add test to verify that bachelor37 columns are parsed properly
+  ([`39b182e`](https://github.com/anaticulae/capita/commit/39b182e3cc3d24874a05405a4e5a9d8952710b0f))
+
+
+## v0.8.3 (2020-07-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`f0d024c`](https://github.com/anaticulae/capita/commit/f0d024cd7b08e24167f51eaaa607120252688717))
+
+
+## v0.8.2 (2020-07-27)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`284bf84`](https://github.com/anaticulae/capita/commit/284bf842782cf04d676298666f40f9702f23968a))
+
+### Refactoring
+
+- **remove**: Remove outdated patch
+  ([`5058155`](https://github.com/anaticulae/capita/commit/50581552024e9f0f8cecb784951f6a0a84593ecd))
+
+
+## v0.8.1 (2020-07-22)
+
+### Chores
+
+- **fix**: Detector is only required for test data generation
+  ([`a8cdc23`](https://github.com/anaticulae/capita/commit/a8cdc23b58fff984733afc42e6dc5b6f0a90eb5b))
+
+- **requirements**: Upgrade requirements.txt
+  ([`0665b67`](https://github.com/anaticulae/capita/commit/0665b670151036bfaa9225a7b2e5494da504e537))
+
+### Testing
+
+- **fix**: Adjust unit test
+  ([`7ab5044`](https://github.com/anaticulae/capita/commit/7ab50447a8a9fc90f0554b4bcd1ec36f29d8e8a3))
+
+
+## v0.8.0 (2020-07-17)
+
+### Bug Fixes
+
+- **bib**: Fix wrong detected bib section detection
+  ([`215e404`](https://github.com/anaticulae/capita/commit/215e4048dfb680fea91ed95de807a0ddd138313d))
+
+### Features
+
+- **table**: Extend table headline detector
+  ([`f1d4df1`](https://github.com/anaticulae/capita/commit/f1d4df159f44b60e56006730831aa07b6d7a6810))
+
+
+## v0.7.1 (2020-07-16)
+
+### Bug Fixes
+
+- **test**: Adjust test to correct page ranges
+  ([`98c7853`](https://github.com/anaticulae/capita/commit/98c78534467a55c00e2a4b723df9f8d10f4eac06))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a1c3ff4`](https://github.com/anaticulae/capita/commit/a1c3ff4f017121a65cfa4a2ef404b50af00dcc23))
+
+- **resources**: Use new single file generator approach
+  ([`0276956`](https://github.com/anaticulae/capita/commit/027695675c8e35fa8ddf4d220becf7b88ab617d0))
+
+
+## v0.7.0 (2020-07-15)
+
+### Bug Fixes
+
+- **workplan**: Clarify source of error message
+  ([`03f2b84`](https://github.com/anaticulae/capita/commit/03f2b84755e861740c0ff7f81f339c7905b29373))
 
 ### Documentation
 
-* add purpose of sections tool (f0db3ae13dbe)
+- **interface**: Fix interface documentation
+  ([`d5ae255`](https://github.com/anaticulae/capita/commit/d5ae25577c690b2fc68abcd5a44a57646a853b42))
 
-## v0.1.1
+### Features
 
-### Fix
+- **chapter**: Extend chapter headline detector
+  ([`6f1c09b`](https://github.com/anaticulae/capita/commit/6f1c09b4bf501006c325452aba26aecdfaafc68a))
 
-* fix linter warnings (ca0d9d6c014e)
-* fix linter warning (aee32425d5e7)
-* fix linter warnings (ab60d3b418db)
-* fix outdated todo (05d786ccff94)
+- **symbol**: Add symbol section detection step
+  ([`f8ce1ba`](https://github.com/anaticulae/capita/commit/f8ce1ba7cdc70931d9ac3e81b85acff505ee3b4c))
 
-## v0.1.0
+### Refactoring
 
-### Feature
+- **remove**: Remove outdated code
+  ([`53b8efe`](https://github.com/anaticulae/capita/commit/53b8efe96fb6f3858c4b4da7a4f5376c1feb1083))
 
-* move code from, hey project (55e54508c774)
+- **remove**: Remove outdated comments
+  ([`7e3fa88`](https://github.com/anaticulae/capita/commit/7e3fa88a6b70372412664a724d2c9fae2079c103))
 
-## v0.0.0 Initial release
+- **test**: Increase test re usability
+  ([`179516a`](https://github.com/anaticulae/capita/commit/179516a4b7980d1402e5271871c7ff75d8b9d9be))
+
+- **test**: Simplify test
+  ([`a8d4265`](https://github.com/anaticulae/capita/commit/a8d426589897507dd5a02af53b2ad6c7685426cb))
+
+### Testing
+
+- **add**: Add test to validate master116 sections
+  ([`3e08421`](https://github.com/anaticulae/capita/commit/3e08421f04d1f80bca1fc6544d9a8c117ea3976a))
+
+- **chore**: Extend test data generator
+  ([`67d5727`](https://github.com/anaticulae/capita/commit/67d5727dc268b96600ebc41d26ef2cdf0ce25b3d))
+
+- **validate**: Add bachelor90 validation example
+  ([`2169c01`](https://github.com/anaticulae/capita/commit/2169c010bae2101c47c0343c3d60444a63798679))
+
+
+## v0.6.0 (2020-07-15)
+
+### Bug Fixes
+
+- **bib**: Use mean bib value to avoid holes in group while merging with
+  ([`817f6f6`](https://github.com/anaticulae/capita/commit/817f6f697aecc2b699a825a46ab7cef1e408fff4))
+
+### Chores
+
+- **resources**: Remove not required gitignore
+  ([`ef7e62f`](https://github.com/anaticulae/capita/commit/ef7e62f7c7ede53a569cd2a38cbb70b00bbee687))
+
+- **test**: Extend test data generator
+  ([`966ac81`](https://github.com/anaticulae/capita/commit/966ac81d168ce9523ab42d0c8527913fe55da87b))
+
+### Features
+
+- **headline**: Add method to determine potential headline out of text style
+  ([`1253099`](https://github.com/anaticulae/capita/commit/12530995b1ee41eb885dce5849df8f140f607744))
+
+- **sections**: Add abstract step detection step
+  ([`2c741ec`](https://github.com/anaticulae/capita/commit/2c741ec74623f73827bfb696fcf29956fccf51fa))
+
+- **sections**: Add figuretable and tabletable section detection step
+  ([`affd204`](https://github.com/anaticulae/capita/commit/affd2043478fcd4879716476f980e0afb674663f))
+
+- **sections**: Add first draft of appendix detector
+  ([`a75419b`](https://github.com/anaticulae/capita/commit/a75419b2c4381d458c6144a87a0b4daa7c719d00))
+
+- **toc**: Use new toc likelihood detector
+  ([`e1254f8`](https://github.com/anaticulae/capita/commit/e1254f89c517e14685245f005ce448b2e3cb09c3))
+
+### Refactoring
+
+- **imports**: Organize imports
+  ([`c300ad2`](https://github.com/anaticulae/capita/commit/c300ad2119c905cbdab947a9775495b92c8b8670))
+
+- **move**: Move resource generated check
+  ([`2fea94b`](https://github.com/anaticulae/capita/commit/2fea94b97f2e91110a3b7a0a3e668ae1648acd24))
+
+- **remove**: Remove unused, outdated tests
+  ([`b001290`](https://github.com/anaticulae/capita/commit/b00129095923a63bb693d1107ec5cdedfbdeea72))
+
+- **replace**: Replace with new power data generator
+  ([`40062f4`](https://github.com/anaticulae/capita/commit/40062f40e523c5cafa2f9c9c6c0491402cf73a16))
+
+- **section**: Patch section to introduce unsupported datatype
+  ([`1e410d7`](https://github.com/anaticulae/capita/commit/1e410d7ee7d2e42073f3d026d40d62b92401398f))
+
+- **setup**: Clean up setup file
+  ([`6d67d92`](https://github.com/anaticulae/capita/commit/6d67d9228c37ccac5ff5b48032833c127ba9896d))
+
+- **tests**: Move example to better place
+  ([`2a21142`](https://github.com/anaticulae/capita/commit/2a21142deb5bbe63519f6896ac02481dbdd64e76))
+
+- **toc**: Prepare table of content analyser for refactoring
+  ([`51b6aa0`](https://github.com/anaticulae/capita/commit/51b6aa0c580a4e83c380434cee5f94a8a83aa6b2))
+
+### Testing
+
+- **power**: Add method to ease test data generation
+  ([`f57753e`](https://github.com/anaticulae/capita/commit/f57753eed44df2521e8a1ca7835ef927b52d3a0f))
+
+- **section**: Extend bachelor90 section test
+  ([`2a408b1`](https://github.com/anaticulae/capita/commit/2a408b1ac2e24474948e2d7689bd6418a5d8a5d9))
+
+- **validation**: Add validation page range of bachelor90
+  ([`bac719a`](https://github.com/anaticulae/capita/commit/bac719acdccae2bdab76a035944f123c465833ab))
+
+
+## v0.5.1 (2020-07-12)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`db24a5a`](https://github.com/anaticulae/capita/commit/db24a5ac62d3097870136bef70928fe6cb1a195d))
+
+
+## v0.5.0 (2020-07-06)
+
+### Bug Fixes
+
+- **chapter**: Do not detect appendix with a lot of points as toc page
+  ([`81b047f`](https://github.com/anaticulae/capita/commit/81b047fcb1f79ca3e8104e28c83c833d4de33493))
+
+- **chapter**: Do not parse newlines in headline pattern
+  ([`a97ac4b`](https://github.com/anaticulae/capita/commit/a97ac4bc366acad8e77180927a5b4ad569e5b5d4))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a4bf714`](https://github.com/anaticulae/capita/commit/a4bf7145af72e75301bcefe168e90e78586d5124))
+
+### Documentation
+
+- **chapter**: Extend interface documentation
+  ([`cc1524c`](https://github.com/anaticulae/capita/commit/cc1524c4560cc27aebd62d5480f21de524a1a7aa))
+
+### Features
+
+- **chapter**: Make chapter start detector more robust
+  ([`1d466e7`](https://github.com/anaticulae/capita/commit/1d466e72be67995b000f2dcd66d475143eb04ae3))
+
+- **section**: Add dynamic next class selector
+  ([`141806e`](https://github.com/anaticulae/capita/commit/141806e27f9f8ed6f287d7ce823cc74c97c96a61))
+
+### Refactoring
+
+- **remove**: Remove outdated approach
+  ([`440497d`](https://github.com/anaticulae/capita/commit/440497d78a33d3f71ac923079b214d0b0d73d4b7))
+
+- **remove**: Remove unused code
+  ([`658dd6f`](https://github.com/anaticulae/capita/commit/658dd6f8474bbdb9496fda039e36229263f0fab5))
+
+- **rename**: Rename outdated method name
+  ([`2cd9842`](https://github.com/anaticulae/capita/commit/2cd9842137c3975eec0ee251b57576ac0bd41748))
+
+- **replace**: Replace with serializeraw code
+  ([`b458114`](https://github.com/anaticulae/capita/commit/b458114c9ee99c81b1d880ed894c1a4bc8a6951c))
+
+- **style**: Beautify code
+  ([`f46e66c`](https://github.com/anaticulae/capita/commit/f46e66c5498439470b8f9d604e3f721f4db5e868))
+
+
+## v0.4.10 (2020-07-02)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`96d25f9`](https://github.com/anaticulae/capita/commit/96d25f9e8af6d2f592d32c512dca900eebeeebd5))
+
+
+## v0.4.9 (2020-07-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e8f4fc9`](https://github.com/anaticulae/capita/commit/e8f4fc978a1586a4d627f3d2bf03a263bab7d9b7))
+
+
+## v0.4.8 (2020-06-30)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b64e653`](https://github.com/anaticulae/capita/commit/b64e65308dd149f53fb4c338f808f88e2e9a95e1))
+
+
+## v0.4.7 (2020-06-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e6e8350`](https://github.com/anaticulae/capita/commit/e6e83509118abbc8dc7d8daf9c4e4e2bc92a1218))
+
+
+## v0.4.6 (2020-06-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a3fb238`](https://github.com/anaticulae/capita/commit/a3fb23822d56d69e4c42691c11fb583d212ebd58))
+
+### Code Style
+
+- **format**: Format code
+  ([`57783b6`](https://github.com/anaticulae/capita/commit/57783b6f9dcf2e588f5f5c1dde4b54c51d00edaf))
+
+
+## v0.4.5 (2020-06-21)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`53a9669`](https://github.com/anaticulae/capita/commit/53a9669c1a90261fa46e202d903b4f3c2f05df8e))
+
+
+## v0.4.4 (2020-06-18)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`8c87e8e`](https://github.com/anaticulae/capita/commit/8c87e8ef87ab16492d14be3183bdc2794e0f39b8))
+
+
+## v0.4.3 (2020-06-18)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`94b659b`](https://github.com/anaticulae/capita/commit/94b659b835a493407add6e2ea059c29e1fd6d576))
+
+
+## v0.4.2 (2020-06-17)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`c312246`](https://github.com/anaticulae/capita/commit/c31224613384d6b6661d477a453cf80adb002e52))
+
+
+## v0.4.1 (2020-06-17)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`609a3e1`](https://github.com/anaticulae/capita/commit/609a3e1d3f9eebd87012c251e609169adbe85559))
+
+### Refactoring
+
+- **replace**: Replace with german code
+  ([`5f8d255`](https://github.com/anaticulae/capita/commit/5f8d255e7013a2161d06276bfd1dab00fbbf3014))
+
+
+## v0.4.0 (2020-06-13)
+
+### Features
+
+- **bib**: Select hugest single potential bib group
+  ([`089a5e3`](https://github.com/anaticulae/capita/commit/089a5e3e464d989be2e0413cc2a9cae7c180ae0c))
+
+- **spa**: Open interface to use result directly
+  ([`2bebb73`](https://github.com/anaticulae/capita/commit/2bebb735bd8a1107ba809caa1788c79bf40273c7))
+
+### Testing
+
+- **bib**: Add test to verify that bib area is grouped
+  ([`044935d`](https://github.com/anaticulae/capita/commit/044935da9259f95f7da3b440890d1ac1fcef8399))
+
+- **data**: Extend test data generator
+  ([`6596011`](https://github.com/anaticulae/capita/commit/6596011faabee2dc3b14f5cab2419de0f55dc13a))
+
+
+## v0.3.1 (2020-06-11)
+
+### Bug Fixes
+
+- **test**: Fix unit test
+  ([`72bfe86`](https://github.com/anaticulae/capita/commit/72bfe86493f498c9220f0e0b337d71e41d4c9268))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`9aa7a2e`](https://github.com/anaticulae/capita/commit/9aa7a2e4ec1c757cdfbbc7bbe2b19fd5b1203780))
+
+
+## v0.3.0 (2020-06-11)
+
+### Bug Fixes
+
+- **test**: Replace with correct copy pattern
+  ([`b745ca3`](https://github.com/anaticulae/capita/commit/b745ca333ab6b39d44705e48981a802fb05f25fa))
+
+- **title**: Log missing font access
+  ([`a398ad4`](https://github.com/anaticulae/capita/commit/a398ad474a110d41e157a400d309a4f5281db9c4))
+
+### Code Style
+
+- **sort**: Sort tests alphabetically
+  ([`e6427d5`](https://github.com/anaticulae/capita/commit/e6427d51827542c64b763917bb4b9b26a700d994))
+
+### Documentation
+
+- **fix**: Fix description
+  ([`cfb41ae`](https://github.com/anaticulae/capita/commit/cfb41ae8494f459d6275e9933d44b160ba35b935))
+
+### Features
+
+- **chapter**: Improve chapter detector
+  ([`2e3c7d8`](https://github.com/anaticulae/capita/commit/2e3c7d860d5f246f5d99c52423828712f07cd9ac))
+
+- **legal**: Extend legal detection
+  ([`a07938c`](https://github.com/anaticulae/capita/commit/a07938c2ccbbc45e87372e0dda1c6a6b79787214))
+
+- **section**: Create huger sections to avoid splitting document area
+  ([`7c0b596`](https://github.com/anaticulae/capita/commit/7c0b5966fe298d23cc67b3692a4e70fc923d77e6))
+
+- **sections**: Use python style range pattern
+  ([`538c6a9`](https://github.com/anaticulae/capita/commit/538c6a95e5ebd242de4b8e9661aba569984dda05))
+
+### Refactoring
+
+- **remove**: Remove unused code
+  ([`a173923`](https://github.com/anaticulae/capita/commit/a1739230542cf8ecc9c3179e52401abf93a8adc0))
+
+- **style**: Use fixture to simplify test
+  ([`e7f03b3`](https://github.com/anaticulae/capita/commit/e7f03b3e7c46b6500509fb1d54188ca7aa1c229b))
+
+- **test**: Increase code re usability
+  ([`425bb05`](https://github.com/anaticulae/capita/commit/425bb05de1c9d6d523eac4e199d36ab90e25817b))
+
+- **test**: Simplify test code
+  ([`c21a58c`](https://github.com/anaticulae/capita/commit/c21a58cc5621e6d7872839b3dfcf4aaea45441a0))
+
+- **test**: Testing help is not required anymore
+  ([`8f945da`](https://github.com/anaticulae/capita/commit/8f945da41c51518ee567529708ebc6b81e2150a6))
+
+- **tests**: Simplify test code
+  ([`96d4ac8`](https://github.com/anaticulae/capita/commit/96d4ac84e9fbda589ec7b4d6b1e9536e76857dae))
+
+### Testing
+
+- **chapter**: Extend chapter detection validation
+  ([`0c651a0`](https://github.com/anaticulae/capita/commit/0c651a06b1b8f4b144b143375088a051e47176ee))
+
+- **cli**: Extend test coverage and test data generator
+  ([`d065084`](https://github.com/anaticulae/capita/commit/d065084fb5bc337f5781edb386ae1bebd2ab7a0d))
+
+- **data**: Extend test data generator
+  ([`a90d065`](https://github.com/anaticulae/capita/commit/a90d0655e4dac3f7a64c62c1c6725beb00031199))
+
+- **general**: Add validation step
+  ([`2d8fbf8`](https://github.com/anaticulae/capita/commit/2d8fbf8253b1f1d2c3645f0ebc831f7c87504c3c))
+
+- **refactor**: Simplify test code
+  ([`4055e45`](https://github.com/anaticulae/capita/commit/4055e45cd5fc2ab5b4b4a91b49c6652af3f38302))
+
+- **sections**: Validate bachelor63 example
+  ([`a1d08c1`](https://github.com/anaticulae/capita/commit/a1d08c1f12ae295fa8bca932e94ea9eaa7b2797d))
+
+
+## v0.2.34 (2020-06-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`cc1a58e`](https://github.com/anaticulae/capita/commit/cc1a58e74d6a69fad3fa84e71d54cccd86a8d5fb))
+
+
+## v0.2.33 (2020-06-06)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`54233ad`](https://github.com/anaticulae/capita/commit/54233ad94c0beb37cc1685c354196905782730c0))
+
+
+## v0.2.32 (2020-06-03)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`2a3bfab`](https://github.com/anaticulae/capita/commit/2a3bfabb9d9023ec03e844cf58f416ab69b9b34f))
+
+
+## v0.2.31 (2020-06-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`73274d4`](https://github.com/anaticulae/capita/commit/73274d43d23c1281771f2af0a5a4b23567dda532))
+
+
+## v0.2.30 (2020-05-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3703575`](https://github.com/anaticulae/capita/commit/3703575d60bd8eafe71d680fc41ac6a28b4060ef))
+
+
+## v0.2.29 (2020-05-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`31c7d6d`](https://github.com/anaticulae/capita/commit/31c7d6d9420f2832e2e08e317656156d01ac5209))
+
+
+## v0.2.28 (2020-05-28)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`80cc732`](https://github.com/anaticulae/capita/commit/80cc7322612d61bdcd19e61c304e9b21f4c0552e))
+
+
+## v0.2.27 (2020-05-26)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`4b79802`](https://github.com/anaticulae/capita/commit/4b79802c8d21245ac1a882ce8bd1b5268489054c))
+
+
+## v0.2.26 (2020-05-23)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3220145`](https://github.com/anaticulae/capita/commit/3220145c6ed2097f379c6e0ba49508373acffa69))
+
+
+## v0.2.25 (2020-05-23)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`923a26d`](https://github.com/anaticulae/capita/commit/923a26d24d4f3f67c398a548fa8bc3eb5298565c))
+
+
+## v0.2.24 (2020-05-18)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e31de07`](https://github.com/anaticulae/capita/commit/e31de0700d152741669987563a11bab9a45e1248))
+
+
+## v0.2.23 (2020-05-17)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3275a23`](https://github.com/anaticulae/capita/commit/3275a23700528da9306482370afeb5fc9ff9bc29))
+
+
+## v0.2.22 (2020-05-17)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`f7ee595`](https://github.com/anaticulae/capita/commit/f7ee59520e6a2b303bbcd27482e8232c5103188f))
+
+
+## v0.2.21 (2020-05-17)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`22ee00b`](https://github.com/anaticulae/capita/commit/22ee00be472c86367efe22f216028aa4a9a9c9e9))
+
+
+## v0.2.20 (2020-05-16)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`518b235`](https://github.com/anaticulae/capita/commit/518b235bd3d45e1c336ef6abe63c3310163b307d))
+
+
+## v0.2.19 (2020-05-08)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`f94b4ed`](https://github.com/anaticulae/capita/commit/f94b4ed6f7e0dec6400d13bc984b19d469fb6c2a))
+
+
+## v0.2.18 (2020-05-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`017af65`](https://github.com/anaticulae/capita/commit/017af65ab2ee45d2c5470b44f3834f72d9a92f5c))
+
+
+## v0.2.17 (2020-05-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d3978f5`](https://github.com/anaticulae/capita/commit/d3978f5ee6fd69b52cbffede3de116227b4a5fcf))
+
+
+## v0.2.16 (2020-04-30)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`ac8b6c0`](https://github.com/anaticulae/capita/commit/ac8b6c01be8e97eccd46f06250bd7a682b339891))
+
+
+## v0.2.15 (2020-04-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`637d4f7`](https://github.com/anaticulae/capita/commit/637d4f7e904b212e8243f5ddc494c8c7ecaa74bd))
+
+
+## v0.2.14 (2020-04-23)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7f38af2`](https://github.com/anaticulae/capita/commit/7f38af25d24409d9126beba4a4729b3255f89cf1))
+
+
+## v0.2.13 (2020-04-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`096b650`](https://github.com/anaticulae/capita/commit/096b650ea6c813e62496dc7acfc7fc865fbc3f00))
+
+
+## v0.2.12 (2020-04-20)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`48cbbb4`](https://github.com/anaticulae/capita/commit/48cbbb4f73b7b2e5fd3dd8348046889a35d3feb9))
+
+
+## v0.2.11 (2020-04-16)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`032ec94`](https://github.com/anaticulae/capita/commit/032ec94ecca0c8f0f417f4630077d76f7cd77fcb))
+
+
+## v0.2.10 (2020-04-16)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`efb77c1`](https://github.com/anaticulae/capita/commit/efb77c11559bdf549fcac3d4f76c2f49b2da5dce))
+
+
+## v0.2.9 (2020-04-14)
+
+### Bug Fixes
+
+- Use utila changes
+  ([`93844c9`](https://github.com/anaticulae/capita/commit/93844c92421ea0b7580a3017ed516343ec7d8321))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`93844c9`](https://github.com/anaticulae/capita/commit/93844c92421ea0b7580a3017ed516343ec7d8321))
+
+
+## v0.2.8 (2020-04-13)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`743d2c4`](https://github.com/anaticulae/capita/commit/743d2c4e0a18d2cb1ce98dfad238082159cb386d))
+
+
+## v0.2.7 (2020-04-13)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`c5b0e3a`](https://github.com/anaticulae/capita/commit/c5b0e3aaf736127b93f8f1b7d5dacde0682f1ccf))
+
+
+## v0.2.6 (2020-04-13)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`73f55f7`](https://github.com/anaticulae/capita/commit/73f55f75fa14c84da0d020d6cdd41e11fdc48ad8))
+
+### Refactoring
+
+- **replace**: Replace with utila code
+  ([`cc76e34`](https://github.com/anaticulae/capita/commit/cc76e34f72e2fa6516ad34613cc1e306fb353d4a))
+
+
+## v0.2.5 (2020-04-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`63460a0`](https://github.com/anaticulae/capita/commit/63460a01f8ddeeed38b649579edf393fe4b341a1))
+
+
+## v0.2.4 (2020-04-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`4ea89af`](https://github.com/anaticulae/capita/commit/4ea89afcf613394336b4729a522385a664c5bab3))
+
+
+## v0.2.3 (2020-04-08)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`80688ca`](https://github.com/anaticulae/capita/commit/80688ca799a9758ef7767c6350257f483fb90a9c))
+
+
+## v0.2.2 (2020-04-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`0782e24`](https://github.com/anaticulae/capita/commit/0782e24f7736679f592f029fa0add9ccf4d5a126))
+
+
+## v0.2.1 (2020-04-07)
+
+### Chores
+
+- **requirements**: Rename dev file to new requirements.dev pattern
+  ([`cccb8a5`](https://github.com/anaticulae/capita/commit/cccb8a52ee811d397092dd6146a22ca0a85a61f9))
+
+- **requirements**: Upgrade requirements.txt
+  ([`f7adf87`](https://github.com/anaticulae/capita/commit/f7adf87bf8fb38bb0f012da866e44b9902d3a477))
+
+- **requirements**: Upgrade requirements.txt
+  ([`a360272`](https://github.com/anaticulae/capita/commit/a3602720f0bf5fb78f51c4f50ee080cce5d1809e))
+
+### Features
+
+- **validation**: Add first draft of validating 5 examples
+  ([`f94b1e1`](https://github.com/anaticulae/capita/commit/f94b1e1692c5081ca8b166c1f95902bc3f42ca35))
+
+### Refactoring
+
+- **test**: Do not log completed twice
+  ([`d349a17`](https://github.com/anaticulae/capita/commit/d349a1755291bcea0df1f3490fb48a2cb1c6be3c))
+
+- **test**: Refactor test generator code
+  ([`108a6f2`](https://github.com/anaticulae/capita/commit/108a6f22c481a853c7cadc9520251f99e5833c98))
+
+- **test**: Simplify test generator code
+  ([`efdb4e1`](https://github.com/anaticulae/capita/commit/efdb4e160a08c2d38acb71fd03e8869811ac5d68))
+
+
+## v0.2.0 (2020-03-27)
+
+### Bug Fixes
+
+- **interface**: Fix expected return type
+  ([`0838d13`](https://github.com/anaticulae/capita/commit/0838d13428816eb7c27c9516ca513b60c11f075a))
+
+### Chores
+
+- **requirements**: Add german package to split sentences
+  ([`0573e78`](https://github.com/anaticulae/capita/commit/0573e7883c9d94c39310067bd53ef9dd76c3fad1))
+
+- **requirements**: Upgrade requirements.txt
+  ([`de01163`](https://github.com/anaticulae/capita/commit/de011639a5651781d1c6a1ee3dc604d67aac41f2))
+
+- **requirements**: Upgrade requirements.txt
+  ([`e51c2a7`](https://github.com/anaticulae/capita/commit/e51c2a750381687b809dcaef0358460a87cf5758))
+
+### Documentation
+
+- **readme**: Add purpose of sections tool
+  ([`f0db3ae`](https://github.com/anaticulae/capita/commit/f0db3ae13dbebbf3e26c90b18d16bdaef42f6bc4))
+
+### Features
+
+- **cli**: Add workplan step to extract planned extraction
+  ([`445cdc5`](https://github.com/anaticulae/capita/commit/445cdc59a1951ffef7f5c1215c5708af137bdc55))
+
+- **cli**: Change format to .pl of generated working plan
+  ([`2fc6504`](https://github.com/anaticulae/capita/commit/2fc6504c7427edf790e905483f498d5010ed0630))
+
+- **runner**: Add method to setup folder structure
+  ([`b97f381`](https://github.com/anaticulae/capita/commit/b97f3819fb2899086f5121d7ae4b2e2901e68cb8))
+
+- **runner**: Add method to split raw execution plan
+  ([`692cfd1`](https://github.com/anaticulae/capita/commit/692cfd1538595e4139ea596531e7d8b3ba8c0c5c))
+
+- **runner**: Add runtime parallelize
+  ([`d69397d`](https://github.com/anaticulae/capita/commit/d69397d643b64ae6a97179fc30c7024296917c8d))
+
+- **serialize**: Add method to dump config to string
+  ([`5320ea5`](https://github.com/anaticulae/capita/commit/5320ea50d4f07fdfcc979c72fa711d188505b481))
+
+- **workplan**: Add method to convert plan to raw plan
+  ([`d71ba63`](https://github.com/anaticulae/capita/commit/d71ba638f392142331e3487b07e707eadbe426f6))
+
+- **workplan**: Add method to load configuration files
+  ([`024dceb`](https://github.com/anaticulae/capita/commit/024dceb765736418ca521e3124c2f8b6b619dfcf))
+
+- **workplan**: Add workplan creator
+  ([`e591c11`](https://github.com/anaticulae/capita/commit/e591c1195d4863e23447fdd31e3f7ff097e181ae))
+
+- **workplan**: Add workplan runner
+  ([`9bdd2fe`](https://github.com/anaticulae/capita/commit/9bdd2fe82ccc3948e404f8ddf7dddc0cda37c3ea))
+
+- **workplan**: Introduce execution plan link config and cmds
+  ([`cd69982`](https://github.com/anaticulae/capita/commit/cd69982e533f0ae133908e51c2308951f38dc9a3))
+
+- **workplan**: Introduce header to define variable replacements
+  ([`8d6621e`](https://github.com/anaticulae/capita/commit/8d6621eb9fe3cf8d3cc968588f9f6c029576a765))
+
+- **workplan**: Merge section `Chapter` and `Text`
+  ([`80fda1f`](https://github.com/anaticulae/capita/commit/80fda1f5ec4d5a73c33daacf9712ef0d0c276292))
+
+### Refactoring
+
+- **loader**: Rename methods to dump and load and move to separate module
+  ([`df79fa9`](https://github.com/anaticulae/capita/commit/df79fa9eb1be23ae5a307e28a2a26a707aefcd64))
+
+- **replace**: Remove dependency to words
+  ([`a34ecb4`](https://github.com/anaticulae/capita/commit/a34ecb4ee9cd8acf6b85eb3a94a62fea102e5920))
+
+- **runner**: Change method order
+  ([`becf0f2`](https://github.com/anaticulae/capita/commit/becf0f25a2b35d1cf72c9f30925ee5475186d91c))
+
+- **section**: Replace with iamraw code
+  ([`74dea35`](https://github.com/anaticulae/capita/commit/74dea35f6f5066784323b7f99384449026e7a3a4))
+
+### Testing
+
+- **section**: Ensure that master72 is detected correctly
+  ([`ddd0c45`](https://github.com/anaticulae/capita/commit/ddd0c4504421ac8f9284e00efc8fd249cea6e29a))
+
+- **title**: Ensure that master72 title is parsed correctly
+  ([`4460803`](https://github.com/anaticulae/capita/commit/4460803653f9d2996ce7c48ec7063c15a426e4c5))
+
+- **toc**: Ensure that master72 toc is parsed correctly
+  ([`eb122e2`](https://github.com/anaticulae/capita/commit/eb122e246000e40bdf45ba86045a94674dd1fd19))
+
+- **workplan**: Add test to extract and run workplan
+  ([`f8d3737`](https://github.com/anaticulae/capita/commit/f8d3737221596cf60c35eade85404860c49bedd6))
+
+
+## v0.1.1 (2020-03-23)
+
+### Bug Fixes
+
+- **linter**: Fix linter warnings
+  ([`ca0d9d6`](https://github.com/anaticulae/capita/commit/ca0d9d6c014e6ae822ab548e19f16436732bfd74))
+
+- **linter**: Fix linter warnings
+  ([`ab60d3b`](https://github.com/anaticulae/capita/commit/ab60d3b418db0bf60d9003324b5ab114da9a659c))
+
+- **multiform**: Fix linter warning
+  ([`aee3242`](https://github.com/anaticulae/capita/commit/aee32425d5e7631c4a9d722c705f95744a4ad00c))
+
+- **todo**: Fix outdated todo
+  ([`05d786c`](https://github.com/anaticulae/capita/commit/05d786ccff940fefeb1bc3d573a27aef717da136))
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`02cccae`](https://github.com/anaticulae/capita/commit/02cccaeeb02c3d001723031bca20405494553833))
+
+### Testing
+
+- **remove**: Remove unused fixtures
+  ([`0d3db06`](https://github.com/anaticulae/capita/commit/0d3db06ce1749529c1597b6ab0318951848e71ba))
+
+- **test**: Simplify complicated test names
+  ([`c33d856`](https://github.com/anaticulae/capita/commit/c33d856033249d0afcb689ed44274c34dfc21dfb))
+
+
+## v0.1.0 (2020-03-23)
+
+- Initial Release
