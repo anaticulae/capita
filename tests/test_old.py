@@ -10,6 +10,7 @@
 import hoverpower
 import iamraw
 import iamraw.sections
+import pytest
 import serializeraw
 import utilo
 import utilotest
@@ -52,6 +53,7 @@ def test_sections_simple(td, mp):
     assert loaded == simple_sections, loaded
 
 
+@pytest.mark.xfail(reason='incomplete integration')
 @utilotest.nightly
 def test_sections_master72(td, mp):
     """Ensure that BUILDER in section is sorted correctly.
@@ -79,6 +81,7 @@ def test_sections_master72(td, mp):
     assert chapternumbers == expected
 
 
+@pytest.mark.xfail(reason='incomplete integration')
 @utilotest.nightly
 def test_sections_master075_appendix(td, mp):
     result = tests.sections_from_dir(

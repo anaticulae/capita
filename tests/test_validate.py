@@ -27,7 +27,7 @@ ARCHIVE = utilo.join(sections.ROOT, 'tests/expected/result', exist=True)
     'source',
     utilotest.test_resources(tests.conftest.RESOURCES),
 )
-def test_validate(source, td, mp):
+def test_validate(source, td, mp): #pylint:disable=unused-argument
     utilotest.fixture_requires(source)
     # TODO: ENABLE LATER
     # Evaluate(

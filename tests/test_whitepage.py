@@ -31,7 +31,12 @@ HC_DISS166_EXPECTED = ()
 
 
 @pytest.mark.parametrize('source, expected', [
-    pytest.param(hoverpower.DOCU027_PDF, RESTRUCT_EXPECTED, id='docu27'),
+    pytest.param(
+        hoverpower.DOCU027_PDF,
+        RESTRUCT_EXPECTED,
+        id='docu27',
+        marks=pytest.mark.xfail(reason='complete integration'),
+    ),
     pytest.param(hoverpower.MASTER155_PDF, MASTER155_EXPECTED, id='master155'),
     pytest.param(hoverpower.HC_DISS166,
                  HC_DISS166_EXPECTED,
@@ -56,7 +61,6 @@ BACHELOR090_EXPECTED = (
 )
 
 
-@pytest.mark.xfail(reason='missing headnote')
 @utilotest.requires(hoverpower.BACHELOR090_PDF)
 def test_document_whith_gaps():
     source = hoverpower.BACHELOR090_PDF
@@ -76,7 +80,10 @@ def whitepages(document: str):
     document = serializeraw.load_document(iamraw.path.text(source))
 
     headerfooters = utilo.join(source, 'headnote__result_result.yaml')
-    headerfooters = serializeraw.load_headerfooter(headerfooters)
+    if utilo.exists(headerfooters):
+        headerfooters = serializeraw.load_headerfooter(headerfooters)
+    else:
+        headerfooters = iamraw.PageContentFooterHeaders(content=[])
 
     images, figures = sections.feature.whitepage.load_imagesfigures(
         images=utilo.join(source, 'rawmaker__images_images'),

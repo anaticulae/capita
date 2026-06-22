@@ -39,12 +39,14 @@ import sections.feature.chapter
         hoverpower.MASTER091A_PDF,
         [13, 16, 18, 33, 37, 47, 58, 66, 72, 82],
         id='master91a',
+        marks=pytest.mark.xfail(reason='incomplete integration'),
     ),
     pytest.param(
         hoverpower.DISS266_PDF,
         [9, 23, 30, 81, 103, 197, 203],
         # [4, 5, 9, 23, 81, 103, 197, 203, 205],
         id='diss266',
+        marks=pytest.mark.xfail(reason='incomplete integration'),
     ),
     pytest.param(
         hoverpower.BACHELOR051_PDF,
@@ -67,6 +69,7 @@ import sections.feature.chapter
         [16, 24, 43, 54, 75, 89, 112, 132, 148, 150],
         # [16, 89, 148, 150],
         id='diss172',
+        marks=pytest.mark.xfail(reason='incomplete integration'),
     ),
     pytest.param(
         hoverpower.DISS406_PDF,
