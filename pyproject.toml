@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "capita"
-version = "1.25.0"
+version = "1.25.1"
 description = ""
 requires-python = ">=3.12"
 authors = [

@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.25.1 (2026-06-22)
+
+### Code Style
+
+- **format**: Format code
+  ([`9f625d5`](https://github.com/anaticulae/capita/commit/9f625d5c74290f6c3af6ada920698fb0880eb473))
+
+
 ## v1.25.0 (2026-06-22)
 
 ### Bug Fixes
