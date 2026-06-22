@@ -65,7 +65,11 @@ def load_features(  # pylint:disable=R0913,R0914
     abstract = serializeraw.load_likelihood(xabstract, pages=pages)
     appendix = serializeraw.load_likelihood(xappendix, pages=pages)
     acknowledge = serializeraw.load_likelihood(xacknowledge, pages=pages)
-    bibliography = serializeraw.load_likelihood(xbibliography, pages=pages)
+    if utilo.exists(xbibliography):
+        bibliography = serializeraw.load_likelihood(xbibliography, pages=pages)
+    else:
+        bibliography = []
+        utilo.error(f'run sections_ref!; file missing: {xbibliography}')
     chapter = serializeraw.load_likelihood(xchapter, pages=pages)
     figuretable = serializeraw.load_likelihood(xfiguretable, pages=pages)
     index = serializeraw.load_likelihood(xindex, pages=pages)
