@@ -1,6 +1,24 @@
 # CHANGELOG
 
 
+## v1.25.2 (2026-06-23)
+
+### Bug Fixes
+
+- **release**: Do not run on main if already exisis
+  ([`18f3802`](https://github.com/anaticulae/capita/commit/18f38028d5f226491fe6110392bad9de8f842724))
+
+### Chores
+
+- **deps**: Bump actions/checkout from 6 to 7
+  ([`a6568fa`](https://github.com/anaticulae/capita/commit/a6568fa0cfbe26a2cde9f6fac60e5974133df8cc))
+
+### Testing
+
+- **paper**: Enable test later
+  ([`9fdf382`](https://github.com/anaticulae/capita/commit/9fdf382abafcb92bfcc26711d09ee80d8130b604))
+
+
 ## v1.25.1 (2026-06-22)
 
 ### Code Style
