@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools>=82.0.1",
+    "setuptools>=83.0.0",
     "wheel>=0.47.0",
 ]
 build-backend = "setuptools.build_meta"
@@ -18,7 +18,7 @@ dependencies = [
     "elementae>=1.0.1,<2.0.0",
     "geostrat>=1.5.1,<2.0.0",
     "germania>=1.32.0,<2.0.0",
-    "iamraw>=4.91.6,<5.0.0",
+    "iamraw>=4.91.7,<5.0.0",
     "layouta>=1.0.0,<2.0.0",
     "utilo>=2.109.0,<3.0.0",
 ]
@@ -41,9 +41,9 @@ content-type = "text/markdown"
 dev = [
     "gennex==1.0.3",
     "groupmes>=1.1.0,<2.0.0",
-    "hoverpower==1.4.3",
+    "hoverpower==1.5.1",
     "pagenumber==1.0.0",
-    "rawmaker==2.40.3",
+    "rawmaker==2.40.5",
     "utilotest>=1.0.4,<2.0.0",
 ]
 
