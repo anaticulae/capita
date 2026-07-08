@@ -88,10 +88,10 @@ def extract(resources):
     gennex.extract(
         base=hoverpower.REPO,
         files=resources,
-        # cleanup=True,
-        # footnote=True,
+        cleanup=True,
+        footnote=True,
         groupme='--hefopa',
-        # headnote=True,
+        headnote=True,
         pagenumber=True,
         # sections_ref=True,
         worker=WORKER,
