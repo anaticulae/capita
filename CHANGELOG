@@ -1,6 +1,29 @@
 # CHANGELOG
 
 
+## v1.25.3 (2026-07-10)
+
+### Chores
+
+- **make**: Do not release if already done
+  ([`493e424`](https://github.com/anaticulae/capita/commit/493e42417c2ae0ef4a6a4725e3e10fb6f8b31ad2))
+
+- **pyproject**: Add capita_ref
+  ([`6c03107`](https://github.com/anaticulae/capita/commit/6c031071332a23a48efb9fca2855f8b1b06448c5))
+
+- **pyproject**: Extend packages
+  ([`631baa3`](https://github.com/anaticulae/capita/commit/631baa37b7183e48aad84530e6a53ffcba31b886))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`15ddb24`](https://github.com/anaticulae/capita/commit/15ddb243d959954aa2832dc02d6d64e4b03b7357))
+
+- **resources**: Enable capita_ref
+  ([`81f9fc4`](https://github.com/anaticulae/capita/commit/81f9fc4747a3c61868420ab45891cae9d3e0d98c))
+
+- **resources**: Extend test data generator
+  ([`21bbf5d`](https://github.com/anaticulae/capita/commit/21bbf5d310bf724a9be6528ce36209c5da007c77))
+
+
 ## v1.25.2 (2026-06-23)
 
 ### Bug Fixes
