@@ -48,6 +48,7 @@ dev = [
     "pagenumber==1.0.0",
     "rawmaker==2.40.5",
     "utilotest>=1.0.4,<2.0.0",
+    "capita_ref>=1.0.1,<2.0.0",
 ]
 
 [project.urls]
